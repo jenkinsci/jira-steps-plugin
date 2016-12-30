@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?jelly escape-by-default='true'?>
+<j:jelly
+	xmlns:j="jelly:core"
+	xmlns:st="jelly:stapler"
+	xmlns:d="jelly:define"
+	xmlns:l="/lib/layout"
+	xmlns:t="/lib/hudson"
+	xmlns:f="/lib/form"
+	xmlns:i="jelly:fmt">
+  <f:entry field="id" title="Component Id">
+  	<f:textbox/>
+  </f:entry>
+  <f:advanced>
+  	<f:entry field="siteName" title="Site Name">
+		<f:select/>
+  	</f:entry>
+  	<f:entry field="failOnError">
+  		<f:checkbox title="Fail On Error" default="false"/>
+  	</f:entry>
+  </f:advanced>
+</j:jelly>

@@ -1,0 +1,10 @@
+{% if page.sidebar == "jira_sidebar" %}
+{% assign sidebar = site.data.sidebars.jira_sidebar.entries %}
+
+{% else %}
+{% assign sidebar = site.data.sidebars.jira_sidebar.entries %}
+{% endif %}
+
+{% if site.product == "jira" %}
+{% assign sidebar_pdf = site.data.sidebars.jira_sidebar.entries %}
+{% endif %}

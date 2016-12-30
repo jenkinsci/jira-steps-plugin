@@ -1,0 +1,5 @@
+topnav:
+- title: Topnav
+  items:
+    - title: News
+      url: /news

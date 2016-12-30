@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?jelly escape-by-default='true'?>
+<j:jelly
+	xmlns:j="jelly:core"
+	xmlns:st="jelly:stapler"
+	xmlns:d="jelly:define"
+	xmlns:l="/lib/layout"
+	xmlns:t="/lib/hudson"
+	xmlns:f="/lib/form"
+	xmlns:i="jelly:fmt">
+  <f:entry title="Name" field="name">
+    <f:textbox />
+  </f:entry>
+  <f:entry title="URL" field="url">
+    <f:textbox />
+  </f:entry>
+  <f:entry title="Connection Timeout(ms) " field="timeout">
+    <f:textbox default="10000" />
+  </f:entry>
+  <f:section title="Choose Login Type:">
+    <f:radioBlock name="loginType" field="loginType" value="BASIC" checked="${instance.isLoginType('BASIC')}" title="Basic" inline="true">
+      <f:nested>
+	  	<f:entry title="User Name" field="userName">
+	    	<f:textbox />
+	  	</f:entry>
+	  	<f:entry title="Password" field="password">
+	    	<f:password />
+	  	</f:entry>
+  		<f:entry>	
+    		<f:validateButton title="${%Test Connection}"
+		            method="validateBasic" with="name,url,loginType,timeout,userName,password,consumerKey,privateKey,secret,token" progress="Checking..." inline="true" />
+  		</f:entry>
+      </f:nested>
+    </f:radioBlock>
+    <f:radioBlock name="loginType" field="loginType" value="OAUTH" checked="${instance.isLoginType('OAUTH')}" title="OAuth" inline="true">
+      <f:nested>
+	  	<f:entry title="Consumer Key" field="consumerKey">
+	    	<f:textbox />
+	  	</f:entry>
+	  	<f:entry title="Private Key" field="privateKey">
+	    	<f:expandableTextbox/>
+	  	</f:entry>
+	  	<f:entry title="Secret" field="secret">
+	    	<f:password />
+	  	</f:entry>
+	  	<f:entry title="Token" field="token">
+	    	<f:password />
+	  	</f:entry>
+  		<f:entry>	
+    		<f:validateButton title="${%Test Connection}"
+            		method="validateOAuth" with="name,url,loginType,timeout,userName,password,consumerKey,privateKey,secret,token" progress="Checking..." inline="true" />
+  		</f:entry>
+      </f:nested>
+    </f:radioBlock>
+  </f:section>  
+  <f:entry title="">
+    <div align="right">
+      <f:repeatableDeleteButton value="Delete Site"/>
+    </div>
+  </f:entry>
+</j:jelly>
