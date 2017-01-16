@@ -14,6 +14,7 @@ import org.thoughtslive.jenkins.plugins.jira.steps.BasicJiraStep;
 
 import hudson.AbortException;
 import hudson.EnvVars;
+import hudson.Util;
 import hudson.model.TaskListener;
 
 /**
@@ -52,31 +53,29 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 		logger = listener.getLogger();
 		String errorMessage = null;
 		siteName = empty(step.getSiteName()) ? envVars.get("JIRA_SITE") : step.getSiteName();
-		if (empty(envVars.get("JIRA_FAIL_ON_ERROR"))) {
+		final Site site = Site.get(siteName);
+		final String failOnErrorStr = Util.fixEmpty(envVars.get("JIRA_FAIL_ON_ERROR"));
+
+		if (failOnErrorStr == null) {
 			failOnError = step.isFailOnError();
 		} else {
-			failOnError = Boolean.getBoolean(envVars.get("JIRA_FAIL_ON_ERROR"));
+			failOnError = Boolean.parseBoolean(failOnErrorStr);
 		}
 
 		if (empty(siteName)) {
 			errorMessage = "JIRA_SITE is empty or null.";
-			if (failOnError) {
-				throw new AbortException(errorMessage);
-			} else {
-				return buildErrorResponse(new RuntimeException(errorMessage));
-			}
 		}
 
-		final Site site = Site.get(siteName);
 		if (site == null) {
 			errorMessage = "No JIRA site configured with " + siteName + " name.";
-			if (failOnError) {
-				throw new AbortException(errorMessage);
-			} else {
-				return buildErrorResponse(new RuntimeException(errorMessage));
-			}
 		}
+
 		jiraService = site.getService();
+		
+		if(errorMessage != null) {
+			return buildErrorResponse(new RuntimeException(errorMessage));
+		}
+		
 		return null;
 	}
 

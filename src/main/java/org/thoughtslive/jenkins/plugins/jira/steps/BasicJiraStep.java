@@ -22,6 +22,6 @@ public abstract class BasicJiraStep extends AbstractStepImpl implements Serializ
 
 	@Getter
 	@DataBoundSetter
-	private boolean failOnError = false;
+	private boolean failOnError = true;
 
 }
