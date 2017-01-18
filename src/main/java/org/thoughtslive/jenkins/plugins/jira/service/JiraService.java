@@ -107,9 +107,9 @@ public class JiraService {
 	 *            actual component
 	 * @return updated component.
 	 */
-	public ResponseData<Component> updateComponent(final int id, final Component component) {
+	public ResponseData<Component> updateComponent(final Component component) {
 		try {
-			return parseResponse(jiraEndPoints.updateComponent(id, component).execute());
+			return parseResponse(jiraEndPoints.updateComponent(component.getId(), component).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}

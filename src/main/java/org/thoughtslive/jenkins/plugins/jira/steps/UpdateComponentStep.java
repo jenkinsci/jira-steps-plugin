@@ -25,14 +25,10 @@ public class UpdateComponentStep extends BasicJiraStep {
 	private static final long serialVersionUID = 2327375640378098562L;
 
 	@Getter
-	private final int id;
-
-	@Getter
 	private final Component component;
 
 	@DataBoundConstructor
-	public UpdateComponentStep(final int id, final Component component) {
-		this.id = id;
+	public UpdateComponentStep(final Component component) {
 		this.component = component;
 	}
 
@@ -79,7 +75,7 @@ public class UpdateComponentStep extends BasicJiraStep {
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Updating component: " + step.getComponent());
-				response = jiraService.updateComponent(step.getId(), step.getComponent());
+				response = jiraService.updateComponent(step.getComponent());
 			}
 
 			return logResponse(response);
