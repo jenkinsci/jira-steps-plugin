@@ -47,8 +47,7 @@ public interface JiraEndPoints {
 	Call<Component> createNewComponent(@Body Component component);
 
 	@PUT("rest/api/2/component/{id}")
-	Call<Component> updateComponent(@Path("id") int id,
-			@Body Component component);
+	Call<Component> updateComponent(@Path("id") int id, @Body Component component);
 
 	@GET("rest/api/2/component/{id}/relatedIssueCounts")
 	Call<Count> getComponentIssueCount(@Path("id") int id);
@@ -61,48 +60,40 @@ public interface JiraEndPoints {
 	Call<Issue> createIssue(@Body Issue issue);
 
 	@PUT("rest/api/2/issue/{issueIdOrKey}")
-	Call<Issue> updateIssue(@Path("issueIdOrKey") String issueIdOrKey,
-			@Body Issue issue);
+	Call<Issue> updateIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Issue issue);
 
 	@POST("rest/api/2/issue/bulk")
 	Call<Issues> createIssues(@Body Issues issues);
 
 	@PUT("rest/api/2/issue/{issueIdOrKey}/assignee")
-	Call<Issue> assignIssue(@Path("issueIdOrKey") String issueIdOrKey,
-			@Body User issue);
+	Call<Issue> assignIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body User issue);
 
 	@GET("rest/api/2/issue/{issueIdOrKey}/comment")
 	Call<Comments> getComments(@Path("issueIdOrKey") String issueIdOrKey);
 
 	@POST("rest/api/2/issue/{issueIdOrKey}/comment")
-	Call<Comment> addComment(@Path("issueIdOrKey") String issueIdOrKey,
-			@Body Comment issue);
+	Call<Comment> addComment(@Path("issueIdOrKey") String issueIdOrKey, @Body Comment issue);
 
 	@PUT("rest/api/2/issue/{issueIdOrKey}/comment/{id}")
-	Call<Comment> updateComment(@Path("issueIdOrKey") String issueIdOrKey,
-			@Path("id") int id, @Body Comment issue);
+	Call<Comment> updateComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") int id, @Body Comment issue);
 
 	@GET("rest/api/2/issue/{issueIdOrKey}/comment/{id}")
-	Call<Comment> getComment(@Path("issueIdOrKey") String issueIdOrKey,
-			@Path("id") int id);
+	Call<Comment> getComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") int id);
 
 	@POST("rest/api/2/issue/{issueIdOrKey}/notify")
-	Call<Notify> notifyIssue(@Path("issueIdOrKey") String issueIdOrKey,
-			@Body Notify notify);
+	Call<Notify> notifyIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Notify notify);
 
 	@GET("rest/api/2/issue/{issueIdOrKey}/transitions?expand=transitions.fields")
 	Call<Transitions> getTransitions(@Path("issueIdOrKey") String issueIdOrKey);
 
 	@POST("rest/api/2/issue/{issueIdOrKey}/transitions")
-	Call<Issue> transitionIssue(@Path("issueIdOrKey") String issueIdOrKey,
-			@Body Issue issue);
+	Call<Issue> transitionIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Issue issue);
 
 	@GET("rest/api/2/issue/{issueIdOrKey}/watchers")
 	Call<Watches> getIssueWatchers(@Path("issueIdOrKey") String issueIdOrKey);
 
 	@POST("rest/api/2/issue/{issueIdOrKey}/watchers")
-	Call<Watches> addIssueWatcher(@Path("issueIdOrKey") String issueIdOrKey,
-			@Body User user);
+	Call<Watches> addIssueWatcher(@Path("issueIdOrKey") String issueIdOrKey, @Body User user);
 
 	// Issue Links
 	@POST("rest/api/2/issueLink")
@@ -129,17 +120,15 @@ public interface JiraEndPoints {
 	Call<Status[]> getProjectStatuses(@Path("projectIdOrKey") int projectId);
 
 	@GET("rest/api/2/project/{projectIdOrKey}/components")
-	Call<Component[]> getProjectComponents(
-			@Path("projectIdOrKey") int projectId);
+	Call<Component[]> getProjectComponents(@Path("projectIdOrKey") int projectId);
 
 	@GET("rest/api/2/project/{projectIdOrKey}/versions")
 	Call<Version[]> getProjectVersions(@Path("projectIdOrKey") int projectId);
 
 	// Search
 	@GET("rest/api/2/search")
-	Call<Issues> searchIssues(@Query("jql") String jql,
-			@Query("startAt") int startAt, @Query("maxResults") int maxResults,
-			@Query("fields") String[] fields);
+	Call<Issues> searchIssues(@Query("jql") String jql, @Query("startAt") int startAt,
+			@Query("maxResults") int maxResults, @Query("fields") String[] fields);
 
 	// Version
 	@POST("rest/api/2/version")
@@ -154,7 +143,8 @@ public interface JiraEndPoints {
 	@DELETE("rest/api/2/version/{id}")
 	Call<Version> deleteVersion(@Path("id") int id);
 
-	// Session TODO need find out on how to share the JSESSIONID among different calls.
+	// Session TODO need find out on how to share the JSESSIONID among different
+	// calls.
 	// @POST("/rest/auth/1/session")
 	// Call<Session> newSession();
 

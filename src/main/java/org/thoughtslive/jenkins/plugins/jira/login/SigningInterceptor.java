@@ -29,22 +29,16 @@ public class SigningInterceptor implements Interceptor {
 	@Override
 	public Response intercept(Interceptor.Chain chain) throws IOException {
 
-		if (jiraSite.getLoginType()
-				.equalsIgnoreCase(Site.LoginType.BASIC.name())) {
-			String credentials = jiraSite.getUserName() + ":"
-					+ jiraSite.getPassword().getPlainText();
-			String encodedHeader = "Basic " + new String(
-					Base64.getEncoder().encode(credentials.getBytes()));
-			Request requestWithAuthorization = chain.request().newBuilder()
-					.addHeader("Authorization", encodedHeader).build();
+		if (jiraSite.getLoginType().equalsIgnoreCase(Site.LoginType.BASIC.name())) {
+			String credentials = jiraSite.getUserName() + ":" + jiraSite.getPassword().getPlainText();
+			String encodedHeader = "Basic " + new String(Base64.getEncoder().encode(credentials.getBytes()));
+			Request requestWithAuthorization = chain.request().newBuilder().addHeader("Authorization", encodedHeader)
+					.build();
 			return chain.proceed(requestWithAuthorization);
-		} else if (jiraSite.getLoginType()
-				.equalsIgnoreCase(Site.LoginType.OAUTH.name())) {
+		} else if (jiraSite.getLoginType().equalsIgnoreCase(Site.LoginType.OAUTH.name())) {
 			Request request = chain.request();
-			OAuthConsumer consumer = new OAuthConsumer(
-					jiraSite.getConsumerKey(), jiraSite.getPrivateKey());
-			consumer.setTokenWithSecret(jiraSite.getToken().getPlainText(),
-					jiraSite.getSecret().getPlainText());
+			OAuthConsumer consumer = new OAuthConsumer(jiraSite.getConsumerKey(), jiraSite.getPrivateKey());
+			consumer.setTokenWithSecret(jiraSite.getToken().getPlainText(), jiraSite.getSecret().getPlainText());
 			consumer.setMessageSigner(new RsaSha1MessageSigner());
 			try {
 				return chain.proceed((Request) consumer.sign(request).unwrap());

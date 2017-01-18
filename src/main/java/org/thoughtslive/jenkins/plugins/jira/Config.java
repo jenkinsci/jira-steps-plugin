@@ -65,9 +65,7 @@ public class Config extends AbstractDescribableImpl<Config> {
 	@Extension
 	public static final ConfigDescriptorImpl DESCRIPTOR = new ConfigDescriptorImpl();
 
-	public static final class ConfigDescriptorImpl extends Descriptor<Config>
-			implements
-				Serializable {
+	public static final class ConfigDescriptorImpl extends Descriptor<Config> implements Serializable {
 		private static final long serialVersionUID = 6174559183832237318L;
 		private final CopyOnWriteList<Site> sites = new CopyOnWriteList<Site>();
 
@@ -90,8 +88,7 @@ public class Config extends AbstractDescribableImpl<Config> {
 		}
 
 		@Override
-		public Config newInstance(@Nonnull final StaplerRequest req, final JSONObject formData)
-				throws FormException {
+		public Config newInstance(@Nonnull final StaplerRequest req, final JSONObject formData) throws FormException {
 			Config jiraConfig = req.bindJSON(Config.class, formData);
 			if (jiraConfig.siteName == null) {
 				jiraConfig = null;
@@ -102,10 +99,8 @@ public class Config extends AbstractDescribableImpl<Config> {
 		@Override
 		public boolean configure(StaplerRequest req, JSONObject formData) {
 			Stapler.CONVERT_UTILS.deregister(java.net.URL.class);
-			Stapler.CONVERT_UTILS.register(new EmptyFriendlyURLConverter(),
-					java.net.URL.class);
-			sites.replaceBy(
-					req.bindJSONToList(Site.class, formData.get("sites")));
+			Stapler.CONVERT_UTILS.register(new EmptyFriendlyURLConverter(), java.net.URL.class);
+			sites.replaceBy(req.bindJSONToList(Site.class, formData.get("sites")));
 			save();
 			return true;
 		}
@@ -113,8 +108,7 @@ public class Config extends AbstractDescribableImpl<Config> {
 		@Restricted(NoExternalUse.class)
 		public static class EmptyFriendlyURLConverter implements Converter {
 			@Override
-			public Object convert(@SuppressWarnings("rawtypes") Class aClass,
-					Object o) {
+			public Object convert(@SuppressWarnings("rawtypes") Class aClass, Object o) {
 				if (o == null || "".equals(o) || "null".equals(o)) {
 					return null;
 				}

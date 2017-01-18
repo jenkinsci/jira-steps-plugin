@@ -50,9 +50,7 @@ public class GetComponentIssueCountStep extends BasicJiraStep {
 
 	}
 
-	public static class Execution
-			extends
-				JiraStepExecution<ResponseData<Count>> {
+	public static class Execution extends JiraStepExecution<ResponseData<Count>> {
 
 		private static final long serialVersionUID = -821037959812310749L;
 
@@ -68,13 +66,11 @@ public class GetComponentIssueCountStep extends BasicJiraStep {
 		@Override
 		protected ResponseData<Count> run() throws Exception {
 
-			ResponseData<Count> response = verifyCommon(step, listener,
-					envVars);
+			ResponseData<Count> response = verifyCommon(step, listener, envVars);
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName
-						+ " - Querying component issue count with id: "
-						+ step.getId());
+				logger.println(
+						"JIRA: Site - " + siteName + " - Querying component issue count with id: " + step.getId());
 				response = jiraService.getComponentIssueCount(step.getId());
 			}
 

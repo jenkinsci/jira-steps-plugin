@@ -18,7 +18,7 @@ import java.net.URI;
 @Data
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor(onConstructor = @__({@DataBoundConstructor}))
+@AllArgsConstructor(onConstructor = @__({ @DataBoundConstructor }))
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Worklog implements Serializable {
@@ -30,7 +30,7 @@ public class Worklog implements Serializable {
 
 	@JsonProperty("author")
 	private User author;
-	
+
 	@JsonProperty("updateAuthor")
 	private User updateAuthor;
 
@@ -42,7 +42,7 @@ public class Worklog implements Serializable {
 
 	@JsonProperty("updateDate")
 	private DateTime updateDate;
-	
+
 	@JsonProperty("startDate")
 	private DateTime startDate;
 

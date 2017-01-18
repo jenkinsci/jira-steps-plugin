@@ -15,8 +15,7 @@ public class OAuthConsumer extends AbstractOAuthConsumer {
 	@Override
 	protected HttpRequest wrap(Object request) {
 		if (!(request instanceof Request)) {
-			throw new IllegalArgumentException("Accepts only requests of type "
-					+ Request.class.getCanonicalName());
+			throw new IllegalArgumentException("Accepts only requests of type " + Request.class.getCanonicalName());
 		}
 		return new RequestAdapter((Request) request);
 	}

@@ -44,13 +44,17 @@ public class JiraService {
 
 		final ConnectionPool CONNECTION_POOL = new ConnectionPool(5, 60, TimeUnit.SECONDS);
 
-		OkHttpClient httpClient = new OkHttpClient.Builder().connectTimeout(jiraSite.getTimeout(), TimeUnit.MILLISECONDS).readTimeout(10000, TimeUnit.MILLISECONDS)
-				.connectionPool(CONNECTION_POOL).retryOnConnectionFailure(true).addInterceptor(new SigningInterceptor(jiraSite)).build();
+		OkHttpClient httpClient = new OkHttpClient.Builder()
+				.connectTimeout(jiraSite.getTimeout(), TimeUnit.MILLISECONDS).readTimeout(10000, TimeUnit.MILLISECONDS)
+				.connectionPool(CONNECTION_POOL).retryOnConnectionFailure(true)
+				.addInterceptor(new SigningInterceptor(jiraSite)).build();
 
 		final ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JodaModule());
-		this.jiraEndPoints = new Retrofit.Builder().baseUrl(this.jiraSite.getUrl().toString()).addConverterFactory(JacksonConverterFactory.create(mapper))
-				.addCallAdapterFactory(RxJavaCallAdapterFactory.create()).client(httpClient).build().create(JiraEndPoints.class);
+		mapper.registerModule(new JodaModule());
+		this.jiraEndPoints = new Retrofit.Builder().baseUrl(this.jiraSite.getUrl().toString())
+				.addConverterFactory(JacksonConverterFactory.create(mapper))
+				.addCallAdapterFactory(RxJavaCallAdapterFactory.create()).client(httpClient).build()
+				.create(JiraEndPoints.class);
 	}
 
 	/**
@@ -99,7 +103,8 @@ public class JiraService {
 	 * 
 	 * @param id
 	 *            component id.
-	 * @param component actual component
+	 * @param component
+	 *            actual component
 	 * @return updated component.
 	 */
 	public ResponseData<Component> updateComponent(final int id, final Component component) {
@@ -234,7 +239,8 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<Issues> searchIssues(final String jql, final int startAt, final int maxResults, final String[] fields) {
+	public ResponseData<Issues> searchIssues(final String jql, final int startAt, final int maxResults,
+			final String[] fields) {
 		try {
 			return parseResponse(jiraEndPoints.searchIssues(jql, startAt, maxResults, fields).execute());
 		} catch (Exception e) {

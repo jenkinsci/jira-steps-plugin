@@ -23,10 +23,10 @@ public class JiraServiceTest {
 		// System.out.println(service.createComponent(component));
 		System.out.println(service.getServerInfo().getData());
 		// System.out.println(service.getComponent(10000));
-		 System.out.println(service.getComponentIssueCount(10000));
+		System.out.println(service.getComponentIssueCount(10000));
 		//
-		 ResponseData<Issue> issue = service.getIssue("TEST-1");
-		 System.out.println(issue);
+		ResponseData<Issue> issue = service.getIssue("TEST-1");
+		System.out.println(issue);
 		//
 		// ObjectMapper mapper = new ObjectMapper();
 		// String jsonInString1 = "{\"fields\": { \"project\": {
@@ -65,8 +65,8 @@ public class JiraServiceTest {
 		// 10000, comment);
 		// System.out.println(commentRes);
 
-//		ResponseData<Comments> comments = service.getComments("TEST-1");
-//		System.out.println(comments);
+		// ResponseData<Comments> comments = service.getComments("TEST-1");
+		// System.out.println(comments);
 
 		// ResponseData<Comment> commentResponse = service.getComment("TEST-1",
 		// 10001);
@@ -109,7 +109,8 @@ public class JiraServiceTest {
 		// ResponseData<Issue> issue3 = service.assignIssue("TEST-1", user);
 		// System.out.println(issue3);
 
-		// ResponseData<Issues> issues = service.searchIssues("PROJECT = TEST", 0, 1, null);
+		// ResponseData<Issues> issues = service.searchIssues("PROJECT = TEST",
+		// 0, 1, null);
 		// System.out.println(issues);
 
 	}

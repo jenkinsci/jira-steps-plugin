@@ -55,9 +55,7 @@ public class NewComponentStep extends BasicJiraStep {
 		}
 	}
 
-	public static class Execution
-			extends
-				JiraStepExecution<ResponseData<Component>> {
+	public static class Execution extends JiraStepExecution<ResponseData<Component>> {
 
 		private static final long serialVersionUID = -821037959812310749L;
 
@@ -73,12 +71,10 @@ public class NewComponentStep extends BasicJiraStep {
 		@Override
 		protected ResponseData<Component> run() throws Exception {
 
-			ResponseData<Component> response = verifyCommon(step, listener,
-					envVars);
+			ResponseData<Component> response = verifyCommon(step, listener, envVars);
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName
-						+ " - Creating new component: " + step.getComponent());
+				logger.println("JIRA: Site - " + siteName + " - Creating new component: " + step.getComponent());
 				response = jiraService.createComponent(step.getComponent());
 			}
 

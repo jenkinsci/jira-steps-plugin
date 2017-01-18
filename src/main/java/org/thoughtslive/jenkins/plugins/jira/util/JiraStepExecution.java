@@ -43,12 +43,14 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 	 *            taskListener
 	 * @param envVars
 	 *            environment vars.
-	 * @return response if JIRA_SITE is empty or if there is no site configured with JIRA_SITE.
+	 * @return response if JIRA_SITE is empty or if there is no site configured
+	 *         with JIRA_SITE.
 	 * @throws AbortException
 	 *             when failOnError is true and JIRA_SITE is missing.
 	 */
 	@SuppressWarnings("hiding")
-	protected <T> ResponseData<T> verifyCommon(final BasicJiraStep step, final TaskListener listener, final EnvVars envVars) throws AbortException {
+	protected <T> ResponseData<T> verifyCommon(final BasicJiraStep step, final TaskListener listener,
+			final EnvVars envVars) throws AbortException {
 
 		logger = listener.getLogger();
 		String errorMessage = null;
@@ -72,10 +74,10 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 			jiraService = site.getService();
 		}
 
-		if(errorMessage != null) {
+		if (errorMessage != null) {
 			return buildErrorResponse(new RuntimeException(errorMessage));
 		}
-		
+
 		return null;
 	}
 

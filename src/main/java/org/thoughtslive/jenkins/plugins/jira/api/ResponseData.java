@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@ToString(of = {"successful", "code", "message", "error", "data"})
+@ToString(of = { "successful", "code", "message", "error", "data" })
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResponseData<T> implements Serializable {

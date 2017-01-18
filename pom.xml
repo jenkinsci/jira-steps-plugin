@@ -22,7 +22,7 @@
     <hpi-plugin.version>1.95</hpi-plugin.version>
     <pipeline.version>2.4</pipeline.version>
     <workflow.step.api.version>2.3</workflow.step.api.version>
-    <jackson2.version>2.6.0</jackson2.version>
+    <jackson2.version>2.4.0</jackson2.version>
     <retrofit2.version>2.1.0</retrofit2.version>
     <lombok.version>1.16.12</lombok.version>
     <signpost.oauth.version>1.2.1.2</signpost.oauth.version>

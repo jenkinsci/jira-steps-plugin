@@ -23,19 +23,15 @@ public class RsaSha1MessageSigner extends OAuthMessageSigner {
 	}
 
 	@Override
-	public String sign(HttpRequest request, HttpParameters requestParams)
-			throws OAuthMessageSignerException {
+	public String sign(HttpRequest request, HttpParameters requestParams) throws OAuthMessageSignerException {
 
 		final OAuthRsaSigner signer = new OAuthRsaSigner();
 		final byte[] privateBytes = Base64.decodeBase64(getConsumerSecret());
-		final PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(
-				privateBytes);
+		final PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(privateBytes);
 
 		try {
-			signer.privateKey = KeyFactory.getInstance("RSA")
-					.generatePrivate(keySpec);
-			final String signatureBaseString = new SignatureBaseString(request,
-					requestParams).generate();
+			signer.privateKey = KeyFactory.getInstance("RSA").generatePrivate(keySpec);
+			final String signatureBaseString = new SignatureBaseString(request, requestParams).generate();
 			return signer.computeSignature(signatureBaseString);
 		} catch (GeneralSecurityException e) {
 			throw new OAuthMessageSignerException(e);

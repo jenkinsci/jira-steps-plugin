@@ -29,9 +29,7 @@ public class RequestAdapter implements HttpRequest {
 	@Override
 	public String getContentType() {
 		if (request.body() != null) {
-			return (request.body().contentType() != null)
-					? request.body().contentType().toString()
-					: null;
+			return (request.body().contentType() != null) ? request.body().contentType().toString() : null;
 		}
 		return null;
 	}

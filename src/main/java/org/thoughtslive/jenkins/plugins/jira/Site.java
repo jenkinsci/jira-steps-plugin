@@ -45,17 +45,17 @@ public class Site extends AbstractDescribableImpl<Site> {
 
 	// Basic
 	@Getter
-	@Setter(onMethod = @__({@DataBoundSetter}))
+	@Setter(onMethod = @__({ @DataBoundSetter }))
 	private String userName;
 	@Getter
 	private Secret password;
 
 	// OAuth
 	@Getter
-	@Setter(onMethod = @__({@DataBoundSetter}))
+	@Setter(onMethod = @__({ @DataBoundSetter }))
 	private String consumerKey;
 	@Getter
-	@Setter(onMethod = @__({@DataBoundSetter}))
+	@Setter(onMethod = @__({ @DataBoundSetter }))
 	private String privateKey;
 	@Getter
 	private Secret secret;
@@ -65,8 +65,7 @@ public class Site extends AbstractDescribableImpl<Site> {
 	private transient JiraService jiraService = null;
 
 	@DataBoundConstructor
-	public Site(final String name, final URL url, final String loginType,
-			final int timeout) {
+	public Site(final String name, final URL url, final String loginType, final int timeout) {
 
 		this.name = Util.fixEmpty(name);
 		this.url = url;
@@ -122,14 +121,10 @@ public class Site extends AbstractDescribableImpl<Site> {
 		 * This validation can be moved to Config so that we can also verify the
 		 * name is valid.
 		 */
-		public FormValidation doValidateBasic(@QueryParameter String name,
-				@QueryParameter String url, @QueryParameter String loginType,
-				@QueryParameter String timeout, @QueryParameter String userName,
-				@QueryParameter String password,
-				@QueryParameter String consumerKey,
-				@QueryParameter String privateKey,
-				@QueryParameter String secret, @QueryParameter String token)
-				throws IOException {
+		public FormValidation doValidateBasic(@QueryParameter String name, @QueryParameter String url,
+				@QueryParameter String loginType, @QueryParameter String timeout, @QueryParameter String userName,
+				@QueryParameter String password, @QueryParameter String consumerKey, @QueryParameter String privateKey,
+				@QueryParameter String secret, @QueryParameter String token) throws IOException {
 			url = Util.fixEmpty(url);
 			name = Util.fixEmpty(name);
 			userName = Util.fixEmpty(userName);
@@ -146,16 +141,14 @@ public class Site extends AbstractDescribableImpl<Site> {
 				}
 				mainURL = new URL(url);
 			} catch (MalformedURLException e) {
-				return FormValidation
-						.error(String.format("Malformed URL (%s)", url), e);
+				return FormValidation.error(String.format("Malformed URL (%s)", url), e);
 			}
 
 			int t = 0;
 			try {
 				t = Integer.parseInt(timeout);
 				if (t <= 100) {
-					return FormValidation
-							.error("Timeout can't be lessthan 100.");
+					return FormValidation.error("Timeout can't be lessthan 100.");
 				}
 			} catch (NumberFormatException e) {
 				return FormValidation.error("Timeout is not a number");
@@ -174,33 +167,25 @@ public class Site extends AbstractDescribableImpl<Site> {
 
 			try {
 				final JiraService service = new JiraService(site);
-				final ResponseData<Map<String, Object>> response = service
-						.getServerInfo();
+				final ResponseData<Map<String, Object>> response = service.getServerInfo();
 				if (response.isSuccessful()) {
-					return FormValidation.ok("Success: "
-							+ response.getData().get("serverTitle") + " - "
+					return FormValidation.ok("Success: " + response.getData().get("serverTitle") + " - "
 							+ response.getData().get("version"));
 				} else {
 					return FormValidation.error(response.getError());
 				}
 			} catch (Exception e) {
-				log.log(Level.WARNING,
-						"Failed to Basic login to JIRA at " + url, e);
+				log.log(Level.WARNING, "Failed to Basic login to JIRA at " + url, e);
 			}
-			return FormValidation
-					.error("Failed to Basic login to JIRA: " + url);
+			return FormValidation.error("Failed to Basic login to JIRA: " + url);
 		}
 
 		// This is stupid but no choice as I couldn't find the way to get the
 		// value loginType (radioBlock as a @QueryParameter)
-		public FormValidation doValidateOAuth(@QueryParameter String name,
-				@QueryParameter String url, @QueryParameter String loginType,
-				@QueryParameter String timeout, @QueryParameter String userName,
-				@QueryParameter String password,
-				@QueryParameter String consumerKey,
-				@QueryParameter String privateKey,
-				@QueryParameter String secret, @QueryParameter String token)
-				throws IOException {
+		public FormValidation doValidateOAuth(@QueryParameter String name, @QueryParameter String url,
+				@QueryParameter String loginType, @QueryParameter String timeout, @QueryParameter String userName,
+				@QueryParameter String password, @QueryParameter String consumerKey, @QueryParameter String privateKey,
+				@QueryParameter String secret, @QueryParameter String token) throws IOException {
 			url = Util.fixEmpty(url);
 			name = Util.fixEmpty(name);
 			consumerKey = Util.fixEmpty(consumerKey);
@@ -219,16 +204,14 @@ public class Site extends AbstractDescribableImpl<Site> {
 				}
 				mainURL = new URL(url);
 			} catch (MalformedURLException e) {
-				return FormValidation
-						.error(String.format("Malformed URL (%s)", url), e);
+				return FormValidation.error(String.format("Malformed URL (%s)", url), e);
 			}
 
 			int t = 0;
 			try {
 				t = Integer.parseInt(timeout);
 				if (t <= 100) {
-					return FormValidation
-							.error("Timeout can't be lessthan 100.");
+					return FormValidation.error("Timeout can't be lessthan 100.");
 				}
 			} catch (NumberFormatException e) {
 				return FormValidation.error("Timeout is not a number");
@@ -255,21 +238,17 @@ public class Site extends AbstractDescribableImpl<Site> {
 
 			try {
 				final JiraService service = new JiraService(site);
-				final ResponseData<Map<String, Object>> response = service
-						.getServerInfo();
+				final ResponseData<Map<String, Object>> response = service.getServerInfo();
 				if (response.isSuccessful()) {
-					return FormValidation.ok("Success: "
-							+ response.getData().get("serverTitle") + " - "
+					return FormValidation.ok("Success: " + response.getData().get("serverTitle") + " - "
 							+ response.getData().get("version"));
 				} else {
 					return FormValidation.error(response.getError());
 				}
 			} catch (Exception e) {
-				log.log(Level.WARNING,
-						"Failed to OAuth login to JIRA at " + url, e);
+				log.log(Level.WARNING, "Failed to OAuth login to JIRA at " + url, e);
 			}
-			return FormValidation
-					.error("Failed to OAuth login to JIRA: " + url);
+			return FormValidation.error("Failed to OAuth login to JIRA: " + url);
 		}
 	}
 }
