@@ -25,18 +25,18 @@ public class IssueLinkType implements Serializable {
 	private final static long serialVersionUID = 1400451509198002456L;
 
 	@JsonProperty("id")
-	public String id;
+	private String id;
 
 	@JsonProperty("name")
-	public String name;
+	private String name;
 
 	@JsonProperty("inward")
-	public String inward;
+	private String inward;
 
 	@JsonProperty("outward")
-	public String outward;
+	private String outward;
 
 	@JsonProperty("self")
-	public String self;
+	private String self;
 
 }

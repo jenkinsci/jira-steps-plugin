@@ -24,15 +24,15 @@ public class Priority implements Serializable {
 	private final static long serialVersionUID = -7744634069679490673L;
 
 	@JsonProperty("self")
-	public String self;
+	private String self;
 
 	@JsonProperty("iconUrl")
-	public String iconUrl;
+	private String iconUrl;
 
 	@JsonProperty("name")
-	public String name;
+	private String name;
 
 	@JsonProperty("id")
-	public String id;
+	private String id;
 
 }

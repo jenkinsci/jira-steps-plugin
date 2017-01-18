@@ -23,15 +23,15 @@ public class Resolution implements Serializable {
 	private final static long serialVersionUID = -2401332192031752080L;
 
 	@JsonProperty("self")
-	public String self;
+	private String self;
 
 	@JsonProperty("id")
-	public String id;
+	private String id;
 
 	@JsonProperty("name")
-	public String name;
+	private String name;
 
 	@JsonProperty("description")
-	public String description;
+	private String description;
 
 }

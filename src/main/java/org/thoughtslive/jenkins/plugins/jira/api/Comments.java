@@ -26,15 +26,15 @@ public class Comments implements Serializable {
 	private final static long serialVersionUID = -4139319087157087224L;
 
 	@JsonProperty("startAt")
-	public Integer startAt;
+	private Integer startAt;
 
 	@JsonProperty("maxResults")
-	public Integer maxResults;
+	private Integer maxResults;
 
 	@JsonProperty("total")
-	public Integer total;
+	private Integer total;
 
 	@JsonProperty("comments")
-	public List<Comment> comments = null;
+	private List<Comment> comments = null;
 
 }

@@ -28,84 +28,84 @@ public class Fields implements Serializable {
 	private final static long serialVersionUID = -423297322860356733L;
 
 	@JsonProperty("fixVersions")
-	public List<Version> fixVersions = null;
+	private List<Version> fixVersions = null;
 
 	@JsonProperty("resolution")
-	public Resolution resolution;
+	private Resolution resolution;
 
 	@JsonProperty("lastViewed")
-	public DateTime lastViewed;
+	private DateTime lastViewed;
 
 	@JsonProperty("priority")
-	public Priority priority;
+	private Priority priority;
 
 	@JsonProperty("labels")
-	public Set<String> labels = null;
+	private Set<String> labels = null;
 
 	@JsonProperty("versions")
-	public List<Version> versions = null;
+	private List<Version> versions = null;
 
 	@JsonProperty("issuelinks")
-	public List<IssueLink> issuelinks = null;
+	private List<IssueLink> issuelinks = null;
 
 	@JsonProperty("assignee")
-	public User assignee;
+	private User assignee;
 
 	@JsonProperty("status")
-	public Status status;
+	private Status status;
 
 	@JsonProperty("components")
-	public List<Component> components = null;
+	private List<Component> components = null;
 
 	@JsonProperty("creator")
-	public User creator;
+	private User creator;
 
 	@JsonProperty("subtasks")
-	public List<Issue> subtasks = null;
+	private List<Issue> subtasks = null;
 
 	@JsonProperty("reporter")
-	public User reporter;
+	private User reporter;
 
 	@JsonProperty("votes")
-	public Votes votes;
+	private Votes votes;
 
 	@JsonProperty("worklog")
-	public Worklogs worklog;
+	private Worklogs worklog;
 
 	@JsonProperty("issuetype")
-	public IssueType issuetype;
+	private IssueType issuetype;
 
 	@JsonProperty("project")
-	public Project project;
+	private Project project;
 
 	@JsonProperty("resolutiondate")
-	public DateTime resolutiondate;
+	private DateTime resolutiondate;
 
 	@JsonProperty("watches")
-	public Watches watches;
+	private Watches watches;
 
 	@JsonProperty("created")
-	public DateTime created;
+	private DateTime created;
 
 	@JsonProperty("updated")
-	public DateTime updated;
+	private DateTime updated;
 
 	@JsonProperty("description")
-	public String description;
+	private String description;
 
 	@JsonProperty("timetracking")
-	public TimeTracking timetracking;
+	private TimeTracking timetracking;
 
 	@JsonProperty("attachment")
-	public List<Attachment> attachment = null;
+	private List<Attachment> attachment = null;
 
 	@JsonProperty("summary")
-	public String summary;
+	private String summary;
 
 	@JsonProperty("duedate")
-	public DateTime duedate;
+	private DateTime duedate;
 
 	@JsonProperty("comment")
-	public Comments comment;
+	private Comments comment;
 
 }

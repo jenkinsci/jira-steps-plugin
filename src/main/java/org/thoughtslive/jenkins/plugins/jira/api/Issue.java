@@ -24,18 +24,18 @@ public class Issue implements Serializable {
 	private final static long serialVersionUID = 7689184735166991068L;
 
 	@JsonProperty("id")
-	public String id;
+	private String id;
 
 	@JsonProperty("self")
-	public String self;
+	private String self;
 
 	@JsonProperty("key")
-	public String key;
+	private String key;
 
 	@JsonProperty("fields")
-	public Fields fields;
+	private Fields fields;
 
 	@JsonProperty("transition")
-	public Transition transition = null;
+	private Transition transition = null;
 
 }

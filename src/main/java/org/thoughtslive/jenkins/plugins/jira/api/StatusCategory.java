@@ -25,18 +25,18 @@ public class StatusCategory implements Serializable {
 	private final static long serialVersionUID = 8152743273815765814L;
 
 	@JsonProperty("self")
-	public String self;
+	private String self;
 
 	@JsonProperty("id")
-	public Integer id;
+	private Integer id;
 
 	@JsonProperty("key")
-	public String key;
+	private String key;
 
 	@JsonProperty("colorName")
-	public String colorName;
+	private String colorName;
 
 	@JsonProperty("name")
-	public String name;
+	private String name;
 
 }

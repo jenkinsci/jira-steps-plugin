@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,21 +20,22 @@ import lombok.ToString;
 @AllArgsConstructor(onConstructor = @__({@DataBoundConstructor}))
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonIgnoreProperties(ignoreUnknown = true)
+@SuppressFBWarnings
 public class Issues implements Serializable {
 	private final static long serialVersionUID = 7689184735166991068L;
 
 	@JsonProperty("startAt")
-	public int startAt;
+	private int startAt;
 
 	@JsonProperty("maxResults")
-	public int maxResults;
+	private int maxResults;
 
 	@JsonProperty("total")
-	public int total;
+	private int total;
 
 	@JsonProperty("issueUpdates")
-	public Issue[] issueUpdates;
+	private Issue[] issueUpdates;
 
 	@JsonProperty("issues")
-	public Issue[] issues;
+	private Issue[] issues;
 }

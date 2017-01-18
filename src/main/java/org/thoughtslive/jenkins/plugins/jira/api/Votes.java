@@ -25,12 +25,12 @@ public class Votes implements Serializable {
 	private final static long serialVersionUID = 4489129506053290907L;
 
 	@JsonProperty("self")
-	public String self;
+	private String self;
 
 	@JsonProperty("votes")
-	public Integer votes;
+	private Integer votes;
 
 	@JsonProperty("hasVoted")
-	public Boolean hasVoted;
+	private Boolean hasVoted;
 
 }

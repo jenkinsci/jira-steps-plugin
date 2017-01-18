@@ -24,20 +24,20 @@ public class IssueLink implements Serializable {
 	private final static long serialVersionUID = 2457522846452464445L;
 
 	@JsonProperty("id")
-	public String id;
+	private String id;
 
 	@JsonProperty("self")
-	public String self;
+	private String self;
 
 	@JsonProperty("type")
-	public IssueLinkType type;
+	private IssueLinkType type;
 
 	@JsonProperty("inwardIssue")
-	public Issue inwardIssue;
+	private Issue inwardIssue;
 
 	@JsonProperty("outwordIssue")
-	public Issue outwordIssue;
+	private Issue outwordIssue;
 
 	@JsonProperty("comment")
-	public Comment comment;
+	private Comment comment;
 }

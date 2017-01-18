@@ -26,30 +26,30 @@ public class Attachment implements Serializable {
 	private final static long serialVersionUID = 3112598371329647518L;
 
 	@JsonProperty("self")
-	public String self;
+	private String self;
 
 	@JsonProperty("id")
-	public String id;
+	private String id;
 
 	@JsonProperty("filename")
-	public String filename;
+	private String filename;
 
 	@JsonProperty("author")
-	public User author;
+	private User author;
 
 	@JsonProperty("created")
-	public DateTime created;
+	private DateTime created;
 
 	@JsonProperty("size")
-	public Integer size;
+	private Integer size;
 
 	@JsonProperty("mimeType")
-	public String mimeType;
+	private String mimeType;
 
 	@JsonProperty("content")
-	public String content;
+	private String content;
 
 	@JsonProperty("thumbnail")
-	public String thumbnail;
+	private String thumbnail;
 
 }

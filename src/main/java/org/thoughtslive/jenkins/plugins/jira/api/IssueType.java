@@ -25,21 +25,21 @@ public class IssueType implements Serializable {
 	private final static long serialVersionUID = -2584149383622506532L;
 
 	@JsonProperty("self")
-	public String self;
+	private String self;
 
 	@JsonProperty("id")
-	public String id;
+	private String id;
 
 	@JsonProperty("description")
-	public String description;
+	private String description;
 
 	@JsonProperty("iconUrl")
-	public String iconUrl;
+	private String iconUrl;
 
 	@JsonProperty("name")
-	public String name;
+	private String name;
 
 	@JsonProperty("subtask")
-	public Boolean subtask;
+	private Boolean subtask;
 
 }

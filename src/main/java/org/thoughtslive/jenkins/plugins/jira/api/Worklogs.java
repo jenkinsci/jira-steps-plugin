@@ -25,15 +25,15 @@ public class Worklogs implements Serializable {
 	private final static long serialVersionUID = 2678637105012592493L;
 
 	@JsonProperty("startAt")
-	public Integer startAt;
+	private Integer startAt;
 
 	@JsonProperty("maxResults")
-	public Integer maxResults;
+	private Integer maxResults;
 
 	@JsonProperty("total")
-	public Integer total;
+	private Integer total;
 
 	@JsonProperty("worklogs")
-	public List<Worklog> worklogs = null;
+	private List<Worklog> worklogs = null;
 
 }

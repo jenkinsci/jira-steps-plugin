@@ -24,24 +24,24 @@ public class User implements Serializable {
 	private final static long serialVersionUID = -3553835852025983698L;
 
 	@JsonProperty("self")
-	public String self;
+	private String self;
 
 	@JsonProperty("name")
-	public String name;
+	private String name;
 
 	@JsonProperty("key")
-	public String key;
+	private String key;
 
 	@JsonProperty("emailAddress")
-	public String emailAddress;
+	private String emailAddress;
 
 	@JsonProperty("displayName")
-	public String displayName;
+	private String displayName;
 
 	@JsonProperty("active")
-	public Boolean active;
+	private Boolean active;
 
 	@JsonProperty("timeZone")
-	public String timeZone;
+	private String timeZone;
 
 }

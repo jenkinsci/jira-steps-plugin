@@ -203,7 +203,6 @@ public class Site extends AbstractDescribableImpl<Site> {
 				throws IOException {
 			url = Util.fixEmpty(url);
 			name = Util.fixEmpty(name);
-			userName = Util.fixEmpty(userName);
 			consumerKey = Util.fixEmpty(consumerKey);
 			privateKey = Util.fixEmpty(privateKey);
 			secret = Util.fixEmpty(secret);

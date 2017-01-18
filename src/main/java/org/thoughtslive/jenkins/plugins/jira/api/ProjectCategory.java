@@ -25,15 +25,15 @@ public class ProjectCategory implements Serializable {
 	private final static long serialVersionUID = -3051987875702393617L;
 
 	@JsonProperty("self")
-	public String self;
+	private String self;
 
 	@JsonProperty("id")
-	public String id;
+	private String id;
 
 	@JsonProperty("description")
-	public String description;
+	private String description;
 
 	@JsonProperty("name")
-	public String name;
+	private String name;
 
 }

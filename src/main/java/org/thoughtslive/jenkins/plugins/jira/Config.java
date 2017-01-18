@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.annotation.Nonnull;
+
 import org.apache.commons.beanutils.Converter;
 import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.NoExternalUse;
@@ -11,6 +13,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.Stapler;
 import org.kohsuke.stapler.StaplerRequest;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import hudson.Extension;
 import hudson.model.AbstractDescribableImpl;
 import hudson.model.Descriptor;
@@ -23,6 +26,7 @@ import net.sf.json.JSONObject;
  * @author Naresh Rayapati
  *
  */
+@SuppressFBWarnings
 public class Config extends AbstractDescribableImpl<Config> {
 
 	public final String siteName;
@@ -86,7 +90,7 @@ public class Config extends AbstractDescribableImpl<Config> {
 		}
 
 		@Override
-		public Config newInstance(StaplerRequest req, JSONObject formData)
+		public Config newInstance(@Nonnull final StaplerRequest req, final JSONObject formData)
 				throws FormException {
 			Config jiraConfig = req.bindJSON(Config.class, formData);
 			if (jiraConfig.siteName == null) {

@@ -26,36 +26,36 @@ public class Version implements Serializable {
 	private final static long serialVersionUID = 2195734358892274719L;
 
 	@JsonProperty("id")
-	public String id;
+	private String id;
 
 	@JsonProperty("name")
-	public String name;
+	private String name;
 
 	@JsonProperty("description")
-	public String description;
+	private String description;
 
 	@JsonProperty("archived")
-	public Boolean archived;
+	private Boolean archived;
 
 	@JsonProperty("released")
-	public Boolean released;
+	private Boolean released;
 
 	@JsonProperty("startDate")
-	public DateTime startDate;
+	private DateTime startDate;
 
 	@JsonProperty("releaseDate")
-	public DateTime releaseDate;
+	private DateTime releaseDate;
 
 	@JsonProperty("userStartDate")
-	public DateTime userStartDate;
+	private DateTime userStartDate;
 
 	@JsonProperty("userReleaseDate")
-	public DateTime userReleaseDate;
+	private DateTime userReleaseDate;
 
 	@JsonProperty("project")
-	public String project;
+	private String project;
 
 	@JsonProperty("projectId")
-	public int projectId;
+	private int projectId;
 
 }

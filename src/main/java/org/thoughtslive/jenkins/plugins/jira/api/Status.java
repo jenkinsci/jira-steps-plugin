@@ -24,21 +24,21 @@ public class Status implements Serializable {
 	private final static long serialVersionUID = 1733102256666423161L;
 
 	@JsonProperty("self")
-	public String self;
+	private String self;
 
 	@JsonProperty("description")
-	public String description;
+	private String description;
 
 	@JsonProperty("iconUrl")
-	public String iconUrl;
+	private String iconUrl;
 
 	@JsonProperty("name")
-	public String name;
+	private String name;
 
 	@JsonProperty("id")
-	public String id;
+	private String id;
 
 	@JsonProperty("statusCategory")
-	public StatusCategory statusCategory;
+	private StatusCategory statusCategory;
 
 }

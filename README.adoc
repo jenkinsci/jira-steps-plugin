@@ -1,0 +1,7 @@
+= JIRA Pipeline Steps
+
+Jenkins pipeline steps for integration with the https://www.atlassian.com/software/jira[JIRA].
+
+== Disclaimer
+
+This plugin is currently under active development.

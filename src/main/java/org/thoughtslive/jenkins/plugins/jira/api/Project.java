@@ -25,18 +25,18 @@ public class Project implements Serializable {
 	private final static long serialVersionUID = -2732936022079989665L;
 
 	@JsonProperty("self")
-	public String self;
+	private String self;
 
 	@JsonProperty("id")
-	public String id;
+	private String id;
 
 	@JsonProperty("key")
-	public String key;
+	private String key;
 
 	@JsonProperty("name")
-	public String name;
+	private String name;
 
 	@JsonProperty("projectCategory")
-	public ProjectCategory projectCategory;
+	private ProjectCategory projectCategory;
 
 }

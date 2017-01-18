@@ -26,24 +26,24 @@ public class Comment implements Serializable {
 	private final static long serialVersionUID = 6138170662415305859L;
 
 	@JsonProperty("self")
-	public String self;
+	private String self;
 
 	@JsonProperty("id")
-	public String id;
+	private String id;
 
 	@JsonProperty("author")
-	public User author;
+	private User author;
 
 	@JsonProperty("body")
-	public String body;
+	private String body;
 
 	@JsonProperty("updateAuthor")
-	public User updateAuthor;
+	private User updateAuthor;
 
 	@JsonProperty("created")
-	public DateTime created;
+	private DateTime created;
 
 	@JsonProperty("updated")
-	public DateTime updated;
+	private DateTime updated;
 
 }

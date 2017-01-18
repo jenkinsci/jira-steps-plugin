@@ -99,7 +99,7 @@ public class JiraService {
 	 * 
 	 * @param id
 	 *            component id.
-	 * @param component.
+	 * @param component actual component
 	 * @return updated component.
 	 */
 	public ResponseData<Component> updateComponent(final int id, final Component component) {

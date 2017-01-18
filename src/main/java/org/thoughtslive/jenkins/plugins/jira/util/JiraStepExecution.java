@@ -68,10 +68,10 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 
 		if (site == null) {
 			errorMessage = "No JIRA site configured with " + siteName + " name.";
+		} else {
+			jiraService = site.getService();
 		}
 
-		jiraService = site.getService();
-		
 		if(errorMessage != null) {
 			return buildErrorResponse(new RuntimeException(errorMessage));
 		}
