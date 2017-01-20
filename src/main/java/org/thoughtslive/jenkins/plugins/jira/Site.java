@@ -45,17 +45,17 @@ public class Site extends AbstractDescribableImpl<Site> {
 
 	// Basic
 	@Getter
-	@Setter(onMethod = @__({ @DataBoundSetter }))
+	@Setter(onMethod = @__({@DataBoundSetter}))
 	private String userName;
 	@Getter
 	private Secret password;
 
 	// OAuth
 	@Getter
-	@Setter(onMethod = @__({ @DataBoundSetter }))
+	@Setter(onMethod = @__({@DataBoundSetter}))
 	private String consumerKey;
 	@Getter
-	@Setter(onMethod = @__({ @DataBoundSetter }))
+	@Setter(onMethod = @__({@DataBoundSetter}))
 	private String privateKey;
 	@Getter
 	private Secret secret;
@@ -117,9 +117,8 @@ public class Site extends AbstractDescribableImpl<Site> {
 		}
 
 		/**
-		 * Checks if the details required for the basic login is valid. TODO:
-		 * This validation can be moved to Config so that we can also verify the
-		 * name is valid.
+		 * Checks if the details required for the basic login is valid. TODO: This validation can be moved to Config so
+		 * that we can also verify the name is valid.
 		 */
 		public FormValidation doValidateBasic(@QueryParameter String name, @QueryParameter String url,
 				@QueryParameter String loginType, @QueryParameter String timeout, @QueryParameter String userName,

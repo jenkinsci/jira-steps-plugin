@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -17,10 +18,11 @@ import lombok.ToString;
 @Data
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor(onConstructor = @__({ @DataBoundConstructor }))
+@AllArgsConstructor(onConstructor = @__({@DataBoundConstructor}))
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @SuppressFBWarnings
+@Builder
 public class Issues implements Serializable {
 	private final static long serialVersionUID = 7689184735166991068L;
 

@@ -6,6 +6,7 @@ import java.net.URL;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.Comments;
 import org.thoughtslive.jenkins.plugins.jira.api.Issue;
+import org.thoughtslive.jenkins.plugins.jira.api.Issues;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 
 public class JiraServiceTest {
@@ -109,9 +110,8 @@ public class JiraServiceTest {
 		// ResponseData<Issue> issue3 = service.assignIssue("TEST-1", user);
 		// System.out.println(issue3);
 
-		// ResponseData<Issues> issues = service.searchIssues("PROJECT = TEST",
-		// 0, 1, null);
-		// System.out.println(issues);
+		ResponseData<Issues> issues = service.searchIssues("PROJECT = TEST", 0, 1, null);
+		System.out.println(issues);
 
 	}
 

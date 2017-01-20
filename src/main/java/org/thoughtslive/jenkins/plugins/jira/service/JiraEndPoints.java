@@ -66,34 +66,34 @@ public interface JiraEndPoints {
 	Call<Issues> createIssues(@Body Issues issues);
 
 	@PUT("rest/api/2/issue/{issueIdOrKey}/assignee")
-	Call<Issue> assignIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body User issue);
+	Call<Issue> assignIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body User user);
 
 	@GET("rest/api/2/issue/{issueIdOrKey}/comment")
 	Call<Comments> getComments(@Path("issueIdOrKey") String issueIdOrKey);
 
 	@POST("rest/api/2/issue/{issueIdOrKey}/comment")
-	Call<Comment> addComment(@Path("issueIdOrKey") String issueIdOrKey, @Body Comment issue);
+	Call<Comment> addComment(@Path("issueIdOrKey") String issueIdOrKey, @Body Comment comment);
 
 	@PUT("rest/api/2/issue/{issueIdOrKey}/comment/{id}")
-	Call<Comment> updateComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") int id, @Body Comment issue);
+	Call<Comment> updateComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") String id, @Body Comment comment);
 
 	@GET("rest/api/2/issue/{issueIdOrKey}/comment/{id}")
-	Call<Comment> getComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") int id);
+	Call<Comment> getComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") String id);
 
 	@POST("rest/api/2/issue/{issueIdOrKey}/notify")
-	Call<Notify> notifyIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Notify notify);
+	Call<Void> notifyIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Notify notify);
 
 	@GET("rest/api/2/issue/{issueIdOrKey}/transitions?expand=transitions.fields")
 	Call<Transitions> getTransitions(@Path("issueIdOrKey") String issueIdOrKey);
 
 	@POST("rest/api/2/issue/{issueIdOrKey}/transitions")
-	Call<Issue> transitionIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Issue issue);
+	Call<Void> transitionIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Issue issue);
 
 	@GET("rest/api/2/issue/{issueIdOrKey}/watchers")
-	Call<Watches> getIssueWatchers(@Path("issueIdOrKey") String issueIdOrKey);
+	Call<Watches> getIssueWatches(@Path("issueIdOrKey") String issueIdOrKey);
 
 	@POST("rest/api/2/issue/{issueIdOrKey}/watchers")
-	Call<Watches> addIssueWatcher(@Path("issueIdOrKey") String issueIdOrKey, @Body User user);
+	Call<Void> addIssueWatcher(@Path("issueIdOrKey") String issueIdOrKey, @Body User user);
 
 	// Issue Links
 	@POST("rest/api/2/issueLink")
@@ -142,10 +142,5 @@ public interface JiraEndPoints {
 
 	@DELETE("rest/api/2/version/{id}")
 	Call<Version> deleteVersion(@Path("id") int id);
-
-	// Session TODO need find out on how to share the JSESSIONID among different
-	// calls.
-	// @POST("/rest/auth/1/session")
-	// Call<Session> newSession();
 
 }

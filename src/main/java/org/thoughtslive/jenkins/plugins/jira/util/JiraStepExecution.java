@@ -43,8 +43,7 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 	 *            taskListener
 	 * @param envVars
 	 *            environment vars.
-	 * @return response if JIRA_SITE is empty or if there is no site configured
-	 *         with JIRA_SITE.
+	 * @return response if JIRA_SITE is empty or if there is no site configured with JIRA_SITE.
 	 * @throws AbortException
 	 *             when failOnError is true and JIRA_SITE is missing.
 	 */

@@ -1,6 +1,7 @@
 package org.thoughtslive.jenkins.plugins.jira.service;
 
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
+import static org.thoughtslive.jenkins.plugins.jira.util.Common.empty;
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.parseResponse;
 
 import java.util.Map;
@@ -17,6 +18,7 @@ import org.thoughtslive.jenkins.plugins.jira.api.Notify;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.Transitions;
 import org.thoughtslive.jenkins.plugins.jira.api.User;
+import org.thoughtslive.jenkins.plugins.jira.api.Watches;
 import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -159,7 +161,8 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<Issue> updateIssue(final String issueIdorKey, final Issue issue) {
+	public ResponseData<Issue> updateIssue(final Issue issue) {
+		final String issueIdorKey = empty(issue.getId()) ? issue.getKey() : issue.getId();
 		try {
 			return parseResponse(jiraEndPoints.updateIssue(issueIdorKey, issue).execute());
 		} catch (Exception e) {
@@ -167,9 +170,10 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<Issue> assignIssue(final String issueIdorKey, final User user) {
+	public ResponseData<Issue> assignIssue(final String issueIdorKey, final String userName) {
 		try {
-			return parseResponse(jiraEndPoints.assignIssue(issueIdorKey, user).execute());
+			return parseResponse(
+					jiraEndPoints.assignIssue(issueIdorKey, User.builder().name(userName).build()).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}
@@ -199,15 +203,15 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<Comment> updateComment(final String issueIdorKey, final int commentId, final Comment comment) {
+	public ResponseData<Comment> updateComment(final String issueIdorKey, final Comment comment) {
 		try {
-			return parseResponse(jiraEndPoints.updateComment(issueIdorKey, commentId, comment).execute());
+			return parseResponse(jiraEndPoints.updateComment(issueIdorKey, comment.getId(), comment).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}
 	}
 
-	public ResponseData<Comment> getComment(final String issueIdorKey, final int commentId) {
+	public ResponseData<Comment> getComment(final String issueIdorKey, final String commentId) {
 		try {
 			return parseResponse(jiraEndPoints.getComment(issueIdorKey, commentId).execute());
 		} catch (Exception e) {
@@ -215,7 +219,7 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<Notify> notifyIssue(final String issueIdorKey, final Notify notify) {
+	public ResponseData<Void> notifyIssue(final String issueIdorKey, final Notify notify) {
 		try {
 			return parseResponse(jiraEndPoints.notifyIssue(issueIdorKey, notify).execute());
 		} catch (Exception e) {
@@ -231,9 +235,27 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<Issue> transitionIssue(final String issueIdorKey, final Issue issue) {
+	public ResponseData<Void> transitionIssue(final Issue issue) {
+		final String issueIdorKey = empty(issue.getId()) ? issue.getKey() : issue.getId();
+
 		try {
 			return parseResponse(jiraEndPoints.transitionIssue(issueIdorKey, issue).execute());
+		} catch (Exception e) {
+			return buildErrorResponse(e);
+		}
+	}
+
+	public ResponseData<Watches> getIssueWatches(final String issueIdorKey) {
+		try {
+			return parseResponse(jiraEndPoints.getIssueWatches(issueIdorKey).execute());
+		} catch (Exception e) {
+			return buildErrorResponse(e);
+		}
+	}
+
+	public ResponseData<Void> addIssueWatcher(final String issueIdorKey, final String userName) {
+		try {
+			return parseResponse(jiraEndPoints.addIssueWatcher(issueIdorKey, User.builder().name(userName).build()).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}

@@ -3,6 +3,8 @@ package org.thoughtslive.jenkins.plugins.jira.util;
 import java.io.IOException;
 import java.io.PrintStream;
 
+import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
+
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 
 import hudson.EnvVars;
@@ -85,17 +87,15 @@ public class Common {
 	 * @throws IOException
 	 */
 	public static <T> ResponseData<T> parseResponse(final Response<T> response) throws IOException {
-		final ResponseData<T> resData = new ResponseData<T>();
-		resData.setSuccessful(response.isSuccessful());
-		resData.setCode(response.code());
-		resData.setMessage(response.message());
+		final ResponseDataBuilder<T> builder = ResponseData.builder();
+		builder.successful(response.isSuccessful()).code(response.code()).message(response.message());
 		if (!response.isSuccessful()) {
 			final String errorMessage = response.errorBody().string();
-			resData.setError(errorMessage);
+			builder.error(errorMessage);
 		} else {
-			resData.setData(response.body());
+			builder.data(response.body());
 		}
-		return resData;
+		return builder.build();
 	}
 
 	/**
@@ -106,13 +106,9 @@ public class Common {
 	 * @return an instance of {@link ResponseData}
 	 */
 	public static <T> ResponseData<T> buildErrorResponse(final Exception e) {
-		final ResponseData<T> resData = new ResponseData<T>();
+		final ResponseDataBuilder<T> builder = ResponseData.builder();
 		final String errorMessage = getRootCause(e).getMessage();
-		resData.setSuccessful(false);
-		resData.setCode(-1);
-		resData.setError(errorMessage);
-		e.printStackTrace();
-		return resData;
+		return builder.successful(false).code(-1).error(errorMessage).build();
 	}
 
 	/**

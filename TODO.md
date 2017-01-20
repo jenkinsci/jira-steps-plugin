@@ -2,15 +2,15 @@
 https://docs.atlassian.com/jira/REST/6.4.13/
 
 * Component
-  * queryComponent
+  * getComponent
   * newComponent
   * updateComponent
   * getComponentRelatedIssueCount
 * Issue Related
   * Issue
+    * getIssue
     * createIssue
     * createIssues
-    * getIssue
     * editIssue
     * assignIssue
   * Comments
@@ -26,6 +26,8 @@ https://docs.atlassian.com/jira/REST/6.4.13/
   * Watchers
     * getWatchers
     * addWatcher
+    
+    
 * IssueLinks
   * linkIssues
   * getIssueLink
@@ -43,4 +45,4 @@ https://docs.atlassian.com/jira/REST/6.4.13/
   * createVersion
   * updateVersion
   * deleteVersion
-* Session
+* Session - Need to think on how we can reuse session Id. (Or do we need it at all.?)
