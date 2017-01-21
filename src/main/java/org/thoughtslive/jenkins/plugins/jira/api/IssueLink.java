@@ -28,9 +28,6 @@ public class IssueLink implements Serializable {
 	@JsonProperty("id")
 	private String id;
 
-	@JsonProperty("self")
-	private String self;
-
 	@JsonProperty("type")
 	private IssueLinkType type;
 

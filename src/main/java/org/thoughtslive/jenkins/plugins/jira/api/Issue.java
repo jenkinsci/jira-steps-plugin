@@ -28,9 +28,6 @@ public class Issue implements Serializable {
 	@JsonProperty("id")
 	private String id;
 
-	@JsonProperty("self")
-	private String self;
-
 	@JsonProperty("key")
 	private String key;
 

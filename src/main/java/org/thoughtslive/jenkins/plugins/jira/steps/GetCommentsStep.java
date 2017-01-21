@@ -24,11 +24,11 @@ public class GetCommentsStep extends BasicJiraStep {
 	private static final long serialVersionUID = 2327375640378098562L;
 
 	@Getter
-	private final String idorKey;
+	private final String idOrKey;
 
 	@DataBoundConstructor
-	public GetCommentsStep(final String idorKey) {
-		this.idorKey = idorKey;
+	public GetCommentsStep(final String idOrKey) {
+		this.idOrKey = idOrKey;
 	}
 
 	@Extension
@@ -69,8 +69,8 @@ public class GetCommentsStep extends BasicJiraStep {
 			ResponseData<Comments> response = verifyCommon(step, listener, envVars);
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Querying issue: " + step.getIdorKey() + " comments");
-				response = jiraService.getComments(step.getIdorKey());
+				logger.println("JIRA: Site - " + siteName + " - Querying issue: " + step.getIdOrKey() + " comments");
+				response = jiraService.getComments(step.getIdOrKey());
 			}
 
 			return logResponse(response);

@@ -25,12 +25,6 @@ import lombok.ToString;
 public class Priority implements Serializable {
 	private final static long serialVersionUID = -7744634069679490673L;
 
-	@JsonProperty("self")
-	private String self;
-
-	@JsonProperty("iconUrl")
-	private String iconUrl;
-
 	@JsonProperty("name")
 	private String name;
 

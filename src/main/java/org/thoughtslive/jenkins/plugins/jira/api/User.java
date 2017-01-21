@@ -25,9 +25,6 @@ import lombok.ToString;
 public class User implements Serializable {
 	private final static long serialVersionUID = -3553835852025983698L;
 
-	@JsonProperty("self")
-	private String self;
-
 	@JsonProperty("name")
 	private String name;
 

@@ -24,14 +24,14 @@ public class AddIssueWatcherStep extends BasicJiraStep {
 	private static final long serialVersionUID = 2327375640378098562L;
 
 	@Getter
-	private final String idorKey;
+	private final String idOrKey;
 
 	@Getter
 	private final String userName;
 
 	@DataBoundConstructor
-	public AddIssueWatcherStep(final String idorKey, final String userName) {
-		this.idorKey = idorKey;
+	public AddIssueWatcherStep(final String idOrKey, final String userName) {
+		this.idOrKey = idOrKey;
 		this.userName = userName;
 	}
 
@@ -77,8 +77,8 @@ public class AddIssueWatcherStep extends BasicJiraStep {
 			ResponseData<Void> response = verifyCommon(step, listener, envVars);
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Adding watcher "+ step.getUserName() +" to issue: " + step.getIdorKey());
-				response = jiraService.addIssueWatcher(step.getIdorKey(), step.getUserName());
+				logger.println("JIRA: Site - " + siteName + " - Adding watcher "+ step.getUserName() +" to issue: " + step.getIdOrKey());
+				response = jiraService.addIssueWatcher(step.getIdOrKey(), step.getUserName());
 			}
 
 			return logResponse(response);

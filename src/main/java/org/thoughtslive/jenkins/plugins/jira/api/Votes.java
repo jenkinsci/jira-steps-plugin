@@ -26,9 +26,6 @@ public class Votes implements Serializable {
 
 	private final static long serialVersionUID = 4489129506053290907L;
 
-	@JsonProperty("self")
-	private String self;
-
 	@JsonProperty("votes")
 	private Integer votes;
 

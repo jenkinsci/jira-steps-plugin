@@ -38,7 +38,4 @@ public class IssueLinkType implements Serializable {
 	@JsonProperty("outward")
 	private String outward;
 
-	@JsonProperty("self")
-	private String self;
-
 }

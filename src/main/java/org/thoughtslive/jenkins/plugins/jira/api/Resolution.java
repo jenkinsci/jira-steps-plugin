@@ -24,9 +24,6 @@ import lombok.ToString;
 public class Resolution implements Serializable {
 	private final static long serialVersionUID = -2401332192031752080L;
 
-	@JsonProperty("self")
-	private String self;
-
 	@JsonProperty("id")
 	private String id;
 

@@ -25,14 +25,14 @@ public class NotifyIssueStep extends BasicJiraStep {
 	private static final long serialVersionUID = 2327375640378098562L;
 
 	@Getter
-	private final String idorKey;
+	private final String idOrKey;
 
 	@Getter
 	private final Notify notify;
 
 	@DataBoundConstructor
-	public NotifyIssueStep(final String idorKey, final Notify notify) {
-		this.idorKey = idorKey;
+	public NotifyIssueStep(final String idOrKey, final Notify notify) {
+		this.idOrKey = idOrKey;
 		this.notify = notify;
 	}
 
@@ -78,8 +78,8 @@ public class NotifyIssueStep extends BasicJiraStep {
 			ResponseData<Void> response = verifyCommon(step, listener, envVars);
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Notifing Issue: " + step.getIdorKey());
-				response = jiraService.notifyIssue(step.getIdorKey(), step.getNotify());
+				logger.println("JIRA: Site - " + siteName + " - Notifing Issue: " + step.getIdOrKey());
+				response = jiraService.notifyIssue(step.getIdOrKey(), step.getNotify());
 			}
 
 			return logResponse(response);

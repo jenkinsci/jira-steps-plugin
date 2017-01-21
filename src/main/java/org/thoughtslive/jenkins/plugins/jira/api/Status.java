@@ -25,14 +25,8 @@ import lombok.ToString;
 public class Status implements Serializable {
 	private final static long serialVersionUID = 1733102256666423161L;
 
-	@JsonProperty("self")
-	private String self;
-
 	@JsonProperty("description")
 	private String description;
-
-	@JsonProperty("iconUrl")
-	private String iconUrl;
 
 	@JsonProperty("name")
 	private String name;

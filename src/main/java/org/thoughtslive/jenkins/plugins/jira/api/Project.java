@@ -26,9 +26,6 @@ public class Project implements Serializable {
 
 	private final static long serialVersionUID = -2732936022079989665L;
 
-	@JsonProperty("self")
-	private String self;
-
 	@JsonProperty("id")
 	private String id;
 

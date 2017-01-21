@@ -9,6 +9,8 @@ import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.Issues;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class JiraServiceTest {
 
 	public static void main(String[] args) throws IOException {
@@ -27,19 +29,15 @@ public class JiraServiceTest {
 		System.out.println(service.getComponentIssueCount(10000));
 		//
 		ResponseData<Issue> issue = service.getIssue("TEST-1");
-		System.out.println(issue);
+		System.out.println(issue.getData());
 		//
-		// ObjectMapper mapper = new ObjectMapper();
-		// String jsonInString1 = "{\"fields\": { \"project\": {
-		// \"id\":\"10000\" },\"summary\": \"New Issue\", \"issuetype\":
-		// {\"id\": \"3\"}}}";
-		// String jsonInString2 = "{\"fields\": { \"project\": { \"id\":
-		// \"10000\" },\"summary\": \"something\'s wrong4\", \"issuetype\":
-		// {\"id\": \"3\"}}}";
-		// Issue issue1 = mapper.readValue(jsonInString1, Issue.class);
-		// Issue issue2 = mapper.readValue(jsonInString2, Issue.class);
-		// System.out.println(issue1);
-		// System.out.println(issue2);
+		 ObjectMapper mapper = new ObjectMapper();
+		 String jsonInString1 = "{\"fields\": { \"project\": { \"id\":\"10000\" },\"summary\": \"New Issue\", \"issuetype\": {\"id\": \"3\"}}}";
+		 String jsonInString2 = "{\"fields\": { \"project\": { \"id\": \"10000\" },\"summary\": \"something\'s wrong4\", \"issuetype\":	 {\"id\": \"3\"}}}";
+		 Issue issue1 = mapper.readValue(jsonInString1, Issue.class);
+		 Issue issue2 = mapper.readValue(jsonInString2, Issue.class);
+		 System.out.println(issue1);
+		 System.out.println(issue2);
 
 		// ResponseData<Issue> newIssue = service.createIssue(issue1);
 		// System.out.println(newIssue);

@@ -28,9 +28,6 @@ public class Watches implements Serializable {
 
 	private final static long serialVersionUID = -2578055776913736842L;
 
-	@JsonProperty("self")
-	private String self;
-
 	@JsonProperty("watchCount")
 	private Integer watchCount;
 

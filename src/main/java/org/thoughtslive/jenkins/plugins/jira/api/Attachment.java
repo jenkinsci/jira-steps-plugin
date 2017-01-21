@@ -27,9 +27,6 @@ public class Attachment implements Serializable {
 
 	private final static long serialVersionUID = 3112598371329647518L;
 
-	@JsonProperty("self")
-	private String self;
-
 	@JsonProperty("id")
 	private String id;
 
@@ -50,8 +47,4 @@ public class Attachment implements Serializable {
 
 	@JsonProperty("content")
 	private String content;
-
-	@JsonProperty("thumbnail")
-	private String thumbnail;
-
 }
