@@ -20,7 +20,6 @@ import org.thoughtslive.jenkins.plugins.jira.api.Watches;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -44,7 +43,7 @@ public interface JiraEndPoints {
 	Call<Component> getComponent(@Path("id") int id);
 
 	@POST("rest/api/2/component")
-	Call<Component> createNewComponent(@Body Component component);
+	Call<Component> createComponent(@Body Component component);
 
 	@PUT("rest/api/2/component/{id}")
 	Call<Component> updateComponent(@Path("id") int id, @Body Component component);
@@ -102,9 +101,6 @@ public interface JiraEndPoints {
 	@GET("rest/api/2/issueLink/{linkId}")
 	Call<IssueLink> getIssueLink(@Path("linkId") int linkId);
 
-	@DELETE("rest/api/2/issueLink/{linkId}")
-	Call<IssueLink> deleteIssueLink(@Path("linkId") int linkId);
-
 	// Issue Link Types
 	@GET("rest/api/2/issueLinkType")
 	Call<IssueLinkTypes> getIssueLinkTypes();
@@ -132,15 +128,11 @@ public interface JiraEndPoints {
 
 	// Version
 	@POST("rest/api/2/version")
-	Call<Version> createNewVersion(@Body Version version);
+	Call<Version> createVersion(@Body Version version);
 
 	@GET("rest/api/2/version/{id}")
 	Call<Version> getVersion(@Path("id") int id);
 
 	@PUT("rest/api/2/version/{id}")
-	Call<Version> updateVersion(@Path("id") int id);
-
-	@DELETE("rest/api/2/version/{id}")
-	Call<Version> deleteVersion(@Path("id") int id);
-
+	Call<Version> updateVersion(@Path("id") int id, @Body Version version);
 }

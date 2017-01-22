@@ -26,7 +26,6 @@ https://docs.atlassian.com/jira/REST/6.4.13/
   * Watchers
     * getWatchers
     * addWatcher
-
 * Project 
   * getProjects
   * getProject (Looks like this queries versions and components too)
@@ -37,7 +36,7 @@ https://docs.atlassian.com/jira/REST/6.4.13/
   * getVersion
   * createVersion
   * updateVersion
-  * deleteVersion
+  
 * IssueLinks
   * linkIssues
   * getIssueLink

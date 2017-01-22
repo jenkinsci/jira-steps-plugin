@@ -97,7 +97,7 @@ public class JiraService {
 	 */
 	public ResponseData<Component> createComponent(final Component component) {
 		try {
-			return parseResponse(jiraEndPoints.createNewComponent(component).execute());
+			return parseResponse(jiraEndPoints.createComponent(component).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}
@@ -312,4 +312,29 @@ public class JiraService {
 			return buildErrorResponse(e);
 		}
 	}
+	
+	public ResponseData<Version> getVersion(final int id) {
+		try {
+			return parseResponse(jiraEndPoints.getVersion(id).execute());
+		} catch (Exception e) {
+			return buildErrorResponse(e);
+		}
+	}
+
+	public ResponseData<Version> createVersion(final Version version) {
+		try {
+			return parseResponse(jiraEndPoints.createVersion(version).execute());
+		} catch (Exception e) {
+			return buildErrorResponse(e);
+		}
+	}
+
+	public ResponseData<Version> updateVersion(final Version version) {
+		try {
+			return parseResponse(jiraEndPoints.updateVersion(version.getId(), version).execute());
+		} catch (Exception e) {
+			return buildErrorResponse(e);
+		}
+	}
+
 }

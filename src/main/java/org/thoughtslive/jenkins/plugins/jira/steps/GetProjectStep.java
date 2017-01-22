@@ -40,12 +40,12 @@ public class GetProjectStep extends BasicJiraStep {
 
 		@Override
 		public String getFunctionName() {
-			return "jiraGetProjects";
+			return "jiraGetProject";
 		}
 
 		@Override
 		public String getDisplayName() {
-			return getPrefix() + "Get Projects";
+			return getPrefix() + "Get Project";
 		}
 
 	}
@@ -69,7 +69,7 @@ public class GetProjectStep extends BasicJiraStep {
 			ResponseData<Project> response = verifyCommon(step, listener, envVars);
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Querying All Projects");
+				logger.println("JIRA: Site - " + siteName + " - Querying Project with idOrKey:" + step.getIdOrKey());
 				response = jiraService.getProject(step.getIdOrKey());
 			}
 

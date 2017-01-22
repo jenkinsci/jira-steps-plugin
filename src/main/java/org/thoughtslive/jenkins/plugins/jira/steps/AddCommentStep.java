@@ -78,7 +78,7 @@ public class AddCommentStep extends BasicJiraStep {
 			ResponseData<Comment> response = verifyCommon(step, listener, envVars);
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Creating new comment: "+ step.getComment() +" on issue: " + step.getIdOrKey());
+				logger.println("JIRA: Site - " + siteName + " - Add new comment: "+ step.getComment() +" on issue: " + step.getIdOrKey());
 				response = jiraService.addComment(step.getIdOrKey(), step.getComment());
 			}
 

@@ -29,7 +29,7 @@ public class Version implements Serializable {
 	private final static long serialVersionUID = 2195734358892274719L;
 
 	@JsonProperty("id")
-	private String id;
+	private int id;
 
 	@JsonProperty("name")
 	private String name;

@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
+import org.thoughtslive.jenkins.plugins.jira.api.Version;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -14,25 +15,20 @@ import hudson.model.TaskListener;
 import lombok.Getter;
 
 /**
- * Step to add watcher to issue.
- * 
- * @author Naresh Rayapati
+ * Step to query a JIRA Version.
  *
+ * @author Naresh Rayapati
  */
-public class AddWatcherStep extends BasicJiraStep {
+public class GetVersionStep extends BasicJiraStep {
 
 	private static final long serialVersionUID = 2327375640378098562L;
-
+	
 	@Getter
-	private final String idOrKey;
-
-	@Getter
-	private final String userName;
+	private final int id;
 
 	@DataBoundConstructor
-	public AddWatcherStep(final String idOrKey, final String userName) {
-		this.idOrKey = idOrKey;
-		this.userName = userName;
+	public GetVersionStep(final int id) {
+		this.id = id;
 	}
 
 	@Extension
@@ -44,21 +40,17 @@ public class AddWatcherStep extends BasicJiraStep {
 
 		@Override
 		public String getFunctionName() {
-			return "jiraAddWatcher";
+			return "jiraGetVersion";
 		}
 
 		@Override
 		public String getDisplayName() {
-			return getPrefix() + "Add Watcher";
+			return getPrefix() + "Get Version";
 		}
 
-		@Override
-		public boolean isMetaStep() {
-			return true;
-		}
 	}
 
-	public static class Execution extends JiraStepExecution<ResponseData<Void>> {
+	public static class Execution extends JiraStepExecution<ResponseData<Version>> {
 
 		private static final long serialVersionUID = -821037959812310749L;
 
@@ -69,16 +61,16 @@ public class AddWatcherStep extends BasicJiraStep {
 		protected transient EnvVars envVars;
 
 		@Inject
-		private transient AddWatcherStep step;
+		private transient GetVersionStep step;
 
 		@Override
-		protected ResponseData<Void> run() throws Exception {
+		protected ResponseData<Version> run() throws Exception {
 
-			ResponseData<Void> response = verifyCommon(step, listener, envVars);
+			ResponseData<Version> response = verifyCommon(step, listener, envVars);
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Adding "+ step.getUserName() +" to issue: " + step.getIdOrKey() + " as a watcher.");
-				response = jiraService.addIssueWatcher(step.getIdOrKey(), step.getUserName());
+				logger.println("JIRA: Site - " + siteName + " - Querying Project Version with id:" + step.getId());
+				response = jiraService.getVersion(step.getId());
 			}
 
 			return logResponse(response);
