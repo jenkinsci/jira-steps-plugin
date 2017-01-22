@@ -54,7 +54,7 @@ public class AssignIssueStep extends BasicJiraStep {
 
 	}
 
-	public static class Execution extends JiraStepExecution<ResponseData<Issue>> {
+	public static class Execution extends JiraStepExecution<ResponseData<Void>> {
 
 		private static final long serialVersionUID = -821037959812310749L;
 
@@ -68,9 +68,9 @@ public class AssignIssueStep extends BasicJiraStep {
 		private transient AssignIssueStep step;
 
 		@Override
-		protected ResponseData<Issue> run() throws Exception {
+		protected ResponseData<Void> run() throws Exception {
 
-			ResponseData<Issue> response = verifyCommon(step, listener, envVars);
+			ResponseData<Void> response = verifyCommon(step, listener, envVars);
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Assigning issue: " + step.getIdOrKey() + " to: "

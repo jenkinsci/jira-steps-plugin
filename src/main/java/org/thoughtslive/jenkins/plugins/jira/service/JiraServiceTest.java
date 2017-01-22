@@ -8,6 +8,7 @@ import org.thoughtslive.jenkins.plugins.jira.api.Comments;
 import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.Issues;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
+import org.thoughtslive.jenkins.plugins.jira.api.SearchResult;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -107,8 +108,8 @@ public class JiraServiceTest {
 		//
 		// ResponseData<Issue> issue3 = service.assignIssue("TEST-1", user);
 		// System.out.println(issue3);
-
-		ResponseData<Issues> issues = service.searchIssues("PROJECT = TEST", 0, 1, null);
+		
+		ResponseData<SearchResult> issues = service.searchIssues("PROJECT = TEST", 0, 1000);
 		System.out.println(issues);
 		
 		System.out.println(service.getProjects().getData()[0]);

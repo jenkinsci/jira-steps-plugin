@@ -6,6 +6,7 @@ import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
+import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -55,7 +56,7 @@ public class UpdateIssueStep extends BasicJiraStep {
 		}
 	}
 
-	public static class Execution extends JiraStepExecution<ResponseData<Issue>> {
+	public static class Execution extends JiraStepExecution<ResponseData<BasicIssue>> {
 
 		private static final long serialVersionUID = -821037959812310749L;
 
@@ -69,9 +70,9 @@ public class UpdateIssueStep extends BasicJiraStep {
 		private transient UpdateIssueStep step;
 
 		@Override
-		protected ResponseData<Issue> run() throws Exception {
+		protected ResponseData<BasicIssue> run() throws Exception {
 
-			ResponseData<Issue> response = verifyCommon(step, listener, envVars);
+			ResponseData<BasicIssue> response = verifyCommon(step, listener, envVars);
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Updating issue: " + step.getIssue());

@@ -3,6 +3,7 @@ package org.thoughtslive.jenkins.plugins.jira.api;
 import java.io.Serializable;
 
 import org.kohsuke.stapler.DataBoundConstructor;
+import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -23,12 +24,21 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @SuppressFBWarnings
 @Builder
-public class Issues implements Serializable {
+public class SearchResult implements Serializable {
 	private final static long serialVersionUID = 7689184735166991068L;
 
-	@JsonProperty("issueUpdates")
-	private Issue[] issueUpdates;
+	@JsonProperty("jql")
+	private String jql;
+
+	@JsonProperty("startAt")
+	private int startAt;
+
+	@JsonProperty("maxResults")
+	private int maxResults;
+
+	@JsonProperty("total")
+	private int total;
 
 	@JsonProperty("issues")
-	private Issue[] issues;
+	private BasicIssue[] issues;
 }

@@ -1,4 +1,5 @@
-package org.thoughtslive.jenkins.plugins.jira.api;
+
+package org.thoughtslive.jenkins.plugins.jira.api.input;
 
 import java.io.Serializable;
 
@@ -8,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,14 +21,14 @@ import lombok.ToString;
 @AllArgsConstructor(onConstructor = @__({@DataBoundConstructor}))
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@SuppressFBWarnings
 @Builder
-public class Issues implements Serializable {
+public class BasicIssue implements Serializable {
 	private final static long serialVersionUID = 7689184735166991068L;
 
-	@JsonProperty("issueUpdates")
-	private Issue[] issueUpdates;
+	@JsonProperty("id")
+	private String id;
 
-	@JsonProperty("issues")
-	private Issue[] issues;
+	@JsonProperty("key")
+	private String key;
+
 }

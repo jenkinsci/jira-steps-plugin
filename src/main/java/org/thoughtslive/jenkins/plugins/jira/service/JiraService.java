@@ -20,11 +20,14 @@ import org.thoughtslive.jenkins.plugins.jira.api.Issues;
 import org.thoughtslive.jenkins.plugins.jira.api.Notify;
 import org.thoughtslive.jenkins.plugins.jira.api.Project;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
+import org.thoughtslive.jenkins.plugins.jira.api.SearchResult;
 import org.thoughtslive.jenkins.plugins.jira.api.Status;
 import org.thoughtslive.jenkins.plugins.jira.api.Transitions;
 import org.thoughtslive.jenkins.plugins.jira.api.User;
 import org.thoughtslive.jenkins.plugins.jira.api.Version;
 import org.thoughtslive.jenkins.plugins.jira.api.Watches;
+import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
+import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssues;
 import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -115,7 +118,7 @@ public class JiraService {
 	 *            actual component
 	 * @return updated component.
 	 */
-	public ResponseData<Component> updateComponent(final Component component) {
+	public ResponseData<Void> updateComponent(final Component component) {
 		try {
 			return parseResponse(jiraEndPoints.updateComponent(component.getId(), component).execute());
 		} catch (Exception e) {
@@ -167,7 +170,7 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<Issue> updateIssue(final Issue issue) {
+	public ResponseData<BasicIssue> updateIssue(final Issue issue) {
 		final String issueIdorKey = empty(issue.getId()) ? issue.getKey() : issue.getId();
 		try {
 			return parseResponse(jiraEndPoints.updateIssue(issueIdorKey, issue).execute());
@@ -176,7 +179,7 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<Issue> assignIssue(final String issueIdorKey, final String userName) {
+	public ResponseData<Void> assignIssue(final String issueIdorKey, final String userName) {
 		try {
 			return parseResponse(
 					jiraEndPoints.assignIssue(issueIdorKey, User.builder().name(userName).build()).execute());
@@ -185,7 +188,7 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<Issues> createIssues(final Issues issues) {
+	public ResponseData<BasicIssues> createIssues(final Issues issues) {
 		try {
 			return parseResponse(jiraEndPoints.createIssues(issues).execute());
 		} catch (Exception e) {
@@ -270,10 +273,10 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<Issues> searchIssues(final String jql, final int startAt, final int maxResults,
-			final String[] fields) {
+	public ResponseData<SearchResult> searchIssues(final String jql, final int startAt, final int maxResults) {
+		final SearchResult searchInput = SearchResult.builder().jql(jql).startAt(startAt).maxResults(maxResults).build();
 		try {
-			return parseResponse(jiraEndPoints.searchIssues(jql, startAt, maxResults, fields).execute());
+			return parseResponse(jiraEndPoints.searchIssues(searchInput).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}
@@ -335,7 +338,7 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<Version> updateVersion(final Version version) {
+	public ResponseData<Void> updateVersion(final Version version) {
 		try {
 			return parseResponse(jiraEndPoints.updateVersion(version.getId(), version).execute());
 		} catch (Exception e) {

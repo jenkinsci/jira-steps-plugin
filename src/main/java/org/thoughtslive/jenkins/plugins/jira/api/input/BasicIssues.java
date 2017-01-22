@@ -1,4 +1,4 @@
-package org.thoughtslive.jenkins.plugins.jira.api;
+package org.thoughtslive.jenkins.plugins.jira.api.input;
 
 import java.io.Serializable;
 
@@ -23,12 +23,9 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @SuppressFBWarnings
 @Builder
-public class Issues implements Serializable {
+public class BasicIssues implements Serializable {
 	private final static long serialVersionUID = 7689184735166991068L;
 
-	@JsonProperty("issueUpdates")
-	private Issue[] issueUpdates;
-
 	@JsonProperty("issues")
-	private Issue[] issues;
+	private BasicIssue[] issues;
 }

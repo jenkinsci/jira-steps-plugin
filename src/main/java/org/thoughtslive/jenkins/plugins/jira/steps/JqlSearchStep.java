@@ -4,8 +4,9 @@ import javax.inject.Inject;
 
 import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
 import org.kohsuke.stapler.DataBoundConstructor;
+import org.kohsuke.stapler.DataBoundSetter;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
-import org.thoughtslive.jenkins.plugins.jira.api.Version;
+import org.thoughtslive.jenkins.plugins.jira.api.SearchResult;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -15,22 +16,33 @@ import hudson.model.TaskListener;
 import lombok.Getter;
 
 /**
- * Step to update given JIRA verion.
+ * Step to search JIRAs by JQL.
  * 
  * @author Naresh Rayapati
  *
  */
-public class UpdateVersionStep extends BasicJiraStep {
+public class JqlSearchStep extends BasicJiraStep {
 
 	private static final long serialVersionUID = 2327375640378098562L;
 
 	@Getter
-	private final Version version;
+	private final String jql;
 
 	@DataBoundConstructor
-	public UpdateVersionStep(final Version version) {
-		this.version = version;
+	public JqlSearchStep(final String jql) {
+		this.jql = jql;
 	}
+	
+	// startAt is optional and defaults to 0.
+	@Getter
+	@DataBoundSetter
+	private int startAt = 0;
+
+	// maxResults is optional and defaults to 1000.
+	// TODO this can't be more than 2000 as JIRA may shutdown with out of memory issues.
+	@Getter
+	@DataBoundSetter
+	private int maxResults = 1000;
 
 	@Extension
 	public static class DescriptorImpl extends JiraStepDescriptorImpl {
@@ -41,12 +53,12 @@ public class UpdateVersionStep extends BasicJiraStep {
 
 		@Override
 		public String getFunctionName() {
-			return "jiraUpdateVersion";
+			return "jiraJqlSearch";
 		}
 
 		@Override
 		public String getDisplayName() {
-			return getPrefix() + "Update Version";
+			return getPrefix() + "JQL Search";
 		}
 
 		@Override
@@ -55,7 +67,7 @@ public class UpdateVersionStep extends BasicJiraStep {
 		}
 	}
 
-	public static class Execution extends JiraStepExecution<ResponseData<Void>> {
+	public static class Execution extends JiraStepExecution<ResponseData<SearchResult>> {
 
 		private static final long serialVersionUID = -821037959812310749L;
 
@@ -66,16 +78,16 @@ public class UpdateVersionStep extends BasicJiraStep {
 		protected transient EnvVars envVars;
 
 		@Inject
-		private transient UpdateVersionStep step;
+		private transient JqlSearchStep step;
 
 		@Override
-		protected ResponseData<Void> run() throws Exception {
+		protected ResponseData<SearchResult> run() throws Exception {
 
-			ResponseData<Void> response = verifyCommon(step, listener, envVars);
+			ResponseData<SearchResult> response = verifyCommon(step, listener, envVars);
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Updating version: " + step.getVersion());
-				response = jiraService.updateVersion(step.getVersion());
+				logger.println("JIRA: Site - " + siteName + " - Search JQL: " + step.getJql() + " startAt: " + step.getStartAt() + " maxResults: " + step.getMaxResults());
+				response = jiraService.searchIssues(step.getJql(), step.getStartAt(), step.getMaxResults());
 			}
 
 			return logResponse(response);

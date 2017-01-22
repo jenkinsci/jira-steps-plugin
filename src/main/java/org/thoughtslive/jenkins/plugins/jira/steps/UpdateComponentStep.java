@@ -55,7 +55,7 @@ public class UpdateComponentStep extends BasicJiraStep {
 		}
 	}
 
-	public static class Execution extends JiraStepExecution<ResponseData<Component>> {
+	public static class Execution extends JiraStepExecution<ResponseData<Void>> {
 
 		private static final long serialVersionUID = -821037959812310749L;
 
@@ -69,9 +69,9 @@ public class UpdateComponentStep extends BasicJiraStep {
 		private transient UpdateComponentStep step;
 
 		@Override
-		protected ResponseData<Component> run() throws Exception {
+		protected ResponseData<Void> run() throws Exception {
 
-			ResponseData<Component> response = verifyCommon(step, listener, envVars);
+			ResponseData<Void> response = verifyCommon(step, listener, envVars);
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Updating component: " + step.getComponent());

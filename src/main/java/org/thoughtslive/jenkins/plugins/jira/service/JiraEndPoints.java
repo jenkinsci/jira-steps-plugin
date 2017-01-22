@@ -12,11 +12,14 @@ import org.thoughtslive.jenkins.plugins.jira.api.IssueLinkTypes;
 import org.thoughtslive.jenkins.plugins.jira.api.Issues;
 import org.thoughtslive.jenkins.plugins.jira.api.Notify;
 import org.thoughtslive.jenkins.plugins.jira.api.Project;
+import org.thoughtslive.jenkins.plugins.jira.api.SearchResult;
 import org.thoughtslive.jenkins.plugins.jira.api.Status;
 import org.thoughtslive.jenkins.plugins.jira.api.Transitions;
 import org.thoughtslive.jenkins.plugins.jira.api.User;
 import org.thoughtslive.jenkins.plugins.jira.api.Version;
 import org.thoughtslive.jenkins.plugins.jira.api.Watches;
+import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
+import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssues;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -46,7 +49,7 @@ public interface JiraEndPoints {
 	Call<Component> createComponent(@Body Component component);
 
 	@PUT("rest/api/2/component/{id}")
-	Call<Component> updateComponent(@Path("id") int id, @Body Component component);
+	Call<Void> updateComponent(@Path("id") int id, @Body Component component);
 
 	@GET("rest/api/2/component/{id}/relatedIssueCounts")
 	Call<Count> getComponentIssueCount(@Path("id") int id);
@@ -59,13 +62,13 @@ public interface JiraEndPoints {
 	Call<Issue> createIssue(@Body Issue issue);
 
 	@PUT("rest/api/2/issue/{issueIdOrKey}")
-	Call<Issue> updateIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Issue issue);
+	Call<BasicIssue> updateIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Issue issue);
 
 	@POST("rest/api/2/issue/bulk")
-	Call<Issues> createIssues(@Body Issues issues);
+	Call<BasicIssues> createIssues(@Body Issues issues);
 
 	@PUT("rest/api/2/issue/{issueIdOrKey}/assignee")
-	Call<Issue> assignIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body User user);
+	Call<Void> assignIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body User user);
 
 	@GET("rest/api/2/issue/{issueIdOrKey}/comment")
 	Call<Comments> getComments(@Path("issueIdOrKey") String issueIdOrKey);
@@ -122,9 +125,8 @@ public interface JiraEndPoints {
 	Call<Version[]> getProjectVersions(@Path("projectIdOrKey") String projectId);
 
 	// Search
-	@GET("rest/api/2/search")
-	Call<Issues> searchIssues(@Query("jql") String jql, @Query("startAt") int startAt,
-			@Query("maxResults") int maxResults, @Query("fields") String[] fields);
+	@POST("rest/api/2/search")
+	Call<SearchResult> searchIssues(@Body SearchResult search);
 
 	// Version
 	@POST("rest/api/2/version")
@@ -134,5 +136,5 @@ public interface JiraEndPoints {
 	Call<Version> getVersion(@Path("id") int id);
 
 	@PUT("rest/api/2/version/{id}")
-	Call<Version> updateVersion(@Path("id") int id, @Body Version version);
+	Call<Void> updateVersion(@Path("id") int id, @Body Version version);
 }
