@@ -13,6 +13,9 @@ import org.thoughtslive.jenkins.plugins.jira.api.Comments;
 import org.thoughtslive.jenkins.plugins.jira.api.Component;
 import org.thoughtslive.jenkins.plugins.jira.api.Count;
 import org.thoughtslive.jenkins.plugins.jira.api.Issue;
+import org.thoughtslive.jenkins.plugins.jira.api.IssueLink;
+import org.thoughtslive.jenkins.plugins.jira.api.IssueLinkType;
+import org.thoughtslive.jenkins.plugins.jira.api.IssueLinkTypes;
 import org.thoughtslive.jenkins.plugins.jira.api.Issues;
 import org.thoughtslive.jenkins.plugins.jira.api.Notify;
 import org.thoughtslive.jenkins.plugins.jira.api.Project;
@@ -200,7 +203,8 @@ public class JiraService {
 
 	public ResponseData<Comment> addComment(final String issueIdorKey, final String comment) {
 		try {
-			return parseResponse(jiraEndPoints.addComment(issueIdorKey, Comment.builder().body(comment).build()).execute());
+			return parseResponse(
+					jiraEndPoints.addComment(issueIdorKey, Comment.builder().body(comment).build()).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}
@@ -208,7 +212,8 @@ public class JiraService {
 
 	public ResponseData<Comment> updateComment(final String issueIdorKey, final String id, final String comment) {
 		try {
-			return parseResponse(jiraEndPoints.updateComment(issueIdorKey, id, Comment.builder().id(id).body(comment).build()).execute());
+			return parseResponse(jiraEndPoints
+					.updateComment(issueIdorKey, id, Comment.builder().id(id).body(comment).build()).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}
@@ -258,7 +263,8 @@ public class JiraService {
 
 	public ResponseData<Void> addIssueWatcher(final String issueIdorKey, final String userName) {
 		try {
-			return parseResponse(jiraEndPoints.addIssueWatcher(issueIdorKey, User.builder().name(userName).build()).execute());
+			return parseResponse(
+					jiraEndPoints.addIssueWatcher(issueIdorKey, User.builder().name(userName).build()).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}
@@ -304,7 +310,7 @@ public class JiraService {
 			return buildErrorResponse(e);
 		}
 	}
-	
+
 	public ResponseData<Status[]> getProjectStatuses(final String projectIdOrKey) {
 		try {
 			return parseResponse(jiraEndPoints.getProjectStatuses(projectIdOrKey).execute());
@@ -312,7 +318,7 @@ public class JiraService {
 			return buildErrorResponse(e);
 		}
 	}
-	
+
 	public ResponseData<Version> getVersion(final int id) {
 		try {
 			return parseResponse(jiraEndPoints.getVersion(id).execute());
@@ -332,6 +338,32 @@ public class JiraService {
 	public ResponseData<Version> updateVersion(final Version version) {
 		try {
 			return parseResponse(jiraEndPoints.updateVersion(version.getId(), version).execute());
+		} catch (Exception e) {
+			return buildErrorResponse(e);
+		}
+	}
+
+	public ResponseData<IssueLinkTypes> getIssueLinkTypes() {
+		try {
+			return parseResponse(jiraEndPoints.getIssueLinkTypes().execute());
+		} catch (Exception e) {
+			return buildErrorResponse(e);
+		}
+	}
+
+	public ResponseData<Void> linkIssues(final String name, final String inwardIssueKey, final String outwardIssueKey,
+			final String comment) {
+		Comment linkComment = null;
+		if(!empty(comment)) {
+			linkComment =  Comment.builder().body(comment).build();
+		}
+		
+		final IssueLink issueLink = IssueLink.builder().type(IssueLinkType.builder().name(name).build())
+				.comment(linkComment).inwardIssue(Issue.builder().key(inwardIssueKey).build())
+				.outwardIssue(Issue.builder().key(outwardIssueKey).build()).build();
+
+		try {
+			return parseResponse(jiraEndPoints.createIssueLink(issueLink).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}

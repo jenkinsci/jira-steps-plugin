@@ -113,6 +113,8 @@ public class JiraServiceTest {
 		
 		System.out.println(service.getProjects().getData()[0]);
 		System.out.println(service.getProject("TEST").getData());
+		System.out.println(service.getIssueLinkTypes().getData().getIssueLinkTypes()[1]);
+		System.out.println(service.linkIssues("Relates", "TEST-1", "TEST-2", "Testing Issue Linking").getError());
 
 	}
 

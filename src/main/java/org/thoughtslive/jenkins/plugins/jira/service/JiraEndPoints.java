@@ -96,7 +96,7 @@ public interface JiraEndPoints {
 
 	// Issue Links
 	@POST("rest/api/2/issueLink")
-	Call<IssueLink> createIssueLink(@Body IssueLink issueLink);
+	Call<Void> createIssueLink(@Body IssueLink issueLink);
 
 	@GET("rest/api/2/issueLink/{linkId}")
 	Call<IssueLink> getIssueLink(@Path("linkId") int linkId);

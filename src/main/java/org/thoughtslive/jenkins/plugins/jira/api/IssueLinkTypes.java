@@ -28,6 +28,6 @@ public class IssueLinkTypes implements Serializable {
 
 	private final static long serialVersionUID = 1400451509198002456L;
 
-	@JsonProperty("isssueLinkTypes")
-	private IssueLinkType[] isssueLinkTypes;
+	@JsonProperty("issueLinkTypes")
+	private IssueLinkType[] issueLinkTypes;
 }
