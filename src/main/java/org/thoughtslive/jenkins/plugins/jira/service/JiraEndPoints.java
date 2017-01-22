@@ -110,20 +110,20 @@ public interface JiraEndPoints {
 	Call<IssueLinkTypes> getIssueLinkTypes();
 
 	// Project
-	@GET("rest/api/2/project")
+	@GET("rest/api/2/project?expand=lead,description")
 	Call<Project[]> getProjects();
 
 	@GET("rest/api/2/project/{projectIdOrKey}")
-	Call<Project> getProject(@Path("projectIdOrKey") int projectId);
+	Call<Project> getProject(@Path("projectIdOrKey") String projectId);
 
 	@GET("rest/api/2/project/{projectIdOrKey}/statuses")
-	Call<Status[]> getProjectStatuses(@Path("projectIdOrKey") int projectId);
+	Call<Status[]> getProjectStatuses(@Path("projectIdOrKey") String projectId);
 
 	@GET("rest/api/2/project/{projectIdOrKey}/components")
-	Call<Component[]> getProjectComponents(@Path("projectIdOrKey") int projectId);
+	Call<Component[]> getProjectComponents(@Path("projectIdOrKey") String projectId);
 
 	@GET("rest/api/2/project/{projectIdOrKey}/versions")
-	Call<Version[]> getProjectVersions(@Path("projectIdOrKey") int projectId);
+	Call<Version[]> getProjectVersions(@Path("projectIdOrKey") String projectId);
 
 	// Search
 	@GET("rest/api/2/search")

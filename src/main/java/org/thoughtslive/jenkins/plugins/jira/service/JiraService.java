@@ -15,9 +15,12 @@ import org.thoughtslive.jenkins.plugins.jira.api.Count;
 import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.Issues;
 import org.thoughtslive.jenkins.plugins.jira.api.Notify;
+import org.thoughtslive.jenkins.plugins.jira.api.Project;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
+import org.thoughtslive.jenkins.plugins.jira.api.Status;
 import org.thoughtslive.jenkins.plugins.jira.api.Transitions;
 import org.thoughtslive.jenkins.plugins.jira.api.User;
+import org.thoughtslive.jenkins.plugins.jira.api.Version;
 import org.thoughtslive.jenkins.plugins.jira.api.Watches;
 import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
 
@@ -195,17 +198,17 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<Comment> addComment(final String issueIdorKey, final Comment comment) {
+	public ResponseData<Comment> addComment(final String issueIdorKey, final String comment) {
 		try {
-			return parseResponse(jiraEndPoints.addComment(issueIdorKey, comment).execute());
+			return parseResponse(jiraEndPoints.addComment(issueIdorKey, Comment.builder().body(comment).build()).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}
 	}
 
-	public ResponseData<Comment> updateComment(final String issueIdorKey, final Comment comment) {
+	public ResponseData<Comment> updateComment(final String issueIdorKey, final String id, final String comment) {
 		try {
-			return parseResponse(jiraEndPoints.updateComment(issueIdorKey, comment.getId(), comment).execute());
+			return parseResponse(jiraEndPoints.updateComment(issueIdorKey, id, Comment.builder().id(id).body(comment).build()).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}
@@ -265,6 +268,46 @@ public class JiraService {
 			final String[] fields) {
 		try {
 			return parseResponse(jiraEndPoints.searchIssues(jql, startAt, maxResults, fields).execute());
+		} catch (Exception e) {
+			return buildErrorResponse(e);
+		}
+	}
+
+	public ResponseData<Project[]> getProjects() {
+		try {
+			return parseResponse(jiraEndPoints.getProjects().execute());
+		} catch (Exception e) {
+			return buildErrorResponse(e);
+		}
+	}
+
+	public ResponseData<Project> getProject(final String projectIdOrKey) {
+		try {
+			return parseResponse(jiraEndPoints.getProject(projectIdOrKey).execute());
+		} catch (Exception e) {
+			return buildErrorResponse(e);
+		}
+	}
+
+	public ResponseData<Version[]> getProjectVersions(final String projectIdOrKey) {
+		try {
+			return parseResponse(jiraEndPoints.getProjectVersions(projectIdOrKey).execute());
+		} catch (Exception e) {
+			return buildErrorResponse(e);
+		}
+	}
+
+	public ResponseData<Component[]> getProjectComponents(final String projectIdOrKey) {
+		try {
+			return parseResponse(jiraEndPoints.getProjectComponents(projectIdOrKey).execute());
+		} catch (Exception e) {
+			return buildErrorResponse(e);
+		}
+	}
+	
+	public ResponseData<Status[]> getProjectStatuses(final String projectIdOrKey) {
+		try {
+			return parseResponse(jiraEndPoints.getProjectStatuses(projectIdOrKey).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}

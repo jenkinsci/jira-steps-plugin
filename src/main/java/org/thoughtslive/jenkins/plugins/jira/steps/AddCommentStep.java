@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
 import org.kohsuke.stapler.DataBoundConstructor;
+import org.thoughtslive.jenkins.plugins.jira.api.Comment;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
@@ -14,12 +15,12 @@ import hudson.model.TaskListener;
 import lombok.Getter;
 
 /**
- * Step to add watcher to issue.
+ * Step to create a new JIRA comment.
  * 
  * @author Naresh Rayapati
  *
  */
-public class AddIssueWatcherStep extends BasicJiraStep {
+public class AddCommentStep extends BasicJiraStep {
 
 	private static final long serialVersionUID = 2327375640378098562L;
 
@@ -27,12 +28,12 @@ public class AddIssueWatcherStep extends BasicJiraStep {
 	private final String idOrKey;
 
 	@Getter
-	private final String userName;
+	private final String comment;
 
 	@DataBoundConstructor
-	public AddIssueWatcherStep(final String idOrKey, final String userName) {
+	public AddCommentStep(final String idOrKey, final String comment) {
 		this.idOrKey = idOrKey;
-		this.userName = userName;
+		this.comment = comment;
 	}
 
 	@Extension
@@ -44,12 +45,12 @@ public class AddIssueWatcherStep extends BasicJiraStep {
 
 		@Override
 		public String getFunctionName() {
-			return "jiraAddIssueWatcher";
+			return "jiraAddComment";
 		}
 
 		@Override
 		public String getDisplayName() {
-			return getPrefix() + "Add Issue Watcher";
+			return getPrefix() + "Add Comment";
 		}
 
 		@Override
@@ -58,7 +59,7 @@ public class AddIssueWatcherStep extends BasicJiraStep {
 		}
 	}
 
-	public static class Execution extends JiraStepExecution<ResponseData<Void>> {
+	public static class Execution extends JiraStepExecution<ResponseData<Comment>> {
 
 		private static final long serialVersionUID = -821037959812310749L;
 
@@ -69,16 +70,16 @@ public class AddIssueWatcherStep extends BasicJiraStep {
 		protected transient EnvVars envVars;
 
 		@Inject
-		private transient AddIssueWatcherStep step;
+		private transient AddCommentStep step;
 
 		@Override
-		protected ResponseData<Void> run() throws Exception {
+		protected ResponseData<Comment> run() throws Exception {
 
-			ResponseData<Void> response = verifyCommon(step, listener, envVars);
+			ResponseData<Comment> response = verifyCommon(step, listener, envVars);
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Adding watcher "+ step.getUserName() +" to issue: " + step.getIdOrKey());
-				response = jiraService.addIssueWatcher(step.getIdOrKey(), step.getUserName());
+				logger.println("JIRA: Site - " + siteName + " - Creating new comment: "+ step.getComment() +" on issue: " + step.getIdOrKey());
+				response = jiraService.addComment(step.getIdOrKey(), step.getComment());
 			}
 
 			return logResponse(response);

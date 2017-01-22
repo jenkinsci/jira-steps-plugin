@@ -110,6 +110,9 @@ public class JiraServiceTest {
 
 		ResponseData<Issues> issues = service.searchIssues("PROJECT = TEST", 0, 1, null);
 		System.out.println(issues);
+		
+		System.out.println(service.getProjects().getData()[0]);
+		System.out.println(service.getProject("TEST").getData());
 
 	}
 

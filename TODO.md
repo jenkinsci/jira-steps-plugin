@@ -26,23 +26,23 @@ https://docs.atlassian.com/jira/REST/6.4.13/
   * Watchers
     * getWatchers
     * addWatcher
-    
-    
-* IssueLinks
-  * linkIssues
-  * getIssueLink
-  * deleteIssueLink
-* IssueLinkTypes
+
 * Project 
-  * getProject
-  * getVersions.
+  * getProjects
+  * getProject (Looks like this queries versions and components too)
+  * getVersions
   * getComponents
-  * getStatuses.
-* Search
-  * By JQL.
+  * getStatuses
 * Versions
   * getVersion
   * createVersion
   * updateVersion
   * deleteVersion
+* IssueLinks
+  * linkIssues
+  * getIssueLink
+  * deleteIssueLink
+* Search
+  * By JQL.
+* IssueLinkTypes
 * Session - Need to think on how we can reuse session Id. (Or do we need it at all.?)

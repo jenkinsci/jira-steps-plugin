@@ -6,6 +6,7 @@ import java.io.Serializable;
 import org.joda.time.DateTime;
 import org.kohsuke.stapler.DataBoundConstructor;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -43,16 +44,16 @@ public class Version implements Serializable {
 	private Boolean released;
 
 	@JsonProperty("startDate")
-	private DateTime startDate;
+	private String startDate;
 
 	@JsonProperty("releaseDate")
-	private DateTime releaseDate;
+	private String releaseDate;
 
 	@JsonProperty("userStartDate")
-	private DateTime userStartDate;
+	private String userStartDate;
 
 	@JsonProperty("userReleaseDate")
-	private DateTime userReleaseDate;
+	private String userReleaseDate;
 
 	@JsonProperty("project")
 	private String project;

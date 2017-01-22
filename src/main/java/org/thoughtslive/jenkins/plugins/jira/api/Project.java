@@ -35,6 +35,21 @@ public class Project implements Serializable {
 	@JsonProperty("name")
 	private String name;
 
+	@JsonProperty("description")
+	private String description;
+
+	@JsonProperty("lead")
+	private User lead;
+
+	@JsonProperty("components")
+	private Component[] components;
+
+	@JsonProperty("versions")
+	private Version[] versions;
+
+	@JsonProperty("issueTypes")
+	private IssueType[] issueTypes;
+
 	@JsonProperty("projectCategory")
 	private ProjectCategory projectCategory;
 

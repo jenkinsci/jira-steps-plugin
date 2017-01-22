@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.thoughtslive.jenkins.plugins.jira.api.Comment;
+import org.thoughtslive.jenkins.plugins.jira.api.Project;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
@@ -15,29 +15,20 @@ import hudson.model.TaskListener;
 import lombok.Getter;
 
 /**
- * Step to update JIRA issue comment.
- * 
- * @author Naresh Rayapati
+ * Step to query a JIRA Project.
  *
+ * @author Naresh Rayapati
  */
-public class UpdateCommentStep extends BasicJiraStep {
+public class GetProjectStep extends BasicJiraStep {
 
 	private static final long serialVersionUID = 2327375640378098562L;
-
+	
 	@Getter
 	private final String idOrKey;
 
-	@Getter
-	private final String id;
-
-	@Getter
-	private final String comment;
-
 	@DataBoundConstructor
-	public UpdateCommentStep(final String idOrKey, final String id, final String comment) {
+	public GetProjectStep(final String idOrKey) {
 		this.idOrKey = idOrKey;
-		this.id = id;
-		this.comment = comment;
 	}
 
 	@Extension
@@ -49,21 +40,17 @@ public class UpdateCommentStep extends BasicJiraStep {
 
 		@Override
 		public String getFunctionName() {
-			return "jiraUpdateComment";
+			return "jiraGetProjects";
 		}
 
 		@Override
 		public String getDisplayName() {
-			return getPrefix() + "Update Issue Comment";
+			return getPrefix() + "Get Projects";
 		}
 
-		@Override
-		public boolean isMetaStep() {
-			return true;
-		}
 	}
 
-	public static class Execution extends JiraStepExecution<ResponseData<Comment>> {
+	public static class Execution extends JiraStepExecution<ResponseData<Project>> {
 
 		private static final long serialVersionUID = -821037959812310749L;
 
@@ -74,16 +61,16 @@ public class UpdateCommentStep extends BasicJiraStep {
 		protected transient EnvVars envVars;
 
 		@Inject
-		private transient UpdateCommentStep step;
+		private transient GetProjectStep step;
 
 		@Override
-		protected ResponseData<Comment> run() throws Exception {
+		protected ResponseData<Project> run() throws Exception {
 
-			ResponseData<Comment> response = verifyCommon(step, listener, envVars);
+			ResponseData<Project> response = verifyCommon(step, listener, envVars);
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Updating comment: "+ step.getComment() +" on issue: " + step.getIdOrKey());
-				response = jiraService.updateComment(step.getIdOrKey(), step.getId(), step.getComment());
+				logger.println("JIRA: Site - " + siteName + " - Querying All Projects");
+				response = jiraService.getProject(step.getIdOrKey());
 			}
 
 			return logResponse(response);
