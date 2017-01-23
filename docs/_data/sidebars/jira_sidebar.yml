@@ -77,8 +77,8 @@ entries:
       url: /jira_new_component.html
       output: web, pdf
 
-    - title: jiraUpdateComponent
-      url: /jira_update_component.html
+    - title: jiraEditComponent
+      url: /jira_edit_component.html
       output: web, pdf
 
     - title: jiraGetComponent

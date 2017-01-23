@@ -2,11 +2,13 @@
 title: Get Started.
 last_updated: Dec 25, 2016
 tags: [getting_started]
-summary: "JIRA Steps - Jenkins Pipeline Steps."
+summary: "Jenkins JIRA Pipeline Steps"
 sidebar: jira_sidebar
 permalink: index.html
 ---
 
-# JIRA Steps
+# JIRA Pipeline Steps
 
-TODO - Under Construction.
+This plugin is currently under active development. 
+
+Documentation will get added soon.

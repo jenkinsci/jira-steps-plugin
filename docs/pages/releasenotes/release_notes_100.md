@@ -1,5 +1,5 @@
 ---
-title: Release notes 1.0.0
+title: Release notes 1.0.0-SNAPSHOT
 tags: [getting_started]
 keywords: release notes, announcements, what's new, new features
 last_updated: Dec 25, 2016
@@ -9,6 +9,7 @@ permalink: release_notes_100.html
 folder: releasenotes
 ---
 
-TODO
+* 1.0.0-SNAPSHOT
+  * Initial release. (Still under active development)
 
 {% include links.html %}

@@ -2,6 +2,7 @@
 title: Introduction
 sidebar: jira_sidebar
 permalink: introduction.html
+summary: "Introduction Guide to the Plugin."
 folder: general
 ---
 

@@ -2,7 +2,7 @@
 title: About the author
 last_updated: Dec 25, 2016
 tags: [getting_started]
-summary: "I have used this theme for projects that I've worked on as a professional technical writer."
+summary: "About Developer"
 sidebar: jira_sidebar
 permalink: about.html
 folder: general
