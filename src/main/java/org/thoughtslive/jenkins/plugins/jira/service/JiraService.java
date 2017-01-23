@@ -213,7 +213,7 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<Comment> updateComment(final String issueIdorKey, final String id, final String comment) {
+	public ResponseData<Comment> updateComment(final String issueIdorKey, final int id, final String comment) {
 		try {
 			return parseResponse(jiraEndPoints
 					.updateComment(issueIdorKey, id, Comment.builder().id(id).body(comment).build()).execute());
@@ -222,7 +222,7 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<Comment> getComment(final String issueIdorKey, final String commentId) {
+	public ResponseData<Comment> getComment(final String issueIdorKey, final int commentId) {
 		try {
 			return parseResponse(jiraEndPoints.getComment(issueIdorKey, commentId).execute());
 		} catch (Exception e) {
@@ -274,7 +274,8 @@ public class JiraService {
 	}
 
 	public ResponseData<SearchResult> searchIssues(final String jql, final int startAt, final int maxResults) {
-		final SearchResult searchInput = SearchResult.builder().jql(jql).startAt(startAt).maxResults(maxResults).build();
+		final SearchResult searchInput = SearchResult.builder().jql(jql).startAt(startAt).maxResults(maxResults)
+				.build();
 		try {
 			return parseResponse(jiraEndPoints.searchIssues(searchInput).execute());
 		} catch (Exception e) {
@@ -357,10 +358,10 @@ public class JiraService {
 	public ResponseData<Void> linkIssues(final String name, final String inwardIssueKey, final String outwardIssueKey,
 			final String comment) {
 		Comment linkComment = null;
-		if(!empty(comment)) {
-			linkComment =  Comment.builder().body(comment).build();
+		if (!empty(comment)) {
+			linkComment = Comment.builder().body(comment).build();
 		}
-		
+
 		final IssueLink issueLink = IssueLink.builder().type(IssueLinkType.builder().name(name).build())
 				.comment(linkComment).inwardIssue(Issue.builder().key(inwardIssueKey).build())
 				.outwardIssue(Issue.builder().key(outwardIssueKey).build()).build();

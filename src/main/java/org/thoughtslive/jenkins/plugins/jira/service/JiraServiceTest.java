@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.Comments;
 import org.thoughtslive.jenkins.plugins.jira.api.Issue;
-import org.thoughtslive.jenkins.plugins.jira.api.Issues;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.SearchResult;
 
@@ -32,13 +30,13 @@ public class JiraServiceTest {
 		ResponseData<Issue> issue = service.getIssue("TEST-1");
 		System.out.println(issue.getData());
 		//
-		 ObjectMapper mapper = new ObjectMapper();
-		 String jsonInString1 = "{\"fields\": { \"project\": { \"id\":\"10000\" },\"summary\": \"New Issue\", \"issuetype\": {\"id\": \"3\"}}}";
-		 String jsonInString2 = "{\"fields\": { \"project\": { \"id\": \"10000\" },\"summary\": \"something\'s wrong4\", \"issuetype\":	 {\"id\": \"3\"}}}";
-		 Issue issue1 = mapper.readValue(jsonInString1, Issue.class);
-		 Issue issue2 = mapper.readValue(jsonInString2, Issue.class);
-		 System.out.println(issue1);
-		 System.out.println(issue2);
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonInString1 = "{\"fields\": { \"project\": { \"id\":\"10000\" },\"summary\": \"New Issue\", \"issuetype\": {\"id\": \"3\"}}}";
+		String jsonInString2 = "{\"fields\": { \"project\": { \"id\": \"10000\" },\"summary\": \"something\'s wrong4\", \"issuetype\":	 {\"id\": \"3\"}}}";
+		Issue issue1 = mapper.readValue(jsonInString1, Issue.class);
+		Issue issue2 = mapper.readValue(jsonInString2, Issue.class);
+		System.out.println(issue1);
+		System.out.println(issue2);
 
 		// ResponseData<Issue> newIssue = service.createIssue(issue1);
 		// System.out.println(newIssue);
@@ -108,10 +106,10 @@ public class JiraServiceTest {
 		//
 		// ResponseData<Issue> issue3 = service.assignIssue("TEST-1", user);
 		// System.out.println(issue3);
-		
+
 		ResponseData<SearchResult> issues = service.searchIssues("PROJECT = TEST", 0, 1000);
 		System.out.println(issues);
-		
+
 		System.out.println(service.getProjects().getData()[0]);
 		System.out.println(service.getProject("TEST").getData());
 		System.out.println(service.getIssueLinkTypes().getData().getIssueLinkTypes()[1]);

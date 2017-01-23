@@ -4,32 +4,34 @@ import javax.inject.Inject;
 
 import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.thoughtslive.jenkins.plugins.jira.api.Component;
+import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
+import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
 import hudson.EnvVars;
 import hudson.Extension;
+import hudson.model.Run;
 import hudson.model.TaskListener;
 import lombok.Getter;
 
 /**
- * Step to update the given JIRA component.
+ * Step to update given JIRA issue.
  * 
  * @author Naresh Rayapati
  *
  */
-public class UpdateComponentStep extends BasicJiraStep {
+public class EditIssueStep extends BasicJiraStep {
 
 	private static final long serialVersionUID = 2327375640378098562L;
 
 	@Getter
-	private final Component component;
+	private final Issue issue;
 
 	@DataBoundConstructor
-	public UpdateComponentStep(final Component component) {
-		this.component = component;
+	public EditIssueStep(final Issue issue) {
+		this.issue = issue;
 	}
 
 	@Extension
@@ -41,12 +43,12 @@ public class UpdateComponentStep extends BasicJiraStep {
 
 		@Override
 		public String getFunctionName() {
-			return "jiraUpdateComponent";
+			return "jiraEditIssue";
 		}
 
 		@Override
 		public String getDisplayName() {
-			return getPrefix() + "Update Component";
+			return getPrefix() + "Edit Issue";
 		}
 
 		@Override
@@ -55,9 +57,12 @@ public class UpdateComponentStep extends BasicJiraStep {
 		}
 	}
 
-	public static class Execution extends JiraStepExecution<ResponseData<Void>> {
+	public static class Execution extends JiraStepExecution<ResponseData<BasicIssue>> {
 
 		private static final long serialVersionUID = -821037959812310749L;
+
+		@StepContextParameter
+		private transient Run<?, ?> run;
 
 		@StepContextParameter
 		protected transient TaskListener listener;
@@ -66,19 +71,25 @@ public class UpdateComponentStep extends BasicJiraStep {
 		protected transient EnvVars envVars;
 
 		@Inject
-		private transient UpdateComponentStep step;
+		private transient EditIssueStep step;
 
 		@Override
-		protected ResponseData<Void> run() throws Exception {
+		protected ResponseData<BasicIssue> run() throws Exception {
 
-			ResponseData<Void> response = verifyCommon(step, listener, envVars);
+			ResponseData<BasicIssue> response = verifyInput();
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Updating component: " + step.getComponent());
-				response = jiraService.updateComponent(step.getComponent());
+				logger.println("JIRA: Site - " + siteName + " - Updating issue: " + step.getIssue());
+				response = jiraService.updateIssue(step.getIssue());
 			}
 
 			return logResponse(response);
+		}
+
+		@Override
+		protected <T> ResponseData<T> verifyInput() throws Exception {
+			//TODO Add validation - Or change the input type here ?
+			return verifyCommon(step, listener, envVars, run);
 		}
 	}
 }

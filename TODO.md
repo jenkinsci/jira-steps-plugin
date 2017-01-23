@@ -3,26 +3,26 @@ https://docs.atlassian.com/jira/REST/6.4.13/
 
 * Component
   * getComponent
-  * newComponent
-  * updateComponent
+  * **newComponent**
+  * **editComponent**
   * getComponentRelatedIssueCount
 * Issue Related
   * Issue
     * getIssue
-    * createIssue
-    * createIssues
-    * editIssue
+    * **newIssue**
+    * **newIssues**
+    * **editIssue**
     * assignIssue
   * Comments
     * getComments
     * addComment
-    * updateComment
+    * editComment
     * getComment
   * Email
     * notify
   * Transitions
     * getTransitions
-    * doTransition
+    * **transitionIssue**
   * Watchers
     * getWatchers
     * addWatcher
@@ -32,7 +32,7 @@ https://docs.atlassian.com/jira/REST/6.4.13/
 * Versions
   * getVersion
   * createVersion
-  * updateVersion
+  * editVersion
 * IssueLinks
   * linkIssues
 * IssueLinkTypes
@@ -49,3 +49,4 @@ TODO
   * getIssueLink
   * deleteIssueLink  
 * Session - Need to think on how we can reuse session Id. (Or do we need it at all.?)
+* Support Issue Custom Fields.

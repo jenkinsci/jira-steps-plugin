@@ -28,7 +28,7 @@ public class Comment implements Serializable {
 	private final static long serialVersionUID = 6138170662415305859L;
 
 	@JsonProperty("id")
-	private String id;
+	private int id;
 
 	@JsonProperty("author")
 	private User author;

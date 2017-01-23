@@ -27,7 +27,6 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 /**
  * JIRA Restful Endpoints.
@@ -77,10 +76,11 @@ public interface JiraEndPoints {
 	Call<Comment> addComment(@Path("issueIdOrKey") String issueIdOrKey, @Body Comment comment);
 
 	@PUT("rest/api/2/issue/{issueIdOrKey}/comment/{id}")
-	Call<Comment> updateComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") String id, @Body Comment comment);
+	Call<Comment> updateComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") int id,
+			@Body Comment comment);
 
 	@GET("rest/api/2/issue/{issueIdOrKey}/comment/{id}")
-	Call<Comment> getComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") String id);
+	Call<Comment> getComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") int id);
 
 	@POST("rest/api/2/issue/{issueIdOrKey}/notify")
 	Call<Void> notifyIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Notify notify);

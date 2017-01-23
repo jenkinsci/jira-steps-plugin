@@ -3,9 +3,8 @@ package org.thoughtslive.jenkins.plugins.jira.util;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
-
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
+import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 
 import hudson.EnvVars;
 import retrofit2.Response;

@@ -1,5 +1,7 @@
 package org.thoughtslive.jenkins.plugins.jira.steps;
 
+import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
+
 import javax.inject.Inject;
 
 import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
@@ -11,6 +13,8 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
 import hudson.EnvVars;
 import hudson.Extension;
+import hudson.Util;
+import hudson.model.Run;
 import hudson.model.TaskListener;
 import lombok.Getter;
 
@@ -20,7 +24,7 @@ import lombok.Getter;
  * @author Naresh Rayapati
  *
  */
-public class UpdateCommentStep extends BasicJiraStep {
+public class EditCommentStep extends BasicJiraStep {
 
 	private static final long serialVersionUID = 2327375640378098562L;
 
@@ -28,15 +32,15 @@ public class UpdateCommentStep extends BasicJiraStep {
 	private final String idOrKey;
 
 	@Getter
-	private final String id;
+	private final int commentId;
 
 	@Getter
 	private final String comment;
 
 	@DataBoundConstructor
-	public UpdateCommentStep(final String idOrKey, final String id, final String comment) {
+	public EditCommentStep(final String idOrKey, final int commentId, final String comment) {
 		this.idOrKey = idOrKey;
-		this.id = id;
+		this.commentId = commentId;
 		this.comment = comment;
 	}
 
@@ -49,12 +53,12 @@ public class UpdateCommentStep extends BasicJiraStep {
 
 		@Override
 		public String getFunctionName() {
-			return "jiraUpdateComment";
+			return "jiraEditComment";
 		}
 
 		@Override
 		public String getDisplayName() {
-			return getPrefix() + "Update Issue Comment";
+			return getPrefix() + "Edit Issue Comment";
 		}
 
 		@Override
@@ -68,25 +72,57 @@ public class UpdateCommentStep extends BasicJiraStep {
 		private static final long serialVersionUID = -821037959812310749L;
 
 		@StepContextParameter
+		private transient Run<?, ?> run;
+
+		@StepContextParameter
 		protected transient TaskListener listener;
 
 		@StepContextParameter
 		protected transient EnvVars envVars;
 
 		@Inject
-		private transient UpdateCommentStep step;
+		private transient EditCommentStep step;
 
 		@Override
 		protected ResponseData<Comment> run() throws Exception {
 
-			ResponseData<Comment> response = verifyCommon(step, listener, envVars);
+			ResponseData<Comment> response = verifyInput();
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Updating comment: "+ step.getComment() +" on issue: " + step.getIdOrKey());
-				response = jiraService.updateComment(step.getIdOrKey(), step.getId(), step.getComment());
+				logger.println("JIRA: Site - " + siteName + " - Updating comment: " + step.getComment() + " on issue: "
+						+ step.getIdOrKey());
+				response = jiraService.updateComment(step.getIdOrKey(), step.getCommentId(), step.getComment());
 			}
 
 			return logResponse(response);
+		}
+
+		@Override
+		protected <T> ResponseData<T> verifyInput() throws Exception {
+			String errorMessage = null;
+			ResponseData<T> response = verifyCommon(step, listener, envVars, run);
+
+			if (response == null) {
+				final String idOrKey = Util.fixEmpty(step.getIdOrKey());
+				final String comment = Util.fixEmpty(step.getComment());
+
+				if (idOrKey == null) {
+					errorMessage = "idOrKey is empty or null.";
+				}
+
+				if (step.getCommentId() <= 0) {
+					errorMessage = "commentId less than or equals to zero.";
+				}
+
+				if (comment == null) {
+					errorMessage = "comment is empty or null.";
+				}
+
+				if (errorMessage != null) {
+					response = buildErrorResponse(new RuntimeException(errorMessage));
+				}
+			}
+			return response;
 		}
 	}
 }

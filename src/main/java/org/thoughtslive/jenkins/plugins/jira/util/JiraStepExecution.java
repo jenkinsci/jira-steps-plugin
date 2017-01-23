@@ -5,6 +5,7 @@ import static org.thoughtslive.jenkins.plugins.jira.util.Common.empty;
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.log;
 
 import java.io.PrintStream;
+import java.util.List;
 
 import org.jenkinsci.plugins.workflow.steps.AbstractSynchronousNonBlockingStepExecution;
 import org.thoughtslive.jenkins.plugins.jira.Site;
@@ -15,7 +16,11 @@ import org.thoughtslive.jenkins.plugins.jira.steps.BasicJiraStep;
 import hudson.AbortException;
 import hudson.EnvVars;
 import hudson.Util;
+import hudson.model.Cause;
+import hudson.model.Run;
 import hudson.model.TaskListener;
+import hudson.model.Cause.UpstreamCause;
+import hudson.model.Cause.UserIdCause;
 
 /**
  * Common Execution for all JIRA steps.
@@ -33,7 +38,9 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 	protected transient PrintStream logger = null;
 	protected transient String siteName = null;
 	protected transient JiraService jiraService = null;
-	protected transient boolean failOnError = false;
+	protected transient boolean failOnError = true;
+	protected transient String buildUser = null;
+	protected transient String buildUrl = null;
 
 	/**
 	 * Verifies the common input for all the stesp.
@@ -49,9 +56,10 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 	 */
 	@SuppressWarnings("hiding")
 	protected <T> ResponseData<T> verifyCommon(final BasicJiraStep step, final TaskListener listener,
-			final EnvVars envVars) throws AbortException {
+			final EnvVars envVars, final Run<?, ?> run) throws AbortException {
 
 		logger = listener.getLogger();
+
 		String errorMessage = null;
 		siteName = empty(step.getSiteName()) ? envVars.get("JIRA_SITE") : step.getSiteName();
 		final Site site = Site.get(siteName);
@@ -76,6 +84,9 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 		if (errorMessage != null) {
 			return buildErrorResponse(new RuntimeException(errorMessage));
 		}
+
+		buildUser = prepareBuildUser(run.getCauses());
+		buildUrl = envVars.get("BUILD_URL");
 
 		return null;
 	}
@@ -104,4 +115,27 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 
 		return response;
 	}
+
+	/**
+	 * Return the current build user.
+	 * 
+	 * @param causes
+	 *            build causes.
+	 * @return user name.
+	 */
+	protected static String prepareBuildUser(List<Cause> causes) {
+		String buildUser = "anonymous";
+		if (causes != null && causes.size() > 0) {
+			if (causes.get(0) instanceof UserIdCause) {
+				buildUser = ((UserIdCause) causes.get(0)).getUserName();
+			} else if (causes.get(0) instanceof UpstreamCause) {
+				List<Cause> upstreamCauses = ((UpstreamCause) causes.get(0)).getUpstreamCauses();
+				prepareBuildUser(upstreamCauses);
+			}
+		}
+		return buildUser;
+	}
+
+	@SuppressWarnings("hiding")
+	protected abstract <T> ResponseData<T> verifyInput() throws Exception;
 }

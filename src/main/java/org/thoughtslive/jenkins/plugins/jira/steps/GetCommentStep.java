@@ -1,5 +1,7 @@
 package org.thoughtslive.jenkins.plugins.jira.steps;
 
+import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
+
 import javax.inject.Inject;
 
 import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
@@ -11,6 +13,8 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
 import hudson.EnvVars;
 import hudson.Extension;
+import hudson.Util;
+import hudson.model.Run;
 import hudson.model.TaskListener;
 import lombok.Getter;
 
@@ -27,10 +31,10 @@ public class GetCommentStep extends BasicJiraStep {
 	private final String idOrKey;
 
 	@Getter
-	private final String commentId;
+	private final int commentId;
 
 	@DataBoundConstructor
-	public GetCommentStep(final String commentId, final String idOrKey) {
+	public GetCommentStep(final int commentId, final String idOrKey) {
 		this.commentId = commentId;
 		this.idOrKey = idOrKey;
 	}
@@ -59,6 +63,9 @@ public class GetCommentStep extends BasicJiraStep {
 		private static final long serialVersionUID = -821037959812310749L;
 
 		@StepContextParameter
+		private transient Run<?, ?> run;
+
+		@StepContextParameter
 		protected transient TaskListener listener;
 
 		@StepContextParameter
@@ -70,14 +77,38 @@ public class GetCommentStep extends BasicJiraStep {
 		@Override
 		protected ResponseData<Comment> run() throws Exception {
 
-			ResponseData<Comment> response = verifyCommon(step, listener, envVars);
+			ResponseData<Comment> response = verifyInput();
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Querying issue: "+ step.getIdOrKey() +" comment with id: " + step.getCommentId());
+				logger.println("JIRA: Site - " + siteName + " - Querying issue: " + step.getIdOrKey()
+						+ " comment with id: " + step.getCommentId());
 				response = jiraService.getComment(step.getIdOrKey(), step.getCommentId());
 			}
 
 			return logResponse(response);
+		}
+
+		@Override
+		protected <T> ResponseData<T> verifyInput() throws Exception {
+			String errorMessage = null;
+			ResponseData<T> response = verifyCommon(step, listener, envVars, run);
+
+			if (response == null) {
+				final String idOrKey = Util.fixEmpty(step.getIdOrKey());
+
+				if (idOrKey == null) {
+					errorMessage = "idOrKey is empty or null.";
+				}
+
+				if (step.getCommentId() <= 0) {
+					errorMessage = "commentId less than or equals to zero.";
+				}
+
+				if (errorMessage != null) {
+					response = buildErrorResponse(new RuntimeException(errorMessage));
+				}
+			}
+			return response;
 		}
 	}
 }

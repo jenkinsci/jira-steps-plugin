@@ -11,6 +11,7 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
 import hudson.EnvVars;
 import hudson.Extension;
+import hudson.model.Run;
 import hudson.model.TaskListener;
 import lombok.Getter;
 
@@ -20,7 +21,7 @@ import lombok.Getter;
  * @author Naresh Rayapati
  *
  */
-public class UpdateVersionStep extends BasicJiraStep {
+public class EditVersionStep extends BasicJiraStep {
 
 	private static final long serialVersionUID = 2327375640378098562L;
 
@@ -28,7 +29,7 @@ public class UpdateVersionStep extends BasicJiraStep {
 	private final Version version;
 
 	@DataBoundConstructor
-	public UpdateVersionStep(final Version version) {
+	public EditVersionStep(final Version version) {
 		this.version = version;
 	}
 
@@ -41,12 +42,12 @@ public class UpdateVersionStep extends BasicJiraStep {
 
 		@Override
 		public String getFunctionName() {
-			return "jiraUpdateVersion";
+			return "jiraEditVersion";
 		}
 
 		@Override
 		public String getDisplayName() {
-			return getPrefix() + "Update Version";
+			return getPrefix() + "Edit Version";
 		}
 
 		@Override
@@ -60,18 +61,21 @@ public class UpdateVersionStep extends BasicJiraStep {
 		private static final long serialVersionUID = -821037959812310749L;
 
 		@StepContextParameter
+		private transient Run<?, ?> run;
+
+		@StepContextParameter
 		protected transient TaskListener listener;
 
 		@StepContextParameter
 		protected transient EnvVars envVars;
 
 		@Inject
-		private transient UpdateVersionStep step;
+		private transient EditVersionStep step;
 
 		@Override
 		protected ResponseData<Void> run() throws Exception {
 
-			ResponseData<Void> response = verifyCommon(step, listener, envVars);
+			ResponseData<Void> response = verifyInput();
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Updating version: " + step.getVersion());
@@ -79,6 +83,12 @@ public class UpdateVersionStep extends BasicJiraStep {
 			}
 
 			return logResponse(response);
+		}
+
+		@Override
+		protected <T> ResponseData<T> verifyInput() throws Exception {
+			//TODO Add validation - Or change the input type here ?
+			return verifyCommon(step, listener, envVars, run);
 		}
 	}
 }

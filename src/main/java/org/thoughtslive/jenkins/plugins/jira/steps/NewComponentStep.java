@@ -11,6 +11,7 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
 import hudson.EnvVars;
 import hudson.Extension;
+import hudson.model.Run;
 import hudson.model.TaskListener;
 import lombok.Getter;
 
@@ -60,6 +61,9 @@ public class NewComponentStep extends BasicJiraStep {
 		private static final long serialVersionUID = -821037959812310749L;
 
 		@StepContextParameter
+		private transient Run<?, ?> run;
+		
+		@StepContextParameter
 		protected transient TaskListener listener;
 
 		@StepContextParameter
@@ -71,7 +75,7 @@ public class NewComponentStep extends BasicJiraStep {
 		@Override
 		protected ResponseData<Component> run() throws Exception {
 
-			ResponseData<Component> response = verifyCommon(step, listener, envVars);
+			ResponseData<Component> response = verifyInput();
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Creating new component: " + step.getComponent());
@@ -79,6 +83,12 @@ public class NewComponentStep extends BasicJiraStep {
 			}
 
 			return logResponse(response);
+		}
+
+		@Override
+		protected <T> ResponseData<T> verifyInput() throws Exception {
+			//TODO Add validation - Or change the input type here ?
+			return verifyCommon(step, listener, envVars, run);
 		}
 	}
 }

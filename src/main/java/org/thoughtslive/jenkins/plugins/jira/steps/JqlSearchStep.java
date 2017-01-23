@@ -1,5 +1,7 @@
 package org.thoughtslive.jenkins.plugins.jira.steps;
 
+import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
+
 import javax.inject.Inject;
 
 import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
@@ -12,6 +14,8 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
 import hudson.EnvVars;
 import hudson.Extension;
+import hudson.Util;
+import hudson.model.Run;
 import hudson.model.TaskListener;
 import lombok.Getter;
 
@@ -32,7 +36,7 @@ public class JqlSearchStep extends BasicJiraStep {
 	public JqlSearchStep(final String jql) {
 		this.jql = jql;
 	}
-	
+
 	// startAt is optional and defaults to 0.
 	@Getter
 	@DataBoundSetter
@@ -72,6 +76,9 @@ public class JqlSearchStep extends BasicJiraStep {
 		private static final long serialVersionUID = -821037959812310749L;
 
 		@StepContextParameter
+		private transient Run<?, ?> run;
+
+		@StepContextParameter
 		protected transient TaskListener listener;
 
 		@StepContextParameter
@@ -83,14 +90,34 @@ public class JqlSearchStep extends BasicJiraStep {
 		@Override
 		protected ResponseData<SearchResult> run() throws Exception {
 
-			ResponseData<SearchResult> response = verifyCommon(step, listener, envVars);
+			ResponseData<SearchResult> response = verifyInput();
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Search JQL: " + step.getJql() + " startAt: " + step.getStartAt() + " maxResults: " + step.getMaxResults());
+				logger.println("JIRA: Site - " + siteName + " - Search JQL: " + step.getJql() + " startAt: "
+						+ step.getStartAt() + " maxResults: " + step.getMaxResults());
 				response = jiraService.searchIssues(step.getJql(), step.getStartAt(), step.getMaxResults());
 			}
 
 			return logResponse(response);
+		}
+
+		@Override
+		protected <T> ResponseData<T> verifyInput() throws Exception {
+			String errorMessage = null;
+			ResponseData<T> response = verifyCommon(step, listener, envVars, run);
+
+			if (response == null) {
+				final String jql = Util.fixEmpty(step.getJql());
+
+				if (jql == null) {
+					errorMessage = "jql is empty or null.";
+				}
+
+				if (errorMessage != null) {
+					response = buildErrorResponse(new RuntimeException(errorMessage));
+				}
+			}
+			return response;
 		}
 	}
 }

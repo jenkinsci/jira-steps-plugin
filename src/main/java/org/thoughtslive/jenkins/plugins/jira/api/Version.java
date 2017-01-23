@@ -3,10 +3,8 @@ package org.thoughtslive.jenkins.plugins.jira.api;
 
 import java.io.Serializable;
 
-import org.joda.time.DateTime;
 import org.kohsuke.stapler.DataBoundConstructor;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

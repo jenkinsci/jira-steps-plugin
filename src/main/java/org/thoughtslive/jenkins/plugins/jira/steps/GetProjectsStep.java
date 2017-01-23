@@ -10,6 +10,7 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
 import hudson.EnvVars;
 import hudson.Extension;
+import hudson.model.Run;
 import hudson.model.TaskListener;
 
 /**
@@ -45,6 +46,9 @@ public class GetProjectsStep extends BasicJiraStep {
 		private static final long serialVersionUID = -821037959812310749L;
 
 		@StepContextParameter
+		private transient Run<?, ?> run;
+
+		@StepContextParameter
 		protected transient TaskListener listener;
 
 		@StepContextParameter
@@ -56,7 +60,7 @@ public class GetProjectsStep extends BasicJiraStep {
 		@Override
 		protected ResponseData<Project[]> run() throws Exception {
 
-			ResponseData<Project[]> response = verifyCommon(step, listener, envVars);
+			ResponseData<Project[]> response = verifyInput();
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Querying All Projects");
@@ -64,6 +68,11 @@ public class GetProjectsStep extends BasicJiraStep {
 			}
 
 			return logResponse(response);
+		}
+
+		@Override
+		protected <T> ResponseData<T> verifyInput() throws Exception {
+			return verifyCommon(step, listener, envVars, run);
 		}
 	}
 }

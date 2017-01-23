@@ -10,6 +10,7 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
 import hudson.EnvVars;
 import hudson.Extension;
+import hudson.model.Run;
 import hudson.model.TaskListener;
 
 /**
@@ -45,6 +46,9 @@ public class GetIssueLinkTypesStep extends BasicJiraStep {
 		private static final long serialVersionUID = -821037959812310749L;
 
 		@StepContextParameter
+		private transient Run<?, ?> run;
+
+		@StepContextParameter
 		protected transient TaskListener listener;
 
 		@StepContextParameter
@@ -56,7 +60,7 @@ public class GetIssueLinkTypesStep extends BasicJiraStep {
 		@Override
 		protected ResponseData<IssueLinkTypes> run() throws Exception {
 
-			ResponseData<IssueLinkTypes> response = verifyCommon(step, listener, envVars);
+			ResponseData<IssueLinkTypes> response = verifyInput();
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Querying All Issue Link Types");
@@ -64,6 +68,11 @@ public class GetIssueLinkTypesStep extends BasicJiraStep {
 			}
 
 			return logResponse(response);
+		}
+
+		@Override
+		protected <T> ResponseData<T> verifyInput() throws Exception {
+			return verifyCommon(step, listener, envVars, run);
 		}
 	}
 }
