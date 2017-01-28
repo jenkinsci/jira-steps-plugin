@@ -26,6 +26,7 @@ public class Component implements Serializable {
 
 	private static final long serialVersionUID = -1442146880900421415L;
 
+	// NOT VALID while sending this as Input.
 	@JsonProperty("id")
 	private int id;
 
@@ -38,6 +39,7 @@ public class Component implements Serializable {
 	@JsonProperty("leadUserName")
 	private String leadUserName;
 
+	// NOT VALID while sending this as Input.
 	@JsonProperty("realAssignee")
 	private String realAssignee;
 

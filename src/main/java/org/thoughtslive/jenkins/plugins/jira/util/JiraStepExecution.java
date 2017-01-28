@@ -13,6 +13,8 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 import org.thoughtslive.jenkins.plugins.jira.steps.BasicJiraStep;
 
+import com.google.common.annotations.VisibleForTesting;
+
 import hudson.AbortException;
 import hudson.EnvVars;
 import hudson.Util;
@@ -78,7 +80,7 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 		if (site == null) {
 			errorMessage = "No JIRA site configured with " + siteName + " name.";
 		} else {
-			jiraService = site.getService();
+			jiraService = getJiraService(site);
 		}
 
 		if (errorMessage != null) {
@@ -91,6 +93,11 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 		return null;
 	}
 
+	@VisibleForTesting
+	public JiraService getJiraService(final Site site) {
+		return site.getService();
+	}
+	
 	/**
 	 * Log code and error message if any.
 	 * 

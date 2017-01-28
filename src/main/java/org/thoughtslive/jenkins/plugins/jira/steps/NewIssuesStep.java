@@ -4,9 +4,10 @@ import javax.inject.Inject;
 
 import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.thoughtslive.jenkins.plugins.jira.api.Issues;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssues;
+import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
+import org.thoughtslive.jenkins.plugins.jira.api.input.IssuesInput;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -27,10 +28,10 @@ public class NewIssuesStep extends BasicJiraStep {
 	private static final long serialVersionUID = 2327375640378098562L;
 
 	@Getter
-	private final Issues issues;
+	private final IssuesInput issues;
 
 	@DataBoundConstructor
-	public NewIssuesStep(final Issues issues) {
+	public NewIssuesStep(final IssuesInput issues) {
 		this.issues = issues;
 	}
 
@@ -80,6 +81,10 @@ public class NewIssuesStep extends BasicJiraStep {
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Creating new Issues: " + step.getIssues());
+				for(IssueInput issue: step.getIssues().getIssueUpdates()) {
+					final String description = issue.getFields().getDescription() + "\n Created by: \nBuild URL: " + buildUrl + "\nBuild User: [~" + buildUser +"]";
+					issue.getFields().setDescription(description);
+				}
 				response = jiraService.createIssues(step.getIssues());
 			}
 

@@ -16,7 +16,6 @@ import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.IssueLink;
 import org.thoughtslive.jenkins.plugins.jira.api.IssueLinkType;
 import org.thoughtslive.jenkins.plugins.jira.api.IssueLinkTypes;
-import org.thoughtslive.jenkins.plugins.jira.api.Issues;
 import org.thoughtslive.jenkins.plugins.jira.api.Notify;
 import org.thoughtslive.jenkins.plugins.jira.api.Project;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
@@ -28,6 +27,8 @@ import org.thoughtslive.jenkins.plugins.jira.api.Version;
 import org.thoughtslive.jenkins.plugins.jira.api.Watches;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssues;
+import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
+import org.thoughtslive.jenkins.plugins.jira.api.input.IssuesInput;
 import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -162,7 +163,7 @@ public class JiraService {
 	 * @param issue
 	 * @return issue.
 	 */
-	public ResponseData<Issue> createIssue(final Issue issue) {
+	public ResponseData<BasicIssue> createIssue(final IssueInput issue) {
 		try {
 			return parseResponse(jiraEndPoints.createIssue(issue).execute());
 		} catch (Exception e) {
@@ -170,10 +171,9 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<BasicIssue> updateIssue(final Issue issue) {
-		final String issueIdorKey = empty(issue.getId()) ? issue.getKey() : issue.getId();
+	public ResponseData<BasicIssue> updateIssue(final String issueIdOrKey, final IssueInput issue) {
 		try {
-			return parseResponse(jiraEndPoints.updateIssue(issueIdorKey, issue).execute());
+			return parseResponse(jiraEndPoints.updateIssue(issueIdOrKey, issue).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}
@@ -188,7 +188,7 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<BasicIssues> createIssues(final Issues issues) {
+	public ResponseData<BasicIssues> createIssues(final IssuesInput issues) {
 		try {
 			return parseResponse(jiraEndPoints.createIssues(issues).execute());
 		} catch (Exception e) {

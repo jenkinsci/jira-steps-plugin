@@ -79,6 +79,8 @@ public class EditComponentStep extends BasicJiraStep {
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Updating component: " + step.getComponent());
+				final String description = step.getComponent().getDescription() + "\n Created by: \nBuild URL: " + buildUrl + "\nBuild User: [~" + buildUser +"]";
+				step.getComponent().setDescription(description);
 				response = jiraService.updateComponent(step.getComponent());
 			}
 

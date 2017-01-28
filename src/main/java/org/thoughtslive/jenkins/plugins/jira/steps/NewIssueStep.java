@@ -4,8 +4,9 @@ import javax.inject.Inject;
 
 import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
+import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
+import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -26,10 +27,10 @@ public class NewIssueStep extends BasicJiraStep {
 	private static final long serialVersionUID = 2327375640378098562L;
 
 	@Getter
-	private final Issue issue;
+	private final IssueInput issue;
 
 	@DataBoundConstructor
-	public NewIssueStep(final Issue issue) {
+	public NewIssueStep(final IssueInput issue) {
 		this.issue = issue;
 	}
 
@@ -56,7 +57,7 @@ public class NewIssueStep extends BasicJiraStep {
 		}
 	}
 
-	public static class Execution extends JiraStepExecution<ResponseData<Issue>> {
+	public static class Execution extends JiraStepExecution<ResponseData<BasicIssue>> {
 
 		private static final long serialVersionUID = -821037959812310749L;
 
@@ -73,12 +74,14 @@ public class NewIssueStep extends BasicJiraStep {
 		private transient NewIssueStep step;
 
 		@Override
-		protected ResponseData<Issue> run() throws Exception {
+		protected ResponseData<BasicIssue> run() throws Exception {
 
-			ResponseData<Issue> response = verifyInput();
+			ResponseData<BasicIssue> response = verifyInput();
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Creating new issue: " + step.getIssue());
+				final String description = step.getIssue().getFields().getDescription() + "\n Created by: \nBuild URL: " + buildUrl + "\nBuild User: [~" + buildUser +"]";
+				step.getIssue().getFields().setDescription(description);
 				response = jiraService.createIssue(step.getIssue());
 			}
 

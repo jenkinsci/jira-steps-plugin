@@ -4,9 +4,9 @@ import javax.inject.Inject;
 
 import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
+import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -27,10 +27,14 @@ public class EditIssueStep extends BasicJiraStep {
 	private static final long serialVersionUID = 2327375640378098562L;
 
 	@Getter
-	private final Issue issue;
+	private final String idOrKey;
+
+	@Getter
+	private final IssueInput issue;
 
 	@DataBoundConstructor
-	public EditIssueStep(final Issue issue) {
+	public EditIssueStep(final String idOrKey, final IssueInput issue) {
+		this.idOrKey = idOrKey;
 		this.issue = issue;
 	}
 
@@ -79,8 +83,10 @@ public class EditIssueStep extends BasicJiraStep {
 			ResponseData<BasicIssue> response = verifyInput();
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Updating issue: " + step.getIssue());
-				response = jiraService.updateIssue(step.getIssue());
+				logger.println("JIRA: Site - " + siteName + " - Updating issue: " + step.getIdOrKey());
+				final String description = step.getIssue().getFields().getDescription() + "\n Created by: \nBuild URL: " + buildUrl + "\nBuild User: [~" + buildUser +"]";
+				step.getIssue().getFields().setDescription(description);
+				response = jiraService.updateIssue(step.getIdOrKey(), step.getIssue());
 			}
 
 			return logResponse(response);

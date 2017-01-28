@@ -79,6 +79,8 @@ public class NewComponentStep extends BasicJiraStep {
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Creating new component: " + step.getComponent());
+				final String description = step.getComponent().getDescription() + "\n Created by: \nBuild URL: " + buildUrl + "\nBuild User: [~" + buildUser +"]";
+				step.getComponent().setDescription(description);				
 				response = jiraService.createComponent(step.getComponent());
 			}
 

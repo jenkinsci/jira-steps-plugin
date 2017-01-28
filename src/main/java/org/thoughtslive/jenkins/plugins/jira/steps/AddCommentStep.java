@@ -68,7 +68,7 @@ public class AddCommentStep extends BasicJiraStep {
 		private static final long serialVersionUID = -821037959812310749L;
 
 		@StepContextParameter
-		private transient Run<?, ?> run;
+		protected transient Run<?, ?> run;
 
 		@StepContextParameter
 		protected transient TaskListener listener;
@@ -86,8 +86,9 @@ public class AddCommentStep extends BasicJiraStep {
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Add new comment: " + step.getComment() + " on issue: "
-						+ step.getIdOrKey() + " Build URL: " + buildUrl + " Build User: " + buildUser);
-				response = jiraService.addComment(step.getIdOrKey(), step.getComment());
+						+ step.getIdOrKey());
+				final String comment = step.getComment() + "\n Created by: \nBuild URL: " + buildUrl + "\nBuild User: [~" + buildUser +"]";
+				response = jiraService.addComment(step.getIdOrKey(), comment);
 			}
 			return logResponse(response);
 		}

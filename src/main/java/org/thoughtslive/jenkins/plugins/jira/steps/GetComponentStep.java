@@ -58,7 +58,7 @@ public class GetComponentStep extends BasicJiraStep {
 		private static final long serialVersionUID = -821037959812310749L;
 
 		@StepContextParameter
-		private transient Run<?, ?> run;
+		protected transient Run<?, ?> run;
 
 		@StepContextParameter
 		protected transient TaskListener listener;
