@@ -33,7 +33,7 @@ permalink: release_notes.html
       * getTransitions
       * transitionIssue
     * Watchers
-      * getWatchers
+      * getWatches
       * addWatcher
     * Project
       * getProjects

@@ -52,6 +52,14 @@ entries:
     output: web, pdf
 
     folderitems:
+    - title: jiraGetComponent
+      url: /jira_get_component.html
+      output: web, pdf
+
+    - title: jiraGetComponentIssueCount
+      url: /jira_get_component_issue_count.html
+      output: web, pdf
+
     - title: jiraNewComponent
       url: /jira_new_component.html
       output: web, pdf
@@ -60,6 +68,90 @@ entries:
       url: /jira_edit_component.html
       output: web, pdf
 
-    - title: jiraGetComponent
-      url: /jira_get_component.html
+    - title: jiraGetIssue
+      url: /jira_get_issue.html
+      output: web, pdf
+
+    - title: jiraNewIssue
+      url: /jira_new_issue.html
+      output: web, pdf
+
+    - title: jiraNewIssues
+      url: /jira_new_issues.html
+      output: web, pdf
+
+    - title: jiraEditIssue
+      url: /jira_edit_issue.html
+      output: web, pdf
+
+    - title: jiraAssignIssue
+      url: /jira_assign_issue.html
+      output: web, pdf
+
+    - title: jiraGetComments
+      url: /jira_get_comments.html
+      output: web, pdf
+
+    - title: jiraGetComment
+      url: /jira_get_comment.html
+      output: web, pdf
+
+    - title: jiraAddComment
+      url: /jira_add_comment.html
+      output: web, pdf
+
+    - title: jiraEditComment
+      url: /jira_edit_comment.html
+      output: web, pdf
+
+    - title: jiraNotifyIssue
+      url: /jira_notify_issue.html
+      output: web, pdf
+
+    - title: jiraGetIssueTransitions
+      url: /jira_get_issue_transitions.html
+      output: web, pdf
+
+    - title: jiraTransitionIssue
+      url: /jira_transition_issue.html
+      output: web, pdf
+
+    - title: jiraGetIssueWatches
+      url: /jira_get_issue_watches.html
+      output: web, pdf
+
+    - title: jiraAddWatcher
+      url: /jira_add_watcher.html
+      output: web, pdf
+
+    - title: jiraGetProjects
+      url: /jira_get_projects.html
+      output: web, pdf
+
+    - title: jiraGetProject
+      url: /jira_get_project.html
+      output: web, pdf
+
+    - title: jiraGetVersion
+      url: /jira_get_version.html
+      output: web, pdf
+
+    - title: jiraNewVersion
+      url: /jira_new_version.html
+      output: web, pdf
+
+    - title: jiraEditVersion
+      url: /jira_edit_version.html
+      output: web, pdf
+
+    - title: jiraLinkIssues
+      url: /jira_link_issues.html
+      output: web, pdf
+
+    - title: jiraGetIssueLinkTypes
+      url: /jira_get_issue_link_types.html
+      output: web, pdf
+
+    - title: jiraJqlSearch
+      url: /jira_jql_search.html
       output: web, pdf
