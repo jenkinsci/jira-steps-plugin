@@ -1,5 +1,5 @@
 ---
-title: Get Started.
+title: JIRA Pipeline Steps
 last_updated: Dec 25, 2016
 tags: [getting_started]
 summary: "Jenkins JIRA Pipeline Steps"
@@ -7,8 +7,25 @@ sidebar: jira_sidebar
 permalink: index.html
 ---
 
-# JIRA Pipeline Steps
+## Overview
 
-This plugin is currently under active development. 
+This plugin's main focus is to build [pipeline](https://jenkins.io/doc/book/pipeline/) steps so that we make DevOps process smoother with [Jenkins](https://jenkins.io/).
 
-Documentation will get added soon.
+## Features
+
+Following areas are the target for initial release:
+
+* Component.
+* Version.
+* Issue.
+* Comments.
+* Watchers.
+* Transitions.
+* IssueLink.
+* Project.
+* Search.
+* Version.
+
+Get started by [installing](install) this plugin and also refer to the [Release Notes](release_notes) for more information.
+
+{% include links.html %}

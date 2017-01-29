@@ -62,7 +62,7 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 		logger = listener.getLogger();
 
 		String errorMessage = null;
-		siteName = empty(step.getSiteName()) ? envVars.get("JIRA_SITE") : step.getSiteName();
+		siteName = empty(step.getSite()) ? envVars.get("JIRA_SITE") : step.getSite();
 		final Site site = Site.get(siteName);
 		final String failOnErrorStr = Util.fixEmpty(envVars.get("JIRA_FAIL_ON_ERROR"));
 

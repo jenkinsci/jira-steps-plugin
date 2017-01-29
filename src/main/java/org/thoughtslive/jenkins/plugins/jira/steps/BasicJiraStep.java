@@ -18,7 +18,7 @@ public abstract class BasicJiraStep extends AbstractStepImpl implements Serializ
 
 	@Getter
 	@DataBoundSetter
-	private String siteName;
+	private String site;
 
 	@Getter
 	@DataBoundSetter

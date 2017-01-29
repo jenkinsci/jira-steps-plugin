@@ -1,7 +1,6 @@
 entries:
 - title: sidebar
   product: JIRA Steps
-  version: 1.0.0
   folders:
   - title:
     output: pdf
@@ -25,8 +24,8 @@ entries:
       output: web, pdf
       type: homepage
 
-    - title: Introduction
-      url: /introduction.html
+    - title: Release notes
+      url: /release_notes.html
       output: web, pdf
 
     - title: Contributing
@@ -35,18 +34,6 @@ entries:
 
     - title: Contributors
       url: /contributors.html
-      output: web, pdf
-
-    - title: About the author
-      url: /about.html
-      output: web, pdf
-
-  - title: Release Notes
-    output: web, pdf
-    folderitems:
-
-    - title: 1.0.0 Release notes
-      url: /release_notes_100.html
       output: web, pdf
 
   - title: Installation
@@ -59,14 +46,6 @@ entries:
 
     - title: Configuration
       url: /config.html
-      output: web, pdf
-
-  - title: Roadmap
-    output: web, pdf
-    folderitems:
-
-    - title: Yet to Write
-      url: /road_map.html
       output: web, pdf
 
   - title: Pipeline Steps
