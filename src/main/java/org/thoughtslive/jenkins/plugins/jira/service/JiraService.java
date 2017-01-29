@@ -29,6 +29,7 @@ import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssues;
 import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
 import org.thoughtslive.jenkins.plugins.jira.api.input.IssuesInput;
+import org.thoughtslive.jenkins.plugins.jira.api.input.TransitionInput;
 import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -56,17 +57,13 @@ public class JiraService {
 
 		final ConnectionPool CONNECTION_POOL = new ConnectionPool(5, 60, TimeUnit.SECONDS);
 
-		OkHttpClient httpClient = new OkHttpClient.Builder()
-				.connectTimeout(jiraSite.getTimeout(), TimeUnit.MILLISECONDS).readTimeout(10000, TimeUnit.MILLISECONDS)
-				.connectionPool(CONNECTION_POOL).retryOnConnectionFailure(true)
-				.addInterceptor(new SigningInterceptor(jiraSite)).build();
+		OkHttpClient httpClient = new OkHttpClient.Builder().connectTimeout(jiraSite.getTimeout(), TimeUnit.MILLISECONDS).readTimeout(10000, TimeUnit.MILLISECONDS)
+				.connectionPool(CONNECTION_POOL).retryOnConnectionFailure(true).addInterceptor(new SigningInterceptor(jiraSite)).build();
 
 		final ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule(new JodaModule());
-		this.jiraEndPoints = new Retrofit.Builder().baseUrl(this.jiraSite.getUrl().toString())
-				.addConverterFactory(JacksonConverterFactory.create(mapper))
-				.addCallAdapterFactory(RxJavaCallAdapterFactory.create()).client(httpClient).build()
-				.create(JiraEndPoints.class);
+		this.jiraEndPoints = new Retrofit.Builder().baseUrl(this.jiraSite.getUrl().toString()).addConverterFactory(JacksonConverterFactory.create(mapper))
+				.addCallAdapterFactory(RxJavaCallAdapterFactory.create()).client(httpClient).build().create(JiraEndPoints.class);
 	}
 
 	/**
@@ -181,8 +178,7 @@ public class JiraService {
 
 	public ResponseData<Void> assignIssue(final String issueIdorKey, final String userName) {
 		try {
-			return parseResponse(
-					jiraEndPoints.assignIssue(issueIdorKey, User.builder().name(userName).build()).execute());
+			return parseResponse(jiraEndPoints.assignIssue(issueIdorKey, User.builder().name(userName).build()).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}
@@ -206,8 +202,7 @@ public class JiraService {
 
 	public ResponseData<Comment> addComment(final String issueIdorKey, final String comment) {
 		try {
-			return parseResponse(
-					jiraEndPoints.addComment(issueIdorKey, Comment.builder().body(comment).build()).execute());
+			return parseResponse(jiraEndPoints.addComment(issueIdorKey, Comment.builder().body(comment).build()).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}
@@ -215,8 +210,7 @@ public class JiraService {
 
 	public ResponseData<Comment> updateComment(final String issueIdorKey, final int id, final String comment) {
 		try {
-			return parseResponse(jiraEndPoints
-					.updateComment(issueIdorKey, id, Comment.builder().id(id).body(comment).build()).execute());
+			return parseResponse(jiraEndPoints.updateComment(issueIdorKey, id, Comment.builder().id(id).body(comment).build()).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}
@@ -246,11 +240,9 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<Void> transitionIssue(final Issue issue) {
-		final String issueIdorKey = empty(issue.getId()) ? issue.getKey() : issue.getId();
-
+	public ResponseData<Void> transitionIssue(final String idOrKey, final TransitionInput issue) {
 		try {
-			return parseResponse(jiraEndPoints.transitionIssue(issueIdorKey, issue).execute());
+			return parseResponse(jiraEndPoints.transitionIssue(idOrKey, issue).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}
@@ -266,16 +258,14 @@ public class JiraService {
 
 	public ResponseData<Void> addIssueWatcher(final String issueIdorKey, final String userName) {
 		try {
-			return parseResponse(
-					jiraEndPoints.addIssueWatcher(issueIdorKey, User.builder().name(userName).build()).execute());
+			return parseResponse(jiraEndPoints.addIssueWatcher(issueIdorKey, User.builder().name(userName).build()).execute());
 		} catch (Exception e) {
 			return buildErrorResponse(e);
 		}
 	}
 
 	public ResponseData<SearchResult> searchIssues(final String jql, final int startAt, final int maxResults) {
-		final SearchResult searchInput = SearchResult.builder().jql(jql).startAt(startAt).maxResults(maxResults)
-				.build();
+		final SearchResult searchInput = SearchResult.builder().jql(jql).startAt(startAt).maxResults(maxResults).build();
 		try {
 			return parseResponse(jiraEndPoints.searchIssues(searchInput).execute());
 		} catch (Exception e) {
@@ -355,16 +345,14 @@ public class JiraService {
 		}
 	}
 
-	public ResponseData<Void> linkIssues(final String name, final String inwardIssueKey, final String outwardIssueKey,
-			final String comment) {
+	public ResponseData<Void> linkIssues(final String name, final String inwardIssueKey, final String outwardIssueKey, final String comment) {
 		Comment linkComment = null;
 		if (!empty(comment)) {
 			linkComment = Comment.builder().body(comment).build();
 		}
 
-		final IssueLink issueLink = IssueLink.builder().type(IssueLinkType.builder().name(name).build())
-				.comment(linkComment).inwardIssue(Issue.builder().key(inwardIssueKey).build())
-				.outwardIssue(Issue.builder().key(outwardIssueKey).build()).build();
+		final IssueLink issueLink = IssueLink.builder().type(IssueLinkType.builder().name(name).build()).comment(linkComment)
+				.inwardIssue(Issue.builder().key(inwardIssueKey).build()).outwardIssue(Issue.builder().key(outwardIssueKey).build()).build();
 
 		try {
 			return parseResponse(jiraEndPoints.createIssueLink(issueLink).execute());

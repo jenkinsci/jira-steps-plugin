@@ -38,7 +38,7 @@ import hudson.model.TaskListener;
  *
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ AddWatcherStep.class, Site.class })
+@PrepareForTest({AddWatcherStep.class, Site.class})
 public class AddWatcherStepTest {
 
 	@Mock
@@ -53,7 +53,7 @@ public class AddWatcherStepTest {
 	JiraService jiraServiceMock;
 	@Mock
 	Site siteMock;
-	
+
 	private AddWatcherStep.Execution stepExecution;
 
 	@Before
@@ -62,11 +62,11 @@ public class AddWatcherStepTest {
 		// Prepare site.
 		when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
 		when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
-		
+
 		PowerMockito.mockStatic(Site.class);
 		Mockito.when(Site.get(any())).thenReturn(siteMock);
 		when(siteMock.getService()).thenReturn(jiraServiceMock);
-		
+
 		stepExecution = spy(new AddWatcherStep.Execution());
 
 		when(runMock.getCauses()).thenReturn(null);
@@ -74,8 +74,7 @@ public class AddWatcherStepTest {
 		doNothing().when(printStreamMock).println();
 
 		final ResponseDataBuilder<Void> builder = ResponseData.builder();
-		when(jiraServiceMock.addIssueWatcher(anyString(), anyString()))
-				.thenReturn(builder.successful(true).code(200).message("Success").build());
+		when(jiraServiceMock.addIssueWatcher(anyString(), anyString())).thenReturn(builder.successful(true).code(200).message("Success").build());
 
 		stepExecution.listener = taskListenerMock;
 		stepExecution.envVars = envVarsMock;
@@ -83,18 +82,16 @@ public class AddWatcherStepTest {
 
 		doReturn(jiraServiceMock).when(stepExecution).getJiraService(any());
 	}
-	
+
 	@Test
 	public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
 		final AddWatcherStep step = new AddWatcherStep("", "testUser");
 		stepExecution.step = step;
 
 		// Execute and assert Test.
-		assertThatExceptionOfType(AbortException.class)
-			.isThrownBy(() -> { stepExecution.run(); })
-			.withMessage("idOrKey is empty or null.")
-			.withStackTraceContaining("AbortException")
-			.withNoCause();
+		assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
+			stepExecution.run();
+		}).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException").withNoCause();
 	}
 
 	@Test
@@ -103,13 +100,11 @@ public class AddWatcherStepTest {
 		stepExecution.step = step;
 
 		// Execute and assert Test.
-		assertThatExceptionOfType(AbortException.class)
-			.isThrownBy(() -> { stepExecution.run(); })
-			.withMessage("userName is empty or null.")
-			.withStackTraceContaining("AbortException")
-			.withNoCause();
+		assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
+			stepExecution.run();
+		}).withMessage("userName is empty or null.").withStackTraceContaining("AbortException").withNoCause();
 	}
-	
+
 	@Test
 	public void testSuccessfulAddWatcher() throws Exception {
 		final AddWatcherStep step = new AddWatcherStep("TEST-1", "testUser");

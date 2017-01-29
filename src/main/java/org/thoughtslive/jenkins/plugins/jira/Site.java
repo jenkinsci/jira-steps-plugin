@@ -117,12 +117,10 @@ public class Site extends AbstractDescribableImpl<Site> {
 		}
 
 		/**
-		 * Checks if the details required for the basic login is valid. TODO: This validation can be moved to Config so
-		 * that we can also verify the name is valid.
+		 * Checks if the details required for the basic login is valid. TODO: This validation can be moved to Config so that we can also verify the name is valid.
 		 */
-		public FormValidation doValidateBasic(@QueryParameter String name, @QueryParameter String url,
-				@QueryParameter String loginType, @QueryParameter String timeout, @QueryParameter String userName,
-				@QueryParameter String password, @QueryParameter String consumerKey, @QueryParameter String privateKey,
+		public FormValidation doValidateBasic(@QueryParameter String name, @QueryParameter String url, @QueryParameter String loginType, @QueryParameter String timeout,
+				@QueryParameter String userName, @QueryParameter String password, @QueryParameter String consumerKey, @QueryParameter String privateKey,
 				@QueryParameter String secret, @QueryParameter String token) throws IOException {
 			url = Util.fixEmpty(url);
 			name = Util.fixEmpty(name);
@@ -168,8 +166,7 @@ public class Site extends AbstractDescribableImpl<Site> {
 				final JiraService service = new JiraService(site);
 				final ResponseData<Map<String, Object>> response = service.getServerInfo();
 				if (response.isSuccessful()) {
-					return FormValidation.ok("Success: " + response.getData().get("serverTitle") + " - "
-							+ response.getData().get("version"));
+					return FormValidation.ok("Success: " + response.getData().get("serverTitle") + " - " + response.getData().get("version"));
 				} else {
 					return FormValidation.error(response.getError());
 				}
@@ -181,9 +178,8 @@ public class Site extends AbstractDescribableImpl<Site> {
 
 		// This is stupid but no choice as I couldn't find the way to get the
 		// value loginType (radioBlock as a @QueryParameter)
-		public FormValidation doValidateOAuth(@QueryParameter String name, @QueryParameter String url,
-				@QueryParameter String loginType, @QueryParameter String timeout, @QueryParameter String userName,
-				@QueryParameter String password, @QueryParameter String consumerKey, @QueryParameter String privateKey,
+		public FormValidation doValidateOAuth(@QueryParameter String name, @QueryParameter String url, @QueryParameter String loginType, @QueryParameter String timeout,
+				@QueryParameter String userName, @QueryParameter String password, @QueryParameter String consumerKey, @QueryParameter String privateKey,
 				@QueryParameter String secret, @QueryParameter String token) throws IOException {
 			url = Util.fixEmpty(url);
 			name = Util.fixEmpty(name);
@@ -239,8 +235,7 @@ public class Site extends AbstractDescribableImpl<Site> {
 				final JiraService service = new JiraService(site);
 				final ResponseData<Map<String, Object>> response = service.getServerInfo();
 				if (response.isSuccessful()) {
-					return FormValidation.ok("Success: " + response.getData().get("serverTitle") + " - "
-							+ response.getData().get("version"));
+					return FormValidation.ok("Success: " + response.getData().get("serverTitle") + " - " + response.getData().get("version"));
 				} else {
 					return FormValidation.error(response.getError());
 				}

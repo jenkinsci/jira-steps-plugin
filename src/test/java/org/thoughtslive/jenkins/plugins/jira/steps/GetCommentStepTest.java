@@ -40,7 +40,7 @@ import hudson.model.TaskListener;
  *
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ GetCommentStep.class, Site.class })
+@PrepareForTest({GetCommentStep.class, Site.class})
 public class GetCommentStepTest {
 
 	@Mock
@@ -55,7 +55,7 @@ public class GetCommentStepTest {
 	JiraService jiraServiceMock;
 	@Mock
 	Site siteMock;
-	
+
 	private GetCommentStep.Execution stepExecution;
 
 	@Before
@@ -64,11 +64,11 @@ public class GetCommentStepTest {
 		// Prepare site.
 		when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
 		when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
-		
+
 		PowerMockito.mockStatic(Site.class);
 		Mockito.when(Site.get(any())).thenReturn(siteMock);
 		when(siteMock.getService()).thenReturn(jiraServiceMock);
-		
+
 		stepExecution = spy(new GetCommentStep.Execution());
 
 		when(runMock.getCauses()).thenReturn(null);
@@ -76,8 +76,7 @@ public class GetCommentStepTest {
 		doNothing().when(printStreamMock).println();
 
 		final ResponseDataBuilder<Comment> builder = ResponseData.builder();
-		when(jiraServiceMock.getComment(anyString(), anyInt()))
-				.thenReturn(builder.successful(true).code(200).message("Success").build());
+		when(jiraServiceMock.getComment(anyString(), anyInt())).thenReturn(builder.successful(true).code(200).message("Success").build());
 
 		stepExecution.listener = taskListenerMock;
 		stepExecution.envVars = envVarsMock;
@@ -85,33 +84,29 @@ public class GetCommentStepTest {
 
 		doReturn(jiraServiceMock).when(stepExecution).getJiraService(any());
 	}
-	
+
 	@Test
 	public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
 		final GetCommentStep step = new GetCommentStep("", 1000);
 		stepExecution.step = step;
 
 		// Execute and assert Test.
-		assertThatExceptionOfType(AbortException.class)
-			.isThrownBy(() -> { stepExecution.run(); })
-			.withMessage("idOrKey is empty or null.")
-			.withStackTraceContaining("AbortException")
-			.withNoCause();
+		assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
+			stepExecution.run();
+		}).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException").withNoCause();
 	}
-	
+
 	@Test
 	public void testWithZeroComponentIdThrowsAbortException() throws Exception {
 		final GetCommentStep step = new GetCommentStep("TEST-1", 0);
 		stepExecution.step = step;
 
 		// Execute and assert Test.
-		assertThatExceptionOfType(AbortException.class)
-			.isThrownBy(() -> { stepExecution.run(); })
-			.withMessage("commentId less than or equals to zero.")
-			.withStackTraceContaining("AbortException")
-			.withNoCause();
+		assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
+			stepExecution.run();
+		}).withMessage("commentId less than or equals to zero.").withStackTraceContaining("AbortException").withNoCause();
 	}
-	
+
 	@Test
 	public void testSuccessfulGetComment() throws Exception {
 		final GetCommentStep step = new GetCommentStep("TEST-1", 1000);

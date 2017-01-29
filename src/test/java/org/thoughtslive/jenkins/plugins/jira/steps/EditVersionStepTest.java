@@ -36,7 +36,7 @@ import hudson.model.TaskListener;
  *
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ EditVersionStep.class, Site.class })
+@PrepareForTest({EditVersionStep.class, Site.class})
 public class EditVersionStepTest {
 
 	@Mock
@@ -53,7 +53,7 @@ public class EditVersionStepTest {
 	Site siteMock;
 	@Mock
 	Version versionMock;
-	
+
 	EditVersionStep.Execution stepExecution;
 
 	@Before
@@ -62,11 +62,11 @@ public class EditVersionStepTest {
 		// Prepare site.
 		when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
 		when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
-		
+
 		PowerMockito.mockStatic(Site.class);
 		Mockito.when(Site.get(any())).thenReturn(siteMock);
 		when(siteMock.getService()).thenReturn(jiraServiceMock);
-		
+
 		stepExecution = spy(new EditVersionStep.Execution());
 
 		when(runMock.getCauses()).thenReturn(null);
@@ -74,8 +74,7 @@ public class EditVersionStepTest {
 		doNothing().when(printStreamMock).println();
 
 		final ResponseDataBuilder<Void> builder = ResponseData.builder();
-		when(jiraServiceMock.updateVersion(any()))
-				.thenReturn(builder.successful(true).code(200).message("Success").build());
+		when(jiraServiceMock.updateVersion(any())).thenReturn(builder.successful(true).code(200).message("Success").build());
 
 		stepExecution.listener = taskListenerMock;
 		stepExecution.envVars = envVarsMock;
@@ -83,7 +82,7 @@ public class EditVersionStepTest {
 
 		doReturn(jiraServiceMock).when(stepExecution).getJiraService(any());
 	}
-	
+
 	@Test
 	public void testSuccessfulEditVersion() throws Exception {
 		final EditVersionStep step = new EditVersionStep(versionMock);

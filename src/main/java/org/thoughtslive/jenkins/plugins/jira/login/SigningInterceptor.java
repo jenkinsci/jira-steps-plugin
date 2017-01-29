@@ -32,8 +32,7 @@ public class SigningInterceptor implements Interceptor {
 		if (jiraSite.getLoginType().equalsIgnoreCase(Site.LoginType.BASIC.name())) {
 			String credentials = jiraSite.getUserName() + ":" + jiraSite.getPassword().getPlainText();
 			String encodedHeader = "Basic " + new String(Base64.getEncoder().encode(credentials.getBytes()));
-			Request requestWithAuthorization = chain.request().newBuilder().addHeader("Authorization", encodedHeader)
-					.build();
+			Request requestWithAuthorization = chain.request().newBuilder().addHeader("Authorization", encodedHeader).build();
 			return chain.proceed(requestWithAuthorization);
 		} else if (jiraSite.getLoginType().equalsIgnoreCase(Site.LoginType.OAUTH.name())) {
 			Request request = chain.request();

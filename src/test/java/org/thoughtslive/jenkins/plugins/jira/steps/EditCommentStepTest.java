@@ -40,7 +40,7 @@ import hudson.model.TaskListener;
  *
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ EditCommentStep.class, Site.class })
+@PrepareForTest({EditCommentStep.class, Site.class})
 public class EditCommentStepTest {
 
 	@Mock
@@ -55,7 +55,7 @@ public class EditCommentStepTest {
 	JiraService jiraServiceMock;
 	@Mock
 	Site siteMock;
-	
+
 	EditCommentStep.Execution stepExecution;
 
 	@Before
@@ -64,11 +64,11 @@ public class EditCommentStepTest {
 		// Prepare site.
 		when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
 		when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
-		
+
 		PowerMockito.mockStatic(Site.class);
 		Mockito.when(Site.get(any())).thenReturn(siteMock);
 		when(siteMock.getService()).thenReturn(jiraServiceMock);
-		
+
 		stepExecution = spy(new EditCommentStep.Execution());
 
 		when(runMock.getCauses()).thenReturn(null);
@@ -76,8 +76,7 @@ public class EditCommentStepTest {
 		doNothing().when(printStreamMock).println();
 
 		final ResponseDataBuilder<Comment> builder = ResponseData.builder();
-		when(jiraServiceMock.updateComment(anyString(), anyInt(), anyString()))
-				.thenReturn(builder.successful(true).code(200).message("Success").build());
+		when(jiraServiceMock.updateComment(anyString(), anyInt(), anyString())).thenReturn(builder.successful(true).code(200).message("Success").build());
 
 		stepExecution.listener = taskListenerMock;
 		stepExecution.envVars = envVarsMock;
@@ -85,18 +84,16 @@ public class EditCommentStepTest {
 
 		doReturn(jiraServiceMock).when(stepExecution).getJiraService(any());
 	}
-	
+
 	@Test
 	public void testWithZeroComponentIdThrowsAbortException() throws Exception {
 		final EditCommentStep step = new EditCommentStep("TEST-1", 0, "test comment");
 		stepExecution.step = step;
 
 		// Execute and assert Test.
-		assertThatExceptionOfType(AbortException.class)
-			.isThrownBy(() -> { stepExecution.run(); })
-			.withMessage("commentId less than or equals to zero.")
-			.withStackTraceContaining("AbortException")
-			.withNoCause();
+		assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
+			stepExecution.run();
+		}).withMessage("commentId less than or equals to zero.").withStackTraceContaining("AbortException").withNoCause();
 	}
 
 	@Test
@@ -105,11 +102,9 @@ public class EditCommentStepTest {
 		stepExecution.step = step;
 
 		// Execute and assert Test.
-		assertThatExceptionOfType(AbortException.class)
-			.isThrownBy(() -> { stepExecution.run(); })
-			.withMessage("commentId less than or equals to zero.")
-			.withStackTraceContaining("AbortException")
-			.withNoCause();
+		assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
+			stepExecution.run();
+		}).withMessage("commentId less than or equals to zero.").withStackTraceContaining("AbortException").withNoCause();
 	}
 
 	@Test
@@ -118,11 +113,9 @@ public class EditCommentStepTest {
 		stepExecution.step = step;
 
 		// Execute and assert Test.
-		assertThatExceptionOfType(AbortException.class)
-			.isThrownBy(() -> { stepExecution.run(); })
-			.withMessage("idOrKey is empty or null.")
-			.withStackTraceContaining("AbortException")
-			.withNoCause();
+		assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
+			stepExecution.run();
+		}).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException").withNoCause();
 	}
 
 	@Test
@@ -131,13 +124,11 @@ public class EditCommentStepTest {
 		stepExecution.step = step;
 
 		// Execute and assert Test.
-		assertThatExceptionOfType(AbortException.class)
-			.isThrownBy(() -> { stepExecution.run(); })
-			.withMessage("comment is empty or null.")
-			.withStackTraceContaining("AbortException")
-			.withNoCause();
+		assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
+			stepExecution.run();
+		}).withMessage("comment is empty or null.").withStackTraceContaining("AbortException").withNoCause();
 	}
-	
+
 	@Test
 	public void testSuccessfulEditComment() throws Exception {
 		final EditCommentStep step = new EditCommentStep("TEST-1", 1000, "test comment");
@@ -147,7 +138,8 @@ public class EditCommentStepTest {
 		stepExecution.run();
 
 		// Assert Test
-		verify(jiraServiceMock, times(1)).updateComment("TEST-1", 1000, "test comment\n{panel}Automatically created by: [~anonymous] from [Build URL|http://localhost:8080/jira-testing/job/01]{panel}");
+		verify(jiraServiceMock, times(1)).updateComment("TEST-1", 1000,
+				"test comment\n{panel}Automatically created by: [~anonymous] from [Build URL|http://localhost:8080/jira-testing/job/01]{panel}");
 		assertThat(stepExecution.step.isFailOnError()).isEqualTo(true);
 	}
 }

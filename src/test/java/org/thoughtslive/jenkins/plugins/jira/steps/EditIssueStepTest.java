@@ -41,7 +41,7 @@ import hudson.model.TaskListener;
  *
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ EditIssueStep.class, Site.class })
+@PrepareForTest({EditIssueStep.class, Site.class})
 public class EditIssueStepTest {
 
 	@Mock
@@ -56,7 +56,7 @@ public class EditIssueStepTest {
 	JiraService jiraServiceMock;
 	@Mock
 	Site siteMock;
-	
+
 	EditIssueStep.Execution stepExecution;
 
 	final IssueInput issue = IssueInput.builder().fields(FieldsInput.builder().description("TEST").summary("TEST").build()).build();
@@ -67,11 +67,11 @@ public class EditIssueStepTest {
 		// Prepare site.
 		when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
 		when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
-		
+
 		PowerMockito.mockStatic(Site.class);
 		Mockito.when(Site.get(any())).thenReturn(siteMock);
 		when(siteMock.getService()).thenReturn(jiraServiceMock);
-		
+
 		stepExecution = spy(new EditIssueStep.Execution());
 
 		when(runMock.getCauses()).thenReturn(null);
@@ -79,8 +79,7 @@ public class EditIssueStepTest {
 		doNothing().when(printStreamMock).println();
 
 		final ResponseDataBuilder<BasicIssue> builder = ResponseData.builder();
-		when(jiraServiceMock.updateIssue(anyString(), any()))
-				.thenReturn(builder.successful(true).code(200).message("Success").build());
+		when(jiraServiceMock.updateIssue(anyString(), any())).thenReturn(builder.successful(true).code(200).message("Success").build());
 
 		stepExecution.listener = taskListenerMock;
 		stepExecution.envVars = envVarsMock;
@@ -94,13 +93,10 @@ public class EditIssueStepTest {
 		final EditIssueStep step = new EditIssueStep("", issue);
 		stepExecution.step = step;
 
-		
 		// Execute and assert Test.
-		assertThatExceptionOfType(AbortException.class)
-			.isThrownBy(() -> { stepExecution.run(); })
-			.withMessage("idOrKey is empty or null.")
-			.withStackTraceContaining("AbortException")
-			.withNoCause();
+		assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
+			stepExecution.run();
+		}).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException").withNoCause();
 	}
 
 	@Test

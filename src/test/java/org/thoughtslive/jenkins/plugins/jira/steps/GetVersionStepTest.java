@@ -22,7 +22,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.Component;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.api.Version;
@@ -40,7 +39,7 @@ import hudson.model.TaskListener;
  *
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ GetVersionStep.class, Site.class })
+@PrepareForTest({GetVersionStep.class, Site.class})
 public class GetVersionStepTest {
 
 	@Mock
@@ -55,7 +54,7 @@ public class GetVersionStepTest {
 	JiraService jiraServiceMock;
 	@Mock
 	Site siteMock;
-	
+
 	GetVersionStep.Execution stepExecution;
 
 	@Before
@@ -64,11 +63,11 @@ public class GetVersionStepTest {
 		// Prepare site.
 		when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
 		when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
-		
+
 		PowerMockito.mockStatic(Site.class);
 		Mockito.when(Site.get(any())).thenReturn(siteMock);
 		when(siteMock.getService()).thenReturn(jiraServiceMock);
-		
+
 		stepExecution = spy(new GetVersionStep.Execution());
 
 		when(runMock.getCauses()).thenReturn(null);
@@ -76,8 +75,7 @@ public class GetVersionStepTest {
 		doNothing().when(printStreamMock).println();
 
 		final ResponseDataBuilder<Version> builder = ResponseData.builder();
-		when(jiraServiceMock.getVersion(anyInt()))
-				.thenReturn(builder.successful(true).code(200).message("Success").build());
+		when(jiraServiceMock.getVersion(anyInt())).thenReturn(builder.successful(true).code(200).message("Success").build());
 
 		stepExecution.listener = taskListenerMock;
 		stepExecution.envVars = envVarsMock;
@@ -85,18 +83,16 @@ public class GetVersionStepTest {
 
 		doReturn(jiraServiceMock).when(stepExecution).getJiraService(any());
 	}
-	
+
 	@Test
 	public void testWithZeroIdThrowsAbortException() throws Exception {
 		final GetVersionStep step = new GetVersionStep(0);
 		stepExecution.step = step;
 
 		// Execute and assert Test.
-		assertThatExceptionOfType(AbortException.class)
-			.isThrownBy(() -> { stepExecution.run(); })
-			.withMessage("id less than or equals to zero.")
-			.withStackTraceContaining("AbortException")
-			.withNoCause();
+		assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
+			stepExecution.run();
+		}).withMessage("id less than or equals to zero.").withStackTraceContaining("AbortException").withNoCause();
 	}
 
 	@Test
@@ -105,13 +101,11 @@ public class GetVersionStepTest {
 		stepExecution.step = step;
 
 		// Execute and assert Test.
-		assertThatExceptionOfType(AbortException.class)
-			.isThrownBy(() -> { stepExecution.run(); })
-			.withMessage("id less than or equals to zero.")
-			.withStackTraceContaining("AbortException")
-			.withNoCause();
+		assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
+			stepExecution.run();
+		}).withMessage("id less than or equals to zero.").withStackTraceContaining("AbortException").withNoCause();
 	}
-	
+
 	@Test
 	public void testSuccessfulGetVersionStep() throws Exception {
 		final GetVersionStep step = new GetVersionStep(1000);

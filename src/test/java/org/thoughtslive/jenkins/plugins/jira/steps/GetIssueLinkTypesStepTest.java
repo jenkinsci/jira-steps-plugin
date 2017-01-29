@@ -36,7 +36,7 @@ import hudson.model.TaskListener;
  *
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ GetIssueLinkTypesStep.class, Site.class })
+@PrepareForTest({GetIssueLinkTypesStep.class, Site.class})
 public class GetIssueLinkTypesStepTest {
 
 	@Mock
@@ -51,7 +51,7 @@ public class GetIssueLinkTypesStepTest {
 	JiraService jiraServiceMock;
 	@Mock
 	Site siteMock;
-	
+
 	GetIssueLinkTypesStep.Execution stepExecution;
 
 	@Before
@@ -60,11 +60,11 @@ public class GetIssueLinkTypesStepTest {
 		// Prepare site.
 		when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
 		when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
-		
+
 		PowerMockito.mockStatic(Site.class);
 		Mockito.when(Site.get(any())).thenReturn(siteMock);
 		when(siteMock.getService()).thenReturn(jiraServiceMock);
-		
+
 		stepExecution = spy(new GetIssueLinkTypesStep.Execution());
 
 		when(runMock.getCauses()).thenReturn(null);
@@ -72,8 +72,7 @@ public class GetIssueLinkTypesStepTest {
 		doNothing().when(printStreamMock).println();
 
 		final ResponseDataBuilder<IssueLinkTypes> builder = ResponseData.builder();
-		when(jiraServiceMock.getIssueLinkTypes())
-				.thenReturn(builder.successful(true).code(200).message("Success").build());
+		when(jiraServiceMock.getIssueLinkTypes()).thenReturn(builder.successful(true).code(200).message("Success").build());
 
 		stepExecution.listener = taskListenerMock;
 		stepExecution.envVars = envVarsMock;
@@ -81,7 +80,7 @@ public class GetIssueLinkTypesStepTest {
 
 		doReturn(jiraServiceMock).when(stepExecution).getJiraService(any());
 	}
-	
+
 	@Test
 	public void testSuccessfulGetIssueLinkTypesStep() throws Exception {
 		final GetIssueLinkTypesStep step = new GetIssueLinkTypesStep();

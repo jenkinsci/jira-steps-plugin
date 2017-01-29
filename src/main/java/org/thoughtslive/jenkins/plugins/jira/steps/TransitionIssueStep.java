@@ -4,8 +4,8 @@ import javax.inject.Inject;
 
 import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
+import org.thoughtslive.jenkins.plugins.jira.api.input.TransitionInput;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -25,11 +25,15 @@ public class TransitionIssueStep extends BasicJiraStep {
 	private static final long serialVersionUID = 5648167982018270684L;
 
 	@Getter
-	private final Issue issue;
+	private final String idOrKey;
+
+	@Getter
+	private final TransitionInput input;
 
 	@DataBoundConstructor
-	public TransitionIssueStep(final Issue issue) {
-		this.issue = issue;
+	public TransitionIssueStep(final String idOrKey, final TransitionInput input) {
+		this.idOrKey = idOrKey;
+		this.input = input;
 	}
 
 	@Extension
@@ -73,8 +77,8 @@ public class TransitionIssueStep extends BasicJiraStep {
 			ResponseData<Void> response = verifyInput();
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Transition issue with idOrKey: " + step.getIssue());
-				response = jiraService.transitionIssue(step.getIssue());
+				logger.println("JIRA: Site - " + siteName + " - Transition issue with idOrKey: " + step.getIdOrKey());
+				response = jiraService.transitionIssue(step.getIdOrKey(), step.getInput());
 			}
 
 			return logResponse(response);

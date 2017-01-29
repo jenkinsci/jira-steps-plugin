@@ -39,7 +39,7 @@ import hudson.model.TaskListener;
  *
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ GetIssueStep.class, Site.class })
+@PrepareForTest({GetIssueStep.class, Site.class})
 public class GetIssueStepTest {
 
 	@Mock
@@ -54,7 +54,7 @@ public class GetIssueStepTest {
 	JiraService jiraServiceMock;
 	@Mock
 	Site siteMock;
-	
+
 	private GetIssueStep.Execution stepExecution;
 
 	@Before
@@ -63,11 +63,11 @@ public class GetIssueStepTest {
 		// Prepare site.
 		when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
 		when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
-		
+
 		PowerMockito.mockStatic(Site.class);
 		Mockito.when(Site.get(any())).thenReturn(siteMock);
 		when(siteMock.getService()).thenReturn(jiraServiceMock);
-		
+
 		stepExecution = spy(new GetIssueStep.Execution());
 
 		when(runMock.getCauses()).thenReturn(null);
@@ -75,8 +75,7 @@ public class GetIssueStepTest {
 		doNothing().when(printStreamMock).println();
 
 		final ResponseDataBuilder<Issue> builder = ResponseData.builder();
-		when(jiraServiceMock.getIssue(anyString()))
-				.thenReturn(builder.successful(true).code(200).message("Success").build());
+		when(jiraServiceMock.getIssue(anyString())).thenReturn(builder.successful(true).code(200).message("Success").build());
 
 		stepExecution.listener = taskListenerMock;
 		stepExecution.envVars = envVarsMock;
@@ -84,20 +83,18 @@ public class GetIssueStepTest {
 
 		doReturn(jiraServiceMock).when(stepExecution).getJiraService(any());
 	}
-	
+
 	@Test
 	public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
 		final GetIssueStep step = new GetIssueStep("");
 		stepExecution.step = step;
 
 		// Execute and assert Test.
-		assertThatExceptionOfType(AbortException.class)
-			.isThrownBy(() -> { stepExecution.run(); })
-			.withMessage("idOrKey is empty or null.")
-			.withStackTraceContaining("AbortException")
-			.withNoCause();
+		assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
+			stepExecution.run();
+		}).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException").withNoCause();
 	}
-	
+
 	@Test
 	public void testSuccessfulGetIssue() throws Exception {
 		final GetIssueStep step = new GetIssueStep("TEST-1");

@@ -39,7 +39,7 @@ import hudson.model.TaskListener;
  *
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ GetComponentStep.class, Site.class })
+@PrepareForTest({GetComponentStep.class, Site.class})
 public class GetComponentIssueCountStepTest {
 
 	@Mock
@@ -54,7 +54,7 @@ public class GetComponentIssueCountStepTest {
 	JiraService jiraServiceMock;
 	@Mock
 	Site siteMock;
-	
+
 	GetComponentIssueCountStep.Execution stepExecution;
 
 	@Before
@@ -63,11 +63,11 @@ public class GetComponentIssueCountStepTest {
 		// Prepare site.
 		when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
 		when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
-		
+
 		PowerMockito.mockStatic(Site.class);
 		Mockito.when(Site.get(any())).thenReturn(siteMock);
 		when(siteMock.getService()).thenReturn(jiraServiceMock);
-		
+
 		stepExecution = spy(new GetComponentIssueCountStep.Execution());
 
 		when(runMock.getCauses()).thenReturn(null);
@@ -75,8 +75,7 @@ public class GetComponentIssueCountStepTest {
 		doNothing().when(printStreamMock).println();
 
 		final ResponseDataBuilder<Count> builder = ResponseData.builder();
-		when(jiraServiceMock.getComponentIssueCount(anyInt()))
-				.thenReturn(builder.successful(true).code(200).message("Success").build());
+		when(jiraServiceMock.getComponentIssueCount(anyInt())).thenReturn(builder.successful(true).code(200).message("Success").build());
 
 		stepExecution.listener = taskListenerMock;
 		stepExecution.envVars = envVarsMock;
@@ -84,18 +83,16 @@ public class GetComponentIssueCountStepTest {
 
 		doReturn(jiraServiceMock).when(stepExecution).getJiraService(any());
 	}
-	
+
 	@Test
 	public void testWithZeroComponentIdThrowsAbortException() throws Exception {
 		final GetComponentIssueCountStep step = new GetComponentIssueCountStep(0);
 		stepExecution.step = step;
 
 		// Execute and assert Test.
-		assertThatExceptionOfType(AbortException.class)
-			.isThrownBy(() -> { stepExecution.run(); })
-			.withMessage("id less than or equals to zero.")
-			.withStackTraceContaining("AbortException")
-			.withNoCause();
+		assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
+			stepExecution.run();
+		}).withMessage("id less than or equals to zero.").withStackTraceContaining("AbortException").withNoCause();
 	}
 
 	@Test
@@ -104,13 +101,11 @@ public class GetComponentIssueCountStepTest {
 		stepExecution.step = step;
 
 		// Execute and assert Test.
-		assertThatExceptionOfType(AbortException.class)
-			.isThrownBy(() -> { stepExecution.run(); })
-			.withMessage("id less than or equals to zero.")
-			.withStackTraceContaining("AbortException")
-			.withNoCause();
+		assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
+			stepExecution.run();
+		}).withMessage("id less than or equals to zero.").withStackTraceContaining("AbortException").withNoCause();
 	}
-	
+
 	@Test
 	public void testSuccessfulGetComponentIssueCountStep() throws Exception {
 		final GetComponentIssueCountStep step = new GetComponentIssueCountStep(1000);

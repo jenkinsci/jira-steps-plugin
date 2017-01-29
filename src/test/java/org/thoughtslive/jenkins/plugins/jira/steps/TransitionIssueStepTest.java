@@ -1,7 +1,6 @@
 package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doNothing;
@@ -24,23 +23,24 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
-import org.thoughtslive.jenkins.plugins.jira.api.Transitions;
+import org.thoughtslive.jenkins.plugins.jira.api.input.FieldsInput;
+import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
+import org.thoughtslive.jenkins.plugins.jira.api.input.TransitionInput;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
-import hudson.AbortException;
 import hudson.EnvVars;
 import hudson.model.Run;
 import hudson.model.TaskListener;
 
 /**
- * Unit test cases for GetIssueTransitionsStep class.
+ * Unit test cases for TransitionIssueStep class.
  * 
  * @author Naresh Rayapati
  *
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({GetIssueTransitionsStep.class, Site.class})
-public class GetIssueTransitionsStepTest {
+@PrepareForTest({TransitionIssueStep.class, Site.class})
+public class TransitionIssueStepTest {
 
 	@Mock
 	TaskListener taskListenerMock;
@@ -54,8 +54,12 @@ public class GetIssueTransitionsStepTest {
 	JiraService jiraServiceMock;
 	@Mock
 	Site siteMock;
+	@Mock
+	TransitionInput transitionInputMock;
 
-	private GetIssueTransitionsStep.Execution stepExecution;
+	TransitionIssueStep.Execution stepExecution;
+
+	final IssueInput issue = IssueInput.builder().fields(FieldsInput.builder().description("TEST").summary("TEST").build()).build();
 
 	@Before
 	public void setup() {
@@ -68,14 +72,14 @@ public class GetIssueTransitionsStepTest {
 		Mockito.when(Site.get(any())).thenReturn(siteMock);
 		when(siteMock.getService()).thenReturn(jiraServiceMock);
 
-		stepExecution = spy(new GetIssueTransitionsStep.Execution());
+		stepExecution = spy(new TransitionIssueStep.Execution());
 
 		when(runMock.getCauses()).thenReturn(null);
 		when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
 		doNothing().when(printStreamMock).println();
 
-		final ResponseDataBuilder<Transitions> builder = ResponseData.builder();
-		when(jiraServiceMock.getTransitions(anyString())).thenReturn(builder.successful(true).code(200).message("Success").build());
+		final ResponseDataBuilder<Void> builder = ResponseData.builder();
+		when(jiraServiceMock.transitionIssue(anyString(), any())).thenReturn(builder.successful(true).code(200).message("Success").build());
 
 		stepExecution.listener = taskListenerMock;
 		stepExecution.envVars = envVarsMock;
@@ -85,26 +89,15 @@ public class GetIssueTransitionsStepTest {
 	}
 
 	@Test
-	public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
-		final GetIssueTransitionsStep step = new GetIssueTransitionsStep("");
-		stepExecution.step = step;
-
-		// Execute and assert Test.
-		assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-			stepExecution.run();
-		}).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException").withNoCause();
-	}
-
-	@Test
-	public void testSuccessfulGetIssueTransitionsStep() throws Exception {
-		final GetIssueTransitionsStep step = new GetIssueTransitionsStep("TEST-1");
+	public void testSuccessfulTransitionIssue() throws Exception {
+		final TransitionIssueStep step = new TransitionIssueStep("TEST-1", transitionInputMock);
 		stepExecution.step = step;
 
 		// Execute Test.
 		stepExecution.run();
 
 		// Assert Test
-		verify(jiraServiceMock, times(1)).getTransitions("TEST-1");
+		verify(jiraServiceMock, times(1)).transitionIssue("TEST-1", transitionInputMock);
 		assertThat(stepExecution.step.isFailOnError()).isEqualTo(true);
 	}
 }

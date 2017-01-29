@@ -22,9 +22,9 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
+import org.thoughtslive.jenkins.plugins.jira.api.Notify;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
-import org.thoughtslive.jenkins.plugins.jira.api.Transitions;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
 import hudson.AbortException;
@@ -33,14 +33,14 @@ import hudson.model.Run;
 import hudson.model.TaskListener;
 
 /**
- * Unit test cases for GetIssueTransitionsStep class.
+ * Unit test cases for NotifyIssueStep class.
  * 
  * @author Naresh Rayapati
  *
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({GetIssueTransitionsStep.class, Site.class})
-public class GetIssueTransitionsStepTest {
+@PrepareForTest({NotifyIssueStep.class, Site.class})
+public class NotifyIssueStepTest {
 
 	@Mock
 	TaskListener taskListenerMock;
@@ -54,8 +54,10 @@ public class GetIssueTransitionsStepTest {
 	JiraService jiraServiceMock;
 	@Mock
 	Site siteMock;
+	@Mock
+	Notify notifyMock;
 
-	private GetIssueTransitionsStep.Execution stepExecution;
+	NotifyIssueStep.Execution stepExecution;
 
 	@Before
 	public void setup() {
@@ -68,14 +70,14 @@ public class GetIssueTransitionsStepTest {
 		Mockito.when(Site.get(any())).thenReturn(siteMock);
 		when(siteMock.getService()).thenReturn(jiraServiceMock);
 
-		stepExecution = spy(new GetIssueTransitionsStep.Execution());
+		stepExecution = spy(new NotifyIssueStep.Execution());
 
 		when(runMock.getCauses()).thenReturn(null);
 		when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
 		doNothing().when(printStreamMock).println();
 
-		final ResponseDataBuilder<Transitions> builder = ResponseData.builder();
-		when(jiraServiceMock.getTransitions(anyString())).thenReturn(builder.successful(true).code(200).message("Success").build());
+		final ResponseDataBuilder<Void> builder = ResponseData.builder();
+		when(jiraServiceMock.notifyIssue(anyString(), any())).thenReturn(builder.successful(true).code(200).message("Success").build());
 
 		stepExecution.listener = taskListenerMock;
 		stepExecution.envVars = envVarsMock;
@@ -86,7 +88,7 @@ public class GetIssueTransitionsStepTest {
 
 	@Test
 	public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
-		final GetIssueTransitionsStep step = new GetIssueTransitionsStep("");
+		final NotifyIssueStep step = new NotifyIssueStep("", notifyMock);
 		stepExecution.step = step;
 
 		// Execute and assert Test.
@@ -96,15 +98,15 @@ public class GetIssueTransitionsStepTest {
 	}
 
 	@Test
-	public void testSuccessfulGetIssueTransitionsStep() throws Exception {
-		final GetIssueTransitionsStep step = new GetIssueTransitionsStep("TEST-1");
+	public void testSuccessfulNotifyIssue() throws Exception {
+		final NotifyIssueStep step = new NotifyIssueStep("TEST-1", notifyMock);
 		stepExecution.step = step;
 
 		// Execute Test.
 		stepExecution.run();
 
 		// Assert Test
-		verify(jiraServiceMock, times(1)).getTransitions("TEST-1");
+		verify(jiraServiceMock, times(1)).notifyIssue("TEST-1", notifyMock);
 		assertThat(stepExecution.step.isFailOnError()).isEqualTo(true);
 	}
 }

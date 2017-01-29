@@ -52,14 +52,12 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 	 *            taskListener
 	 * @param envVars
 	 *            environment vars.
-	 * @return response if JIRA_SITE is empty or if there is no site configured
-	 *         with JIRA_SITE.
+	 * @return response if JIRA_SITE is empty or if there is no site configured with JIRA_SITE.
 	 * @throws AbortException
 	 *             when failOnError is true and JIRA_SITE is missing.
 	 */
 	@SuppressWarnings("hiding")
-	protected <T> ResponseData<T> verifyCommon(final BasicJiraStep step, final TaskListener listener,
-			final EnvVars envVars, final Run<?, ?> run) throws AbortException {
+	protected <T> ResponseData<T> verifyCommon(final BasicJiraStep step, final TaskListener listener, final EnvVars envVars, final Run<?, ?> run) throws AbortException {
 
 		logger = listener.getLogger();
 
@@ -151,8 +149,7 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 	 * @return message added with metadata.
 	 */
 	protected String addPanelMeta(final String message) {
-		return message + "\n{panel}Automatically created by: [~" + buildUser + "] from [Build URL|" + buildUrl
-				+ "]{panel}";
+		return message + "\n{panel}Automatically created by: [~" + buildUser + "] from [Build URL|" + buildUrl + "]{panel}";
 	}
 
 	/**

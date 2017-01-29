@@ -21,6 +21,7 @@ import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssues;
 import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
 import org.thoughtslive.jenkins.plugins.jira.api.input.IssuesInput;
+import org.thoughtslive.jenkins.plugins.jira.api.input.TransitionInput;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -77,8 +78,7 @@ public interface JiraEndPoints {
 	Call<Comment> addComment(@Path("issueIdOrKey") String issueIdOrKey, @Body Comment comment);
 
 	@PUT("rest/api/2/issue/{issueIdOrKey}/comment/{id}")
-	Call<Comment> updateComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") int id,
-			@Body Comment comment);
+	Call<Comment> updateComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") int id, @Body Comment comment);
 
 	@GET("rest/api/2/issue/{issueIdOrKey}/comment/{id}")
 	Call<Comment> getComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") int id);
@@ -90,7 +90,7 @@ public interface JiraEndPoints {
 	Call<Transitions> getTransitions(@Path("issueIdOrKey") String issueIdOrKey);
 
 	@POST("rest/api/2/issue/{issueIdOrKey}/transitions")
-	Call<Void> transitionIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Issue issue);
+	Call<Void> transitionIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body TransitionInput issue);
 
 	@GET("rest/api/2/issue/{issueIdOrKey}/watchers")
 	Call<Watches> getIssueWatches(@Path("issueIdOrKey") String issueIdOrKey);
