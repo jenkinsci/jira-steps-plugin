@@ -1,5 +1,7 @@
 package org.thoughtslive.jenkins.plugins.jira.steps;
 
+import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
+
 import javax.inject.Inject;
 
 import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
@@ -12,6 +14,7 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
 import hudson.EnvVars;
 import hudson.Extension;
+import hudson.Util;
 import hudson.model.Run;
 import hudson.model.TaskListener;
 import lombok.Getter;
@@ -66,16 +69,16 @@ public class EditIssueStep extends BasicJiraStep {
 		private static final long serialVersionUID = -821037959812310749L;
 
 		@StepContextParameter
-		private transient Run<?, ?> run;
+		transient Run<?, ?> run;
 
 		@StepContextParameter
-		protected transient TaskListener listener;
+		transient TaskListener listener;
 
 		@StepContextParameter
-		protected transient EnvVars envVars;
+		transient EnvVars envVars;
 
 		@Inject
-		private transient EditIssueStep step;
+		transient EditIssueStep step;
 
 		@Override
 		protected ResponseData<BasicIssue> run() throws Exception {
@@ -84,7 +87,7 @@ public class EditIssueStep extends BasicJiraStep {
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Updating issue: " + step.getIdOrKey());
-				final String description = step.getIssue().getFields().getDescription() + "\n Created by: \nBuild URL: " + buildUrl + "\nBuild User: [~" + buildUser +"]";
+				final String description = addPanelMeta(step.getIssue().getFields().getDescription());
 				step.getIssue().getFields().setDescription(description);
 				response = jiraService.updateIssue(step.getIdOrKey(), step.getIssue());
 			}
@@ -94,8 +97,22 @@ public class EditIssueStep extends BasicJiraStep {
 
 		@Override
 		protected <T> ResponseData<T> verifyInput() throws Exception {
-			//TODO Add validation - Or change the input type here ?
-			return verifyCommon(step, listener, envVars, run);
+			String errorMessage = null;
+			ResponseData<T> response = verifyCommon(step, listener, envVars, run);
+
+			if (response == null) {
+				final String idOrKey = Util.fixEmpty(step.getIdOrKey());
+
+				if (idOrKey == null) {
+					errorMessage = "idOrKey is empty or null.";
+				}
+
+				//TODO Add validation - Or change the input type here ?
+				if (errorMessage != null) {
+					response = buildErrorResponse(new RuntimeException(errorMessage));
+				}
+			}
+			return response;
 		}
 	}
 }

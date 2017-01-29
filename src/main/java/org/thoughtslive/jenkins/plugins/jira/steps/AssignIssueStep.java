@@ -62,16 +62,16 @@ public class AssignIssueStep extends BasicJiraStep {
 		private static final long serialVersionUID = -821037959812310749L;
 
 		@StepContextParameter
-		private transient Run<?, ?> run;
+		transient Run<?, ?> run;
 
 		@StepContextParameter
-		protected transient TaskListener listener;
+		transient TaskListener listener;
 
 		@StepContextParameter
-		protected transient EnvVars envVars;
+		transient EnvVars envVars;
 
 		@Inject
-		private transient AssignIssueStep step;
+		transient AssignIssueStep step;
 
 		@Override
 		protected ResponseData<Void> run() throws Exception {

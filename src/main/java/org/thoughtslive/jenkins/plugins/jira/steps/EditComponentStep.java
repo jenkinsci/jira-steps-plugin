@@ -61,16 +61,16 @@ public class EditComponentStep extends BasicJiraStep {
 		private static final long serialVersionUID = -821037959812310749L;
 
 		@StepContextParameter
-		private transient Run<?, ?> run;
+		transient Run<?, ?> run;
 
 		@StepContextParameter
-		protected transient TaskListener listener;
+		transient TaskListener listener;
 
 		@StepContextParameter
-		protected transient EnvVars envVars;
+		transient EnvVars envVars;
 
 		@Inject
-		private transient EditComponentStep step;
+		transient EditComponentStep step;
 
 		@Override
 		protected ResponseData<Void> run() throws Exception {
@@ -79,7 +79,7 @@ public class EditComponentStep extends BasicJiraStep {
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Updating component: " + step.getComponent());
-				final String description = step.getComponent().getDescription() + "\n Created by: \nBuild URL: " + buildUrl + "\nBuild User: [~" + buildUser +"]";
+				final String description = addMeta(step.getComponent().getDescription());
 				step.getComponent().setDescription(description);
 				response = jiraService.updateComponent(step.getComponent());
 			}

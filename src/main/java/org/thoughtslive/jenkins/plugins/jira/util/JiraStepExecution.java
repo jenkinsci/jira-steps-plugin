@@ -52,7 +52,8 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 	 *            taskListener
 	 * @param envVars
 	 *            environment vars.
-	 * @return response if JIRA_SITE is empty or if there is no site configured with JIRA_SITE.
+	 * @return response if JIRA_SITE is empty or if there is no site configured
+	 *         with JIRA_SITE.
 	 * @throws AbortException
 	 *             when failOnError is true and JIRA_SITE is missing.
 	 */
@@ -97,7 +98,7 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 	public JiraService getJiraService(final Site site) {
 		return site.getService();
 	}
-	
+
 	/**
 	 * Log code and error message if any.
 	 * 
@@ -141,6 +142,27 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
 			}
 		}
 		return buildUser;
+	}
+
+	/**
+	 * Adds Job info to the given message.
+	 * 
+	 * @param message
+	 * @return message added with metadata.
+	 */
+	protected String addPanelMeta(final String message) {
+		return message + "\n{panel}Automatically created by: [~" + buildUser + "] from [Build URL|" + buildUrl
+				+ "]{panel}";
+	}
+
+	/**
+	 * Adds Job info to the given message.
+	 * 
+	 * @param message
+	 * @return message added with metadata.
+	 */
+	protected String addMeta(final String message) {
+		return message + "\nAutomatically created by: " + buildUser + " from " + buildUrl;
 	}
 
 	@SuppressWarnings("hiding")

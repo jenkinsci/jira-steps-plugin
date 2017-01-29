@@ -82,7 +82,7 @@ public class NewIssuesStep extends BasicJiraStep {
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Creating new Issues: " + step.getIssues());
 				for(IssueInput issue: step.getIssues().getIssueUpdates()) {
-					final String description = issue.getFields().getDescription() + "\n Created by: \nBuild URL: " + buildUrl + "\nBuild User: [~" + buildUser +"]";
+					final String description = addPanelMeta(issue.getFields().getDescription());
 					issue.getFields().setDescription(description);
 				}
 				response = jiraService.createIssues(step.getIssues());

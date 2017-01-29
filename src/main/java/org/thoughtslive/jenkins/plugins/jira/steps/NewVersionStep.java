@@ -79,7 +79,7 @@ public class NewVersionStep extends BasicJiraStep {
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Creating new version: " + step.getVersion());
-				final String description = step.getVersion().getDescription() + "\n Created by: \nBuild URL: " + buildUrl + "\nBuild User: [~" + buildUser +"]";
+				final String description = addMeta(step.getVersion().getDescription());
 				step.getVersion().setDescription(description);
 				response = jiraService.createVersion(step.getVersion());
 			}

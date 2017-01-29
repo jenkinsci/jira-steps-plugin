@@ -72,16 +72,16 @@ public class EditCommentStep extends BasicJiraStep {
 		private static final long serialVersionUID = -821037959812310749L;
 
 		@StepContextParameter
-		private transient Run<?, ?> run;
+		transient Run<?, ?> run;
 
 		@StepContextParameter
-		protected transient TaskListener listener;
+		transient TaskListener listener;
 
 		@StepContextParameter
-		protected transient EnvVars envVars;
+		transient EnvVars envVars;
 
 		@Inject
-		private transient EditCommentStep step;
+		transient EditCommentStep step;
 
 		@Override
 		protected ResponseData<Comment> run() throws Exception {
@@ -91,7 +91,7 @@ public class EditCommentStep extends BasicJiraStep {
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Updating comment: " + step.getComment() + " on issue: "
 						+ step.getIdOrKey());
-				final String comment = step.getComment() + "\n Created by: \nBuild URL: " + buildUrl + "\nBuild User: [~" + buildUser +"]";
+				final String comment = addPanelMeta(step.getComment());
 				response = jiraService.updateComment(step.getIdOrKey(), step.getCommentId(), comment);
 			}
 
