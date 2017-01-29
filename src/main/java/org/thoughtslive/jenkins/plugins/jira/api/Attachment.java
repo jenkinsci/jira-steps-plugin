@@ -25,7 +25,7 @@ import lombok.ToString;
 @Builder
 public class Attachment implements Serializable {
 
-	private final static long serialVersionUID = 3112598371329647518L;
+	private static final long serialVersionUID = -6603159858268979491L;
 
 	@JsonProperty("id")
 	private String id;

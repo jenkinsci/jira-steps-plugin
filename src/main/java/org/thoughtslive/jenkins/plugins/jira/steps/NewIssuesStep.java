@@ -25,7 +25,7 @@ import lombok.Getter;
  */
 public class NewIssuesStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = -1390437007976428509L;
 
 	@Getter
 	private final IssuesInput issues;
@@ -60,19 +60,19 @@ public class NewIssuesStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<BasicIssues>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = -7395311395671768027L;
 
 		@StepContextParameter
-		private transient Run<?, ?> run;
+		transient Run<?, ?> run;
 
 		@StepContextParameter
-		protected transient TaskListener listener;
+		transient TaskListener listener;
 
 		@StepContextParameter
-		protected transient EnvVars envVars;
+		transient EnvVars envVars;
 
 		@Inject
-		private transient NewIssuesStep step;
+		transient NewIssuesStep step;
 
 		@Override
 		protected ResponseData<BasicIssues> run() throws Exception {
@@ -81,7 +81,7 @@ public class NewIssuesStep extends BasicJiraStep {
 
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Creating new Issues: " + step.getIssues());
-				for(IssueInput issue: step.getIssues().getIssueUpdates()) {
+				for (IssueInput issue : step.getIssues().getIssueUpdates()) {
 					final String description = addPanelMeta(issue.getFields().getDescription());
 					issue.getFields().setDescription(description);
 				}
@@ -93,7 +93,7 @@ public class NewIssuesStep extends BasicJiraStep {
 
 		@Override
 		protected <T> ResponseData<T> verifyInput() throws Exception {
-			//TODO Add validation - Or change the input type here ?
+			// TODO Add validation - Or change the input type here ?
 			return verifyCommon(step, listener, envVars, run);
 		}
 	}

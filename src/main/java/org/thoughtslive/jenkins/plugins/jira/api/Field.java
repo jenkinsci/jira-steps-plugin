@@ -23,7 +23,7 @@ import lombok.ToString;
 @Builder
 public class Field implements Serializable {
 
-	private static final long serialVersionUID = 2895433667813118485L;
+	private static final long serialVersionUID = 5800240765150504993L;
 
 	public enum FieldType {
 		JIRA, CUSTOM

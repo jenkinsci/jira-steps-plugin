@@ -22,7 +22,8 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
 public class IssueInput implements Serializable {
-	private final static long serialVersionUID = 7689184735166991068L;
+
+	private static final long serialVersionUID = -4858855342737984849L;
 
 	@JsonProperty("updates")
 	private FieldsInput updates;

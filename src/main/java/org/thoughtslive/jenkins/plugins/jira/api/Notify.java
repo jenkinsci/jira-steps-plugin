@@ -24,7 +24,7 @@ import lombok.ToString;
 @Builder
 public class Notify implements Serializable {
 
-	private static final long serialVersionUID = 7718231618111190016L;
+	private static final long serialVersionUID = -8065876338191967021L;
 
 	@JsonProperty("subject")
 	private String subject;

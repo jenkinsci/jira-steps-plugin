@@ -27,7 +27,7 @@ import lombok.Getter;
  */
 public class EditIssueStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = -4542562652787306504L;
 
 	@Getter
 	private final String idOrKey;
@@ -66,7 +66,7 @@ public class EditIssueStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<BasicIssue>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = -4127725325057889625L;
 
 		@StepContextParameter
 		transient Run<?, ?> run;
@@ -107,7 +107,7 @@ public class EditIssueStep extends BasicJiraStep {
 					errorMessage = "idOrKey is empty or null.";
 				}
 
-				//TODO Add validation - Or change the input type here ?
+				// TODO Add validation - Or change the input type here ?
 				if (errorMessage != null) {
 					response = buildErrorResponse(new RuntimeException(errorMessage));
 				}

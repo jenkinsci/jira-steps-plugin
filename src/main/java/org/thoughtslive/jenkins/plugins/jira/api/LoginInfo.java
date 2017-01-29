@@ -23,7 +23,8 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
 public class LoginInfo implements Serializable {
-	private static final long serialVersionUID = 4588465488952884925L;
+
+	private static final long serialVersionUID = 850858298837619649L;
 
 	@JsonProperty("failedLoginCount")
 	private int failedLoginCount;

@@ -24,7 +24,7 @@ import lombok.ToString;
 @Builder
 public class Votes implements Serializable {
 
-	private final static long serialVersionUID = 4489129506053290907L;
+	private static final long serialVersionUID = -4069243483775573656L;
 
 	@JsonProperty("votes")
 	private Integer votes;

@@ -26,7 +26,7 @@ import lombok.Getter;
  */
 public class LinkIssuesStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = -1881920733234295481L;
 
 	@Getter
 	private final String type;
@@ -74,19 +74,19 @@ public class LinkIssuesStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<Void>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = -1666683149182699538L;
 
 		@StepContextParameter
-		private transient Run<?, ?> run;
+		transient Run<?, ?> run;
 
 		@StepContextParameter
-		protected transient TaskListener listener;
+		transient TaskListener listener;
 
 		@StepContextParameter
-		protected transient EnvVars envVars;
+		transient EnvVars envVars;
 
 		@Inject
-		private transient LinkIssuesStep step;
+		transient LinkIssuesStep step;
 
 		@Override
 		protected ResponseData<Void> run() throws Exception {
@@ -94,10 +94,9 @@ public class LinkIssuesStep extends BasicJiraStep {
 			ResponseData<Void> response = verifyInput();
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Linking issue(inward): " + step.getInwardKey()
-						+ " and issue(outward)" + step.getOutwardKey() + " with type: " + step.getType());
-				response = jiraService.linkIssues(step.getType(), step.getInwardKey(), step.getOutwardKey(),
-						step.getComment());
+				logger.println("JIRA: Site - " + siteName + " - Linking issue(inward): " + step.getInwardKey() + " and issue(outward)" + step.getOutwardKey() + " with type: "
+						+ step.getType());
+				response = jiraService.linkIssues(step.getType(), step.getInwardKey(), step.getOutwardKey(), step.getComment());
 			}
 
 			return logResponse(response);
@@ -116,11 +115,11 @@ public class LinkIssuesStep extends BasicJiraStep {
 				if (type == null) {
 					errorMessage = "type is empty or null.";
 				}
-				
+
 				if (inwardKey == null) {
 					errorMessage = "inwardKey is empty or null.";
 				}
-				
+
 				if (outwardKey == null) {
 					errorMessage = "outwardKey is empty or null.";
 				}

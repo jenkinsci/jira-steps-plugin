@@ -24,7 +24,8 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
 public class Worklogs implements Serializable {
-	private final static long serialVersionUID = 2678637105012592493L;
+
+	private static final long serialVersionUID = -1563612185428820541L;
 
 	@JsonProperty("startAt")
 	private Integer startAt;

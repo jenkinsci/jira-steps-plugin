@@ -24,7 +24,8 @@ import lombok.ToString;
 @Builder
 @SuppressFBWarnings
 public class IssuesInput implements Serializable {
-	private final static long serialVersionUID = 7689184735166991068L;
+
+	private static final long serialVersionUID = -5806366312318582080L;
 
 	@JsonProperty("issueUpdates")
 	private IssueInput[] issueUpdates;

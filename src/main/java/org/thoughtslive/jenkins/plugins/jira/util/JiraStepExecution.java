@@ -35,7 +35,7 @@ import hudson.model.Cause.UserIdCause;
  */
 public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockingStepExecution<T> {
 
-	private static final long serialVersionUID = -8253380624161445367L;
+	private static final long serialVersionUID = 3856797875872780808L;
 
 	protected transient PrintStream logger = null;
 	protected transient String siteName = null;

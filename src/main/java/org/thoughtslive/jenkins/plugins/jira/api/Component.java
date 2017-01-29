@@ -24,7 +24,7 @@ import lombok.ToString;
 @Builder
 public class Component implements Serializable {
 
-	private static final long serialVersionUID = -1442146880900421415L;
+	private static final long serialVersionUID = -6567966032642998244L;
 
 	// NOT VALID while sending this as Input.
 	@JsonProperty("id")

@@ -22,7 +22,8 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
 public class Resolution implements Serializable {
-	private final static long serialVersionUID = -2401332192031752080L;
+
+	private static final long serialVersionUID = -6861937760804922080L;
 
 	@JsonProperty("id")
 	private String id;

@@ -20,7 +20,7 @@ import hudson.model.TaskListener;
  */
 public class GetProjectsStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = 2689031885988669114L;
 
 	@Extension
 	public static class DescriptorImpl extends JiraStepDescriptorImpl {
@@ -43,19 +43,19 @@ public class GetProjectsStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<Project[]>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = -5702548715847670073L;
 
 		@StepContextParameter
-		private transient Run<?, ?> run;
+		transient Run<?, ?> run;
 
 		@StepContextParameter
-		protected transient TaskListener listener;
+		transient TaskListener listener;
 
 		@StepContextParameter
-		protected transient EnvVars envVars;
+		transient EnvVars envVars;
 
 		@Inject
-		private transient GetProjectsStep step;
+		transient GetProjectsStep step;
 
 		@Override
 		protected ResponseData<Project[]> run() throws Exception {

@@ -25,7 +25,7 @@ import lombok.Getter;
  */
 public class AddWatcherStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = 6417829072320454268L;
 
 	@Getter
 	private final String idOrKey;
@@ -64,7 +64,7 @@ public class AddWatcherStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<Void>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = 937198146137084269L;
 
 		@StepContextParameter
 		transient Run<?, ?> run;
@@ -84,8 +84,7 @@ public class AddWatcherStep extends BasicJiraStep {
 			ResponseData<Void> response = verifyInput();
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Adding " + step.getUserName() + " to issue: "
-						+ step.getIdOrKey() + " as a watcher.");
+				logger.println("JIRA: Site - " + siteName + " - Adding " + step.getUserName() + " to issue: " + step.getIdOrKey() + " as a watcher.");
 				response = jiraService.addIssueWatcher(step.getIdOrKey(), step.getUserName());
 			}
 

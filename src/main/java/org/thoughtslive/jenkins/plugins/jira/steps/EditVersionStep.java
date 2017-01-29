@@ -23,7 +23,7 @@ import lombok.Getter;
  */
 public class EditVersionStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = -2029161404995143511L;
 
 	@Getter
 	private final Version version;
@@ -58,7 +58,7 @@ public class EditVersionStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<Void>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = -5317591315201131186L;
 
 		@StepContextParameter
 		transient Run<?, ?> run;
@@ -89,7 +89,7 @@ public class EditVersionStep extends BasicJiraStep {
 
 		@Override
 		protected <T> ResponseData<T> verifyInput() throws Exception {
-			//TODO Add validation - Or change the input type here ?
+			// TODO Add validation - Or change the input type here ?
 			return verifyCommon(step, listener, envVars, run);
 		}
 	}

@@ -22,9 +22,9 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.Comments;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
+import org.thoughtslive.jenkins.plugins.jira.api.Transitions;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
 import hudson.AbortException;
@@ -33,14 +33,14 @@ import hudson.model.Run;
 import hudson.model.TaskListener;
 
 /**
- * Unit test cases for GetCommentsStep class.
+ * Unit test cases for GetIssueTransitionsStep class.
  * 
  * @author Naresh Rayapati
  *
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ GetCommentsStep.class, Site.class })
-public class GetCommentsStepTest {
+@PrepareForTest({ GetIssueTransitionsStep.class, Site.class })
+public class GetIssueTransitionsStepTest {
 
 	@Mock
 	TaskListener taskListenerMock;
@@ -55,7 +55,7 @@ public class GetCommentsStepTest {
 	@Mock
 	Site siteMock;
 	
-	private GetCommentsStep.Execution stepExecution;
+	private GetIssueTransitionsStep.Execution stepExecution;
 
 	@Before
 	public void setup() {
@@ -68,14 +68,14 @@ public class GetCommentsStepTest {
 		Mockito.when(Site.get(any())).thenReturn(siteMock);
 		when(siteMock.getService()).thenReturn(jiraServiceMock);
 		
-		stepExecution = spy(new GetCommentsStep.Execution());
+		stepExecution = spy(new GetIssueTransitionsStep.Execution());
 
 		when(runMock.getCauses()).thenReturn(null);
 		when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
 		doNothing().when(printStreamMock).println();
 
-		final ResponseDataBuilder<Comments> builder = ResponseData.builder();
-		when(jiraServiceMock.getComments(anyString()))
+		final ResponseDataBuilder<Transitions> builder = ResponseData.builder();
+		when(jiraServiceMock.getTransitions(anyString()))
 				.thenReturn(builder.successful(true).code(200).message("Success").build());
 
 		stepExecution.listener = taskListenerMock;
@@ -87,7 +87,7 @@ public class GetCommentsStepTest {
 	
 	@Test
 	public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
-		final GetCommentsStep step = new GetCommentsStep("");
+		final GetIssueTransitionsStep step = new GetIssueTransitionsStep("");
 		stepExecution.step = step;
 
 		// Execute and assert Test.
@@ -99,15 +99,15 @@ public class GetCommentsStepTest {
 	}
 	
 	@Test
-	public void testSuccessfulGetComments() throws Exception {
-		final GetCommentsStep step = new GetCommentsStep("TEST-1");
+	public void testSuccessfulGetIssueTransitionsStep() throws Exception {
+		final GetIssueTransitionsStep step = new GetIssueTransitionsStep("TEST-1");
 		stepExecution.step = step;
 
 		// Execute Test.
 		stepExecution.run();
 
 		// Assert Test
-		verify(jiraServiceMock, times(1)).getComments("TEST-1");
+		verify(jiraServiceMock, times(1)).getTransitions("TEST-1");
 		assertThat(stepExecution.step.isFailOnError()).isEqualTo(true);
 	}
 }

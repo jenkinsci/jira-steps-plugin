@@ -26,7 +26,7 @@ import lombok.Getter;
  */
 public class NotifyIssueStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = -5286750553487650184L;
 
 	@Getter
 	private final String idOrKey;
@@ -65,19 +65,19 @@ public class NotifyIssueStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<Void>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = 2997765348391402484L;
 
 		@StepContextParameter
-		private transient Run<?, ?> run;
+		transient Run<?, ?> run;
 
 		@StepContextParameter
-		protected transient TaskListener listener;
+		transient TaskListener listener;
 
 		@StepContextParameter
-		protected transient EnvVars envVars;
+		transient EnvVars envVars;
 
 		@Inject
-		private transient NotifyIssueStep step;
+		transient NotifyIssueStep step;
 
 		@Override
 		protected ResponseData<Void> run() throws Exception {
@@ -104,7 +104,7 @@ public class NotifyIssueStep extends BasicJiraStep {
 					errorMessage = "idOrKey is empty or null.";
 				}
 
-				// TODO Validate Version object too.
+				// TODO Validate Notify object too.
 				if (errorMessage != null) {
 					response = buildErrorResponse(new RuntimeException(errorMessage));
 				}

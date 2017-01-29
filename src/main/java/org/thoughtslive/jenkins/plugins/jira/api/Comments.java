@@ -25,7 +25,7 @@ import lombok.ToString;
 @Builder
 public class Comments implements Serializable {
 
-	private final static long serialVersionUID = -4139319087157087224L;
+	private static final long serialVersionUID = 8693517644958876584L;
 
 	@JsonProperty("startAt")
 	private Integer startAt;

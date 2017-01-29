@@ -23,7 +23,7 @@ import lombok.ToString;
 @Builder
 public class Count implements Serializable {
 
-	private static final long serialVersionUID = -1442146880900421415L;
+	private static final long serialVersionUID = 1113972440114371076L;
 
 	@JsonProperty("issueCount")
 	private int issueCount;

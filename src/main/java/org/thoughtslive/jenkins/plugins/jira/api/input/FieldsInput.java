@@ -30,7 +30,7 @@ import lombok.ToString;
 @SuppressFBWarnings
 public class FieldsInput implements Serializable {
 
-	private static final long serialVersionUID = 7563845457157186901L;
+	private static final long serialVersionUID = 466100668894754241L;
 
 	@JsonProperty("summary")
 	private String summary;

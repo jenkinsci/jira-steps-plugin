@@ -24,7 +24,7 @@ import lombok.ToString;
 @Builder
 public class IssueType implements Serializable {
 
-	private final static long serialVersionUID = -2584149383622506532L;
+	private static final long serialVersionUID = -4350803739177634227L;
 
 	@JsonProperty("id")
 	private String id;

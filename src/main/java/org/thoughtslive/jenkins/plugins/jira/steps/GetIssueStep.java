@@ -25,7 +25,7 @@ import lombok.Getter;
  */
 public class GetIssueStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = -8758698444697767020L;
 
 	@Getter
 	private final String idOrKey;
@@ -56,19 +56,19 @@ public class GetIssueStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<Issue>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = 6898696015602575211L;
 
 		@StepContextParameter
-		private transient Run<?, ?> run;
+		transient Run<?, ?> run;
 
 		@StepContextParameter
-		protected transient TaskListener listener;
+		transient TaskListener listener;
 
 		@StepContextParameter
-		protected transient EnvVars envVars;
+		transient EnvVars envVars;
 
 		@Inject
-		private transient GetIssueStep step;
+		transient GetIssueStep step;
 
 		@Override
 		protected ResponseData<Issue> run() throws Exception {

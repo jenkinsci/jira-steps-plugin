@@ -23,7 +23,7 @@ import lombok.Getter;
  */
 public class NewComponentStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = 4939494003115851145L;
 
 	@Getter
 	private final Component component;
@@ -58,19 +58,19 @@ public class NewComponentStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<Component>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = -6324419009842564119L;
 
 		@StepContextParameter
-		private transient Run<?, ?> run;
-		
-		@StepContextParameter
-		protected transient TaskListener listener;
+		transient Run<?, ?> run;
 
 		@StepContextParameter
-		protected transient EnvVars envVars;
+		transient TaskListener listener;
+
+		@StepContextParameter
+		transient EnvVars envVars;
 
 		@Inject
-		private transient NewComponentStep step;
+		transient NewComponentStep step;
 
 		@Override
 		protected ResponseData<Component> run() throws Exception {
@@ -80,7 +80,7 @@ public class NewComponentStep extends BasicJiraStep {
 			if (response == null) {
 				logger.println("JIRA: Site - " + siteName + " - Creating new component: " + step.getComponent());
 				final String description = addMeta(step.getComponent().getDescription());
-				step.getComponent().setDescription(description);				
+				step.getComponent().setDescription(description);
 				response = jiraService.createComponent(step.getComponent());
 			}
 
@@ -89,7 +89,7 @@ public class NewComponentStep extends BasicJiraStep {
 
 		@Override
 		protected <T> ResponseData<T> verifyInput() throws Exception {
-			//TODO Add validation - Or change the input type here ?
+			// TODO Add validation - Or change the input type here ?
 			return verifyCommon(step, listener, envVars, run);
 		}
 	}

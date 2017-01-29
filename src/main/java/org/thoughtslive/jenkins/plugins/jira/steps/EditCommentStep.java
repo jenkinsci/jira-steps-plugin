@@ -26,7 +26,7 @@ import lombok.Getter;
  */
 public class EditCommentStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = -6330276534463853856L;
 
 	@Getter
 	private final String idOrKey;
@@ -69,7 +69,7 @@ public class EditCommentStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<Comment>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = -7000442485946132663L;
 
 		@StepContextParameter
 		transient Run<?, ?> run;
@@ -89,8 +89,7 @@ public class EditCommentStep extends BasicJiraStep {
 			ResponseData<Comment> response = verifyInput();
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Updating comment: " + step.getComment() + " on issue: "
-						+ step.getIdOrKey());
+				logger.println("JIRA: Site - " + siteName + " - Updating comment: " + step.getComment() + " on issue: " + step.getIdOrKey());
 				final String comment = addPanelMeta(step.getComment());
 				response = jiraService.updateComment(step.getIdOrKey(), step.getCommentId(), comment);
 			}

@@ -23,7 +23,8 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
 public class BasicIssue implements Serializable {
-	private final static long serialVersionUID = 7689184735166991068L;
+
+	private static final long serialVersionUID = -2242144096391105886L;
 
 	@JsonProperty("id")
 	private String id;

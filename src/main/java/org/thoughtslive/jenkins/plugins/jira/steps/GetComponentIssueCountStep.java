@@ -24,7 +24,7 @@ import lombok.Getter;
  */
 public class GetComponentIssueCountStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = -4668092703770930031L;
 
 	@Getter
 	private final int id;
@@ -55,7 +55,7 @@ public class GetComponentIssueCountStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<Count>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = 6380332864146135606L;
 
 		@StepContextParameter
 		transient Run<?, ?> run;
@@ -75,8 +75,7 @@ public class GetComponentIssueCountStep extends BasicJiraStep {
 			ResponseData<Count> response = verifyInput();
 
 			if (response == null) {
-				logger.println(
-						"JIRA: Site - " + siteName + " - Querying component issue count with id: " + step.getId());
+				logger.println("JIRA: Site - " + siteName + " - Querying component issue count with id: " + step.getId());
 				response = jiraService.getComponentIssueCount(step.getId());
 			}
 

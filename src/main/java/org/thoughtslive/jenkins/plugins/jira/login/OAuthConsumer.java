@@ -6,7 +6,7 @@ import okhttp3.Request;
 
 public class OAuthConsumer extends AbstractOAuthConsumer {
 
-	private static final long serialVersionUID = 4067454013487952351L;
+	private static final long serialVersionUID = 1364436370216401109L;
 
 	public OAuthConsumer(String consumerKey, String consumerSecret) {
 		super(consumerKey, consumerSecret);

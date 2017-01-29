@@ -24,7 +24,7 @@ import lombok.Getter;
  */
 public class NewIssueStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = -3952881085849787165L;
 
 	@Getter
 	private final IssueInput issue;
@@ -59,19 +59,19 @@ public class NewIssueStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<BasicIssue>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = 2782781910330634547L;
 
 		@StepContextParameter
-		private transient Run<?, ?> run;
+		transient Run<?, ?> run;
 
 		@StepContextParameter
-		protected transient TaskListener listener;
+		transient TaskListener listener;
 
 		@StepContextParameter
-		protected transient EnvVars envVars;
+		transient EnvVars envVars;
 
 		@Inject
-		private transient NewIssueStep step;
+		transient NewIssueStep step;
 
 		@Override
 		protected ResponseData<BasicIssue> run() throws Exception {
@@ -90,7 +90,7 @@ public class NewIssueStep extends BasicJiraStep {
 
 		@Override
 		protected <T> ResponseData<T> verifyInput() throws Exception {
-			//TODO Add validation - Or change the input type here ?
+			// TODO Add validation - Or change the input type here ?
 			return verifyCommon(step, listener, envVars, run);
 		}
 	}

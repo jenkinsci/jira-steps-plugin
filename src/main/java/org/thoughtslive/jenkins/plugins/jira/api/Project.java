@@ -26,7 +26,7 @@ import lombok.ToString;
 @SuppressFBWarnings
 public class Project implements Serializable {
 
-	private final static long serialVersionUID = -2732936022079989665L;
+	private static final long serialVersionUID = -4217312651288636551L;
 
 	@JsonProperty("id")
 	private String id;

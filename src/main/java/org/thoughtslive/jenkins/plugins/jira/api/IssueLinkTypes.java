@@ -26,7 +26,7 @@ import lombok.ToString;
 @Builder
 public class IssueLinkTypes implements Serializable {
 
-	private final static long serialVersionUID = 1400451509198002456L;
+	private static final long serialVersionUID = -1703145974228772260L;
 
 	@JsonProperty("issueLinkTypes")
 	private IssueLinkType[] issueLinkTypes;

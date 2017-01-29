@@ -25,7 +25,7 @@ import lombok.ToString;
 @Builder
 public class EmailTo implements Serializable {
 
-	private static final long serialVersionUID = -6289753791504716288L;
+	private static final long serialVersionUID = 1986209333454558972L;
 
 	@JsonProperty("reporter")
 	private Boolean reporter;

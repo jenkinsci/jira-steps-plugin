@@ -15,7 +15,7 @@ import oauth.signpost.signature.SignatureBaseString;
 
 public class RsaSha1MessageSigner extends OAuthMessageSigner {
 
-	private static final long serialVersionUID = -7595207933205944948L;
+	private static final long serialVersionUID = -1777278892400172839L;
 
 	@Override
 	public String getSignatureMethod() {

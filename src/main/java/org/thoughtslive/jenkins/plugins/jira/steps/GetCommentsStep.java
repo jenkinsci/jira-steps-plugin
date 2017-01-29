@@ -25,7 +25,7 @@ import lombok.Getter;
  */
 public class GetCommentsStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = 3545679919575498803L;
 
 	@Getter
 	private final String idOrKey;
@@ -56,7 +56,7 @@ public class GetCommentsStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<Comments>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = -9014641944773640463L;
 
 		@StepContextParameter
 		transient Run<?, ?> run;

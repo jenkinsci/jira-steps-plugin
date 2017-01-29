@@ -24,7 +24,7 @@ import lombok.ToString;
 @Builder
 public class StatusCategory implements Serializable {
 
-	private final static long serialVersionUID = 8152743273815765814L;
+	private static final long serialVersionUID = 981603626054788439L;
 
 	@JsonProperty("id")
 	private Integer id;

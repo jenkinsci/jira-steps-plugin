@@ -113,7 +113,7 @@ public class GetCommentStepTest {
 	}
 	
 	@Test
-	public void testSuccessfulAddWatcher() throws Exception {
+	public void testSuccessfulGetComment() throws Exception {
 		final GetCommentStep step = new GetCommentStep("TEST-1", 1000);
 		stepExecution.step = step;
 

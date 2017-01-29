@@ -23,7 +23,8 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
 public class Session implements Serializable {
-	private static final long serialVersionUID = 6870901723966876819L;
+
+	private static final long serialVersionUID = 619046370512822215L;
 
 	@JsonProperty("userUri")
 	private URI userUri;

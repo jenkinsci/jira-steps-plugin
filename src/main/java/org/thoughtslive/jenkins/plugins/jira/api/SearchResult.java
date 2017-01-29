@@ -25,7 +25,8 @@ import lombok.ToString;
 @SuppressFBWarnings
 @Builder
 public class SearchResult implements Serializable {
-	private final static long serialVersionUID = 7689184735166991068L;
+
+	private static final long serialVersionUID = -7424319344875196054L;
 
 	@JsonProperty("jql")
 	private String jql;

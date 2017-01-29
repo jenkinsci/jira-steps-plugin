@@ -24,7 +24,7 @@ import lombok.Getter;
  */
 public class AssignIssueStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = -7552691123209663987L;
 
 	@Getter
 	private final String idOrKey;
@@ -59,7 +59,7 @@ public class AssignIssueStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<Void>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = -7608114889563811741L;
 
 		@StepContextParameter
 		transient Run<?, ?> run;
@@ -79,8 +79,7 @@ public class AssignIssueStep extends BasicJiraStep {
 			ResponseData<Void> response = verifyInput();
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Assigning issue: " + step.getIdOrKey() + " to: "
-						+ step.getUserName());
+				logger.println("JIRA: Site - " + siteName + " - Assigning issue: " + step.getIdOrKey() + " to: " + step.getUserName());
 				response = jiraService.assignIssue(step.getIdOrKey(), step.getUserName());
 			}
 

@@ -25,7 +25,7 @@ import lombok.ToString;
 @Builder
 public class Worklog implements Serializable {
 
-	private static final long serialVersionUID = 8173486033156584525L;
+	private static final long serialVersionUID = -7546905758922665243L;
 
 	@JsonProperty("issueUri")
 	private URI issueUri;

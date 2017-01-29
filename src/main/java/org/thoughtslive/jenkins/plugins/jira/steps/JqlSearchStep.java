@@ -27,7 +27,7 @@ import lombok.Getter;
  */
 public class JqlSearchStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = -7754102811625753132L;
 
 	@Getter
 	private final String jql;
@@ -73,19 +73,19 @@ public class JqlSearchStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<SearchResult>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = 3640953129479843111L;
 
 		@StepContextParameter
-		private transient Run<?, ?> run;
+		transient Run<?, ?> run;
 
 		@StepContextParameter
-		protected transient TaskListener listener;
+		transient TaskListener listener;
 
 		@StepContextParameter
-		protected transient EnvVars envVars;
+		transient EnvVars envVars;
 
 		@Inject
-		private transient JqlSearchStep step;
+		transient JqlSearchStep step;
 
 		@Override
 		protected ResponseData<SearchResult> run() throws Exception {
@@ -93,8 +93,7 @@ public class JqlSearchStep extends BasicJiraStep {
 			ResponseData<SearchResult> response = verifyInput();
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Search JQL: " + step.getJql() + " startAt: "
-						+ step.getStartAt() + " maxResults: " + step.getMaxResults());
+				logger.println("JIRA: Site - " + siteName + " - Search JQL: " + step.getJql() + " startAt: " + step.getStartAt() + " maxResults: " + step.getMaxResults());
 				response = jiraService.searchIssues(step.getJql(), step.getStartAt(), step.getMaxResults());
 			}
 

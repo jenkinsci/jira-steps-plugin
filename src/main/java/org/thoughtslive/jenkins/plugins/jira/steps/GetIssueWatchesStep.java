@@ -25,7 +25,7 @@ import lombok.Getter;
  */
 public class GetIssueWatchesStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = -4095433082021536972L;
 
 	@Getter
 	private final String idOrKey;
@@ -56,19 +56,19 @@ public class GetIssueWatchesStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<Watches>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = -2511162263195215296L;
 
 		@StepContextParameter
-		private transient Run<?, ?> run;
+		transient Run<?, ?> run;
 
 		@StepContextParameter
-		protected transient TaskListener listener;
+		transient TaskListener listener;
 
 		@StepContextParameter
-		protected transient EnvVars envVars;
+		transient EnvVars envVars;
 
 		@Inject
-		private transient GetIssueWatchesStep step;
+		transient GetIssueWatchesStep step;
 
 		@Override
 		protected ResponseData<Watches> run() throws Exception {
@@ -76,8 +76,7 @@ public class GetIssueWatchesStep extends BasicJiraStep {
 			ResponseData<Watches> response = verifyInput();
 
 			if (response == null) {
-				logger.println(
-						"JIRA: Site - " + siteName + " - Querying issue watches - idOrKey: " + step.getIdOrKey());
+				logger.println("JIRA: Site - " + siteName + " - Querying issue watches - idOrKey: " + step.getIdOrKey());
 				response = jiraService.getIssueWatches(step.getIdOrKey());
 			}
 

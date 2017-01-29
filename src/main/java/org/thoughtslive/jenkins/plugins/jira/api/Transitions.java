@@ -25,7 +25,8 @@ import lombok.ToString;
 @SuppressFBWarnings
 @Builder
 public class Transitions implements Serializable {
-	private final static long serialVersionUID = 7689184735166991068L;
+
+	private static final long serialVersionUID = -6854744607829718972L;
 
 	@JsonProperty("transitions")
 	private Transition[] transitions;

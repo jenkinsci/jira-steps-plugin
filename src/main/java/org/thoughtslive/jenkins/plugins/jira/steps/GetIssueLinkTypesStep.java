@@ -20,7 +20,7 @@ import hudson.model.TaskListener;
  */
 public class GetIssueLinkTypesStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = 7300279362207875286L;
 
 	@Extension
 	public static class DescriptorImpl extends JiraStepDescriptorImpl {
@@ -43,7 +43,7 @@ public class GetIssueLinkTypesStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<IssueLinkTypes>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = -1387617043703686867L;
 
 		@StepContextParameter
 		transient Run<?, ?> run;

@@ -25,7 +25,7 @@ import lombok.Getter;
  */
 public class GetIssueTransitionsStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = 76788852720885769L;
 
 	@Getter
 	private final String idOrKey;
@@ -56,19 +56,19 @@ public class GetIssueTransitionsStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<Transitions>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = 4731872444274410275L;
 
 		@StepContextParameter
-		private transient Run<?, ?> run;
+		transient Run<?, ?> run;
 
 		@StepContextParameter
-		protected transient TaskListener listener;
+		transient TaskListener listener;
 
 		@StepContextParameter
-		protected transient EnvVars envVars;
+		transient EnvVars envVars;
 
 		@Inject
-		private transient GetIssueTransitionsStep step;
+		transient GetIssueTransitionsStep step;
 
 		@Override
 		protected ResponseData<Transitions> run() throws Exception {
@@ -76,8 +76,7 @@ public class GetIssueTransitionsStep extends BasicJiraStep {
 			ResponseData<Transitions> response = verifyInput();
 
 			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Querying issue transitions with idOrKey: "
-						+ step.getIdOrKey());
+				logger.println("JIRA: Site - " + siteName + " - Querying issue transitions with idOrKey: " + step.getIdOrKey());
 				response = jiraService.getTransitions(step.getIdOrKey());
 			}
 

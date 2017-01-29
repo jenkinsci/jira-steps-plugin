@@ -24,7 +24,7 @@ import lombok.Getter;
  */
 public class GetComponentStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2327375640378098562L;
+	private static final long serialVersionUID = 387862257528432812L;
 
 	@Getter
 	private final int id;
@@ -55,7 +55,7 @@ public class GetComponentStep extends BasicJiraStep {
 
 	public static class Execution extends JiraStepExecution<ResponseData<Component>> {
 
-		private static final long serialVersionUID = -821037959812310749L;
+		private static final long serialVersionUID = 211769231724671924L;
 
 		@StepContextParameter
 		transient Run<?, ?> run;
@@ -89,7 +89,7 @@ public class GetComponentStep extends BasicJiraStep {
 
 			if (response == null) {
 				if (step.getId() <= 0) {
-					errorMessage = "id less than or equals to zero."; 
+					errorMessage = "id less than or equals to zero.";
 				}
 
 				if (errorMessage != null) {

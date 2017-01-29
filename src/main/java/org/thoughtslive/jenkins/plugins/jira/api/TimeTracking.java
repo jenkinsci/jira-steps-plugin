@@ -24,7 +24,7 @@ import lombok.ToString;
 @Builder
 public class TimeTracking implements Serializable {
 
-	private final static long serialVersionUID = 8482332892670298684L;
+	private static final long serialVersionUID = 6959840130284771399L;
 
 	@JsonProperty("originalEstimateMinutes")
 	private Integer originalEstimateMinutes;
