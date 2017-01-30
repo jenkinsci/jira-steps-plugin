@@ -12,51 +12,51 @@ permalink: release_notes.html
   * Target JIRA API Version [6.4.13](https://docs.atlassian.com/jira/REST/6.4.13/).
   * Steps to Support
     * Component
-      * getComponent
-      * newComponent
-      * editComponent
-      * getComponentIssueCount
+      * jiraGetComponent
+      * jiraNewComponent
+      * jiraEditComponent
+      * jiraGetComponentIssueCount
     * Issue
-      * getIssue
-      * **newIssue**
-      * **newIssues**
-      * **editIssue**
-      * assignIssue
+      * jiraGetIssue
+      * **jiraNewIssue**
+      * **jiraNewIssues**
+      * **jiraEditIssue**
+      * jiraAssignIssue
     * Comments
-      * getComments
-      * addComment
-      * editComment
-      * getComment
+      * jiraGetComments
+      * jiraAddComment
+      * jiraEditComment
+      * jiraGetComment
     * Email
-      * notify
+      * jiraNotifyIssue
     * Transitions
-      * getTransitions
-      * transitionIssue
+      * jiraGetTransitions
+      * jiraTransitionIssue
     * Watchers
-      * getWatches
-      * addWatcher
+      * jiraGetWatches
+      * jiraAddWatcher
     * Project
-      * getProjects
-      * getProject
+      * jiraGetProjects
+      * jiraGetProject
     * Versions
-      * getVersion
-      * createVersion
-      * editVersion
+      * jiraGetVersion
+      * jiraNewVersion
+      * jiraEditVersion
     * IssueLinks
-      * linkIssues
+      * jiraLinkIssues
     * IssueLinkTypes
-      * getIssueLinkTypes
+      * jiraGetIssueLinkTypes
     * Search
-      * By JQL.
+      * jiraJqlSearch
 
   * ## TODO
     * Projects
-      * getVersions
-      * getComponents
-      * getStatuses
+      * jiraGetVersions
+      * jiraGetComponents
+      * jiraGetStatuses
     * IssueLinks
-      * getIssueLink
-      * deleteIssueLink  
+      * jiraGetIssueLink
+      * jiraDeleteIssueLink  
     * Session - Need to think on how we can reuse session Id. (Or do we need it at all.?)
     * Support Issue Custom Fields.
 
