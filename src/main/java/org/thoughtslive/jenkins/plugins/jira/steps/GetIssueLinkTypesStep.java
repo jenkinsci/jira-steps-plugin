@@ -3,6 +3,7 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 import javax.inject.Inject;
 
 import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
+import org.kohsuke.stapler.DataBoundConstructor;
 import org.thoughtslive.jenkins.plugins.jira.api.IssueLinkTypes;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
@@ -21,6 +22,10 @@ import hudson.model.TaskListener;
 public class GetIssueLinkTypesStep extends BasicJiraStep {
 
 	private static final long serialVersionUID = 7300279362207875286L;
+
+	@DataBoundConstructor
+	public GetIssueLinkTypesStep() {
+	}
 
 	@Extension
 	public static class DescriptorImpl extends JiraStepDescriptorImpl {
