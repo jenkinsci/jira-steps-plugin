@@ -30,6 +30,7 @@ Get all issue links types.
   }
   ```
 * `withEnv` to override the default site (or if there is not global site)
+
   ```groovy
   node {
     stage('JIRA') {
@@ -41,6 +42,7 @@ Get all issue links types.
   }
   ```
 * Without environment variables.
+
   ```groovy
     def issueLinkTypes = jiraGetIssueLinkTypes site: "LOCAL", failOnError: false
     echo issueLinkTypes.data.toString()

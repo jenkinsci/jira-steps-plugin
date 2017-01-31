@@ -36,6 +36,7 @@ Note: Sometimes it may not possible to directly edit component (rename it) witho
   }
   ```
 * `withEnv` to override the default site (or if there is not global site)
+
   ```groovy
   node {
     stage('JIRA') {
@@ -50,6 +51,7 @@ Note: Sometimes it may not possible to directly edit component (rename it) witho
   }
   ```
 * Without environment variables.
+
   ```groovy
     def testComponent = [ id: 1000,
                           name: "test-component",

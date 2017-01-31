@@ -31,6 +31,7 @@ Assign issue to given user.
   }
   ```
 * `withEnv` to override the default site (or if there is not global site)
+
   ```groovy
   node {
     stage('JIRA') {
@@ -41,6 +42,7 @@ Assign issue to given user.
   }
   ```
 * Without environment variables.
+
   ```groovy
     jiraAssignIssue site: "LOCAL", idOrKey: "TEST-1", userName: "Jenkins"
   ```

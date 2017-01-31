@@ -30,6 +30,7 @@ Add comment to the given issue.
   }
   ```
 * `withEnv` to override the default site (or if there is not global site)
+
   ```groovy
   node {
     stage('JIRA') {
@@ -40,6 +41,7 @@ Add comment to the given issue.
   }
   ```
 * Without environment variables.
+
   ```groovy
     jiraAddComment site: "LOCAL", idOrKey: "TEST-1", comment: "test comment"
   ```

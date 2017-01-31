@@ -31,6 +31,7 @@ Get issue by id or key.
   }
   ```
 * `withEnv` to override the default site (or if there is not global site)
+
   ```groovy
   node {
     stage('JIRA') {
@@ -42,6 +43,7 @@ Get issue by id or key.
   }
   ```
 * Without environment variables.
+
   ```groovy
     def issue = jiraGetIssue idOrKey: "TEST-1", site: "LOCAL"
     echo issue.data.toString()

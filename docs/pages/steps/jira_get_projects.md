@@ -30,6 +30,7 @@ Query all projects in the given site.
   }
   ```
 * `withEnv` to override the default site (or if there is not global site)
+
   ```groovy
   node {
     stage('JIRA') {
@@ -41,6 +42,7 @@ Query all projects in the given site.
   }
   ```
 * Without environment variables.
+
   ```groovy
     def projects = jiraGetProjects()
     echo project.data.toString()

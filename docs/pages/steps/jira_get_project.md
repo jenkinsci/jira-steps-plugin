@@ -31,6 +31,7 @@ Query project info by id or key.
   }
   ```
 * `withEnv` to override the default site (or if there is not global site)
+
   ```groovy
   node {
     stage('JIRA') {
@@ -42,6 +43,7 @@ Query project info by id or key.
   }
   ```
 * Without environment variables.
+
   ```groovy
     def project = jiraGetProject idOrKey: "TEST", site: "LOCAL"
     echo project.data.toString()

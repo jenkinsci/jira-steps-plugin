@@ -32,6 +32,7 @@ Get comment of the given issue by id.
   }
   ```
 * `withEnv` to override the default site (or if there is not global site)
+
   ```groovy
   node {
     stage('JIRA') {
@@ -43,6 +44,7 @@ Get comment of the given issue by id.
   }
   ```
 * Without environment variables.
+
   ```groovy
     def comment = jiraGetComment site: "LOCAL", idOrKey: "TEST-1", commentId: 10004
     echo comment.data.toString()

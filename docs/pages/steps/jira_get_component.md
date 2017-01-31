@@ -31,6 +31,7 @@ Get component by id.
   }
   ```
 * `withEnv` to override the default site (or if there is not global site)
+
   ```groovy
   node {
     stage('JIRA') {
@@ -42,6 +43,7 @@ Get component by id.
   }
   ```
 * Without environment variables.
+
   ```groovy
     def component = jiraGetComponent site: "LOCAL", id: 10024, failOnError: false
     echo component.data.toString()

@@ -31,6 +31,7 @@ Edit comment on an issue by given comment id.
   }
   ```
 * `withEnv` to override the default site (or if there is not global site)
+
   ```groovy
   node {
     stage('JIRA') {
@@ -41,6 +42,7 @@ Edit comment on an issue by given comment id.
   }
   ```
 * Without environment variables.
+
   ```groovy
     jiraEditComment site: "LOCAL", idOrKey: "TEST-1", commentId: 1000, comment: "test comment"
   ```

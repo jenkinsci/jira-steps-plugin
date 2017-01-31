@@ -33,6 +33,7 @@ Create new component based on given input, which should have some minimal inform
   }
   ```
 * `withEnv` to override the default site (or if there is not global site)
+
   ```groovy
   node {
     stage('JIRA') {
@@ -46,6 +47,7 @@ Create new component based on given input, which should have some minimal inform
   }
   ```
 * Without environment variables.
+
   ```groovy
     def testComponent = [ name: "test-component",
                           description: "desc",

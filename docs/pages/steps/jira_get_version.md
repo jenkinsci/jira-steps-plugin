@@ -31,6 +31,7 @@ Query version by id.
   }
   ```
 * `withEnv` to override the default site (or if there is not global site)
+
   ```groovy
   node {
     stage('JIRA') {
@@ -42,6 +43,7 @@ Query version by id.
   }
   ```
 * Without environment variables.
+
   ```groovy
     def version = jiraGetVersion id: 10000, site: "LOCAL", failOnError: false
     echo version.data.toString()

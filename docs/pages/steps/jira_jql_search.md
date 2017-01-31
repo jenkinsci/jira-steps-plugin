@@ -31,6 +31,7 @@ Search Issues by Jql.
   }
   ```
 * `withEnv` to override the default site (or if there is not global site)
+
   ```groovy
   node {
     stage('JIRA') {
@@ -42,6 +43,7 @@ Search Issues by Jql.
   }
   ```
 * Without environment variables.
+
   ```groovy
     def issues = jiraJqlSearch id: "PROJECT = TEST", site: "LOCAL", failOnError: true
     echo issues.data.toString()

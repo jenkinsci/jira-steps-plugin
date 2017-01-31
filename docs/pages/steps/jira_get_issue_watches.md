@@ -31,6 +31,7 @@ Get all issue watchers.
   }
   ```
 * `withEnv` to override the default site (or if there is not global site)
+
   ```groovy
   node {
     stage('JIRA') {
@@ -42,6 +43,7 @@ Get all issue watchers.
   }
   ```
 * Without environment variables.
+
   ```groovy
     def watches = jiraGetIssueWatches idOrKey: "TEST-1", site: "LOCAL"
     echo watches.data.toString()

@@ -31,6 +31,7 @@ Get all transitions of the given issue.
   }
   ```
 * `withEnv` to override the default site (or if there is not global site)
+
   ```groovy
   node {
     stage('JIRA') {
@@ -42,6 +43,7 @@ Get all transitions of the given issue.
   }
   ```
 * Without environment variables.
+
   ```groovy
     def transitions = jiraGetIssueTransitions idOrKey: "TEST-1"
     echo transitions.data.toString()
