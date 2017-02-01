@@ -35,4 +35,24 @@ This plugin supports both Basic and OAuth, OAuth is preferred over the Basic aut
 * `JIRA_SITE` - Global variable to set default site for all JIRA steps.
 * `JIRA_FAIL_ON_ERROR` - By default all steps `fail` the job when there is an error, by setting this to `false` all steps won't fail the job.
 
+## Error Handling.
+
+Every step returns a common response, which will have more information about the request like `successful`, `error`, `data` and `code`. Always try catch if we want to handle abort exception or can set `failOrError` to `false` to ignore all the error.
+
+Example:
+
+```groovy
+  def response = jiraGetComponent id: 10000
+  echo response.successful
+  echo response.code
+  echo response.error
+  echo response.data.toString()
+
+  try {
+    jiraGetComponent id: 10000
+  } catch (error) {
+    echo error
+  }
+```
+
 {% include links.html %}
