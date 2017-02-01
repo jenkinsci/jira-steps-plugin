@@ -7,6 +7,7 @@ sidebar: jira_sidebar
 permalink: jira_add_comment.html
 folder: steps
 ---
+
 ## Overview
 
 Add comment to the given issue.
