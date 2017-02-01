@@ -12,6 +12,9 @@ folder: steps
 
 Add comment to the given issue.
 
+![Comment](https://raw.githubusercontent.com/ThoughtsLive/jira-steps/master/docs/images/jira_add_comment.png)
+
+
 ## Fields
 
 * **idOrKey** - Issue id or key.

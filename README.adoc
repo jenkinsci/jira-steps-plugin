@@ -2,7 +2,7 @@
 
 Jenkins pipeline steps for integration with the https://www.atlassian.com/software/jira[JIRA].
 
-A bulk of the documentation for this plugin is at https://thoughtslive.github.io/jira-steps/[Jira Steps].
+Documentation for this plugin is at https://thoughtslive.github.io/jira-steps/[Jira Steps].
 
 == Disclaimer
 

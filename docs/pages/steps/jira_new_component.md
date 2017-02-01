@@ -12,6 +12,8 @@ folder: steps
 
 Create new component based on given input, which should have some minimal information on that object.
 
+![New Component](https://raw.githubusercontent.com/ThoughtsLive/jira-steps/master/docs/images/jira_new_component.png)
+
 ## Fields
 
 * **component** - component to be created.
