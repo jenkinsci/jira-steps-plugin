@@ -7,14 +7,14 @@
     <artifactId>plugin</artifactId>
     <version>2.19</version>
   </parent>
-  <groupId>org.thoughtslive.jenkins.plugins</groupId>
+  <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>jira-steps</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>hpi</packaging>
-  <name>ThoughtsLive: JIRA Pipeline Steps</name>
+  <name>JIRA Pipeline Steps</name>
   <description>JIRA Pipeline Steps</description>
   <inceptionYear>2016</inceptionYear>
-  <url>https://github.com/ThoughtsLive/jira-steps</url>
+  <url>https://wiki.jenkins-ci.org/display/JENKINS/JIRA+Steps+Plugin</url>
   <properties>
     <java.level>8</java.level>
     <jenkins.version>1.642.3</jenkins.version>
@@ -48,13 +48,20 @@
 
   <developers>
     <developer>
-      <id>thoughtslive</id>
+      <id>nrayapati</id>
       <name>Naresh Rayapati</name>
       <organization>ThoughtsLive</organization>
       <organizationUrl>https://nrayapati.github.io/</organizationUrl>
     </developer>
   </developers>
 
+  <scm>
+    <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
+    <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
+    <tag>HEAD</tag>
+  </scm>
+  
   <distributionManagement>
     <repository>
       <id>repo.jenkins-ci.org</id>
@@ -85,7 +92,6 @@
       <groupId>org.jenkins-ci.plugins.workflow</groupId>
       <artifactId>workflow-aggregator</artifactId>
       <version>${pipeline.version}</version>
-      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.squareup.retrofit2</groupId>
