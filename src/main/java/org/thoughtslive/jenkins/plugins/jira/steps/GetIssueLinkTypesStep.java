@@ -21,63 +21,62 @@ import hudson.model.TaskListener;
  */
 public class GetIssueLinkTypesStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 7300279362207875286L;
+  private static final long serialVersionUID = 7300279362207875286L;
 
-	@DataBoundConstructor
-	public GetIssueLinkTypesStep() {
-	}
+  @DataBoundConstructor
+  public GetIssueLinkTypesStep() {}
 
-	@Extension
-	public static class DescriptorImpl extends JiraStepDescriptorImpl {
+  @Extension
+  public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
-		public DescriptorImpl() {
-			super(Execution.class);
-		}
+    public DescriptorImpl() {
+      super(Execution.class);
+    }
 
-		@Override
-		public String getFunctionName() {
-			return "jiraGetIssueLinkTypes";
-		}
+    @Override
+    public String getFunctionName() {
+      return "jiraGetIssueLinkTypes";
+    }
 
-		@Override
-		public String getDisplayName() {
-			return getPrefix() + "Get Issue Link Types";
-		}
+    @Override
+    public String getDisplayName() {
+      return getPrefix() + "Get Issue Link Types";
+    }
 
-	}
+  }
 
-	public static class Execution extends JiraStepExecution<ResponseData<IssueLinkTypes>> {
+  public static class Execution extends JiraStepExecution<ResponseData<IssueLinkTypes>> {
 
-		private static final long serialVersionUID = -1387617043703686867L;
+    private static final long serialVersionUID = -1387617043703686867L;
 
-		@StepContextParameter
-		transient Run<?, ?> run;
+    @StepContextParameter
+    transient Run<?, ?> run;
 
-		@StepContextParameter
-		transient TaskListener listener;
+    @StepContextParameter
+    transient TaskListener listener;
 
-		@StepContextParameter
-		transient EnvVars envVars;
+    @StepContextParameter
+    transient EnvVars envVars;
 
-		@Inject
-		transient GetIssueLinkTypesStep step;
+    @Inject
+    transient GetIssueLinkTypesStep step;
 
-		@Override
-		protected ResponseData<IssueLinkTypes> run() throws Exception {
+    @Override
+    protected ResponseData<IssueLinkTypes> run() throws Exception {
 
-			ResponseData<IssueLinkTypes> response = verifyInput();
+      ResponseData<IssueLinkTypes> response = verifyInput();
 
-			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Querying All Issue Link Types");
-				response = jiraService.getIssueLinkTypes();
-			}
+      if (response == null) {
+        logger.println("JIRA: Site - " + siteName + " - Querying All Issue Link Types");
+        response = jiraService.getIssueLinkTypes();
+      }
 
-			return logResponse(response);
-		}
+      return logResponse(response);
+    }
 
-		@Override
-		protected <T> ResponseData<T> verifyInput() throws Exception {
-			return verifyCommon(step, listener, envVars, run);
-		}
-	}
+    @Override
+    protected <T> ResponseData<T> verifyInput() throws Exception {
+      return verifyCommon(step, listener, envVars, run);
+    }
+  }
 }

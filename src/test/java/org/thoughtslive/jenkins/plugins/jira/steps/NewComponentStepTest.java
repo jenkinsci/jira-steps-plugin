@@ -39,60 +39,61 @@ import hudson.model.TaskListener;
 @PrepareForTest({NewComponentStep.class, Site.class})
 public class NewComponentStepTest {
 
-	@Mock
-	TaskListener taskListenerMock;
-	@Mock
-	Run<?, ?> runMock;
-	@Mock
-	EnvVars envVarsMock;
-	@Mock
-	PrintStream printStreamMock;
-	@Mock
-	JiraService jiraServiceMock;
-	@Mock
-	Site siteMock;
-	@Mock
-	Component componentMock;
+  @Mock
+  TaskListener taskListenerMock;
+  @Mock
+  Run<?, ?> runMock;
+  @Mock
+  EnvVars envVarsMock;
+  @Mock
+  PrintStream printStreamMock;
+  @Mock
+  JiraService jiraServiceMock;
+  @Mock
+  Site siteMock;
+  @Mock
+  Component componentMock;
 
-	NewComponentStep.Execution stepExecution;
+  NewComponentStep.Execution stepExecution;
 
-	@Before
-	public void setup() {
+  @Before
+  public void setup() {
 
-		// Prepare site.
-		when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
-		when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
+    // Prepare site.
+    when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
+    when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
 
-		PowerMockito.mockStatic(Site.class);
-		Mockito.when(Site.get(any())).thenReturn(siteMock);
-		when(siteMock.getService()).thenReturn(jiraServiceMock);
+    PowerMockito.mockStatic(Site.class);
+    Mockito.when(Site.get(any())).thenReturn(siteMock);
+    when(siteMock.getService()).thenReturn(jiraServiceMock);
 
-		stepExecution = spy(new NewComponentStep.Execution());
+    stepExecution = spy(new NewComponentStep.Execution());
 
-		when(runMock.getCauses()).thenReturn(null);
-		when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
-		doNothing().when(printStreamMock).println();
+    when(runMock.getCauses()).thenReturn(null);
+    when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
+    doNothing().when(printStreamMock).println();
 
-		final ResponseDataBuilder<Component> builder = ResponseData.builder();
-		when(jiraServiceMock.createComponent(any())).thenReturn(builder.successful(true).code(200).message("Success").build());
+    final ResponseDataBuilder<Component> builder = ResponseData.builder();
+    when(jiraServiceMock.createComponent(any()))
+        .thenReturn(builder.successful(true).code(200).message("Success").build());
 
-		stepExecution.listener = taskListenerMock;
-		stepExecution.envVars = envVarsMock;
-		stepExecution.run = runMock;
+    stepExecution.listener = taskListenerMock;
+    stepExecution.envVars = envVarsMock;
+    stepExecution.run = runMock;
 
-		doReturn(jiraServiceMock).when(stepExecution).getJiraService(any());
-	}
+    doReturn(jiraServiceMock).when(stepExecution).getJiraService(any());
+  }
 
-	@Test
-	public void testSuccessfulNewComponent() throws Exception {
-		final NewComponentStep step = new NewComponentStep(componentMock);
-		stepExecution.step = step;
+  @Test
+  public void testSuccessfulNewComponent() throws Exception {
+    final NewComponentStep step = new NewComponentStep(componentMock);
+    stepExecution.step = step;
 
-		// Execute Test.
-		stepExecution.run();
+    // Execute Test.
+    stepExecution.run();
 
-		// Assert Test
-		verify(jiraServiceMock, times(1)).createComponent(componentMock);
-		assertThat(stepExecution.step.isFailOnError()).isEqualTo(true);
-	}
+    // Assert Test
+    verify(jiraServiceMock, times(1)).createComponent(componentMock);
+    assertThat(stepExecution.step.isFailOnError()).isEqualTo(true);
+  }
 }

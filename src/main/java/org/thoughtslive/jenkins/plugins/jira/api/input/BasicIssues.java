@@ -25,8 +25,8 @@ import lombok.ToString;
 @Builder
 public class BasicIssues implements Serializable {
 
-	private static final long serialVersionUID = -8754445345363576641L;
+  private static final long serialVersionUID = -8754445345363576641L;
 
-	@JsonProperty("issues")
-	private BasicIssue[] issues;
+  @JsonProperty("issues")
+  private BasicIssue[] issues;
 }

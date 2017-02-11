@@ -23,74 +23,74 @@ import lombok.Getter;
  */
 public class EditVersionStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = -2029161404995143511L;
+  private static final long serialVersionUID = -2029161404995143511L;
 
-	@Getter
-	private final Version version;
+  @Getter
+  private final Version version;
 
-	@DataBoundConstructor
-	public EditVersionStep(final Version version) {
-		this.version = version;
-	}
+  @DataBoundConstructor
+  public EditVersionStep(final Version version) {
+    this.version = version;
+  }
 
-	@Extension
-	public static class DescriptorImpl extends JiraStepDescriptorImpl {
+  @Extension
+  public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
-		public DescriptorImpl() {
-			super(Execution.class);
-		}
+    public DescriptorImpl() {
+      super(Execution.class);
+    }
 
-		@Override
-		public String getFunctionName() {
-			return "jiraEditVersion";
-		}
+    @Override
+    public String getFunctionName() {
+      return "jiraEditVersion";
+    }
 
-		@Override
-		public String getDisplayName() {
-			return getPrefix() + "Edit Version";
-		}
+    @Override
+    public String getDisplayName() {
+      return getPrefix() + "Edit Version";
+    }
 
-		@Override
-		public boolean isMetaStep() {
-			return true;
-		}
-	}
+    @Override
+    public boolean isMetaStep() {
+      return true;
+    }
+  }
 
-	public static class Execution extends JiraStepExecution<ResponseData<Void>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Void>> {
 
-		private static final long serialVersionUID = -5317591315201131186L;
+    private static final long serialVersionUID = -5317591315201131186L;
 
-		@StepContextParameter
-		transient Run<?, ?> run;
+    @StepContextParameter
+    transient Run<?, ?> run;
 
-		@StepContextParameter
-		transient TaskListener listener;
+    @StepContextParameter
+    transient TaskListener listener;
 
-		@StepContextParameter
-		transient EnvVars envVars;
+    @StepContextParameter
+    transient EnvVars envVars;
 
-		@Inject
-		transient EditVersionStep step;
+    @Inject
+    transient EditVersionStep step;
 
-		@Override
-		protected ResponseData<Void> run() throws Exception {
+    @Override
+    protected ResponseData<Void> run() throws Exception {
 
-			ResponseData<Void> response = verifyInput();
+      ResponseData<Void> response = verifyInput();
 
-			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Updating version: " + step.getVersion());
-				final String description = addMeta(step.getVersion().getDescription());
-				step.getVersion().setDescription(description);
-				response = jiraService.updateVersion(step.getVersion());
-			}
+      if (response == null) {
+        logger.println("JIRA: Site - " + siteName + " - Updating version: " + step.getVersion());
+        final String description = addMeta(step.getVersion().getDescription());
+        step.getVersion().setDescription(description);
+        response = jiraService.updateVersion(step.getVersion());
+      }
 
-			return logResponse(response);
-		}
+      return logResponse(response);
+    }
 
-		@Override
-		protected <T> ResponseData<T> verifyInput() throws Exception {
-			// TODO Add validation - Or change the input type here ?
-			return verifyCommon(step, listener, envVars, run);
-		}
-	}
+    @Override
+    protected <T> ResponseData<T> verifyInput() throws Exception {
+      // TODO Add validation - Or change the input type here ?
+      return verifyCommon(step, listener, envVars, run);
+    }
+  }
 }

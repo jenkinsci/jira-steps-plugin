@@ -25,30 +25,30 @@ import lombok.ToString;
 @Builder
 public class Worklog implements Serializable {
 
-	private static final long serialVersionUID = -7546905758922665243L;
+  private static final long serialVersionUID = -7546905758922665243L;
 
-	@JsonProperty("issueUri")
-	private URI issueUri;
+  @JsonProperty("issueUri")
+  private URI issueUri;
 
-	@JsonProperty("author")
-	private User author;
+  @JsonProperty("author")
+  private User author;
 
-	@JsonProperty("updateAuthor")
-	private User updateAuthor;
+  @JsonProperty("updateAuthor")
+  private User updateAuthor;
 
-	@JsonProperty("comment")
-	private String comment;
+  @JsonProperty("comment")
+  private String comment;
 
-	@JsonProperty("creationDate")
-	private DateTime creationDate;
+  @JsonProperty("creationDate")
+  private DateTime creationDate;
 
-	@JsonProperty("updateDate")
-	private DateTime updateDate;
+  @JsonProperty("updateDate")
+  private DateTime updateDate;
 
-	@JsonProperty("startDate")
-	private DateTime startDate;
+  @JsonProperty("startDate")
+  private DateTime startDate;
 
-	@JsonProperty("minutesSpent")
-	private int minutesSpent;
+  @JsonProperty("minutesSpent")
+  private int minutesSpent;
 
 }

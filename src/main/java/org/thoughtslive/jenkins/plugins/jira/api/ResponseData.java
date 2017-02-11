@@ -15,15 +15,15 @@ import lombok.ToString;
 @Builder
 public class ResponseData<T> implements Serializable {
 
-	private static final long serialVersionUID = 7846727738826103343L;
+  private static final long serialVersionUID = 7846727738826103343L;
 
-	private boolean successful;
+  private boolean successful;
 
-	private int code;
+  private int code;
 
-	private String message;
+  private String message;
 
-	private String error;
+  private String error;
 
-	private T data;
+  private T data;
 }

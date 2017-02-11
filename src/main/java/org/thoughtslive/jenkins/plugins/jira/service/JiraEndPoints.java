@@ -38,104 +38,106 @@ import retrofit2.http.Path;
  */
 public interface JiraEndPoints {
 
-	// Server Info
-	@GET("rest/api/2/serverInfo")
-	Call<Map<String, Object>> getServerInfo();
+  // Server Info
+  @GET("rest/api/2/serverInfo")
+  Call<Map<String, Object>> getServerInfo();
 
-	// Components
-	@GET("rest/api/2/component/{id}")
-	Call<Component> getComponent(@Path("id") int id);
+  // Components
+  @GET("rest/api/2/component/{id}")
+  Call<Component> getComponent(@Path("id") int id);
 
-	@POST("rest/api/2/component")
-	Call<Component> createComponent(@Body Component component);
+  @POST("rest/api/2/component")
+  Call<Component> createComponent(@Body Component component);
 
-	@PUT("rest/api/2/component/{id}")
-	Call<Void> updateComponent(@Path("id") int id, @Body Component component);
+  @PUT("rest/api/2/component/{id}")
+  Call<Void> updateComponent(@Path("id") int id, @Body Component component);
 
-	@GET("rest/api/2/component/{id}/relatedIssueCounts")
-	Call<Count> getComponentIssueCount(@Path("id") int id);
+  @GET("rest/api/2/component/{id}/relatedIssueCounts")
+  Call<Count> getComponentIssueCount(@Path("id") int id);
 
-	// Issue
-	@GET("rest/api/2/issue/{issueIdOrKey}")
-	Call<Issue> getIssue(@Path("issueIdOrKey") String issueIdOrKey);
+  // Issue
+  @GET("rest/api/2/issue/{issueIdOrKey}")
+  Call<Issue> getIssue(@Path("issueIdOrKey") String issueIdOrKey);
 
-	@POST("rest/api/2/issue")
-	Call<BasicIssue> createIssue(@Body IssueInput issue);
+  @POST("rest/api/2/issue")
+  Call<BasicIssue> createIssue(@Body IssueInput issue);
 
-	@PUT("rest/api/2/issue/{issueIdOrKey}")
-	Call<BasicIssue> updateIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body IssueInput issue);
+  @PUT("rest/api/2/issue/{issueIdOrKey}")
+  Call<BasicIssue> updateIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body IssueInput issue);
 
-	@POST("rest/api/2/issue/bulk")
-	Call<BasicIssues> createIssues(@Body IssuesInput issues);
+  @POST("rest/api/2/issue/bulk")
+  Call<BasicIssues> createIssues(@Body IssuesInput issues);
 
-	@PUT("rest/api/2/issue/{issueIdOrKey}/assignee")
-	Call<Void> assignIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body User user);
+  @PUT("rest/api/2/issue/{issueIdOrKey}/assignee")
+  Call<Void> assignIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body User user);
 
-	@GET("rest/api/2/issue/{issueIdOrKey}/comment")
-	Call<Comments> getComments(@Path("issueIdOrKey") String issueIdOrKey);
+  @GET("rest/api/2/issue/{issueIdOrKey}/comment")
+  Call<Comments> getComments(@Path("issueIdOrKey") String issueIdOrKey);
 
-	@POST("rest/api/2/issue/{issueIdOrKey}/comment")
-	Call<Comment> addComment(@Path("issueIdOrKey") String issueIdOrKey, @Body Comment comment);
+  @POST("rest/api/2/issue/{issueIdOrKey}/comment")
+  Call<Comment> addComment(@Path("issueIdOrKey") String issueIdOrKey, @Body Comment comment);
 
-	@PUT("rest/api/2/issue/{issueIdOrKey}/comment/{id}")
-	Call<Comment> updateComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") int id, @Body Comment comment);
+  @PUT("rest/api/2/issue/{issueIdOrKey}/comment/{id}")
+  Call<Comment> updateComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") int id,
+      @Body Comment comment);
 
-	@GET("rest/api/2/issue/{issueIdOrKey}/comment/{id}")
-	Call<Comment> getComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") int id);
+  @GET("rest/api/2/issue/{issueIdOrKey}/comment/{id}")
+  Call<Comment> getComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") int id);
 
-	@POST("rest/api/2/issue/{issueIdOrKey}/notify")
-	Call<Void> notifyIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Notify notify);
+  @POST("rest/api/2/issue/{issueIdOrKey}/notify")
+  Call<Void> notifyIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Notify notify);
 
-	@GET("rest/api/2/issue/{issueIdOrKey}/transitions?expand=transitions.fields")
-	Call<Transitions> getTransitions(@Path("issueIdOrKey") String issueIdOrKey);
+  @GET("rest/api/2/issue/{issueIdOrKey}/transitions?expand=transitions.fields")
+  Call<Transitions> getTransitions(@Path("issueIdOrKey") String issueIdOrKey);
 
-	@POST("rest/api/2/issue/{issueIdOrKey}/transitions")
-	Call<Void> transitionIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body TransitionInput issue);
+  @POST("rest/api/2/issue/{issueIdOrKey}/transitions")
+  Call<Void> transitionIssue(@Path("issueIdOrKey") String issueIdOrKey,
+      @Body TransitionInput issue);
 
-	@GET("rest/api/2/issue/{issueIdOrKey}/watchers")
-	Call<Watches> getIssueWatches(@Path("issueIdOrKey") String issueIdOrKey);
+  @GET("rest/api/2/issue/{issueIdOrKey}/watchers")
+  Call<Watches> getIssueWatches(@Path("issueIdOrKey") String issueIdOrKey);
 
-	@POST("rest/api/2/issue/{issueIdOrKey}/watchers")
-	Call<Void> addIssueWatcher(@Path("issueIdOrKey") String issueIdOrKey, @Body User user);
+  @POST("rest/api/2/issue/{issueIdOrKey}/watchers")
+  Call<Void> addIssueWatcher(@Path("issueIdOrKey") String issueIdOrKey, @Body User user);
 
-	// Issue Links
-	@POST("rest/api/2/issueLink")
-	Call<Void> createIssueLink(@Body IssueLink issueLink);
+  // Issue Links
+  @POST("rest/api/2/issueLink")
+  Call<Void> createIssueLink(@Body IssueLink issueLink);
 
-	@GET("rest/api/2/issueLink/{linkId}")
-	Call<IssueLink> getIssueLink(@Path("linkId") int linkId);
+  @GET("rest/api/2/issueLink/{linkId}")
+  Call<IssueLink> getIssueLink(@Path("linkId") int linkId);
 
-	// Issue Link Types
-	@GET("rest/api/2/issueLinkType")
-	Call<IssueLinkTypes> getIssueLinkTypes();
+  // Issue Link Types
+  @GET("rest/api/2/issueLinkType")
+  Call<IssueLinkTypes> getIssueLinkTypes();
 
-	// Project
-	@GET("rest/api/2/project?expand=lead,description")
-	Call<Project[]> getProjects();
+  // Project
+  @GET("rest/api/2/project?expand=lead,description")
+  Call<Project[]> getProjects();
 
-	@GET("rest/api/2/project/{projectIdOrKey}")
-	Call<Project> getProject(@Path("projectIdOrKey") String projectId);
+  @GET("rest/api/2/project/{projectIdOrKey}")
+  Call<Project> getProject(@Path("projectIdOrKey") String projectId);
 
-	@GET("rest/api/2/project/{projectIdOrKey}/statuses")
-	Call<Status[]> getProjectStatuses(@Path("projectIdOrKey") String projectId);
+  @GET("rest/api/2/project/{projectIdOrKey}/statuses")
+  Call<Status[]> getProjectStatuses(@Path("projectIdOrKey") String projectId);
 
-	@GET("rest/api/2/project/{projectIdOrKey}/components")
-	Call<Component[]> getProjectComponents(@Path("projectIdOrKey") String projectId);
+  @GET("rest/api/2/project/{projectIdOrKey}/components")
+  Call<Component[]> getProjectComponents(@Path("projectIdOrKey") String projectId);
 
-	@GET("rest/api/2/project/{projectIdOrKey}/versions")
-	Call<Version[]> getProjectVersions(@Path("projectIdOrKey") String projectId);
+  @GET("rest/api/2/project/{projectIdOrKey}/versions")
+  Call<Version[]> getProjectVersions(@Path("projectIdOrKey") String projectId);
 
-	// Search
-	@POST("rest/api/2/search")
-	Call<SearchResult> searchIssues(@Body SearchResult search);
+  // Search
+  @POST("rest/api/2/search")
+  Call<SearchResult> searchIssues(@Body SearchResult search);
 
-	// Version
-	@POST("rest/api/2/version")
-	Call<Version> createVersion(@Body Version version);
+  // Version
+  @POST("rest/api/2/version")
+  Call<Version> createVersion(@Body Version version);
 
-	@GET("rest/api/2/version/{id}")
-	Call<Version> getVersion(@Path("id") int id);
+  @GET("rest/api/2/version/{id}")
+  Call<Version> getVersion(@Path("id") int id);
 
-	@PUT("rest/api/2/version/{id}")
-	Call<Void> updateVersion(@Path("id") int id, @Body Version version);
+  @PUT("rest/api/2/version/{id}")
+  Call<Void> updateVersion(@Path("id") int id, @Body Version version);
 }

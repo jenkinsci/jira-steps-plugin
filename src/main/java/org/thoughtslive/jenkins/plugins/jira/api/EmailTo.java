@@ -25,23 +25,23 @@ import lombok.ToString;
 @Builder
 public class EmailTo implements Serializable {
 
-	private static final long serialVersionUID = 1986209333454558972L;
+  private static final long serialVersionUID = 1986209333454558972L;
 
-	@JsonProperty("reporter")
-	private Boolean reporter;
+  @JsonProperty("reporter")
+  private Boolean reporter;
 
-	@JsonProperty("assignee")
-	private Boolean assignee;
+  @JsonProperty("assignee")
+  private Boolean assignee;
 
-	@JsonProperty("watchers")
-	private Boolean watchers;
+  @JsonProperty("watchers")
+  private Boolean watchers;
 
-	@JsonProperty("voters")
-	private Boolean voters;
+  @JsonProperty("voters")
+  private Boolean voters;
 
-	@JsonProperty("users")
-	private List<User> users = null;
+  @JsonProperty("users")
+  private List<User> users = null;
 
-	@JsonProperty("groups")
-	private List<Group> groups = null;
+  @JsonProperty("groups")
+  private List<Group> groups = null;
 }

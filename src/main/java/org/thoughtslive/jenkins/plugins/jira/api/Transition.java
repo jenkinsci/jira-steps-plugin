@@ -24,14 +24,14 @@ import lombok.ToString;
 @Builder
 public class Transition implements Serializable {
 
-	private static final long serialVersionUID = -5629975509520636980L;
+  private static final long serialVersionUID = -5629975509520636980L;
 
-	@JsonProperty("id")
-	private int id;
+  @JsonProperty("id")
+  private int id;
 
-	@JsonProperty("name")
-	private String name;
+  @JsonProperty("name")
+  private String name;
 
-	@JsonProperty("fields")
-	private Map<String, Field> fields = null;
+  @JsonProperty("fields")
+  private Map<String, Field> fields = null;
 }

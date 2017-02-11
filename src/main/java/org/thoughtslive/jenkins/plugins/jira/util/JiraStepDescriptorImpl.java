@@ -15,29 +15,29 @@ import hudson.util.ListBoxModel;
  */
 public abstract class JiraStepDescriptorImpl extends AbstractStepDescriptorImpl {
 
-	/**
-	 * Constructor.
-	 */
-	protected JiraStepDescriptorImpl(Class<? extends StepExecution> executionType) {
-		super(executionType);
-	}
+  /**
+   * Constructor.
+   */
+  protected JiraStepDescriptorImpl(Class<? extends StepExecution> executionType) {
+    super(executionType);
+  }
 
-	/**
-	 * Fills the site names to the list box.
-	 * 
-	 * @return {@link ListBoxModel}
-	 */
-	public ListBoxModel doFillSiteNameItems() {
-		ListBoxModel list = new ListBoxModel();
-		list.add("Please select", "");
-		for (Site site : Config.DESCRIPTOR.getSites()) {
-			list.add(site.getName());
-		}
-		return list;
-	}
+  /**
+   * Fills the site names to the list box.
+   * 
+   * @return {@link ListBoxModel}
+   */
+  public ListBoxModel doFillSiteNameItems() {
+    ListBoxModel list = new ListBoxModel();
+    list.add("Please select", "");
+    for (Site site : Config.DESCRIPTOR.getSites()) {
+      list.add(site.getName());
+    }
+    return list;
+  }
 
-	protected String getPrefix() {
-		return "JIRA Steps: ";
-	}
+  protected String getPrefix() {
+    return "JIRA Steps: ";
+  }
 
 }

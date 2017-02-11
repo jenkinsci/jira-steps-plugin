@@ -25,18 +25,18 @@ import lombok.ToString;
 @Builder
 public class Worklogs implements Serializable {
 
-	private static final long serialVersionUID = -1563612185428820541L;
+  private static final long serialVersionUID = -1563612185428820541L;
 
-	@JsonProperty("startAt")
-	private Integer startAt;
+  @JsonProperty("startAt")
+  private Integer startAt;
 
-	@JsonProperty("maxResults")
-	private Integer maxResults;
+  @JsonProperty("maxResults")
+  private Integer maxResults;
 
-	@JsonProperty("total")
-	private Integer total;
+  @JsonProperty("total")
+  private Integer total;
 
-	@JsonProperty("worklogs")
-	private List<Worklog> worklogs = null;
+  @JsonProperty("worklogs")
+  private List<Worklog> worklogs = null;
 
 }

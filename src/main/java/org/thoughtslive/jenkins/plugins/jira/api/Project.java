@@ -26,33 +26,33 @@ import lombok.ToString;
 @SuppressFBWarnings
 public class Project implements Serializable {
 
-	private static final long serialVersionUID = -4217312651288636551L;
+  private static final long serialVersionUID = -4217312651288636551L;
 
-	@JsonProperty("id")
-	private String id;
+  @JsonProperty("id")
+  private String id;
 
-	@JsonProperty("key")
-	private String key;
+  @JsonProperty("key")
+  private String key;
 
-	@JsonProperty("name")
-	private String name;
+  @JsonProperty("name")
+  private String name;
 
-	@JsonProperty("description")
-	private String description;
+  @JsonProperty("description")
+  private String description;
 
-	@JsonProperty("lead")
-	private User lead;
+  @JsonProperty("lead")
+  private User lead;
 
-	@JsonProperty("components")
-	private Component[] components;
+  @JsonProperty("components")
+  private Component[] components;
 
-	@JsonProperty("versions")
-	private Version[] versions;
+  @JsonProperty("versions")
+  private Version[] versions;
 
-	@JsonProperty("issueTypes")
-	private IssueType[] issueTypes;
+  @JsonProperty("issueTypes")
+  private IssueType[] issueTypes;
 
-	@JsonProperty("projectCategory")
-	private ProjectCategory projectCategory;
+  @JsonProperty("projectCategory")
+  private ProjectCategory projectCategory;
 
 }

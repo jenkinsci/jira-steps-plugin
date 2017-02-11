@@ -26,14 +26,14 @@ import lombok.ToString;
 @Builder
 public class Watches implements Serializable {
 
-	private static final long serialVersionUID = -722010307480344562L;
+  private static final long serialVersionUID = -722010307480344562L;
 
-	@JsonProperty("watchCount")
-	private Integer watchCount;
+  @JsonProperty("watchCount")
+  private Integer watchCount;
 
-	@JsonProperty("isWatching")
-	private Boolean isWatching;
+  @JsonProperty("isWatching")
+  private Boolean isWatching;
 
-	@JsonProperty("watchers")
-	private User[] watchers;
+  @JsonProperty("watchers")
+  private User[] watchers;
 }

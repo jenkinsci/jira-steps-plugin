@@ -24,18 +24,18 @@ import lombok.ToString;
 @Builder
 public class Issue implements Serializable {
 
-	private static final long serialVersionUID = -995543257376716760L;
+  private static final long serialVersionUID = -995543257376716760L;
 
-	@JsonProperty("id")
-	private String id;
+  @JsonProperty("id")
+  private String id;
 
-	@JsonProperty("key")
-	private String key;
+  @JsonProperty("key")
+  private String key;
 
-	@JsonProperty("fields")
-	private Fields fields;
+  @JsonProperty("fields")
+  private Fields fields;
 
-	@JsonProperty("transition")
-	private Transition transition = null;
+  @JsonProperty("transition")
+  private Transition transition = null;
 
 }

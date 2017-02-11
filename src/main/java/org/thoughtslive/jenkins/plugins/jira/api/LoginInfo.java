@@ -24,17 +24,17 @@ import lombok.ToString;
 @Builder
 public class LoginInfo implements Serializable {
 
-	private static final long serialVersionUID = 850858298837619649L;
+  private static final long serialVersionUID = 850858298837619649L;
 
-	@JsonProperty("failedLoginCount")
-	private int failedLoginCount;
+  @JsonProperty("failedLoginCount")
+  private int failedLoginCount;
 
-	@JsonProperty("loginCount")
-	private int loginCount;
+  @JsonProperty("loginCount")
+  private int loginCount;
 
-	@JsonProperty("lastFailedLoginDate")
-	private DateTime lastFailedLoginDate;
+  @JsonProperty("lastFailedLoginDate")
+  private DateTime lastFailedLoginDate;
 
-	@JsonProperty("previousLoginDate")
-	private DateTime previousLoginDate;
+  @JsonProperty("previousLoginDate")
+  private DateTime previousLoginDate;
 }

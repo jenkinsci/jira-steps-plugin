@@ -25,11 +25,11 @@ import lombok.ToString;
 @Builder
 public class Issues implements Serializable {
 
-	private static final long serialVersionUID = 3299430745665528801L;
+  private static final long serialVersionUID = 3299430745665528801L;
 
-	@JsonProperty("issueUpdates")
-	private Issue[] issueUpdates;
+  @JsonProperty("issueUpdates")
+  private Issue[] issueUpdates;
 
-	@JsonProperty("issues")
-	private Issue[] issues;
+  @JsonProperty("issues")
+  private Issue[] issues;
 }

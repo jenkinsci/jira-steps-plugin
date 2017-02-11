@@ -42,69 +42,71 @@ import hudson.model.TaskListener;
 @PrepareForTest({GetCommentsStep.class, Site.class})
 public class GetCommentsStepTest {
 
-	@Mock
-	TaskListener taskListenerMock;
-	@Mock
-	Run<?, ?> runMock;
-	@Mock
-	EnvVars envVarsMock;
-	@Mock
-	PrintStream printStreamMock;
-	@Mock
-	JiraService jiraServiceMock;
-	@Mock
-	Site siteMock;
+  @Mock
+  TaskListener taskListenerMock;
+  @Mock
+  Run<?, ?> runMock;
+  @Mock
+  EnvVars envVarsMock;
+  @Mock
+  PrintStream printStreamMock;
+  @Mock
+  JiraService jiraServiceMock;
+  @Mock
+  Site siteMock;
 
-	private GetCommentsStep.Execution stepExecution;
+  private GetCommentsStep.Execution stepExecution;
 
-	@Before
-	public void setup() {
+  @Before
+  public void setup() {
 
-		// Prepare site.
-		when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
-		when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
+    // Prepare site.
+    when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
+    when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
 
-		PowerMockito.mockStatic(Site.class);
-		Mockito.when(Site.get(any())).thenReturn(siteMock);
-		when(siteMock.getService()).thenReturn(jiraServiceMock);
+    PowerMockito.mockStatic(Site.class);
+    Mockito.when(Site.get(any())).thenReturn(siteMock);
+    when(siteMock.getService()).thenReturn(jiraServiceMock);
 
-		stepExecution = spy(new GetCommentsStep.Execution());
+    stepExecution = spy(new GetCommentsStep.Execution());
 
-		when(runMock.getCauses()).thenReturn(null);
-		when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
-		doNothing().when(printStreamMock).println();
+    when(runMock.getCauses()).thenReturn(null);
+    when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
+    doNothing().when(printStreamMock).println();
 
-		final ResponseDataBuilder<Comments> builder = ResponseData.builder();
-		when(jiraServiceMock.getComments(anyString())).thenReturn(builder.successful(true).code(200).message("Success").build());
+    final ResponseDataBuilder<Comments> builder = ResponseData.builder();
+    when(jiraServiceMock.getComments(anyString()))
+        .thenReturn(builder.successful(true).code(200).message("Success").build());
 
-		stepExecution.listener = taskListenerMock;
-		stepExecution.envVars = envVarsMock;
-		stepExecution.run = runMock;
+    stepExecution.listener = taskListenerMock;
+    stepExecution.envVars = envVarsMock;
+    stepExecution.run = runMock;
 
-		doReturn(jiraServiceMock).when(stepExecution).getJiraService(any());
-	}
+    doReturn(jiraServiceMock).when(stepExecution).getJiraService(any());
+  }
 
-	@Test
-	public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
-		final GetCommentsStep step = new GetCommentsStep("");
-		stepExecution.step = step;
+  @Test
+  public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
+    final GetCommentsStep step = new GetCommentsStep("");
+    stepExecution.step = step;
 
-		// Execute and assert Test.
-		assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-			stepExecution.run();
-		}).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException").withNoCause();
-	}
+    // Execute and assert Test.
+    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
+      stepExecution.run();
+    }).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException")
+        .withNoCause();
+  }
 
-	@Test
-	public void testSuccessfulGetComments() throws Exception {
-		final GetCommentsStep step = new GetCommentsStep("TEST-1");
-		stepExecution.step = step;
+  @Test
+  public void testSuccessfulGetComments() throws Exception {
+    final GetCommentsStep step = new GetCommentsStep("TEST-1");
+    stepExecution.step = step;
 
-		// Execute Test.
-		stepExecution.run();
+    // Execute Test.
+    stepExecution.run();
 
-		// Assert Test
-		verify(jiraServiceMock, times(1)).getComments("TEST-1");
-		assertThat(stepExecution.step.isFailOnError()).isEqualTo(true);
-	}
+    // Assert Test
+    verify(jiraServiceMock, times(1)).getComments("TEST-1");
+    assertThat(stepExecution.step.isFailOnError()).isEqualTo(true);
+  }
 }

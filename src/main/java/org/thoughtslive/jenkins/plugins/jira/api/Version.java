@@ -24,39 +24,39 @@ import lombok.ToString;
 @Builder
 public class Version implements Serializable {
 
-	private static final long serialVersionUID = 6265539232947567567L;
+  private static final long serialVersionUID = 6265539232947567567L;
 
-	@JsonProperty("id")
-	private int id;
+  @JsonProperty("id")
+  private int id;
 
-	@JsonProperty("name")
-	private String name;
+  @JsonProperty("name")
+  private String name;
 
-	@JsonProperty("description")
-	private String description;
+  @JsonProperty("description")
+  private String description;
 
-	@JsonProperty("archived")
-	private Boolean archived;
+  @JsonProperty("archived")
+  private Boolean archived;
 
-	@JsonProperty("released")
-	private Boolean released;
+  @JsonProperty("released")
+  private Boolean released;
 
-	@JsonProperty("startDate")
-	private String startDate;
+  @JsonProperty("startDate")
+  private String startDate;
 
-	@JsonProperty("releaseDate")
-	private String releaseDate;
+  @JsonProperty("releaseDate")
+  private String releaseDate;
 
-	@JsonProperty("userStartDate")
-	private String userStartDate;
+  @JsonProperty("userStartDate")
+  private String userStartDate;
 
-	@JsonProperty("userReleaseDate")
-	private String userReleaseDate;
+  @JsonProperty("userReleaseDate")
+  private String userReleaseDate;
 
-	@JsonProperty("project")
-	private String project;
+  @JsonProperty("project")
+  private String project;
 
-	@JsonProperty("projectId")
-	private int projectId;
+  @JsonProperty("projectId")
+  private int projectId;
 
 }

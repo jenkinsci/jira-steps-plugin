@@ -11,66 +11,67 @@ import okio.Buffer;
 
 public class RequestAdapter implements HttpRequest {
 
-	private Request request;
+  private Request request;
 
-	public RequestAdapter(Request request) {
-		this.request = request;
-	}
+  public RequestAdapter(Request request) {
+    this.request = request;
+  }
 
-	@Override
-	public Map<String, String> getAllHeaders() {
-		HashMap<String, String> headers = new HashMap<String, String>();
-		for (String key : request.headers().names()) {
-			headers.put(key, request.header(key));
-		}
-		return headers;
-	}
+  @Override
+  public Map<String, String> getAllHeaders() {
+    HashMap<String, String> headers = new HashMap<String, String>();
+    for (String key : request.headers().names()) {
+      headers.put(key, request.header(key));
+    }
+    return headers;
+  }
 
-	@Override
-	public String getContentType() {
-		if (request.body() != null) {
-			return (request.body().contentType() != null) ? request.body().contentType().toString() : null;
-		}
-		return null;
-	}
+  @Override
+  public String getContentType() {
+    if (request.body() != null) {
+      return (request.body().contentType() != null) ? request.body().contentType().toString()
+          : null;
+    }
+    return null;
+  }
 
-	@Override
-	public String getHeader(String key) {
-		return request.header(key);
-	}
+  @Override
+  public String getHeader(String key) {
+    return request.header(key);
+  }
 
-	@Override
-	public InputStream getMessagePayload() throws IOException {
-		if (request.body() == null) {
-			return null;
-		}
-		Buffer buf = new Buffer();
-		request.body().writeTo(buf);
-		return buf.inputStream();
-	}
+  @Override
+  public InputStream getMessagePayload() throws IOException {
+    if (request.body() == null) {
+      return null;
+    }
+    Buffer buf = new Buffer();
+    request.body().writeTo(buf);
+    return buf.inputStream();
+  }
 
-	@Override
-	public String getMethod() {
-		return request.method();
-	}
+  @Override
+  public String getMethod() {
+    return request.method();
+  }
 
-	@Override
-	public String getRequestUrl() {
-		return request.url().toString();
-	}
+  @Override
+  public String getRequestUrl() {
+    return request.url().toString();
+  }
 
-	@Override
-	public void setHeader(String key, String value) {
-		request = request.newBuilder().header(key, value).build();
-	}
+  @Override
+  public void setHeader(String key, String value) {
+    request = request.newBuilder().header(key, value).build();
+  }
 
-	@Override
-	public void setRequestUrl(String url) {
-		request = request.newBuilder().url(url).build();
-	}
+  @Override
+  public void setRequestUrl(String url) {
+    request = request.newBuilder().url(url).build();
+  }
 
-	@Override
-	public Object unwrap() {
-		return request;
-	}
+  @Override
+  public Object unwrap() {
+    return request;
+  }
 }

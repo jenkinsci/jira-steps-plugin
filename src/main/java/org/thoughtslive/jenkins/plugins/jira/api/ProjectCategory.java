@@ -24,15 +24,15 @@ import lombok.ToString;
 @Builder
 public class ProjectCategory implements Serializable {
 
-	private static final long serialVersionUID = -2926858348856037686L;
+  private static final long serialVersionUID = -2926858348856037686L;
 
-	@JsonProperty("id")
-	private String id;
+  @JsonProperty("id")
+  private String id;
 
-	@JsonProperty("description")
-	private String description;
+  @JsonProperty("description")
+  private String description;
 
-	@JsonProperty("name")
-	private String name;
+  @JsonProperty("name")
+  private String name;
 
 }

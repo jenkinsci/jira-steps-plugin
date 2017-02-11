@@ -27,92 +27,92 @@ import lombok.Getter;
  */
 public class EditIssueStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = -4542562652787306504L;
+  private static final long serialVersionUID = -4542562652787306504L;
 
-	@Getter
-	private final String idOrKey;
+  @Getter
+  private final String idOrKey;
 
-	@Getter
-	private final IssueInput issue;
+  @Getter
+  private final IssueInput issue;
 
-	@DataBoundConstructor
-	public EditIssueStep(final String idOrKey, final IssueInput issue) {
-		this.idOrKey = idOrKey;
-		this.issue = issue;
-	}
+  @DataBoundConstructor
+  public EditIssueStep(final String idOrKey, final IssueInput issue) {
+    this.idOrKey = idOrKey;
+    this.issue = issue;
+  }
 
-	@Extension
-	public static class DescriptorImpl extends JiraStepDescriptorImpl {
+  @Extension
+  public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
-		public DescriptorImpl() {
-			super(Execution.class);
-		}
+    public DescriptorImpl() {
+      super(Execution.class);
+    }
 
-		@Override
-		public String getFunctionName() {
-			return "jiraEditIssue";
-		}
+    @Override
+    public String getFunctionName() {
+      return "jiraEditIssue";
+    }
 
-		@Override
-		public String getDisplayName() {
-			return getPrefix() + "Edit Issue";
-		}
+    @Override
+    public String getDisplayName() {
+      return getPrefix() + "Edit Issue";
+    }
 
-		@Override
-		public boolean isMetaStep() {
-			return true;
-		}
-	}
+    @Override
+    public boolean isMetaStep() {
+      return true;
+    }
+  }
 
-	public static class Execution extends JiraStepExecution<ResponseData<BasicIssue>> {
+  public static class Execution extends JiraStepExecution<ResponseData<BasicIssue>> {
 
-		private static final long serialVersionUID = -4127725325057889625L;
+    private static final long serialVersionUID = -4127725325057889625L;
 
-		@StepContextParameter
-		transient Run<?, ?> run;
+    @StepContextParameter
+    transient Run<?, ?> run;
 
-		@StepContextParameter
-		transient TaskListener listener;
+    @StepContextParameter
+    transient TaskListener listener;
 
-		@StepContextParameter
-		transient EnvVars envVars;
+    @StepContextParameter
+    transient EnvVars envVars;
 
-		@Inject
-		transient EditIssueStep step;
+    @Inject
+    transient EditIssueStep step;
 
-		@Override
-		protected ResponseData<BasicIssue> run() throws Exception {
+    @Override
+    protected ResponseData<BasicIssue> run() throws Exception {
 
-			ResponseData<BasicIssue> response = verifyInput();
+      ResponseData<BasicIssue> response = verifyInput();
 
-			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Updating issue: " + step.getIdOrKey());
-				final String description = addPanelMeta(step.getIssue().getFields().getDescription());
-				step.getIssue().getFields().setDescription(description);
-				response = jiraService.updateIssue(step.getIdOrKey(), step.getIssue());
-			}
+      if (response == null) {
+        logger.println("JIRA: Site - " + siteName + " - Updating issue: " + step.getIdOrKey());
+        final String description = addPanelMeta(step.getIssue().getFields().getDescription());
+        step.getIssue().getFields().setDescription(description);
+        response = jiraService.updateIssue(step.getIdOrKey(), step.getIssue());
+      }
 
-			return logResponse(response);
-		}
+      return logResponse(response);
+    }
 
-		@Override
-		protected <T> ResponseData<T> verifyInput() throws Exception {
-			String errorMessage = null;
-			ResponseData<T> response = verifyCommon(step, listener, envVars, run);
+    @Override
+    protected <T> ResponseData<T> verifyInput() throws Exception {
+      String errorMessage = null;
+      ResponseData<T> response = verifyCommon(step, listener, envVars, run);
 
-			if (response == null) {
-				final String idOrKey = Util.fixEmpty(step.getIdOrKey());
+      if (response == null) {
+        final String idOrKey = Util.fixEmpty(step.getIdOrKey());
 
-				if (idOrKey == null) {
-					errorMessage = "idOrKey is empty or null.";
-				}
+        if (idOrKey == null) {
+          errorMessage = "idOrKey is empty or null.";
+        }
 
-				// TODO Add validation - Or change the input type here ?
-				if (errorMessage != null) {
-					response = buildErrorResponse(new RuntimeException(errorMessage));
-				}
-			}
-			return response;
-		}
-	}
+        // TODO Add validation - Or change the input type here ?
+        if (errorMessage != null) {
+          response = buildErrorResponse(new RuntimeException(errorMessage));
+        }
+      }
+      return response;
+    }
+  }
 }

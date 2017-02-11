@@ -24,79 +24,80 @@ import lombok.Getter;
  */
 public class GetComponentStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 387862257528432812L;
+  private static final long serialVersionUID = 387862257528432812L;
 
-	@Getter
-	private final int id;
+  @Getter
+  private final int id;
 
-	@DataBoundConstructor
-	public GetComponentStep(final int id) {
-		this.id = id;
-	}
+  @DataBoundConstructor
+  public GetComponentStep(final int id) {
+    this.id = id;
+  }
 
-	@Extension
-	public static class DescriptorImpl extends JiraStepDescriptorImpl {
+  @Extension
+  public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
-		public DescriptorImpl() {
-			super(Execution.class);
-		}
+    public DescriptorImpl() {
+      super(Execution.class);
+    }
 
-		@Override
-		public String getFunctionName() {
-			return "jiraGetComponent";
-		}
+    @Override
+    public String getFunctionName() {
+      return "jiraGetComponent";
+    }
 
-		@Override
-		public String getDisplayName() {
-			return getPrefix() + "Get Component";
-		}
+    @Override
+    public String getDisplayName() {
+      return getPrefix() + "Get Component";
+    }
 
-	}
+  }
 
-	public static class Execution extends JiraStepExecution<ResponseData<Component>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Component>> {
 
-		private static final long serialVersionUID = 211769231724671924L;
+    private static final long serialVersionUID = 211769231724671924L;
 
-		@StepContextParameter
-		transient Run<?, ?> run;
+    @StepContextParameter
+    transient Run<?, ?> run;
 
-		@StepContextParameter
-		transient TaskListener listener;
+    @StepContextParameter
+    transient TaskListener listener;
 
-		@StepContextParameter
-		transient EnvVars envVars;
+    @StepContextParameter
+    transient EnvVars envVars;
 
-		@Inject
-		transient GetComponentStep step;
+    @Inject
+    transient GetComponentStep step;
 
-		@Override
-		protected ResponseData<Component> run() throws Exception {
+    @Override
+    protected ResponseData<Component> run() throws Exception {
 
-			ResponseData<Component> response = verifyInput();
+      ResponseData<Component> response = verifyInput();
 
-			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Querying component with id: " + step.getId());
-				response = jiraService.getComponent(step.getId());
-			}
+      if (response == null) {
+        logger
+            .println("JIRA: Site - " + siteName + " - Querying component with id: " + step.getId());
+        response = jiraService.getComponent(step.getId());
+      }
 
-			return logResponse(response);
-		}
+      return logResponse(response);
+    }
 
-		@Override
-		protected <T> ResponseData<T> verifyInput() throws Exception {
-			String errorMessage = null;
-			ResponseData<T> response = verifyCommon(step, listener, envVars, run);
+    @Override
+    protected <T> ResponseData<T> verifyInput() throws Exception {
+      String errorMessage = null;
+      ResponseData<T> response = verifyCommon(step, listener, envVars, run);
 
-			if (response == null) {
-				if (step.getId() <= 0) {
-					errorMessage = "id less than or equals to zero.";
-				}
+      if (response == null) {
+        if (step.getId() <= 0) {
+          errorMessage = "id less than or equals to zero.";
+        }
 
-				if (errorMessage != null) {
-					response = buildErrorResponse(new RuntimeException(errorMessage));
-				}
-			}
-			return response;
-		}
-	}
+        if (errorMessage != null) {
+          response = buildErrorResponse(new RuntimeException(errorMessage));
+        }
+      }
+      return response;
+    }
+  }
 }

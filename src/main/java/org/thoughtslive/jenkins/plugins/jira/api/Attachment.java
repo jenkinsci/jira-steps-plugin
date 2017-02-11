@@ -25,26 +25,26 @@ import lombok.ToString;
 @Builder
 public class Attachment implements Serializable {
 
-	private static final long serialVersionUID = -6603159858268979491L;
+  private static final long serialVersionUID = -6603159858268979491L;
 
-	@JsonProperty("id")
-	private String id;
+  @JsonProperty("id")
+  private String id;
 
-	@JsonProperty("filename")
-	private String filename;
+  @JsonProperty("filename")
+  private String filename;
 
-	@JsonProperty("author")
-	private User author;
+  @JsonProperty("author")
+  private User author;
 
-	@JsonProperty("created")
-	private DateTime created;
+  @JsonProperty("created")
+  private DateTime created;
 
-	@JsonProperty("size")
-	private Integer size;
+  @JsonProperty("size")
+  private Integer size;
 
-	@JsonProperty("mimeType")
-	private String mimeType;
+  @JsonProperty("mimeType")
+  private String mimeType;
 
-	@JsonProperty("content")
-	private String content;
+  @JsonProperty("content")
+  private String content;
 }

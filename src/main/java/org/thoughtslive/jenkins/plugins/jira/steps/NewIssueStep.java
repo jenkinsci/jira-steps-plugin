@@ -24,74 +24,74 @@ import lombok.Getter;
  */
 public class NewIssueStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = -3952881085849787165L;
+  private static final long serialVersionUID = -3952881085849787165L;
 
-	@Getter
-	private final IssueInput issue;
+  @Getter
+  private final IssueInput issue;
 
-	@DataBoundConstructor
-	public NewIssueStep(final IssueInput issue) {
-		this.issue = issue;
-	}
+  @DataBoundConstructor
+  public NewIssueStep(final IssueInput issue) {
+    this.issue = issue;
+  }
 
-	@Extension
-	public static class DescriptorImpl extends JiraStepDescriptorImpl {
+  @Extension
+  public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
-		public DescriptorImpl() {
-			super(Execution.class);
-		}
+    public DescriptorImpl() {
+      super(Execution.class);
+    }
 
-		@Override
-		public String getFunctionName() {
-			return "jiraNewIssue";
-		}
+    @Override
+    public String getFunctionName() {
+      return "jiraNewIssue";
+    }
 
-		@Override
-		public String getDisplayName() {
-			return getPrefix() + "Create New Issue";
-		}
+    @Override
+    public String getDisplayName() {
+      return getPrefix() + "Create New Issue";
+    }
 
-		@Override
-		public boolean isMetaStep() {
-			return true;
-		}
-	}
+    @Override
+    public boolean isMetaStep() {
+      return true;
+    }
+  }
 
-	public static class Execution extends JiraStepExecution<ResponseData<BasicIssue>> {
+  public static class Execution extends JiraStepExecution<ResponseData<BasicIssue>> {
 
-		private static final long serialVersionUID = 2782781910330634547L;
+    private static final long serialVersionUID = 2782781910330634547L;
 
-		@StepContextParameter
-		transient Run<?, ?> run;
+    @StepContextParameter
+    transient Run<?, ?> run;
 
-		@StepContextParameter
-		transient TaskListener listener;
+    @StepContextParameter
+    transient TaskListener listener;
 
-		@StepContextParameter
-		transient EnvVars envVars;
+    @StepContextParameter
+    transient EnvVars envVars;
 
-		@Inject
-		transient NewIssueStep step;
+    @Inject
+    transient NewIssueStep step;
 
-		@Override
-		protected ResponseData<BasicIssue> run() throws Exception {
+    @Override
+    protected ResponseData<BasicIssue> run() throws Exception {
 
-			ResponseData<BasicIssue> response = verifyInput();
+      ResponseData<BasicIssue> response = verifyInput();
 
-			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Creating new issue: " + step.getIssue());
-				final String description = addPanelMeta(step.getIssue().getFields().getDescription());
-				step.getIssue().getFields().setDescription(description);
-				response = jiraService.createIssue(step.getIssue());
-			}
+      if (response == null) {
+        logger.println("JIRA: Site - " + siteName + " - Creating new issue: " + step.getIssue());
+        final String description = addPanelMeta(step.getIssue().getFields().getDescription());
+        step.getIssue().getFields().setDescription(description);
+        response = jiraService.createIssue(step.getIssue());
+      }
 
-			return logResponse(response);
-		}
+      return logResponse(response);
+    }
 
-		@Override
-		protected <T> ResponseData<T> verifyInput() throws Exception {
-			// TODO Add validation - Or change the input type here ?
-			return verifyCommon(step, listener, envVars, run);
-		}
-	}
+    @Override
+    protected <T> ResponseData<T> verifyInput() throws Exception {
+      // TODO Add validation - Or change the input type here ?
+      return verifyCommon(step, listener, envVars, run);
+    }
+  }
 }

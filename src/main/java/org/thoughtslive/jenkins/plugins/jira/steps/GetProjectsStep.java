@@ -21,63 +21,62 @@ import hudson.model.TaskListener;
  */
 public class GetProjectsStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 2689031885988669114L;
+  private static final long serialVersionUID = 2689031885988669114L;
 
-	@DataBoundConstructor
-	public GetProjectsStep() {
-	}
+  @DataBoundConstructor
+  public GetProjectsStep() {}
 
-	@Extension
-	public static class DescriptorImpl extends JiraStepDescriptorImpl {
+  @Extension
+  public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
-		public DescriptorImpl() {
-			super(Execution.class);
-		}
+    public DescriptorImpl() {
+      super(Execution.class);
+    }
 
-		@Override
-		public String getFunctionName() {
-			return "jiraGetProjects";
-		}
+    @Override
+    public String getFunctionName() {
+      return "jiraGetProjects";
+    }
 
-		@Override
-		public String getDisplayName() {
-			return getPrefix() + "Get Projects";
-		}
+    @Override
+    public String getDisplayName() {
+      return getPrefix() + "Get Projects";
+    }
 
-	}
+  }
 
-	public static class Execution extends JiraStepExecution<ResponseData<Project[]>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Project[]>> {
 
-		private static final long serialVersionUID = -5702548715847670073L;
+    private static final long serialVersionUID = -5702548715847670073L;
 
-		@StepContextParameter
-		transient Run<?, ?> run;
+    @StepContextParameter
+    transient Run<?, ?> run;
 
-		@StepContextParameter
-		transient TaskListener listener;
+    @StepContextParameter
+    transient TaskListener listener;
 
-		@StepContextParameter
-		transient EnvVars envVars;
+    @StepContextParameter
+    transient EnvVars envVars;
 
-		@Inject
-		transient GetProjectsStep step;
+    @Inject
+    transient GetProjectsStep step;
 
-		@Override
-		protected ResponseData<Project[]> run() throws Exception {
+    @Override
+    protected ResponseData<Project[]> run() throws Exception {
 
-			ResponseData<Project[]> response = verifyInput();
+      ResponseData<Project[]> response = verifyInput();
 
-			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Querying All Projects");
-				response = jiraService.getProjects();
-			}
+      if (response == null) {
+        logger.println("JIRA: Site - " + siteName + " - Querying All Projects");
+        response = jiraService.getProjects();
+      }
 
-			return logResponse(response);
-		}
+      return logResponse(response);
+    }
 
-		@Override
-		protected <T> ResponseData<T> verifyInput() throws Exception {
-			return verifyCommon(step, listener, envVars, run);
-		}
-	}
+    @Override
+    protected <T> ResponseData<T> verifyInput() throws Exception {
+      return verifyCommon(step, listener, envVars, run);
+    }
+  }
 }

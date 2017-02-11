@@ -24,35 +24,35 @@ import lombok.ToString;
 @Builder
 public class Component implements Serializable {
 
-	private static final long serialVersionUID = -6567966032642998244L;
+  private static final long serialVersionUID = -6567966032642998244L;
 
-	// NOT VALID while sending this as Input.
-	@JsonProperty("id")
-	private int id;
+  // NOT VALID while sending this as Input.
+  @JsonProperty("id")
+  private int id;
 
-	@JsonProperty("name")
-	private String name;
+  @JsonProperty("name")
+  private String name;
 
-	@JsonProperty("description")
-	private String description;
+  @JsonProperty("description")
+  private String description;
 
-	@JsonProperty("leadUserName")
-	private String leadUserName;
+  @JsonProperty("leadUserName")
+  private String leadUserName;
 
-	// NOT VALID while sending this as Input.
-	@JsonProperty("realAssignee")
-	private String realAssignee;
+  // NOT VALID while sending this as Input.
+  @JsonProperty("realAssignee")
+  private String realAssignee;
 
-	@JsonProperty("assigneeType")
-	private String userType;
+  @JsonProperty("assigneeType")
+  private String userType;
 
-	@JsonProperty("isAssigneeTypeValid")
-	private boolean isAssigneeTypeValid;
+  @JsonProperty("isAssigneeTypeValid")
+  private boolean isAssigneeTypeValid;
 
-	@JsonProperty("project")
-	private String project;
+  @JsonProperty("project")
+  private String project;
 
-	@JsonProperty("projectId")
-	private int projectId;
+  @JsonProperty("projectId")
+  private int projectId;
 
 }

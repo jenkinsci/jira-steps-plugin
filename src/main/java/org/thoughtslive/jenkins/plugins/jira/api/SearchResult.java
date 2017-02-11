@@ -26,20 +26,20 @@ import lombok.ToString;
 @Builder
 public class SearchResult implements Serializable {
 
-	private static final long serialVersionUID = -7424319344875196054L;
+  private static final long serialVersionUID = -7424319344875196054L;
 
-	@JsonProperty("jql")
-	private String jql;
+  @JsonProperty("jql")
+  private String jql;
 
-	@JsonProperty("startAt")
-	private int startAt;
+  @JsonProperty("startAt")
+  private int startAt;
 
-	@JsonProperty("maxResults")
-	private int maxResults;
+  @JsonProperty("maxResults")
+  private int maxResults;
 
-	@JsonProperty("total")
-	private int total;
+  @JsonProperty("total")
+  private int total;
 
-	@JsonProperty("issues")
-	private BasicIssue[] issues;
+  @JsonProperty("issues")
+  private BasicIssue[] issues;
 }

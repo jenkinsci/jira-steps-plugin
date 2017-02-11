@@ -24,14 +24,14 @@ import lombok.ToString;
 @Builder
 public class Session implements Serializable {
 
-	private static final long serialVersionUID = 619046370512822215L;
+  private static final long serialVersionUID = 619046370512822215L;
 
-	@JsonProperty("userUri")
-	private URI userUri;
+  @JsonProperty("userUri")
+  private URI userUri;
 
-	@JsonProperty("username")
-	private String username;
+  @JsonProperty("username")
+  private String username;
 
-	@JsonProperty("loginInfo")
-	private LoginInfo loginInfo;
+  @JsonProperty("loginInfo")
+  private LoginInfo loginInfo;
 }

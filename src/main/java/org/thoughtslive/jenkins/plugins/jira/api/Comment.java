@@ -25,24 +25,24 @@ import lombok.ToString;
 @Builder
 public class Comment implements Serializable {
 
-	private static final long serialVersionUID = -9114809641205019687L;
+  private static final long serialVersionUID = -9114809641205019687L;
 
-	@JsonProperty("id")
-	private int id;
+  @JsonProperty("id")
+  private int id;
 
-	@JsonProperty("author")
-	private User author;
+  @JsonProperty("author")
+  private User author;
 
-	@JsonProperty("body")
-	private String body;
+  @JsonProperty("body")
+  private String body;
 
-	@JsonProperty("updateAuthor")
-	private User updateAuthor;
+  @JsonProperty("updateAuthor")
+  private User updateAuthor;
 
-	@JsonProperty("created")
-	private DateTime created;
+  @JsonProperty("created")
+  private DateTime created;
 
-	@JsonProperty("updated")
-	private DateTime updated;
+  @JsonProperty("updated")
+  private DateTime updated;
 
 }

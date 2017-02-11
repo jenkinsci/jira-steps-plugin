@@ -23,15 +23,15 @@ import lombok.ToString;
 @Builder
 public class Resolution implements Serializable {
 
-	private static final long serialVersionUID = -6861937760804922080L;
+  private static final long serialVersionUID = -6861937760804922080L;
 
-	@JsonProperty("id")
-	private String id;
+  @JsonProperty("id")
+  private String id;
 
-	@JsonProperty("name")
-	private String name;
+  @JsonProperty("name")
+  private String name;
 
-	@JsonProperty("description")
-	private String description;
+  @JsonProperty("description")
+  private String description;
 
 }

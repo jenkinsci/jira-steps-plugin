@@ -30,138 +30,134 @@ import hudson.model.Cause.UserIdCause;
  * @see AbstractSynchronousNonBlockingStepExecution
  * @author Naresh Rayapati
  *
- * @param <T>
- *            the type of the return value (may be {@link Void})
+ * @param <T> the type of the return value (may be {@link Void})
  */
 public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockingStepExecution<T> {
 
-	private static final long serialVersionUID = 3856797875872780808L;
+  private static final long serialVersionUID = 3856797875872780808L;
 
-	protected transient PrintStream logger = null;
-	protected transient String siteName = null;
-	protected transient JiraService jiraService = null;
-	protected transient boolean failOnError = true;
-	protected transient String buildUser = null;
-	protected transient String buildUrl = null;
+  protected transient PrintStream logger = null;
+  protected transient String siteName = null;
+  protected transient JiraService jiraService = null;
+  protected transient boolean failOnError = true;
+  protected transient String buildUser = null;
+  protected transient String buildUrl = null;
 
-	/**
-	 * Verifies the common input for all the stesp.
-	 * 
-	 * @param step
-	 * @param listener
-	 *            taskListener
-	 * @param envVars
-	 *            environment vars.
-	 * @return response if JIRA_SITE is empty or if there is no site configured with JIRA_SITE.
-	 * @throws AbortException
-	 *             when failOnError is true and JIRA_SITE is missing.
-	 */
-	@SuppressWarnings("hiding")
-	protected <T> ResponseData<T> verifyCommon(final BasicJiraStep step, final TaskListener listener, final EnvVars envVars, final Run<?, ?> run) throws AbortException {
+  /**
+   * Verifies the common input for all the stesp.
+   * 
+   * @param step
+   * @param listener taskListener
+   * @param envVars environment vars.
+   * @return response if JIRA_SITE is empty or if there is no site configured with JIRA_SITE.
+   * @throws AbortException when failOnError is true and JIRA_SITE is missing.
+   */
+  @SuppressWarnings("hiding")
+  protected <T> ResponseData<T> verifyCommon(final BasicJiraStep step, final TaskListener listener,
+      final EnvVars envVars, final Run<?, ?> run) throws AbortException {
 
-		logger = listener.getLogger();
+    logger = listener.getLogger();
 
-		String errorMessage = null;
-		siteName = empty(step.getSite()) ? envVars.get("JIRA_SITE") : step.getSite();
-		final Site site = Site.get(siteName);
-		final String failOnErrorStr = Util.fixEmpty(envVars.get("JIRA_FAIL_ON_ERROR"));
+    String errorMessage = null;
+    siteName = empty(step.getSite()) ? envVars.get("JIRA_SITE") : step.getSite();
+    final Site site = Site.get(siteName);
+    final String failOnErrorStr = Util.fixEmpty(envVars.get("JIRA_FAIL_ON_ERROR"));
 
-		if (failOnErrorStr == null) {
-			failOnError = step.isFailOnError();
-		} else {
-			failOnError = Boolean.parseBoolean(failOnErrorStr);
-		}
+    if (failOnErrorStr == null) {
+      failOnError = step.isFailOnError();
+    } else {
+      failOnError = Boolean.parseBoolean(failOnErrorStr);
+    }
 
-		if (empty(siteName)) {
-			errorMessage = "JIRA_SITE is empty or null.";
-		}
+    if (empty(siteName)) {
+      errorMessage = "JIRA_SITE is empty or null.";
+    }
 
-		if (site == null) {
-			errorMessage = "No JIRA site configured with " + siteName + " name.";
-		} else {
-			jiraService = getJiraService(site);
-		}
+    if (site == null) {
+      errorMessage = "No JIRA site configured with " + siteName + " name.";
+    } else {
+      jiraService = getJiraService(site);
+    }
 
-		if (errorMessage != null) {
-			return buildErrorResponse(new RuntimeException(errorMessage));
-		}
+    if (errorMessage != null) {
+      return buildErrorResponse(new RuntimeException(errorMessage));
+    }
 
-		buildUser = prepareBuildUser(run.getCauses());
-		buildUrl = envVars.get("BUILD_URL");
+    buildUser = prepareBuildUser(run.getCauses());
+    buildUrl = envVars.get("BUILD_URL");
 
-		return null;
-	}
+    return null;
+  }
 
-	@VisibleForTesting
-	public JiraService getJiraService(final Site site) {
-		return site.getService();
-	}
+  @VisibleForTesting
+  public JiraService getJiraService(final Site site) {
+    return site.getService();
+  }
 
-	/**
-	 * Log code and error message if any.
-	 * 
-	 * @param response
-	 * @return same response back.
-	 * @throws AbortException
-	 *             if failOnError is true and response is not successful.
-	 */
-	@SuppressWarnings("hiding")
-	protected <T> ResponseData<T> logResponse(ResponseData<T> response) throws AbortException {
+  /**
+   * Log code and error message if any.
+   * 
+   * @param response
+   * @return same response back.
+   * @throws AbortException if failOnError is true and response is not successful.
+   */
+  @SuppressWarnings("hiding")
+  protected <T> ResponseData<T> logResponse(ResponseData<T> response) throws AbortException {
 
-		if (response.isSuccessful()) {
-			log(logger, "Successful. Code: " + response.getCode());
-		} else {
-			log(logger, "Error Code: " + response.getCode());
-			log(logger, "Error Message: " + response.getError());
+    if (response.isSuccessful()) {
+      log(logger, "Successful. Code: " + response.getCode());
+    } else {
+      log(logger, "Error Code: " + response.getCode());
+      log(logger, "Error Message: " + response.getError());
 
-			if (failOnError) {
-				throw new AbortException(response.getError());
-			}
-		}
+      if (failOnError) {
+        throw new AbortException(response.getError());
+      }
+    }
 
-		return response;
-	}
+    return response;
+  }
 
-	/**
-	 * Return the current build user.
-	 * 
-	 * @param causes
-	 *            build causes.
-	 * @return user name.
-	 */
-	protected static String prepareBuildUser(List<Cause> causes) {
-		String buildUser = "anonymous";
-		if (causes != null && causes.size() > 0) {
-			if (causes.get(0) instanceof UserIdCause) {
-				buildUser = ((UserIdCause) causes.get(0)).getUserName();
-			} else if (causes.get(0) instanceof UpstreamCause) {
-				List<Cause> upstreamCauses = ((UpstreamCause) causes.get(0)).getUpstreamCauses();
-				prepareBuildUser(upstreamCauses);
-			}
-		}
-		return buildUser;
-	}
+  /**
+   * Return the current build user.
+   * 
+   * @param causes build causes.
+   * @return user name.
+   */
+  protected static String prepareBuildUser(List<Cause> causes) {
+    String buildUser = "anonymous";
+    if (causes != null && causes.size() > 0) {
+      if (causes.get(0) instanceof UserIdCause) {
+        buildUser = ((UserIdCause) causes.get(0)).getUserName();
+      } else if (causes.get(0) instanceof UpstreamCause) {
+        List<Cause> upstreamCauses = ((UpstreamCause) causes.get(0)).getUpstreamCauses();
+        prepareBuildUser(upstreamCauses);
+      }
+    }
+    return buildUser;
+  }
 
-	/**
-	 * Adds Job info to the given message.
-	 * 
-	 * @param message
-	 * @return message added with metadata.
-	 */
-	protected String addPanelMeta(final String message) {
-		return message + "\n{panel}Automatically created by: [~" + buildUser + "] from [Build URL|" + buildUrl + "]{panel}";
-	}
+  /**
+   * Adds Job info to the given message.
+   * 
+   * @param message
+   * @return message added with metadata.
+   */
+  protected String addPanelMeta(final String message) {
+    return message + "\n{panel}Automatically created by: [~" + buildUser + "] from [Build URL|"
+        + buildUrl + "]{panel}";
+  }
 
-	/**
-	 * Adds Job info to the given message.
-	 * 
-	 * @param message
-	 * @return message added with metadata.
-	 */
-	protected String addMeta(final String message) {
-		return message + "\nAutomatically created by: " + buildUser + " from " + buildUrl;
-	}
+  /**
+   * Adds Job info to the given message.
+   * 
+   * @param message
+   * @return message added with metadata.
+   */
+  protected String addMeta(final String message) {
+    return message + "\nAutomatically created by: " + buildUser + " from " + buildUrl;
+  }
 
-	@SuppressWarnings("hiding")
-	protected abstract <T> ResponseData<T> verifyInput() throws Exception;
+  @SuppressWarnings("hiding")
+  protected abstract <T> ResponseData<T> verifyInput() throws Exception;
 }

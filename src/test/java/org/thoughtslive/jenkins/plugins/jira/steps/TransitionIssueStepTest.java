@@ -42,62 +42,64 @@ import hudson.model.TaskListener;
 @PrepareForTest({TransitionIssueStep.class, Site.class})
 public class TransitionIssueStepTest {
 
-	@Mock
-	TaskListener taskListenerMock;
-	@Mock
-	Run<?, ?> runMock;
-	@Mock
-	EnvVars envVarsMock;
-	@Mock
-	PrintStream printStreamMock;
-	@Mock
-	JiraService jiraServiceMock;
-	@Mock
-	Site siteMock;
-	@Mock
-	TransitionInput transitionInputMock;
+  @Mock
+  TaskListener taskListenerMock;
+  @Mock
+  Run<?, ?> runMock;
+  @Mock
+  EnvVars envVarsMock;
+  @Mock
+  PrintStream printStreamMock;
+  @Mock
+  JiraService jiraServiceMock;
+  @Mock
+  Site siteMock;
+  @Mock
+  TransitionInput transitionInputMock;
 
-	TransitionIssueStep.Execution stepExecution;
+  TransitionIssueStep.Execution stepExecution;
 
-	final IssueInput issue = IssueInput.builder().fields(FieldsInput.builder().description("TEST").summary("TEST").build()).build();
+  final IssueInput issue = IssueInput.builder()
+      .fields(FieldsInput.builder().description("TEST").summary("TEST").build()).build();
 
-	@Before
-	public void setup() {
+  @Before
+  public void setup() {
 
-		// Prepare site.
-		when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
-		when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
+    // Prepare site.
+    when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
+    when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
 
-		PowerMockito.mockStatic(Site.class);
-		Mockito.when(Site.get(any())).thenReturn(siteMock);
-		when(siteMock.getService()).thenReturn(jiraServiceMock);
+    PowerMockito.mockStatic(Site.class);
+    Mockito.when(Site.get(any())).thenReturn(siteMock);
+    when(siteMock.getService()).thenReturn(jiraServiceMock);
 
-		stepExecution = spy(new TransitionIssueStep.Execution());
+    stepExecution = spy(new TransitionIssueStep.Execution());
 
-		when(runMock.getCauses()).thenReturn(null);
-		when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
-		doNothing().when(printStreamMock).println();
+    when(runMock.getCauses()).thenReturn(null);
+    when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
+    doNothing().when(printStreamMock).println();
 
-		final ResponseDataBuilder<Void> builder = ResponseData.builder();
-		when(jiraServiceMock.transitionIssue(anyString(), any())).thenReturn(builder.successful(true).code(200).message("Success").build());
+    final ResponseDataBuilder<Void> builder = ResponseData.builder();
+    when(jiraServiceMock.transitionIssue(anyString(), any()))
+        .thenReturn(builder.successful(true).code(200).message("Success").build());
 
-		stepExecution.listener = taskListenerMock;
-		stepExecution.envVars = envVarsMock;
-		stepExecution.run = runMock;
+    stepExecution.listener = taskListenerMock;
+    stepExecution.envVars = envVarsMock;
+    stepExecution.run = runMock;
 
-		doReturn(jiraServiceMock).when(stepExecution).getJiraService(any());
-	}
+    doReturn(jiraServiceMock).when(stepExecution).getJiraService(any());
+  }
 
-	@Test
-	public void testSuccessfulTransitionIssue() throws Exception {
-		final TransitionIssueStep step = new TransitionIssueStep("TEST-1", transitionInputMock);
-		stepExecution.step = step;
+  @Test
+  public void testSuccessfulTransitionIssue() throws Exception {
+    final TransitionIssueStep step = new TransitionIssueStep("TEST-1", transitionInputMock);
+    stepExecution.step = step;
 
-		// Execute Test.
-		stepExecution.run();
+    // Execute Test.
+    stepExecution.run();
 
-		// Assert Test
-		verify(jiraServiceMock, times(1)).transitionIssue("TEST-1", transitionInputMock);
-		assertThat(stepExecution.step.isFailOnError()).isEqualTo(true);
-	}
+    // Assert Test
+    verify(jiraServiceMock, times(1)).transitionIssue("TEST-1", transitionInputMock);
+    assertThat(stepExecution.step.isFailOnError()).isEqualTo(true);
+  }
 }

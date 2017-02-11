@@ -6,18 +6,19 @@ import okhttp3.Request;
 
 public class OAuthConsumer extends AbstractOAuthConsumer {
 
-	private static final long serialVersionUID = 1364436370216401109L;
+  private static final long serialVersionUID = 1364436370216401109L;
 
-	public OAuthConsumer(String consumerKey, String consumerSecret) {
-		super(consumerKey, consumerSecret);
-	}
+  public OAuthConsumer(String consumerKey, String consumerSecret) {
+    super(consumerKey, consumerSecret);
+  }
 
-	@Override
-	protected HttpRequest wrap(Object request) {
-		if (!(request instanceof Request)) {
-			throw new IllegalArgumentException("Accepts only requests of type " + Request.class.getCanonicalName());
-		}
-		return new RequestAdapter((Request) request);
-	}
+  @Override
+  protected HttpRequest wrap(Object request) {
+    if (!(request instanceof Request)) {
+      throw new IllegalArgumentException(
+          "Accepts only requests of type " + Request.class.getCanonicalName());
+    }
+    return new RequestAdapter((Request) request);
+  }
 
 }

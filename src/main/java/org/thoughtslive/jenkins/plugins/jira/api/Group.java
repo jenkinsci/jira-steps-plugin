@@ -24,8 +24,8 @@ import lombok.ToString;
 @Builder
 public class Group implements Serializable {
 
-	private static final long serialVersionUID = -538128979323111196L;
+  private static final long serialVersionUID = -538128979323111196L;
 
-	@JsonProperty("name")
-	private String name;
+  @JsonProperty("name")
+  private String name;
 }

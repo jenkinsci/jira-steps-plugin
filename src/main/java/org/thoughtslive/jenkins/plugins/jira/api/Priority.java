@@ -24,12 +24,12 @@ import lombok.ToString;
 @Builder
 public class Priority implements Serializable {
 
-	private static final long serialVersionUID = -2000658126252180101L;
+  private static final long serialVersionUID = -2000658126252180101L;
 
-	@JsonProperty("name")
-	private String name;
+  @JsonProperty("name")
+  private String name;
 
-	@JsonProperty("id")
-	private String id;
+  @JsonProperty("id")
+  private String id;
 
 }

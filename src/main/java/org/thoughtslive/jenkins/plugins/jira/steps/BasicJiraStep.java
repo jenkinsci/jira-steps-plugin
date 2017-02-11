@@ -14,14 +14,14 @@ import lombok.Getter;
  */
 public abstract class BasicJiraStep extends AbstractStepImpl implements Serializable {
 
-	private static final long serialVersionUID = 7268920801605705697L;
+  private static final long serialVersionUID = 7268920801605705697L;
 
-	@Getter
-	@DataBoundSetter
-	private String site;
+  @Getter
+  @DataBoundSetter
+  private String site;
 
-	@Getter
-	@DataBoundSetter
-	private boolean failOnError = true;
+  @Getter
+  @DataBoundSetter
+  private boolean failOnError = true;
 
 }

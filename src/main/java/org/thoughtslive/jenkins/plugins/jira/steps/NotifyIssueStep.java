@@ -26,90 +26,90 @@ import lombok.Getter;
  */
 public class NotifyIssueStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = -5286750553487650184L;
+  private static final long serialVersionUID = -5286750553487650184L;
 
-	@Getter
-	private final String idOrKey;
+  @Getter
+  private final String idOrKey;
 
-	@Getter
-	private final Notify notify;
+  @Getter
+  private final Notify notify;
 
-	@DataBoundConstructor
-	public NotifyIssueStep(final String idOrKey, final Notify notify) {
-		this.idOrKey = idOrKey;
-		this.notify = notify;
-	}
+  @DataBoundConstructor
+  public NotifyIssueStep(final String idOrKey, final Notify notify) {
+    this.idOrKey = idOrKey;
+    this.notify = notify;
+  }
 
-	@Extension
-	public static class DescriptorImpl extends JiraStepDescriptorImpl {
+  @Extension
+  public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
-		public DescriptorImpl() {
-			super(Execution.class);
-		}
+    public DescriptorImpl() {
+      super(Execution.class);
+    }
 
-		@Override
-		public String getFunctionName() {
-			return "jiraNotifyIssue";
-		}
+    @Override
+    public String getFunctionName() {
+      return "jiraNotifyIssue";
+    }
 
-		@Override
-		public String getDisplayName() {
-			return getPrefix() + "Notify Issue";
-		}
+    @Override
+    public String getDisplayName() {
+      return getPrefix() + "Notify Issue";
+    }
 
-		@Override
-		public boolean isMetaStep() {
-			return true;
-		}
-	}
+    @Override
+    public boolean isMetaStep() {
+      return true;
+    }
+  }
 
-	public static class Execution extends JiraStepExecution<ResponseData<Void>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Void>> {
 
-		private static final long serialVersionUID = 2997765348391402484L;
+    private static final long serialVersionUID = 2997765348391402484L;
 
-		@StepContextParameter
-		transient Run<?, ?> run;
+    @StepContextParameter
+    transient Run<?, ?> run;
 
-		@StepContextParameter
-		transient TaskListener listener;
+    @StepContextParameter
+    transient TaskListener listener;
 
-		@StepContextParameter
-		transient EnvVars envVars;
+    @StepContextParameter
+    transient EnvVars envVars;
 
-		@Inject
-		transient NotifyIssueStep step;
+    @Inject
+    transient NotifyIssueStep step;
 
-		@Override
-		protected ResponseData<Void> run() throws Exception {
+    @Override
+    protected ResponseData<Void> run() throws Exception {
 
-			ResponseData<Void> response = verifyInput();
+      ResponseData<Void> response = verifyInput();
 
-			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Notifing Issue: " + step.getIdOrKey());
-				response = jiraService.notifyIssue(step.getIdOrKey(), step.getNotify());
-			}
+      if (response == null) {
+        logger.println("JIRA: Site - " + siteName + " - Notifing Issue: " + step.getIdOrKey());
+        response = jiraService.notifyIssue(step.getIdOrKey(), step.getNotify());
+      }
 
-			return logResponse(response);
-		}
+      return logResponse(response);
+    }
 
-		@Override
-		protected <T> ResponseData<T> verifyInput() throws Exception {
-			String errorMessage = null;
-			ResponseData<T> response = verifyCommon(step, listener, envVars, run);
+    @Override
+    protected <T> ResponseData<T> verifyInput() throws Exception {
+      String errorMessage = null;
+      ResponseData<T> response = verifyCommon(step, listener, envVars, run);
 
-			if (response == null) {
-				final String idOrKey = Util.fixEmpty(step.getIdOrKey());
+      if (response == null) {
+        final String idOrKey = Util.fixEmpty(step.getIdOrKey());
 
-				if (idOrKey == null) {
-					errorMessage = "idOrKey is empty or null.";
-				}
+        if (idOrKey == null) {
+          errorMessage = "idOrKey is empty or null.";
+        }
 
-				// TODO Validate Notify object too.
-				if (errorMessage != null) {
-					response = buildErrorResponse(new RuntimeException(errorMessage));
-				}
-			}
-			return response;
-		}
-	}
+        // TODO Validate Notify object too.
+        if (errorMessage != null) {
+          response = buildErrorResponse(new RuntimeException(errorMessage));
+        }
+      }
+      return response;
+    }
+  }
 }

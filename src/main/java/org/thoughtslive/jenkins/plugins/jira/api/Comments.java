@@ -25,18 +25,18 @@ import lombok.ToString;
 @Builder
 public class Comments implements Serializable {
 
-	private static final long serialVersionUID = 8693517644958876584L;
+  private static final long serialVersionUID = 8693517644958876584L;
 
-	@JsonProperty("startAt")
-	private Integer startAt;
+  @JsonProperty("startAt")
+  private Integer startAt;
 
-	@JsonProperty("maxResults")
-	private Integer maxResults;
+  @JsonProperty("maxResults")
+  private Integer maxResults;
 
-	@JsonProperty("total")
-	private Integer total;
+  @JsonProperty("total")
+  private Integer total;
 
-	@JsonProperty("comments")
-	private List<Comment> comments = null;
+  @JsonProperty("comments")
+  private List<Comment> comments = null;
 
 }

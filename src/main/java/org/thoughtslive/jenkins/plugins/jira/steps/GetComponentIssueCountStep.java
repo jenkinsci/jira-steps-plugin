@@ -24,79 +24,80 @@ import lombok.Getter;
  */
 public class GetComponentIssueCountStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = -4668092703770930031L;
+  private static final long serialVersionUID = -4668092703770930031L;
 
-	@Getter
-	private final int id;
+  @Getter
+  private final int id;
 
-	@DataBoundConstructor
-	public GetComponentIssueCountStep(final int id) {
-		this.id = id;
-	}
+  @DataBoundConstructor
+  public GetComponentIssueCountStep(final int id) {
+    this.id = id;
+  }
 
-	@Extension
-	public static class DescriptorImpl extends JiraStepDescriptorImpl {
+  @Extension
+  public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
-		public DescriptorImpl() {
-			super(Execution.class);
-		}
+    public DescriptorImpl() {
+      super(Execution.class);
+    }
 
-		@Override
-		public String getFunctionName() {
-			return "jiraGetComponentIssueCount";
-		}
+    @Override
+    public String getFunctionName() {
+      return "jiraGetComponentIssueCount";
+    }
 
-		@Override
-		public String getDisplayName() {
-			return getPrefix() + "Get Component Issue Count";
-		}
+    @Override
+    public String getDisplayName() {
+      return getPrefix() + "Get Component Issue Count";
+    }
 
-	}
+  }
 
-	public static class Execution extends JiraStepExecution<ResponseData<Count>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Count>> {
 
-		private static final long serialVersionUID = 6380332864146135606L;
+    private static final long serialVersionUID = 6380332864146135606L;
 
-		@StepContextParameter
-		transient Run<?, ?> run;
+    @StepContextParameter
+    transient Run<?, ?> run;
 
-		@StepContextParameter
-		transient TaskListener listener;
+    @StepContextParameter
+    transient TaskListener listener;
 
-		@StepContextParameter
-		transient EnvVars envVars;
+    @StepContextParameter
+    transient EnvVars envVars;
 
-		@Inject
-		transient GetComponentIssueCountStep step;
+    @Inject
+    transient GetComponentIssueCountStep step;
 
-		@Override
-		protected ResponseData<Count> run() throws Exception {
+    @Override
+    protected ResponseData<Count> run() throws Exception {
 
-			ResponseData<Count> response = verifyInput();
+      ResponseData<Count> response = verifyInput();
 
-			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Querying component issue count with id: " + step.getId());
-				response = jiraService.getComponentIssueCount(step.getId());
-			}
+      if (response == null) {
+        logger.println("JIRA: Site - " + siteName + " - Querying component issue count with id: "
+            + step.getId());
+        response = jiraService.getComponentIssueCount(step.getId());
+      }
 
-			return logResponse(response);
-		}
+      return logResponse(response);
+    }
 
-		@Override
-		protected <T> ResponseData<T> verifyInput() throws Exception {
-			String errorMessage = null;
-			ResponseData<T> response = verifyCommon(step, listener, envVars, run);
+    @Override
+    protected <T> ResponseData<T> verifyInput() throws Exception {
+      String errorMessage = null;
+      ResponseData<T> response = verifyCommon(step, listener, envVars, run);
 
-			if (response == null) {
-				if (step.getId() <= 0) {
-					errorMessage = "id less than or equals to zero.";
-				}
+      if (response == null) {
+        if (step.getId() <= 0) {
+          errorMessage = "id less than or equals to zero.";
+        }
 
-				if (errorMessage != null) {
-					response = buildErrorResponse(new RuntimeException(errorMessage));
-				}
-			}
-			return response;
-		}
-	}
+        if (errorMessage != null) {
+          response = buildErrorResponse(new RuntimeException(errorMessage));
+        }
+      }
+      return response;
+    }
+  }
 }

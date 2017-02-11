@@ -26,95 +26,96 @@ import lombok.Getter;
  */
 public class AddCommentStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 8523118063993121080L;
+  private static final long serialVersionUID = 8523118063993121080L;
 
-	@Getter
-	private final String idOrKey;
+  @Getter
+  private final String idOrKey;
 
-	@Getter
-	private final String comment;
+  @Getter
+  private final String comment;
 
-	@DataBoundConstructor
-	public AddCommentStep(final String idOrKey, final String comment) {
-		this.idOrKey = idOrKey;
-		this.comment = comment;
-	}
+  @DataBoundConstructor
+  public AddCommentStep(final String idOrKey, final String comment) {
+    this.idOrKey = idOrKey;
+    this.comment = comment;
+  }
 
-	@Extension
-	public static class DescriptorImpl extends JiraStepDescriptorImpl {
+  @Extension
+  public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
-		public DescriptorImpl() {
-			super(Execution.class);
-		}
+    public DescriptorImpl() {
+      super(Execution.class);
+    }
 
-		@Override
-		public String getFunctionName() {
-			return "jiraAddComment";
-		}
+    @Override
+    public String getFunctionName() {
+      return "jiraAddComment";
+    }
 
-		@Override
-		public String getDisplayName() {
-			return getPrefix() + "Add Comment";
-		}
+    @Override
+    public String getDisplayName() {
+      return getPrefix() + "Add Comment";
+    }
 
-		@Override
-		public boolean isMetaStep() {
-			return true;
-		}
-	}
+    @Override
+    public boolean isMetaStep() {
+      return true;
+    }
+  }
 
-	public static class Execution extends JiraStepExecution<ResponseData<Comment>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Comment>> {
 
-		private static final long serialVersionUID = 462945562138805176L;
+    private static final long serialVersionUID = 462945562138805176L;
 
-		@StepContextParameter
-		transient Run<?, ?> run;
+    @StepContextParameter
+    transient Run<?, ?> run;
 
-		@StepContextParameter
-		transient TaskListener listener;
+    @StepContextParameter
+    transient TaskListener listener;
 
-		@StepContextParameter
-		transient EnvVars envVars;
+    @StepContextParameter
+    transient EnvVars envVars;
 
-		@Inject
-		transient AddCommentStep step;
+    @Inject
+    transient AddCommentStep step;
 
-		@Override
-		protected ResponseData<Comment> run() throws Exception {
+    @Override
+    protected ResponseData<Comment> run() throws Exception {
 
-			ResponseData<Comment> response = verifyInput();
+      ResponseData<Comment> response = verifyInput();
 
-			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Add new comment: " + step.getComment() + " on issue: " + step.getIdOrKey());
-				final String comment = addPanelMeta(step.getComment());
-				response = jiraService.addComment(step.getIdOrKey(), comment);
-			}
-			return logResponse(response);
-		}
+      if (response == null) {
+        logger.println("JIRA: Site - " + siteName + " - Add new comment: " + step.getComment()
+            + " on issue: " + step.getIdOrKey());
+        final String comment = addPanelMeta(step.getComment());
+        response = jiraService.addComment(step.getIdOrKey(), comment);
+      }
+      return logResponse(response);
+    }
 
-		@Override
-		protected <T> ResponseData<T> verifyInput() throws Exception {
+    @Override
+    protected <T> ResponseData<T> verifyInput() throws Exception {
 
-			String errorMessage = null;
-			ResponseData<T> response = verifyCommon(step, listener, envVars, run);
+      String errorMessage = null;
+      ResponseData<T> response = verifyCommon(step, listener, envVars, run);
 
-			if (response == null) {
-				final String idOrKey = Util.fixEmpty(step.getIdOrKey());
-				final String comment = Util.fixEmpty(step.getComment());
+      if (response == null) {
+        final String idOrKey = Util.fixEmpty(step.getIdOrKey());
+        final String comment = Util.fixEmpty(step.getComment());
 
-				if (idOrKey == null) {
-					errorMessage = "idOrKey is empty or null.";
-				}
+        if (idOrKey == null) {
+          errorMessage = "idOrKey is empty or null.";
+        }
 
-				if (comment == null) {
-					errorMessage = "comment is empty or null.";
-				}
+        if (comment == null) {
+          errorMessage = "comment is empty or null.";
+        }
 
-				if (errorMessage != null) {
-					response = buildErrorResponse(new RuntimeException(errorMessage));
-				}
-			}
-			return response;
-		}
-	}
+        if (errorMessage != null) {
+          response = buildErrorResponse(new RuntimeException(errorMessage));
+        }
+      }
+      return response;
+    }
+  }
 }

@@ -24,18 +24,18 @@ import lombok.ToString;
 @Builder
 public class IssueLinkType implements Serializable {
 
-	private static final long serialVersionUID = 2329429768702052058L;
+  private static final long serialVersionUID = 2329429768702052058L;
 
-	@JsonProperty("id")
-	private String id;
+  @JsonProperty("id")
+  private String id;
 
-	@JsonProperty("name")
-	private String name;
+  @JsonProperty("name")
+  private String name;
 
-	@JsonProperty("inward")
-	private String inward;
+  @JsonProperty("inward")
+  private String inward;
 
-	@JsonProperty("outward")
-	private String outward;
+  @JsonProperty("outward")
+  private String outward;
 
 }

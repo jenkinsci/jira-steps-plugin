@@ -30,36 +30,36 @@ import lombok.ToString;
 @SuppressFBWarnings
 public class FieldsInput implements Serializable {
 
-	private static final long serialVersionUID = 466100668894754241L;
+  private static final long serialVersionUID = 466100668894754241L;
 
-	@JsonProperty("summary")
-	private String summary;
+  @JsonProperty("summary")
+  private String summary;
 
-	@JsonProperty("description")
-	private String description;
+  @JsonProperty("description")
+  private String description;
 
-	// Only Id is required
-	@JsonProperty("issuetype")
-	private IssueType issuetype;
+  // Only Id is required
+  @JsonProperty("issuetype")
+  private IssueType issuetype;
 
-	// Only Id is required
-	@JsonProperty("project")
-	private Project project;
+  // Only Id is required
+  @JsonProperty("project")
+  private Project project;
 
-	// The following are optional.
-	@JsonProperty("labels")
-	private String[] labels;
+  // The following are optional.
+  @JsonProperty("labels")
+  private String[] labels;
 
-	// Only name is required
-	@JsonProperty("assignee")
-	private User assignee;
+  // Only name is required
+  @JsonProperty("assignee")
+  private User assignee;
 
-	// Only Id is required
-	@JsonProperty("components")
-	private Component[] components;
+  // Only Id is required
+  @JsonProperty("components")
+  private Component[] components;
 
-	// Only Id is required
-	@JsonProperty("fixVersions")
-	private Version[] fixVersions;
+  // Only Id is required
+  @JsonProperty("fixVersions")
+  private Version[] fixVersions;
 
 }

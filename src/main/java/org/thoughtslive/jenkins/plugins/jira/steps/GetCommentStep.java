@@ -25,89 +25,90 @@ import lombok.Getter;
  */
 public class GetCommentStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = -3225315653270733874L;
+  private static final long serialVersionUID = -3225315653270733874L;
 
-	@Getter
-	private final String idOrKey;
+  @Getter
+  private final String idOrKey;
 
-	@Getter
-	private final int commentId;
+  @Getter
+  private final int commentId;
 
-	@DataBoundConstructor
-	public GetCommentStep(final String idOrKey, final int commentId) {
-		this.commentId = commentId;
-		this.idOrKey = idOrKey;
-	}
+  @DataBoundConstructor
+  public GetCommentStep(final String idOrKey, final int commentId) {
+    this.commentId = commentId;
+    this.idOrKey = idOrKey;
+  }
 
-	@Extension
-	public static class DescriptorImpl extends JiraStepDescriptorImpl {
+  @Extension
+  public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
-		public DescriptorImpl() {
-			super(Execution.class);
-		}
+    public DescriptorImpl() {
+      super(Execution.class);
+    }
 
-		@Override
-		public String getFunctionName() {
-			return "jiraGetComment";
-		}
+    @Override
+    public String getFunctionName() {
+      return "jiraGetComment";
+    }
 
-		@Override
-		public String getDisplayName() {
-			return getPrefix() + "Get Issue Comment";
-		}
+    @Override
+    public String getDisplayName() {
+      return getPrefix() + "Get Issue Comment";
+    }
 
-	}
+  }
 
-	public static class Execution extends JiraStepExecution<ResponseData<Comment>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Comment>> {
 
-		private static final long serialVersionUID = 6956525377031302225L;
+    private static final long serialVersionUID = 6956525377031302225L;
 
-		@StepContextParameter
-		transient Run<?, ?> run;
+    @StepContextParameter
+    transient Run<?, ?> run;
 
-		@StepContextParameter
-		transient TaskListener listener;
+    @StepContextParameter
+    transient TaskListener listener;
 
-		@StepContextParameter
-		transient EnvVars envVars;
+    @StepContextParameter
+    transient EnvVars envVars;
 
-		@Inject
-		transient GetCommentStep step;
+    @Inject
+    transient GetCommentStep step;
 
-		@Override
-		protected ResponseData<Comment> run() throws Exception {
+    @Override
+    protected ResponseData<Comment> run() throws Exception {
 
-			ResponseData<Comment> response = verifyInput();
+      ResponseData<Comment> response = verifyInput();
 
-			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Querying issue: " + step.getIdOrKey() + " comment with id: " + step.getCommentId());
-				response = jiraService.getComment(step.getIdOrKey(), step.getCommentId());
-			}
+      if (response == null) {
+        logger.println("JIRA: Site - " + siteName + " - Querying issue: " + step.getIdOrKey()
+            + " comment with id: " + step.getCommentId());
+        response = jiraService.getComment(step.getIdOrKey(), step.getCommentId());
+      }
 
-			return logResponse(response);
-		}
+      return logResponse(response);
+    }
 
-		@Override
-		protected <T> ResponseData<T> verifyInput() throws Exception {
-			String errorMessage = null;
-			ResponseData<T> response = verifyCommon(step, listener, envVars, run);
+    @Override
+    protected <T> ResponseData<T> verifyInput() throws Exception {
+      String errorMessage = null;
+      ResponseData<T> response = verifyCommon(step, listener, envVars, run);
 
-			if (response == null) {
-				final String idOrKey = Util.fixEmpty(step.getIdOrKey());
+      if (response == null) {
+        final String idOrKey = Util.fixEmpty(step.getIdOrKey());
 
-				if (idOrKey == null) {
-					errorMessage = "idOrKey is empty or null.";
-				}
+        if (idOrKey == null) {
+          errorMessage = "idOrKey is empty or null.";
+        }
 
-				if (step.getCommentId() <= 0) {
-					errorMessage = "commentId less than or equals to zero.";
-				}
+        if (step.getCommentId() <= 0) {
+          errorMessage = "commentId less than or equals to zero.";
+        }
 
-				if (errorMessage != null) {
-					response = buildErrorResponse(new RuntimeException(errorMessage));
-				}
-			}
-			return response;
-		}
-	}
+        if (errorMessage != null) {
+          response = buildErrorResponse(new RuntimeException(errorMessage));
+        }
+      }
+      return response;
+    }
+  }
 }

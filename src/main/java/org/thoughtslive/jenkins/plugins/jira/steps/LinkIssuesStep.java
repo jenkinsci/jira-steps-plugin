@@ -26,109 +26,111 @@ import lombok.Getter;
  */
 public class LinkIssuesStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = -1881920733234295481L;
+  private static final long serialVersionUID = -1881920733234295481L;
 
-	@Getter
-	private final String type;
+  @Getter
+  private final String type;
 
-	@Getter
-	private final String inwardKey;
+  @Getter
+  private final String inwardKey;
 
-	@Getter
-	private final String outwardKey;
+  @Getter
+  private final String outwardKey;
 
-	@DataBoundConstructor
-	public LinkIssuesStep(final String type, final String inwardKey, final String outwardKey) {
-		this.type = type;
-		this.inwardKey = inwardKey;
-		this.outwardKey = outwardKey;
-	}
+  @DataBoundConstructor
+  public LinkIssuesStep(final String type, final String inwardKey, final String outwardKey) {
+    this.type = type;
+    this.inwardKey = inwardKey;
+    this.outwardKey = outwardKey;
+  }
 
-	// Comment is optional.
-	@Getter
-	@DataBoundSetter
-	private String comment;
+  // Comment is optional.
+  @Getter
+  @DataBoundSetter
+  private String comment;
 
-	@Extension
-	public static class DescriptorImpl extends JiraStepDescriptorImpl {
+  @Extension
+  public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
-		public DescriptorImpl() {
-			super(Execution.class);
-		}
+    public DescriptorImpl() {
+      super(Execution.class);
+    }
 
-		@Override
-		public String getFunctionName() {
-			return "jiraLinkIssues";
-		}
+    @Override
+    public String getFunctionName() {
+      return "jiraLinkIssues";
+    }
 
-		@Override
-		public String getDisplayName() {
-			return getPrefix() + "Link Issues";
-		}
+    @Override
+    public String getDisplayName() {
+      return getPrefix() + "Link Issues";
+    }
 
-		@Override
-		public boolean isMetaStep() {
-			return true;
-		}
-	}
+    @Override
+    public boolean isMetaStep() {
+      return true;
+    }
+  }
 
-	public static class Execution extends JiraStepExecution<ResponseData<Void>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Void>> {
 
-		private static final long serialVersionUID = -1666683149182699538L;
+    private static final long serialVersionUID = -1666683149182699538L;
 
-		@StepContextParameter
-		transient Run<?, ?> run;
+    @StepContextParameter
+    transient Run<?, ?> run;
 
-		@StepContextParameter
-		transient TaskListener listener;
+    @StepContextParameter
+    transient TaskListener listener;
 
-		@StepContextParameter
-		transient EnvVars envVars;
+    @StepContextParameter
+    transient EnvVars envVars;
 
-		@Inject
-		transient LinkIssuesStep step;
+    @Inject
+    transient LinkIssuesStep step;
 
-		@Override
-		protected ResponseData<Void> run() throws Exception {
+    @Override
+    protected ResponseData<Void> run() throws Exception {
 
-			ResponseData<Void> response = verifyInput();
+      ResponseData<Void> response = verifyInput();
 
-			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Linking issue(inward): " + step.getInwardKey() + " and issue(outward)" + step.getOutwardKey() + " with type: "
-						+ step.getType());
-				response = jiraService.linkIssues(step.getType(), step.getInwardKey(), step.getOutwardKey(), step.getComment());
-			}
+      if (response == null) {
+        logger
+            .println("JIRA: Site - " + siteName + " - Linking issue(inward): " + step.getInwardKey()
+                + " and issue(outward)" + step.getOutwardKey() + " with type: " + step.getType());
+        response = jiraService.linkIssues(step.getType(), step.getInwardKey(), step.getOutwardKey(),
+            step.getComment());
+      }
 
-			return logResponse(response);
-		}
+      return logResponse(response);
+    }
 
-		@Override
-		protected <T> ResponseData<T> verifyInput() throws Exception {
-			String errorMessage = null;
-			ResponseData<T> response = verifyCommon(step, listener, envVars, run);
+    @Override
+    protected <T> ResponseData<T> verifyInput() throws Exception {
+      String errorMessage = null;
+      ResponseData<T> response = verifyCommon(step, listener, envVars, run);
 
-			if (response == null) {
-				final String type = Util.fixEmpty(step.getType());
-				final String inwardKey = Util.fixEmpty(step.getInwardKey());
-				final String outwardKey = Util.fixEmpty(step.getOutwardKey());
+      if (response == null) {
+        final String type = Util.fixEmpty(step.getType());
+        final String inwardKey = Util.fixEmpty(step.getInwardKey());
+        final String outwardKey = Util.fixEmpty(step.getOutwardKey());
 
-				if (type == null) {
-					errorMessage = "type is empty or null.";
-				}
+        if (type == null) {
+          errorMessage = "type is empty or null.";
+        }
 
-				if (inwardKey == null) {
-					errorMessage = "inwardKey is empty or null.";
-				}
+        if (inwardKey == null) {
+          errorMessage = "inwardKey is empty or null.";
+        }
 
-				if (outwardKey == null) {
-					errorMessage = "outwardKey is empty or null.";
-				}
+        if (outwardKey == null) {
+          errorMessage = "outwardKey is empty or null.";
+        }
 
-				if (errorMessage != null) {
-					response = buildErrorResponse(new RuntimeException(errorMessage));
-				}
-			}
-			return response;
-		}
-	}
+        if (errorMessage != null) {
+          response = buildErrorResponse(new RuntimeException(errorMessage));
+        }
+      }
+      return response;
+    }
+  }
 }

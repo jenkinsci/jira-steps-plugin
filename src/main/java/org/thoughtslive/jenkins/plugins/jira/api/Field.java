@@ -23,21 +23,21 @@ import lombok.ToString;
 @Builder
 public class Field implements Serializable {
 
-	private static final long serialVersionUID = 5800240765150504993L;
+  private static final long serialVersionUID = 5800240765150504993L;
 
-	public enum FieldType {
-		JIRA, CUSTOM
-	}
+  public enum FieldType {
+    JIRA, CUSTOM
+  }
 
-	@JsonProperty("id")
-	private int id;
+  @JsonProperty("id")
+  private int id;
 
-	@JsonProperty("name")
-	private String name;
+  @JsonProperty("name")
+  private String name;
 
-	@JsonProperty("fieldType")
-	private FieldType fieldType;
+  @JsonProperty("fieldType")
+  private FieldType fieldType;
 
-	@JsonProperty("required")
-	private boolean required;
+  @JsonProperty("required")
+  private boolean required;
 }

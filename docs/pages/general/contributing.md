@@ -31,7 +31,8 @@ Thanks.
 * Fork the project.
 * Use a feature branch.
 * Write [good commit messages][3].
-* Use the same coding conventions as the rest of the project.
+* Use the same coding conventions as the rest of the project. This project is using Google [StyleGuide](https://google.github.io/styleguide/javaguide.html).
+  * Download StyleGuides from [Github](https://github.com/google/styleguide).
 * Commit locally and push to your fork until you are happy with your contribution.
 * Make sure to add tests and verify all the tests are passing when merging upstream.
 * Add an entry to the [Changelog][4] accordingly.

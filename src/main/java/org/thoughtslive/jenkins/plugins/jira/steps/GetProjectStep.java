@@ -25,81 +25,82 @@ import lombok.Getter;
  */
 public class GetProjectStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 8326344234130259321L;
+  private static final long serialVersionUID = 8326344234130259321L;
 
-	@Getter
-	private final String idOrKey;
+  @Getter
+  private final String idOrKey;
 
-	@DataBoundConstructor
-	public GetProjectStep(final String idOrKey) {
-		this.idOrKey = idOrKey;
-	}
+  @DataBoundConstructor
+  public GetProjectStep(final String idOrKey) {
+    this.idOrKey = idOrKey;
+  }
 
-	@Extension
-	public static class DescriptorImpl extends JiraStepDescriptorImpl {
+  @Extension
+  public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
-		public DescriptorImpl() {
-			super(Execution.class);
-		}
+    public DescriptorImpl() {
+      super(Execution.class);
+    }
 
-		@Override
-		public String getFunctionName() {
-			return "jiraGetProject";
-		}
+    @Override
+    public String getFunctionName() {
+      return "jiraGetProject";
+    }
 
-		@Override
-		public String getDisplayName() {
-			return getPrefix() + "Get Project";
-		}
+    @Override
+    public String getDisplayName() {
+      return getPrefix() + "Get Project";
+    }
 
-	}
+  }
 
-	public static class Execution extends JiraStepExecution<ResponseData<Project>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Project>> {
 
-		private static final long serialVersionUID = -1946537791588473196L;
+    private static final long serialVersionUID = -1946537791588473196L;
 
-		@StepContextParameter
-		transient Run<?, ?> run;
+    @StepContextParameter
+    transient Run<?, ?> run;
 
-		@StepContextParameter
-		transient TaskListener listener;
+    @StepContextParameter
+    transient TaskListener listener;
 
-		@StepContextParameter
-		transient EnvVars envVars;
+    @StepContextParameter
+    transient EnvVars envVars;
 
-		@Inject
-		transient GetProjectStep step;
+    @Inject
+    transient GetProjectStep step;
 
-		@Override
-		protected ResponseData<Project> run() throws Exception {
+    @Override
+    protected ResponseData<Project> run() throws Exception {
 
-			ResponseData<Project> response = verifyInput();
+      ResponseData<Project> response = verifyInput();
 
-			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Querying Project with idOrKey:" + step.getIdOrKey());
-				response = jiraService.getProject(step.getIdOrKey());
-			}
+      if (response == null) {
+        logger.println(
+            "JIRA: Site - " + siteName + " - Querying Project with idOrKey:" + step.getIdOrKey());
+        response = jiraService.getProject(step.getIdOrKey());
+      }
 
-			return logResponse(response);
-		}
+      return logResponse(response);
+    }
 
-		@Override
-		protected <T> ResponseData<T> verifyInput() throws Exception {
-			String errorMessage = null;
-			ResponseData<T> response = verifyCommon(step, listener, envVars, run);
+    @Override
+    protected <T> ResponseData<T> verifyInput() throws Exception {
+      String errorMessage = null;
+      ResponseData<T> response = verifyCommon(step, listener, envVars, run);
 
-			if (response == null) {
-				final String idOrKey = Util.fixEmpty(step.getIdOrKey());
+      if (response == null) {
+        final String idOrKey = Util.fixEmpty(step.getIdOrKey());
 
-				if (idOrKey == null) {
-					errorMessage = "idOrKey is empty or null.";
-				}
+        if (idOrKey == null) {
+          errorMessage = "idOrKey is empty or null.";
+        }
 
-				if (errorMessage != null) {
-					response = buildErrorResponse(new RuntimeException(errorMessage));
-				}
-			}
-			return response;
-		}
-	}
+        if (errorMessage != null) {
+          response = buildErrorResponse(new RuntimeException(errorMessage));
+        }
+      }
+      return response;
+    }
+  }
 }

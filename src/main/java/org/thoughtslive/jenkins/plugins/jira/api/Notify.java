@@ -24,17 +24,17 @@ import lombok.ToString;
 @Builder
 public class Notify implements Serializable {
 
-	private static final long serialVersionUID = -8065876338191967021L;
+  private static final long serialVersionUID = -8065876338191967021L;
 
-	@JsonProperty("subject")
-	private String subject;
+  @JsonProperty("subject")
+  private String subject;
 
-	@JsonProperty("textBody")
-	private String textBody;
+  @JsonProperty("textBody")
+  private String textBody;
 
-	@JsonProperty("htmlBody")
-	private String htmlBody;
+  @JsonProperty("htmlBody")
+  private String htmlBody;
 
-	@JsonProperty("to")
-	private EmailTo to;
+  @JsonProperty("to")
+  private EmailTo to;
 }

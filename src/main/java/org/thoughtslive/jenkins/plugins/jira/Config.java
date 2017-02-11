@@ -29,95 +29,97 @@ import net.sf.json.JSONObject;
 @SuppressFBWarnings
 public class Config extends AbstractDescribableImpl<Config> {
 
-	public final String siteName;
+  public final String siteName;
 
-	@DataBoundConstructor
-	public Config(String siteName) {
-		if (siteName == null) {
-			Site[] sites = DESCRIPTOR.getSites();
-			if (sites.length > 0) {
-				siteName = sites[0].getName();
-			}
-		}
-		this.siteName = siteName;
-	}
+  @DataBoundConstructor
+  public Config(String siteName) {
+    if (siteName == null) {
+      Site[] sites = DESCRIPTOR.getSites();
+      if (sites.length > 0) {
+        siteName = sites[0].getName();
+      }
+    }
+    this.siteName = siteName;
+  }
 
-	public Site getSite() {
-		Site[] sites = DESCRIPTOR.getSites();
-		if (siteName == null && sites.length > 0) {
-			// default
-			return sites[0];
-		}
+  public Site getSite() {
+    Site[] sites = DESCRIPTOR.getSites();
+    if (siteName == null && sites.length > 0) {
+      // default
+      return sites[0];
+    }
 
-		for (Site site : sites) {
-			if (site.getName().equals(siteName)) {
-				return site;
-			}
-		}
-		return null;
-	}
+    for (Site site : sites) {
+      if (site.getName().equals(siteName)) {
+        return site;
+      }
+    }
+    return null;
+  }
 
-	@Override
-	public ConfigDescriptorImpl getDescriptor() {
-		return DESCRIPTOR;
-	}
+  @Override
+  public ConfigDescriptorImpl getDescriptor() {
+    return DESCRIPTOR;
+  }
 
-	@Extension
-	public static final ConfigDescriptorImpl DESCRIPTOR = new ConfigDescriptorImpl();
+  @Extension
+  public static final ConfigDescriptorImpl DESCRIPTOR = new ConfigDescriptorImpl();
 
-	public static final class ConfigDescriptorImpl extends Descriptor<Config> implements Serializable {
-		private static final long serialVersionUID = 6174559183832237318L;
-		private final CopyOnWriteList<Site> sites = new CopyOnWriteList<Site>();
+  public static final class ConfigDescriptorImpl extends Descriptor<Config>
+      implements Serializable {
+    private static final long serialVersionUID = 6174559183832237318L;
+    private final CopyOnWriteList<Site> sites = new CopyOnWriteList<Site>();
 
-		public ConfigDescriptorImpl() {
-			super(Config.class);
-			load();
-		}
+    public ConfigDescriptorImpl() {
+      super(Config.class);
+      load();
+    }
 
-		@Override
-		public String getDisplayName() {
-			return "JIRA Steps: Config";
-		}
+    @Override
+    public String getDisplayName() {
+      return "JIRA Steps: Config";
+    }
 
-		public void setSites(Site site) {
-			sites.add(site);
-		}
+    public void setSites(Site site) {
+      sites.add(site);
+    }
 
-		public Site[] getSites() {
-			return sites.toArray(new Site[0]);
-		}
+    public Site[] getSites() {
+      return sites.toArray(new Site[0]);
+    }
 
-		@Override
-		public Config newInstance(@Nonnull final StaplerRequest req, final JSONObject formData) throws FormException {
-			Config jiraConfig = req.bindJSON(Config.class, formData);
-			if (jiraConfig.siteName == null) {
-				jiraConfig = null;
-			}
-			return jiraConfig;
-		}
+    @Override
+    public Config newInstance(@Nonnull final StaplerRequest req, final JSONObject formData)
+        throws FormException {
+      Config jiraConfig = req.bindJSON(Config.class, formData);
+      if (jiraConfig.siteName == null) {
+        jiraConfig = null;
+      }
+      return jiraConfig;
+    }
 
-		@Override
-		public boolean configure(StaplerRequest req, JSONObject formData) {
-			Stapler.CONVERT_UTILS.deregister(java.net.URL.class);
-			Stapler.CONVERT_UTILS.register(new EmptyFriendlyURLConverter(), java.net.URL.class);
-			sites.replaceBy(req.bindJSONToList(Site.class, formData.get("sites")));
-			save();
-			return true;
-		}
+    @Override
+    public boolean configure(StaplerRequest req, JSONObject formData) {
+      Stapler.CONVERT_UTILS.deregister(java.net.URL.class);
+      Stapler.CONVERT_UTILS.register(new EmptyFriendlyURLConverter(), java.net.URL.class);
+      sites.replaceBy(req.bindJSONToList(Site.class, formData.get("sites")));
+      save();
+      return true;
+    }
 
-		@Restricted(NoExternalUse.class)
-		public static class EmptyFriendlyURLConverter implements Converter {
-			@Override
-			public Object convert(@SuppressWarnings("rawtypes") Class aClass, Object o) {
-				if (o == null || "".equals(o) || "null".equals(o)) {
-					return null;
-				}
-				try {
-					return new URL(o.toString());
-				} catch (MalformedURLException e) {
-					return null;
-				}
-			}
-		}
-	}
+    @Restricted(NoExternalUse.class)
+    public static class EmptyFriendlyURLConverter implements Converter {
+      @Override
+      public Object convert(@SuppressWarnings("rawtypes") Class aClass, Object o) {
+        if (o == null || "".equals(o) || "null".equals(o)) {
+          return null;
+        }
+        try {
+          return new URL(o.toString());
+        } catch (MalformedURLException e) {
+          return null;
+        }
+      }
+    }
+  }
 }

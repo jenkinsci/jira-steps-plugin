@@ -24,24 +24,24 @@ import lombok.ToString;
 @Builder
 public class User implements Serializable {
 
-	private static final long serialVersionUID = 334879430238677834L;
+  private static final long serialVersionUID = 334879430238677834L;
 
-	@JsonProperty("name")
-	private String name;
+  @JsonProperty("name")
+  private String name;
 
-	@JsonProperty("key")
-	private String key;
+  @JsonProperty("key")
+  private String key;
 
-	@JsonProperty("emailAddress")
-	private String emailAddress;
+  @JsonProperty("emailAddress")
+  private String emailAddress;
 
-	@JsonProperty("displayName")
-	private String displayName;
+  @JsonProperty("displayName")
+  private String displayName;
 
-	@JsonProperty("active")
-	private Boolean active;
+  @JsonProperty("active")
+  private Boolean active;
 
-	@JsonProperty("timeZone")
-	private String timeZone;
+  @JsonProperty("timeZone")
+  private String timeZone;
 
 }

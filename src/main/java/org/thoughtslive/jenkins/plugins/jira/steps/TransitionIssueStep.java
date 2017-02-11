@@ -22,72 +22,73 @@ import lombok.Getter;
  */
 public class TransitionIssueStep extends BasicJiraStep {
 
-	private static final long serialVersionUID = 5648167982018270684L;
+  private static final long serialVersionUID = 5648167982018270684L;
 
-	@Getter
-	private final String idOrKey;
+  @Getter
+  private final String idOrKey;
 
-	@Getter
-	private final TransitionInput input;
+  @Getter
+  private final TransitionInput input;
 
-	@DataBoundConstructor
-	public TransitionIssueStep(final String idOrKey, final TransitionInput input) {
-		this.idOrKey = idOrKey;
-		this.input = input;
-	}
+  @DataBoundConstructor
+  public TransitionIssueStep(final String idOrKey, final TransitionInput input) {
+    this.idOrKey = idOrKey;
+    this.input = input;
+  }
 
-	@Extension
-	public static class DescriptorImpl extends JiraStepDescriptorImpl {
+  @Extension
+  public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
-		public DescriptorImpl() {
-			super(Execution.class);
-		}
+    public DescriptorImpl() {
+      super(Execution.class);
+    }
 
-		@Override
-		public String getFunctionName() {
-			return "jiraTransitionIssue";
-		}
+    @Override
+    public String getFunctionName() {
+      return "jiraTransitionIssue";
+    }
 
-		@Override
-		public String getDisplayName() {
-			return getPrefix() + "Transition Issue";
-		}
+    @Override
+    public String getDisplayName() {
+      return getPrefix() + "Transition Issue";
+    }
 
-	}
+  }
 
-	public static class Execution extends JiraStepExecution<ResponseData<Void>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Void>> {
 
-		private static final long serialVersionUID = 6038231959460139190L;
+    private static final long serialVersionUID = 6038231959460139190L;
 
-		@StepContextParameter
-		transient Run<?, ?> run;
+    @StepContextParameter
+    transient Run<?, ?> run;
 
-		@StepContextParameter
-		transient TaskListener listener;
+    @StepContextParameter
+    transient TaskListener listener;
 
-		@StepContextParameter
-		transient EnvVars envVars;
+    @StepContextParameter
+    transient EnvVars envVars;
 
-		@Inject
-		transient TransitionIssueStep step;
+    @Inject
+    transient TransitionIssueStep step;
 
-		@Override
-		protected ResponseData<Void> run() throws Exception {
+    @Override
+    protected ResponseData<Void> run() throws Exception {
 
-			ResponseData<Void> response = verifyInput();
+      ResponseData<Void> response = verifyInput();
 
-			if (response == null) {
-				logger.println("JIRA: Site - " + siteName + " - Transition issue with idOrKey: " + step.getIdOrKey());
-				response = jiraService.transitionIssue(step.getIdOrKey(), step.getInput());
-			}
+      if (response == null) {
+        logger.println(
+            "JIRA: Site - " + siteName + " - Transition issue with idOrKey: " + step.getIdOrKey());
+        response = jiraService.transitionIssue(step.getIdOrKey(), step.getInput());
+      }
 
-			return logResponse(response);
-		}
+      return logResponse(response);
+    }
 
-		@Override
-		protected <T> ResponseData<T> verifyInput() throws Exception {
-			// TODO Add validation - Or change the input type here ?
-			return verifyCommon(step, listener, envVars, run);
-		}
-	}
+    @Override
+    protected <T> ResponseData<T> verifyInput() throws Exception {
+      // TODO Add validation - Or change the input type here ?
+      return verifyCommon(step, listener, envVars, run);
+    }
+  }
 }
