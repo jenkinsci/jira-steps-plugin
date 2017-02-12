@@ -3,3 +3,5 @@ topnav:
   items:
     - title: News
       url: /news
+    - title: Source
+      external_url: https://github.com/jenkinsci/jira-steps-plugin

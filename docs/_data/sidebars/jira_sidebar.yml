@@ -1,6 +1,6 @@
 entries:
 - title: sidebar
-  product: JIRA Steps
+  product: JIRA Steps  <a class="github-button" href="https://github.com/jenkinsci/jira-steps-plugin" data-style="mega" data-count-href="/jenkinsci/jira-steps-plugin/stargazers" data-count-api="/repos/jenkinsci/jira-steps-plugin#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star jenkinsci/jira-steps-plugin on GitHub">Star</a>
   folders:
   - title:
     output: pdf

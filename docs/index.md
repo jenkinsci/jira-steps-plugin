@@ -1,6 +1,6 @@
 ---
 title: JIRA Pipeline Steps
-last_updated: Dec 25, 2016
+last_updated: Feb 12, 2016
 tags: [getting_started]
 summary: "Jenkins JIRA Pipeline Steps"
 sidebar: jira_sidebar
@@ -24,7 +24,6 @@ Following areas are the target for initial release:
 * IssueLink.
 * Project.
 * Search.
-* Version.
 
 Get started by [installing](install) this plugin and also refer to the [Release Notes](release_notes) for more information.
 
