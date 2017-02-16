@@ -6,14 +6,14 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.spy;
 
+import java.io.IOException;
 import java.io.PrintStream;
 
+import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,11 +55,13 @@ public class GetCommentStepTest {
   JiraService jiraServiceMock;
   @Mock
   Site siteMock;
+  @Mock
+  StepContext contextMock;
 
   private GetCommentStep.Execution stepExecution;
 
   @Before
-  public void setup() {
+  public void setup() throws IOException, InterruptedException {
 
     // Prepare site.
     when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
@@ -69,8 +71,6 @@ public class GetCommentStepTest {
     Mockito.when(Site.get(any())).thenReturn(siteMock);
     when(siteMock.getService()).thenReturn(jiraServiceMock);
 
-    stepExecution = spy(new GetCommentStep.Execution());
-
     when(runMock.getCauses()).thenReturn(null);
     when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
     doNothing().when(printStreamMock).println();
@@ -79,17 +79,15 @@ public class GetCommentStepTest {
     when(jiraServiceMock.getComment(anyString(), anyInt()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
-    stepExecution.listener = taskListenerMock;
-    stepExecution.envVars = envVarsMock;
-    stepExecution.run = runMock;
-
-    doReturn(jiraServiceMock).when(stepExecution).getJiraService(any());
+    when(contextMock.get(Run.class)).thenReturn(runMock);
+    when(contextMock.get(TaskListener.class)).thenReturn(taskListenerMock);
+    when(contextMock.get(EnvVars.class)).thenReturn(envVarsMock);
   }
 
   @Test
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final GetCommentStep step = new GetCommentStep("", 1000);
-    stepExecution.step = step;
+    stepExecution = new GetCommentStep.Execution(step, contextMock);;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -101,7 +99,7 @@ public class GetCommentStepTest {
   @Test
   public void testWithZeroComponentIdThrowsAbortException() throws Exception {
     final GetCommentStep step = new GetCommentStep("TEST-1", 0);
-    stepExecution.step = step;
+    stepExecution = new GetCommentStep.Execution(step, contextMock);;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -113,13 +111,13 @@ public class GetCommentStepTest {
   @Test
   public void testSuccessfulGetComment() throws Exception {
     final GetCommentStep step = new GetCommentStep("TEST-1", 1000);
-    stepExecution.step = step;
+    stepExecution = new GetCommentStep.Execution(step, contextMock);;
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
     verify(jiraServiceMock, times(1)).getComment("TEST-1", 1000);
-    assertThat(stepExecution.step.isFailOnError()).isEqualTo(true);
+    assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

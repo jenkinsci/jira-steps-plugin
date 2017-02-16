@@ -1,8 +1,9 @@
 package org.thoughtslive.jenkins.plugins.jira.steps;
 
-import javax.inject.Inject;
+import java.io.IOException;
 
-import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
+import org.jenkinsci.plugins.workflow.steps.StepContext;
+import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
@@ -10,10 +11,7 @@ import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
-import hudson.EnvVars;
 import hudson.Extension;
-import hudson.model.Run;
-import hudson.model.TaskListener;
 import lombok.Getter;
 
 /**
@@ -37,10 +35,6 @@ public class NewIssueStep extends BasicJiraStep {
   @Extension
   public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
-    public DescriptorImpl() {
-      super(Execution.class);
-    }
-
     @Override
     public String getFunctionName() {
       return "jiraNewIssue";
@@ -61,17 +55,13 @@ public class NewIssueStep extends BasicJiraStep {
 
     private static final long serialVersionUID = 2782781910330634547L;
 
-    @StepContextParameter
-    transient Run<?, ?> run;
+    private final NewIssueStep step;
 
-    @StepContextParameter
-    transient TaskListener listener;
-
-    @StepContextParameter
-    transient EnvVars envVars;
-
-    @Inject
-    transient NewIssueStep step;
+    protected Execution(final NewIssueStep step, final StepContext context)
+        throws IOException, InterruptedException {
+      super(context);
+      this.step = step;
+    }
 
     @Override
     protected ResponseData<BasicIssue> run() throws Exception {
@@ -91,7 +81,12 @@ public class NewIssueStep extends BasicJiraStep {
     @Override
     protected <T> ResponseData<T> verifyInput() throws Exception {
       // TODO Add validation - Or change the input type here ?
-      return verifyCommon(step, listener, envVars, run);
+      return verifyCommon(step);
     }
+  }
+
+  @Override
+  public StepExecution start(StepContext context) throws Exception {
+    return new Execution(this, context);
   }
 }

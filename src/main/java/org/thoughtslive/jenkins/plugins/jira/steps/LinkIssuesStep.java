@@ -2,20 +2,18 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
 
-import javax.inject.Inject;
+import java.io.IOException;
 
-import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
+import org.jenkinsci.plugins.workflow.steps.StepContext;
+import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
-import hudson.EnvVars;
 import hudson.Extension;
 import hudson.Util;
-import hudson.model.Run;
-import hudson.model.TaskListener;
 import lombok.Getter;
 
 /**
@@ -52,10 +50,6 @@ public class LinkIssuesStep extends BasicJiraStep {
   @Extension
   public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
-    public DescriptorImpl() {
-      super(Execution.class);
-    }
-
     @Override
     public String getFunctionName() {
       return "jiraLinkIssues";
@@ -76,17 +70,13 @@ public class LinkIssuesStep extends BasicJiraStep {
 
     private static final long serialVersionUID = -1666683149182699538L;
 
-    @StepContextParameter
-    transient Run<?, ?> run;
+    private final LinkIssuesStep step;
 
-    @StepContextParameter
-    transient TaskListener listener;
-
-    @StepContextParameter
-    transient EnvVars envVars;
-
-    @Inject
-    transient LinkIssuesStep step;
+    protected Execution(final LinkIssuesStep step, final StepContext context)
+        throws IOException, InterruptedException {
+      super(context);
+      this.step = step;
+    }
 
     @Override
     protected ResponseData<Void> run() throws Exception {
@@ -107,7 +97,7 @@ public class LinkIssuesStep extends BasicJiraStep {
     @Override
     protected <T> ResponseData<T> verifyInput() throws Exception {
       String errorMessage = null;
-      ResponseData<T> response = verifyCommon(step, listener, envVars, run);
+      ResponseData<T> response = verifyCommon(step);
 
       if (response == null) {
         final String type = Util.fixEmpty(step.getType());
@@ -132,5 +122,10 @@ public class LinkIssuesStep extends BasicJiraStep {
       }
       return response;
     }
+  }
+
+  @Override
+  public StepExecution start(StepContext context) throws Exception {
+    return new Execution(this, context);
   }
 }

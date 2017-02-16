@@ -2,20 +2,18 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
 
-import javax.inject.Inject;
+import java.io.IOException;
 
-import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
+import org.jenkinsci.plugins.workflow.steps.StepContext;
+import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.thoughtslive.jenkins.plugins.jira.api.Comment;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
-import hudson.EnvVars;
 import hudson.Extension;
 import hudson.Util;
-import hudson.model.Run;
-import hudson.model.TaskListener;
 import lombok.Getter;
 
 /**
@@ -43,10 +41,6 @@ public class AddCommentStep extends BasicJiraStep {
   @Extension
   public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
-    public DescriptorImpl() {
-      super(Execution.class);
-    }
-
     @Override
     public String getFunctionName() {
       return "jiraAddComment";
@@ -67,17 +61,13 @@ public class AddCommentStep extends BasicJiraStep {
 
     private static final long serialVersionUID = 462945562138805176L;
 
-    @StepContextParameter
-    transient Run<?, ?> run;
+    private final AddCommentStep step;
 
-    @StepContextParameter
-    transient TaskListener listener;
-
-    @StepContextParameter
-    transient EnvVars envVars;
-
-    @Inject
-    transient AddCommentStep step;
+    protected Execution(final AddCommentStep step, final StepContext context)
+        throws IOException, InterruptedException {
+      super(context);
+      this.step = step;
+    }
 
     @Override
     protected ResponseData<Comment> run() throws Exception {
@@ -97,7 +87,7 @@ public class AddCommentStep extends BasicJiraStep {
     protected <T> ResponseData<T> verifyInput() throws Exception {
 
       String errorMessage = null;
-      ResponseData<T> response = verifyCommon(step, listener, envVars, run);
+      ResponseData<T> response = verifyCommon(step);
 
       if (response == null) {
         final String idOrKey = Util.fixEmpty(step.getIdOrKey());
@@ -117,5 +107,10 @@ public class AddCommentStep extends BasicJiraStep {
       }
       return response;
     }
+  }
+
+  @Override
+  public StepExecution start(StepContext context) throws Exception {
+    return new Execution(this, context);
   }
 }

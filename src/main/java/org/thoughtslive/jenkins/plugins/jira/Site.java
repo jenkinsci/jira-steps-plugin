@@ -104,7 +104,7 @@ public class Site extends AbstractDescribableImpl<Site> {
 
   public JiraService getService() {
     if (jiraService == null) {
-      return new JiraService(this);
+      this.jiraService = new JiraService(this);
     }
     return jiraService;
   }

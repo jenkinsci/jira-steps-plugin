@@ -1,10 +1,16 @@
 package org.thoughtslive.jenkins.plugins.jira.util;
 
-import org.jenkinsci.plugins.workflow.steps.AbstractStepDescriptorImpl;
-import org.jenkinsci.plugins.workflow.steps.StepExecution;
+import java.util.Set;
+
+import org.jenkinsci.plugins.workflow.steps.StepDescriptor;
 import org.thoughtslive.jenkins.plugins.jira.Config;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 
+import com.google.common.collect.ImmutableSet;
+
+import hudson.EnvVars;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import hudson.util.ListBoxModel;
 
 /**
@@ -13,14 +19,7 @@ import hudson.util.ListBoxModel;
  * @author Naresh Rayapati
  *
  */
-public abstract class JiraStepDescriptorImpl extends AbstractStepDescriptorImpl {
-
-  /**
-   * Constructor.
-   */
-  protected JiraStepDescriptorImpl(Class<? extends StepExecution> executionType) {
-    super(executionType);
-  }
+public abstract class JiraStepDescriptorImpl extends StepDescriptor {
 
   /**
    * Fills the site names to the list box.
@@ -40,4 +39,8 @@ public abstract class JiraStepDescriptorImpl extends AbstractStepDescriptorImpl 
     return "JIRA Steps: ";
   }
 
+  @Override
+  public Set<? extends Class<?>> getRequiredContext() {
+    return ImmutableSet.of(Run.class, TaskListener.class, EnvVars.class);
+  }
 }

@@ -2,7 +2,7 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import java.io.Serializable;
 
-import org.jenkinsci.plugins.workflow.steps.AbstractStepImpl;
+import org.jenkinsci.plugins.workflow.steps.Step;
 import org.kohsuke.stapler.DataBoundSetter;
 
 import lombok.Getter;
@@ -12,7 +12,7 @@ import lombok.Getter;
  * 
  * @author Naresh Rayapati
  */
-public abstract class BasicJiraStep extends AbstractStepImpl implements Serializable {
+public abstract class BasicJiraStep extends Step implements Serializable {
 
   private static final long serialVersionUID = 7268920801605705697L;
 
@@ -23,5 +23,4 @@ public abstract class BasicJiraStep extends AbstractStepImpl implements Serializ
   @Getter
   @DataBoundSetter
   private boolean failOnError = true;
-
 }

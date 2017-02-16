@@ -4,16 +4,16 @@ import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorRespon
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.empty;
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.log;
 
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
 
-import org.jenkinsci.plugins.workflow.steps.AbstractSynchronousNonBlockingStepExecution;
+import org.jenkinsci.plugins.workflow.steps.StepContext;
+import org.jenkinsci.plugins.workflow.steps.SynchronousNonBlockingStepExecution;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 import org.thoughtslive.jenkins.plugins.jira.steps.BasicJiraStep;
-
-import com.google.common.annotations.VisibleForTesting;
 
 import hudson.AbortException;
 import hudson.EnvVars;
@@ -27,21 +27,33 @@ import hudson.model.Cause.UserIdCause;
 /**
  * Common Execution for all JIRA steps.
  * 
- * @see AbstractSynchronousNonBlockingStepExecution
+ * @see SynchronousNonBlockingStepExecution
  * @author Naresh Rayapati
  *
  * @param <T> the type of the return value (may be {@link Void})
  */
-public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockingStepExecution<T> {
+public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExecution<T> {
 
   private static final long serialVersionUID = 3856797875872780808L;
 
+  public transient JiraService jiraService = null;
+
+  private transient Run<?, ?> run;
+  private transient TaskListener listener;
+  private transient EnvVars envVars;
+
   protected transient PrintStream logger = null;
   protected transient String siteName = null;
-  protected transient JiraService jiraService = null;
   protected transient boolean failOnError = true;
   protected transient String buildUser = null;
   protected transient String buildUrl = null;
+
+  protected JiraStepExecution(final StepContext context) throws IOException, InterruptedException {
+    super(context);
+    run = context.get(Run.class);
+    listener = context.get(TaskListener.class);
+    envVars = context.get(EnvVars.class);
+  }
 
   /**
    * Verifies the common input for all the stesp.
@@ -53,8 +65,7 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
    * @throws AbortException when failOnError is true and JIRA_SITE is missing.
    */
   @SuppressWarnings("hiding")
-  protected <T> ResponseData<T> verifyCommon(final BasicJiraStep step, final TaskListener listener,
-      final EnvVars envVars, final Run<?, ?> run) throws AbortException {
+  protected <T> ResponseData<T> verifyCommon(final BasicJiraStep step) throws AbortException {
 
     logger = listener.getLogger();
 
@@ -76,7 +87,8 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
     if (site == null) {
       errorMessage = "No JIRA site configured with " + siteName + " name.";
     } else {
-      jiraService = getJiraService(site);
+      if (jiraService == null)
+        jiraService = site.getService();
     }
 
     if (errorMessage != null) {
@@ -87,11 +99,6 @@ public abstract class JiraStepExecution<T> extends AbstractSynchronousNonBlockin
     buildUrl = envVars.get("BUILD_URL");
 
     return null;
-  }
-
-  @VisibleForTesting
-  public JiraService getJiraService(final Site site) {
-    return site.getService();
   }
 
   /**

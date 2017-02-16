@@ -1,18 +1,16 @@
 package org.thoughtslive.jenkins.plugins.jira.steps;
 
-import javax.inject.Inject;
+import java.io.IOException;
 
-import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
+import org.jenkinsci.plugins.workflow.steps.StepContext;
+import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.thoughtslive.jenkins.plugins.jira.api.IssueLinkTypes;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
-import hudson.EnvVars;
 import hudson.Extension;
-import hudson.model.Run;
-import hudson.model.TaskListener;
 
 /**
  * Step to query a JIRA Issue linkss types so that we can link issues later.
@@ -28,10 +26,6 @@ public class GetIssueLinkTypesStep extends BasicJiraStep {
 
   @Extension
   public static class DescriptorImpl extends JiraStepDescriptorImpl {
-
-    public DescriptorImpl() {
-      super(Execution.class);
-    }
 
     @Override
     public String getFunctionName() {
@@ -49,17 +43,13 @@ public class GetIssueLinkTypesStep extends BasicJiraStep {
 
     private static final long serialVersionUID = -1387617043703686867L;
 
-    @StepContextParameter
-    transient Run<?, ?> run;
+    private final GetIssueLinkTypesStep step;
 
-    @StepContextParameter
-    transient TaskListener listener;
-
-    @StepContextParameter
-    transient EnvVars envVars;
-
-    @Inject
-    transient GetIssueLinkTypesStep step;
+    protected Execution(final GetIssueLinkTypesStep step, final StepContext context)
+        throws IOException, InterruptedException {
+      super(context);
+      this.step = step;
+    }
 
     @Override
     protected ResponseData<IssueLinkTypes> run() throws Exception {
@@ -76,7 +66,12 @@ public class GetIssueLinkTypesStep extends BasicJiraStep {
 
     @Override
     protected <T> ResponseData<T> verifyInput() throws Exception {
-      return verifyCommon(step, listener, envVars, run);
+      return verifyCommon(step);
     }
+  }
+
+  @Override
+  public StepExecution start(StepContext context) throws Exception {
+    return new Execution(this, context);
   }
 }

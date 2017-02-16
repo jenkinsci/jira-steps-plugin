@@ -3,14 +3,14 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.spy;
 
+import java.io.IOException;
 import java.io.PrintStream;
 
+import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,11 +53,13 @@ public class NewComponentStepTest {
   Site siteMock;
   @Mock
   Component componentMock;
+  @Mock
+  StepContext contextMock;
 
   NewComponentStep.Execution stepExecution;
 
   @Before
-  public void setup() {
+  public void setup() throws IOException, InterruptedException {
 
     // Prepare site.
     when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
@@ -67,8 +69,6 @@ public class NewComponentStepTest {
     Mockito.when(Site.get(any())).thenReturn(siteMock);
     when(siteMock.getService()).thenReturn(jiraServiceMock);
 
-    stepExecution = spy(new NewComponentStep.Execution());
-
     when(runMock.getCauses()).thenReturn(null);
     when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
     doNothing().when(printStreamMock).println();
@@ -77,23 +77,21 @@ public class NewComponentStepTest {
     when(jiraServiceMock.createComponent(any()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
-    stepExecution.listener = taskListenerMock;
-    stepExecution.envVars = envVarsMock;
-    stepExecution.run = runMock;
-
-    doReturn(jiraServiceMock).when(stepExecution).getJiraService(any());
+    when(contextMock.get(Run.class)).thenReturn(runMock);
+    when(contextMock.get(TaskListener.class)).thenReturn(taskListenerMock);
+    when(contextMock.get(EnvVars.class)).thenReturn(envVarsMock);
   }
 
   @Test
   public void testSuccessfulNewComponent() throws Exception {
     final NewComponentStep step = new NewComponentStep(componentMock);
-    stepExecution.step = step;
+    stepExecution = new NewComponentStep.Execution(step, contextMock);;
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
     verify(jiraServiceMock, times(1)).createComponent(componentMock);
-    assertThat(stepExecution.step.isFailOnError()).isEqualTo(true);
+    assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }
