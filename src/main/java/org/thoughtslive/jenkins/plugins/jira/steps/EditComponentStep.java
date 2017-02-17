@@ -1,5 +1,7 @@
 package org.thoughtslive.jenkins.plugins.jira.steps;
 
+import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
+
 import java.io.IOException;
 
 import org.jenkinsci.plugins.workflow.steps.StepContext;
@@ -11,6 +13,7 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
 import hudson.Extension;
+import hudson.Util;
 import lombok.Getter;
 
 /**
@@ -80,8 +83,31 @@ public class EditComponentStep extends BasicJiraStep {
 
     @Override
     protected <T> ResponseData<T> verifyInput() throws Exception {
-      // TODO Add validation - Or change the input type here ?
-      return verifyCommon(step);
+      String errorMessage = null;
+      ResponseData<T> response = verifyCommon(step);
+
+      if (response == null) {
+        final int id = step.getComponent().getId();
+        final String name = Util.fixEmpty(step.getComponent().getName());
+        final String project = Util.fixEmpty(step.getComponent().getProject());
+
+        if (id == 0) {
+          errorMessage = "id required.";
+        }
+
+        if (name == null) {
+          errorMessage = "name is empty or null.";
+        }
+
+        if (project == null) {
+          errorMessage = "project is empty or null.";
+        }
+
+        if (errorMessage != null) {
+          response = buildErrorResponse(new RuntimeException(errorMessage));
+        }
+      }
+      return response;
     }
   }
 

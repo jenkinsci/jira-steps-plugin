@@ -23,6 +23,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
+import org.thoughtslive.jenkins.plugins.jira.api.Transition;
 import org.thoughtslive.jenkins.plugins.jira.api.input.FieldsInput;
 import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
 import org.thoughtslive.jenkins.plugins.jira.api.input.TransitionInput;
@@ -54,8 +55,6 @@ public class TransitionIssueStepTest {
   JiraService jiraServiceMock;
   @Mock
   Site siteMock;
-  @Mock
-  TransitionInput transitionInputMock;
   @Mock
   StepContext contextMock;
 
@@ -90,14 +89,16 @@ public class TransitionIssueStepTest {
 
   @Test
   public void testSuccessfulTransitionIssue() throws Exception {
-    final TransitionIssueStep step = new TransitionIssueStep("TEST-1", transitionInputMock);
+    final TransitionInput input =
+        TransitionInput.builder().transition(Transition.builder().id(1000).build()).build();
+    final TransitionIssueStep step = new TransitionIssueStep("TEST-1", input);
     stepExecution = new TransitionIssueStep.Execution(step, contextMock);;
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).transitionIssue("TEST-1", transitionInputMock);
+    verify(jiraServiceMock, times(1)).transitionIssue("TEST-1", input);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

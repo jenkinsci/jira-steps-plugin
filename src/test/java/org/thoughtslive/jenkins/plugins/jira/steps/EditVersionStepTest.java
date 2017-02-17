@@ -52,8 +52,6 @@ public class EditVersionStepTest {
   @Mock
   Site siteMock;
   @Mock
-  Version versionMock;
-  @Mock
   StepContext contextMock;
 
   EditVersionStep.Execution stepExecution;
@@ -85,14 +83,15 @@ public class EditVersionStepTest {
 
   @Test
   public void testSuccessfulEditVersion() throws Exception {
-    final EditVersionStep step = new EditVersionStep(versionMock);
+    final Version version = Version.builder().name("testVersion").id(10000).project("TEST").build();
+    final EditVersionStep step = new EditVersionStep(version);
     stepExecution = new EditVersionStep.Execution(step, contextMock);;
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).updateVersion(versionMock);
+    verify(jiraServiceMock, times(1)).updateVersion(version);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

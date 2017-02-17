@@ -20,6 +20,8 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
+import org.thoughtslive.jenkins.plugins.jira.api.IssueType;
+import org.thoughtslive.jenkins.plugins.jira.api.Project;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssues;
@@ -70,7 +72,10 @@ public class NewIssuesStepTest {
 
     final IssueInput[] issue = new IssueInput[1];
     issue[0] = IssueInput.builder()
-        .fields(FieldsInput.builder().description("TEST").summary("TEST").build()).build();
+        .fields(FieldsInput.builder().description("TEST").summary("TEST")
+            .project(Project.builder().id(10000).build())
+            .issuetype(IssueType.builder().id(10000).build()).build())
+        .build();
     issues = IssuesInput.builder().issueUpdates(issue).build();
     PowerMockito.mockStatic(Site.class);
     Mockito.when(Site.get(any())).thenReturn(siteMock);

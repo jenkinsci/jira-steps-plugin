@@ -1,5 +1,7 @@
 package org.thoughtslive.jenkins.plugins.jira.steps;
 
+import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
+
 import java.io.IOException;
 
 import org.jenkinsci.plugins.workflow.steps.StepContext;
@@ -13,6 +15,7 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
 import hudson.Extension;
+import hudson.Util;
 import lombok.Getter;
 
 /**
@@ -83,8 +86,58 @@ public class NewIssuesStep extends BasicJiraStep {
 
     @Override
     protected <T> ResponseData<T> verifyInput() throws Exception {
-      // TODO Add validation - Or change the input type here ?
-      return verifyCommon(step);
+      String errorMessage = null;
+      ResponseData<T> response = verifyCommon(step);
+
+      if (response == null) {
+        final IssuesInput issues = step.getIssues();
+
+        for (IssueInput issue : issues.getIssueUpdates()) {
+          if (issue == null) {
+            errorMessage = "issue is null.";
+            return buildErrorResponse(new RuntimeException(errorMessage));
+          }
+
+          if (issue.getFields() == null) {
+            errorMessage = "fields is null.";
+            return buildErrorResponse(new RuntimeException(errorMessage));
+          }
+
+          if (Util.fixEmpty(issue.getFields().getSummary()) == null) {
+            errorMessage = "fields->summary is empty or null.";
+          }
+
+          if (Util.fixEmpty(issue.getFields().getDescription()) == null) {
+            errorMessage = "fields->description is empty or null.";
+          }
+
+          if (issue.getFields().getIssuetype() == null) {
+            errorMessage = "fields->issuetype is null.";
+            return buildErrorResponse(new RuntimeException(errorMessage));
+          }
+
+          if (issue.getFields().getIssuetype().getId() == 0) {
+            errorMessage = "fields->issuetype->id is zero or missing";
+          }
+
+          if (issue.getFields().getProject() == null) {
+            errorMessage = "fields->project is null.";
+            return buildErrorResponse(new RuntimeException(errorMessage));
+          }
+
+          if (issue.getFields().getProject().getId() == 0) {
+            errorMessage = "fields->project->id is zero or missing";
+          }
+
+          if (errorMessage != null) {
+            logger.println(
+                "The error here can be of from any of the issues. Please check all the issues.");
+            response = buildErrorResponse(new RuntimeException(errorMessage));
+            break;
+          }
+        }
+      }
+      return response;
     }
   }
 

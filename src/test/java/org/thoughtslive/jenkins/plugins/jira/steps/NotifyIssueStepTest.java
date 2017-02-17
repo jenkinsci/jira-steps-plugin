@@ -55,11 +55,11 @@ public class NotifyIssueStepTest {
   @Mock
   Site siteMock;
   @Mock
-  Notify notifyMock;
-  @Mock
   StepContext contextMock;
 
   NotifyIssueStep.Execution stepExecution;
+
+  final Notify notify = Notify.builder().subject("TEST SUBJECT").textBody("Test Body").build();
 
   @Before
   public void setup() throws IOException, InterruptedException {
@@ -87,7 +87,7 @@ public class NotifyIssueStepTest {
 
   @Test
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
-    final NotifyIssueStep step = new NotifyIssueStep("", notifyMock);
+    final NotifyIssueStep step = new NotifyIssueStep("", notify);
     stepExecution = new NotifyIssueStep.Execution(step, contextMock);;
 
     // Execute and assert Test.
@@ -99,14 +99,14 @@ public class NotifyIssueStepTest {
 
   @Test
   public void testSuccessfulNotifyIssue() throws Exception {
-    final NotifyIssueStep step = new NotifyIssueStep("TEST-1", notifyMock);
+    final NotifyIssueStep step = new NotifyIssueStep("TEST-1", notify);
     stepExecution = new NotifyIssueStep.Execution(step, contextMock);;
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).notifyIssue("TEST-1", notifyMock);
+    verify(jiraServiceMock, times(1)).notifyIssue("TEST-1", notify);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

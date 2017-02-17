@@ -1,5 +1,7 @@
 package org.thoughtslive.jenkins.plugins.jira.steps;
 
+import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
+
 import java.io.IOException;
 
 import org.jenkinsci.plugins.workflow.steps.StepContext;
@@ -11,6 +13,7 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
 import hudson.Extension;
+import hudson.Util;
 import lombok.Getter;
 
 /**
@@ -77,8 +80,36 @@ public class TransitionIssueStep extends BasicJiraStep {
 
     @Override
     protected <T> ResponseData<T> verifyInput() throws Exception {
-      // TODO Add validation - Or change the input type here ?
-      return verifyCommon(step);
+      String errorMessage = null;
+      ResponseData<T> response = verifyCommon(step);
+
+      if (response == null) {
+        final String idOrKey = Util.fixEmpty(step.getIdOrKey());
+        final TransitionInput input = step.getInput();
+
+        if (idOrKey == null) {
+          errorMessage = "idOrKey is empty or null.";
+        }
+
+        if (input == null) {
+          errorMessage = "input is null.";
+          return buildErrorResponse(new RuntimeException(errorMessage));
+        }
+
+        if (input.getTransition() == null) {
+          errorMessage = "notify->transition is null.";
+          return buildErrorResponse(new RuntimeException(errorMessage));
+        }
+
+        if (input.getTransition().getId() == 0) {
+          errorMessage = "notify->transition->id required or can't be zero.";
+        }
+
+        if (errorMessage != null) {
+          response = buildErrorResponse(new RuntimeException(errorMessage));
+        }
+      }
+      return response;
     }
   }
 

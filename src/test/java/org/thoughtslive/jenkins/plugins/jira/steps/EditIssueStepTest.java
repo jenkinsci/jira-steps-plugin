@@ -22,6 +22,8 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
+import org.thoughtslive.jenkins.plugins.jira.api.IssueType;
+import org.thoughtslive.jenkins.plugins.jira.api.Project;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
@@ -62,7 +64,10 @@ public class EditIssueStepTest {
   EditIssueStep.Execution stepExecution;
 
   final IssueInput issue = IssueInput.builder()
-      .fields(FieldsInput.builder().description("TEST").summary("TEST").build()).build();
+      .fields(FieldsInput.builder().description("TEST").summary("TEST")
+          .project(Project.builder().id(10000).build())
+          .issuetype(IssueType.builder().id(10000).build()).build())
+      .build();
 
   @Before
   public void setup() throws IOException, InterruptedException {

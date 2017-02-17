@@ -52,8 +52,6 @@ public class EditComponentStepTest {
   @Mock
   Site siteMock;
   @Mock
-  Component componentMock;
-  @Mock
   StepContext contextMock;
 
   EditComponentStep.Execution stepExecution;
@@ -84,14 +82,15 @@ public class EditComponentStepTest {
 
   @Test
   public void testSuccessfulEditComponent() throws Exception {
-    final EditComponentStep step = new EditComponentStep(componentMock);
+    final Component component = Component.builder().id(1000).name("testcomponent").project("TEST").build();
+    final EditComponentStep step = new EditComponentStep(component);
     stepExecution = new EditComponentStep.Execution(step, contextMock);;
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).updateComponent(componentMock);
+    verify(jiraServiceMock, times(1)).updateComponent(component);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

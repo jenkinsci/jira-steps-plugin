@@ -35,13 +35,10 @@ public class JqlSearchStep extends BasicJiraStep {
     this.jql = jql;
   }
 
-  // startAt is optional and defaults to 0.
   @Getter
   @DataBoundSetter
   private int startAt = 0;
 
-  // maxResults is optional and defaults to 1000.
-  // TODO this can't be more than 2000 as JIRA may shutdown with out of memory issues.
   @Getter
   @DataBoundSetter
   private int maxResults = 1000;
@@ -101,6 +98,10 @@ public class JqlSearchStep extends BasicJiraStep {
 
         if (jql == null) {
           errorMessage = "jql is empty or null.";
+        }
+
+        if (step.getMaxResults() > 2000) {
+          errorMessage = "maxResults can't be more than 2000 to avoid memory issues.";
         }
 
         if (errorMessage != null) {

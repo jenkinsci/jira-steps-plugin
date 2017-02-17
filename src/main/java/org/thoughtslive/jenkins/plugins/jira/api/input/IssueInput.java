@@ -25,9 +25,6 @@ public class IssueInput implements Serializable {
 
   private static final long serialVersionUID = -4858855342737984849L;
 
-  @JsonProperty("updates")
-  private FieldsInput updates;
-
   @JsonProperty("fields")
   private FieldsInput fields;
 

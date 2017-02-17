@@ -27,7 +27,7 @@ public class IssueType implements Serializable {
   private static final long serialVersionUID = -4350803739177634227L;
 
   @JsonProperty("id")
-  private String id;
+  private int id;
 
   @JsonProperty("description")
   private String description;

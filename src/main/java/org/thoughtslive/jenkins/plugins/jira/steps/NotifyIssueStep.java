@@ -89,12 +89,27 @@ public class NotifyIssueStep extends BasicJiraStep {
 
       if (response == null) {
         final String idOrKey = Util.fixEmpty(step.getIdOrKey());
+        final Notify notify = step.getNotify();
 
         if (idOrKey == null) {
           errorMessage = "idOrKey is empty or null.";
         }
 
-        // TODO Validate Notify object too.
+        if (notify == null) {
+          errorMessage = "notify is null.";
+          return buildErrorResponse(new RuntimeException(errorMessage));
+        }
+
+        if (Util.fixEmpty(notify.getSubject()) == null) {
+          errorMessage = "notify->subject is empty or null.";
+        }
+
+        if ((Util.fixEmpty(notify.getHtmlBody()) == null
+            && Util.fixEmpty(notify.getTextBody()) == null)) {
+          errorMessage =
+              "notify->htmlBody or notify->textBody is required. (One of these two is required.)";
+        }
+
         if (errorMessage != null) {
           response = buildErrorResponse(new RuntimeException(errorMessage));
         }

@@ -8,6 +8,22 @@ Jenkins pipeline steps for integration with the https://www.atlassian.com/softwa
 
 Documentation for this plugin is at https://jenkinsci.github.io/jira-steps-plugin[Jira Steps].
 
+Quick links:
+
+* https://jenkinsci.github.io/jira-steps-plugin/index.html[Get Started]
+* https://jenkinsci.github.io/jira-steps-plugin/install.html[Installation]
+* https://jenkinsci.github.io/jira-steps-plugin/config.html[Configuration]
+* https://jenkinsci.github.io/jira-steps-plugin/jira_get_component.html[Pipeline Steps]
+* https://jenkinsci.github.io/jira-steps-plugin/contributing.html[Contribution]
+* https://jenkinsci.github.io/jira-steps-plugin/release_notes.html[Release Notes]
+
+== Maintainers
+
+* https://github.com/nrayapati[Naresh Rayapati]
+
 == Disclaimer
 
-This plugin is currently under active development.
+Please don't hesitate to log a https://issues.jenkins-ci.org/secure/RapidBoard.jspa?rapidView=171&projectKey=JENKINS[JIRA] or github pull request if you need any help or if you can be of help with this plugin :).
+Refer to the https://jenkinsci.github.io/jira-steps-plugin/contributing.html[contribution guide] for more information.
+
+Developed by https://github.com/nrayapati[Naresh Rayapati], this repo was initially cloned from https://github.com/ThoughtsLive/jira-steps[ThoughtsLive]

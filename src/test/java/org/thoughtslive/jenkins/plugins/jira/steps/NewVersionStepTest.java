@@ -52,8 +52,6 @@ public class NewVersionStepTest {
   @Mock
   Site siteMock;
   @Mock
-  Version versionMock;
-  @Mock
   StepContext contextMock;
 
   NewVersionStep.Execution stepExecution;
@@ -84,14 +82,15 @@ public class NewVersionStepTest {
 
   @Test
   public void testSuccessfulNewVersion() throws Exception {
-    final NewVersionStep step = new NewVersionStep(versionMock);
+    final Version version = Version.builder().name("testVersion").id(10000).project("TEST").build();
+    final NewVersionStep step = new NewVersionStep(version);
     stepExecution = new NewVersionStep.Execution(step, contextMock);;
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).createVersion(versionMock);
+    verify(jiraServiceMock, times(1)).createVersion(version);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

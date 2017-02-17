@@ -92,12 +92,46 @@ public class EditIssueStep extends BasicJiraStep {
 
       if (response == null) {
         final String idOrKey = Util.fixEmpty(step.getIdOrKey());
+        final IssueInput issue = step.getIssue();
 
         if (idOrKey == null) {
           errorMessage = "idOrKey is empty or null.";
         }
 
-        // TODO Add validation - Or change the input type here ?
+        if (issue == null) {
+          errorMessage = "issue is null.";
+          return buildErrorResponse(new RuntimeException(errorMessage));
+        }
+
+        if (issue.getFields() == null) {
+          errorMessage = "fields is null.";
+          return buildErrorResponse(new RuntimeException(errorMessage));
+        }
+
+        if (Util.fixEmpty(issue.getFields().getSummary()) == null) {
+          errorMessage = "fields->summary is empty or null.";
+        }
+
+        if (Util.fixEmpty(issue.getFields().getDescription()) == null) {
+          errorMessage = "fields->description is empty or null.";
+        }
+
+        if (issue.getFields().getIssuetype() == null) {
+          errorMessage = "fields->issuetype is null.";
+        }
+
+        if (issue.getFields().getIssuetype().getId() == 0) {
+          errorMessage = "fields->issuetype->id is zero or missing";
+        }
+
+        if (issue.getFields().getProject() == null) {
+          errorMessage = "fields->project is null.";
+        }
+
+        if (issue.getFields().getProject().getId() == 0) {
+          errorMessage = "fields->project->id is zero or missing";
+        }
+
         if (errorMessage != null) {
           response = buildErrorResponse(new RuntimeException(errorMessage));
         }
