@@ -7,8 +7,8 @@ sidebar: jira_sidebar
 permalink: release_notes.html
 ---
 
-* ## **1.0.0-SNAPSHOT**
-  * Initial release. (Still under active development).
+* ## **1.0.0**
+  * Initial release.
   * Manual tested with JIRA API Version [6.4.13](https://docs.atlassian.com/jira/REST/6.4.13/).
   * Steps to Support
     * Component
@@ -48,17 +48,4 @@ permalink: release_notes.html
       * jiraGetIssueLinkTypes
     * Search
       * jiraJqlSearch
-
-* ## TODO
-  * Projects
-    * jiraGetVersions
-    * jiraGetComponents
-    * jiraGetStatuses
-  * IssueLinks
-    * jiraGetIssueLink
-    * jiraDeleteIssueLink  
-  * Session - Need to think on how we can reuse session Id. (Or do we need it at all.?)
-  * Support Issue Custom Fields.
-
-
 {% include links.html %}

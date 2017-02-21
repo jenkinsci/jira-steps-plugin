@@ -13,7 +13,7 @@ This plugin's main focus is to build [pipeline](https://jenkins.io/doc/book/pipe
 
 ## Features
 
-Following areas are the target for initial release:
+We started of with following JIRA Software steps, will keep enhancing it to support other part of API too.
 
 * Component.
 * Version.
