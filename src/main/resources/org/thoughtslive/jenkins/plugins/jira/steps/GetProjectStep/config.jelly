@@ -8,7 +8,7 @@
 	xmlns:t="/lib/hudson"
 	xmlns:f="/lib/form"
 	xmlns:i="jelly:fmt">
-  <f:entry field="id" title="Component Id">
+  <f:entry field="idOrKey" title="Project Id/Key">
   	<f:textbox/>
   </f:entry>
   <f:advanced>
@@ -20,6 +20,6 @@
   	</f:entry>
   </f:advanced>
   <f:block>
-     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_get_component.html" target="_blank">jiraGetComponent</a> for more information.</p>
+     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_get_project.html" target="_blank">jiraGetProject</a> for more information.</p>
   </f:block>    
 </j:jelly>

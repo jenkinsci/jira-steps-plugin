@@ -26,7 +26,7 @@ public abstract class JiraStepDescriptorImpl extends StepDescriptor {
    * 
    * @return {@link ListBoxModel}
    */
-  public ListBoxModel doFillSiteNameItems() {
+  public ListBoxModel doFillSiteItems() {
     ListBoxModel list = new ListBoxModel();
     list.add("Please select", "");
     for (Site site : Config.DESCRIPTOR.getSites()) {

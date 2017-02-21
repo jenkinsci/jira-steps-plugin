@@ -8,7 +8,13 @@
 	xmlns:t="/lib/hudson"
 	xmlns:f="/lib/form"
 	xmlns:i="jelly:fmt">
-  <f:entry field="id" title="Component Id">
+  <f:entry field="type" title="Type of Link(Ex: Relates, Blocks, Cloners, Duplicate)">
+  	<f:textbox/>
+  </f:entry>
+  <f:entry field="inwardKey" title="Inward Issue Key">
+  	<f:textbox/>
+  </f:entry>
+  <f:entry field="outwardKey" title="Outward Issue Key">
   	<f:textbox/>
   </f:entry>
   <f:advanced>
@@ -20,6 +26,6 @@
   	</f:entry>
   </f:advanced>
   <f:block>
-     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_get_component.html" target="_blank">jiraGetComponent</a> for more information.</p>
-  </f:block>    
+     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_link_issues.html" target="_blank">jiraLinkIssues</a> for more information.</p>
+  </f:block>  
 </j:jelly>

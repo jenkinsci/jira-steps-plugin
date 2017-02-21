@@ -8,12 +8,16 @@
 	xmlns:t="/lib/hudson"
 	xmlns:f="/lib/form"
 	xmlns:i="jelly:fmt">
+  <f:block>
+     <p>No snippet generation available except some advanced default options. 
+     <br/>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_new_component.html" target="_blank">jiraNewComponent</a> for more information.</p>
+  </f:block>  
   <f:advanced>
-  	<f:entry field="siteName" title="Site Name">
+  	<f:entry field="site" title="Site Name">
 		<f:select/>
   	</f:entry>
   	<f:entry field="failOnError">
-  		<f:checkbox title="Fail On Error" default="false"/>
+  		<f:checkbox title="Fail On Error" default="true"/>
   	</f:entry>
   </f:advanced>
 </j:jelly>

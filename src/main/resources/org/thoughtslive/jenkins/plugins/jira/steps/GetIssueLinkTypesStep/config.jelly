@@ -8,9 +8,6 @@
 	xmlns:t="/lib/hudson"
 	xmlns:f="/lib/form"
 	xmlns:i="jelly:fmt">
-  <f:entry field="id" title="Component Id">
-  	<f:textbox/>
-  </f:entry>
   <f:advanced>
   	<f:entry field="site" title="Site Name">
 		<f:select/>
@@ -20,6 +17,6 @@
   	</f:entry>
   </f:advanced>
   <f:block>
-     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_get_component.html" target="_blank">jiraGetComponent</a> for more information.</p>
-  </f:block>    
+     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_get_issue_link_types.html" target="_blank">jiraGetIssueLinkTypes</a> for more information.</p>
+  </f:block>  
 </j:jelly>
