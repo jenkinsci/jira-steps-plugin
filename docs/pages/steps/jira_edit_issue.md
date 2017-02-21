@@ -27,9 +27,10 @@ Creates new issue based on given input, which should have some minimal informati
   node {
     stage('JIRA') {
       # Look at IssueInput class for more information.
-      def testIssue = [fields: [ project: [id: "10000"],
+      def testIssue = [fields: [ project: [id: 10000],
                                  summary: "New JIRA Created from Jenkins.",
-                                 issuetype: [id: "3"]]]
+                                 description: "New JIRA Created from Jenkins.",
+                                 issuetype: [id: 3]]]
 
       response = jiraNewIssue idOrKey: "TEST-01", issue: testIssue
 
@@ -45,9 +46,10 @@ Creates new issue based on given input, which should have some minimal informati
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
         # Look at IssueInput class for more information.
-        def testIssue = [fields: [ project: [id: "10000"],
+        def testIssue = [fields: [ project: [id: 10000],
                                    summary: "New JIRA Created from Jenkins.",
-                                   issuetype: [id: "3"]]]
+                                   description: "New JIRA Created from Jenkins.",
+                                   issuetype: [id: 3]]]
 
         response = jiraNewIssue idOrKey: "TEST-01", issue: testIssue
 
@@ -61,9 +63,10 @@ Creates new issue based on given input, which should have some minimal informati
 
   ```groovy
   # Look at IssueInput class for more information.
-  def testIssue = [fields: [ project: [id: "10000"],
+  def testIssue = [fields: [ project: [id: 10000],
                              summary: "New JIRA Created from Jenkins.",
-                             issuetype: [id: "3"]]]
+                             description: "New JIRA Created from Jenkins.",
+                             issuetype: [id: 3]]]
 
   response = jiraNewIssue idOrKey: "TEST-01", issue: testIssue, site: "LOCAL"
 
