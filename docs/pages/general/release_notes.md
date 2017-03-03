@@ -6,7 +6,9 @@ summary: "Change log."
 sidebar: jira_sidebar
 permalink: release_notes.html
 ---
-
+* ## **1.0.1**
+  * Fix: [#3](https://github.com/jenkinsci/jira-steps-plugin/issues/3) - Error editing issue with existing fix version.
+  * More documentation.
 * ## **1.0.0**
   * Initial release.
   * Manual tested with JIRA API Version [6.4.13](https://docs.atlassian.com/jira/REST/6.4.13/).
@@ -48,4 +50,5 @@ permalink: release_notes.html
       * jiraGetIssueLinkTypes
     * Search
       * jiraJqlSearch
+      
 {% include links.html %}
