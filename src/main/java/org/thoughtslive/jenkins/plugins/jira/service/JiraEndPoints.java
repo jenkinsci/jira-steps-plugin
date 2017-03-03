@@ -44,16 +44,16 @@ public interface JiraEndPoints {
 
   // Components
   @GET("rest/api/2/component/{id}")
-  Call<Component> getComponent(@Path("id") int id);
+  Call<Component> getComponent(@Path("id") String id);
 
   @POST("rest/api/2/component")
   Call<Component> createComponent(@Body Component component);
 
   @PUT("rest/api/2/component/{id}")
-  Call<Void> updateComponent(@Path("id") int id, @Body Component component);
+  Call<Void> updateComponent(@Path("id") String id, @Body Component component);
 
   @GET("rest/api/2/component/{id}/relatedIssueCounts")
-  Call<Count> getComponentIssueCount(@Path("id") int id);
+  Call<Count> getComponentIssueCount(@Path("id") String id);
 
   // Issue
   @GET("rest/api/2/issue/{issueIdOrKey}")
@@ -78,11 +78,11 @@ public interface JiraEndPoints {
   Call<Comment> addComment(@Path("issueIdOrKey") String issueIdOrKey, @Body Comment comment);
 
   @PUT("rest/api/2/issue/{issueIdOrKey}/comment/{id}")
-  Call<Comment> updateComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") int id,
+  Call<Comment> updateComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") String id,
       @Body Comment comment);
 
   @GET("rest/api/2/issue/{issueIdOrKey}/comment/{id}")
-  Call<Comment> getComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") int id);
+  Call<Comment> getComment(@Path("issueIdOrKey") String issueIdOrKey, @Path("id") String id);
 
   @POST("rest/api/2/issue/{issueIdOrKey}/notify")
   Call<Void> notifyIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Notify notify);
@@ -105,7 +105,7 @@ public interface JiraEndPoints {
   Call<Void> createIssueLink(@Body IssueLink issueLink);
 
   @GET("rest/api/2/issueLink/{linkId}")
-  Call<IssueLink> getIssueLink(@Path("linkId") int linkId);
+  Call<IssueLink> getIssueLink(@Path("linkId") String linkId);
 
   // Issue Link Types
   @GET("rest/api/2/issueLinkType")
@@ -136,8 +136,8 @@ public interface JiraEndPoints {
   Call<Version> createVersion(@Body Version version);
 
   @GET("rest/api/2/version/{id}")
-  Call<Version> getVersion(@Path("id") int id);
+  Call<Version> getVersion(@Path("id") String id);
 
   @PUT("rest/api/2/version/{id}")
-  Call<Void> updateVersion(@Path("id") int id, @Body Version version);
+  Call<Void> updateVersion(@Path("id") String id, @Body Version version);
 }

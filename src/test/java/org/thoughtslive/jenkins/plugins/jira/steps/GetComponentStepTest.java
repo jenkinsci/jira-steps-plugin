@@ -3,7 +3,7 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -75,7 +75,7 @@ public class GetComponentStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Component> builder = ResponseData.builder();
-    when(jiraServiceMock.getComponent(anyInt()))
+    when(jiraServiceMock.getComponent(anyString()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);
@@ -85,38 +85,36 @@ public class GetComponentStepTest {
 
   @Test
   public void testWithZeroComponentIdThrowsAbortException() throws Exception {
-    final GetComponentStep step = new GetComponentStep(0);
+    final GetComponentStep step = new GetComponentStep("");
     stepExecution = new GetComponentStep.Execution(step, contextMock);;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
       stepExecution.run();
-    }).withMessage("id less than or equals to zero.").withStackTraceContaining("AbortException")
-        .withNoCause();
+    }).withMessage("id is empty or null.").withStackTraceContaining("AbortException").withNoCause();
   }
 
   @Test
   public void testWithNegativeComponentIdThrowsAbortException() throws Exception {
-    final GetComponentStep step = new GetComponentStep(-100);
+    final GetComponentStep step = new GetComponentStep(null);
     stepExecution = new GetComponentStep.Execution(step, contextMock);;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
       stepExecution.run();
-    }).withMessage("id less than or equals to zero.").withStackTraceContaining("AbortException")
-        .withNoCause();
+    }).withMessage("id is empty or null.").withStackTraceContaining("AbortException").withNoCause();
   }
 
   @Test
   public void testSuccessfulGetComponent() throws Exception {
-    final GetComponentStep step = new GetComponentStep(1000);
+    final GetComponentStep step = new GetComponentStep("1000");
     stepExecution = new GetComponentStep.Execution(step, contextMock);;
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).getComponent(1000);
+    verify(jiraServiceMock, times(1)).getComponent("1000");
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

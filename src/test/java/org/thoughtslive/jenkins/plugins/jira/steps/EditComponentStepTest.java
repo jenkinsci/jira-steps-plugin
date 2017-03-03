@@ -82,7 +82,8 @@ public class EditComponentStepTest {
 
   @Test
   public void testSuccessfulEditComponent() throws Exception {
-    final Component component = Component.builder().id(1000).name("testcomponent").project("TEST").build();
+    final Component component =
+        Component.builder().id("1000").name("testcomponent").project("TEST").build();
     final EditComponentStep step = new EditComponentStep(component);
     stepExecution = new EditComponentStep.Execution(step, contextMock);;
 

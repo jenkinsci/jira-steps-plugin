@@ -25,7 +25,7 @@ Get component issue count by id.
   ```groovy
   node {
     stage('JIRA') {
-      def count = jiraGetComponentIssueCount id: 10024
+      def count = jiraGetComponentIssueCount id: '10024'
       echo count.data.toString()
     }
   }
@@ -36,7 +36,7 @@ Get component issue count by id.
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def count = jiraGetComponentIssueCount id: 10024
+        def count = jiraGetComponentIssueCount id: '10024'
         echo count.data.toString()
       }
     }

@@ -36,6 +36,10 @@ entries:
       url: /contributors.html
       output: web, pdf
 
+    - title: Examples
+      url: /common_usages.html
+      output: web, pdf
+
   - title: Installation
     output: web, pdf
     folderitems:

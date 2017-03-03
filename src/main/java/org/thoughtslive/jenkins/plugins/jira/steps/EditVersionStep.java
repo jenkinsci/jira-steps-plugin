@@ -86,12 +86,12 @@ public class EditVersionStep extends BasicJiraStep {
       ResponseData<T> response = verifyCommon(step);
 
       if (response == null) {
-        final int id = step.getVersion().getId();
+        final String id = Util.fixEmpty(step.getVersion().getId());
         final String name = Util.fixEmpty(step.getVersion().getName());
         final String project = Util.fixEmpty(step.getVersion().getProject());
 
-        if (id == 0) {
-          errorMessage = "id required.";
+        if (id == null) {
+          errorMessage = "id is empty or null.";
         }
 
         if (name == null) {

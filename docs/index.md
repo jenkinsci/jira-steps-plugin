@@ -27,4 +27,6 @@ We started of with following JIRA Software steps, will keep enhancing it to supp
 
 Get started by [installing](install) this plugin and also refer to the [Release Notes](release_notes) for more information.
 
+NOTE: The documentation is always up to date with latest version (or master). If you are on old version please refer to the code accordingly please.
+
 {% include links.html %}

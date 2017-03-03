@@ -29,10 +29,10 @@ public class GetCommentStep extends BasicJiraStep {
   private final String idOrKey;
 
   @Getter
-  private final int commentId;
+  private final String commentId;
 
   @DataBoundConstructor
-  public GetCommentStep(final String idOrKey, final int commentId) {
+  public GetCommentStep(final String idOrKey, final String commentId) {
     this.commentId = commentId;
     this.idOrKey = idOrKey;
   }
@@ -85,13 +85,14 @@ public class GetCommentStep extends BasicJiraStep {
 
       if (response == null) {
         final String idOrKey = Util.fixEmpty(step.getIdOrKey());
+        final String commentId = Util.fixEmpty(step.getCommentId());
 
         if (idOrKey == null) {
           errorMessage = "idOrKey is empty or null.";
         }
 
-        if (step.getCommentId() <= 0) {
-          errorMessage = "commentId less than or equals to zero.";
+        if (commentId == null) {
+          errorMessage = "commentId is empty or null.";
         }
 
         if (errorMessage != null) {

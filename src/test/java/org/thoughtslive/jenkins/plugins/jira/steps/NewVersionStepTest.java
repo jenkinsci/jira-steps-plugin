@@ -82,7 +82,8 @@ public class NewVersionStepTest {
 
   @Test
   public void testSuccessfulNewVersion() throws Exception {
-    final Version version = Version.builder().name("testVersion").id(10000).project("TEST").build();
+    final Version version =
+        Version.builder().name("testVersion").id("10000").project("TEST").build();
     final NewVersionStep step = new NewVersionStep(version);
     stepExecution = new NewVersionStep.Execution(step, contextMock);;
 

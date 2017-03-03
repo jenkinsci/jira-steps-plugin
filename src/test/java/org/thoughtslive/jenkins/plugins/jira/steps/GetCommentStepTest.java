@@ -3,7 +3,6 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
@@ -76,7 +75,7 @@ public class GetCommentStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Comment> builder = ResponseData.builder();
-    when(jiraServiceMock.getComment(anyString(), anyInt()))
+    when(jiraServiceMock.getComment(anyString(), anyString()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);
@@ -86,7 +85,7 @@ public class GetCommentStepTest {
 
   @Test
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
-    final GetCommentStep step = new GetCommentStep("", 1000);
+    final GetCommentStep step = new GetCommentStep("", "1000");
     stepExecution = new GetCommentStep.Execution(step, contextMock);;
 
     // Execute and assert Test.
@@ -98,26 +97,26 @@ public class GetCommentStepTest {
 
   @Test
   public void testWithZeroComponentIdThrowsAbortException() throws Exception {
-    final GetCommentStep step = new GetCommentStep("TEST-1", 0);
+    final GetCommentStep step = new GetCommentStep("TEST-1", "");
     stepExecution = new GetCommentStep.Execution(step, contextMock);;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
       stepExecution.run();
-    }).withMessage("commentId less than or equals to zero.")
-        .withStackTraceContaining("AbortException").withNoCause();
+    }).withMessage("commentId is empty or null.").withStackTraceContaining("AbortException")
+        .withNoCause();
   }
 
   @Test
   public void testSuccessfulGetComment() throws Exception {
-    final GetCommentStep step = new GetCommentStep("TEST-1", 1000);
+    final GetCommentStep step = new GetCommentStep("TEST-1", "1000");
     stepExecution = new GetCommentStep.Execution(step, contextMock);;
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).getComment("TEST-1", 1000);
+    verify(jiraServiceMock, times(1)).getComment("TEST-1", "1000");
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

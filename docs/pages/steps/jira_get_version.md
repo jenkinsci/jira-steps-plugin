@@ -25,7 +25,7 @@ Query version by id.
   ```groovy
   node {
     stage('JIRA') {
-      def version = jiraGetVersion id: 10000
+      def version = jiraGetVersion id: '10000'
       echo version.data.toString()
     }
   }
@@ -36,7 +36,7 @@ Query version by id.
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def version = jiraGetVersion id: 10000
+        def version = jiraGetVersion id: '10000'
         echo version.data.toString()
       }
     }
@@ -45,7 +45,7 @@ Query version by id.
 * Without environment variables.
 
   ```groovy
-    def version = jiraGetVersion id: 10000, site: "LOCAL", failOnError: false
+    def version = jiraGetVersion id: '10000', site: "LOCAL", failOnError: false
     echo version.data.toString()
   ```
 

@@ -87,7 +87,7 @@ public class JiraService {
    * @param id component id.
    * @return component.
    */
-  public ResponseData<Component> getComponent(final int id) {
+  public ResponseData<Component> getComponent(final String id) {
     try {
       return parseResponse(jiraEndPoints.getComponent(id).execute());
     } catch (Exception e) {
@@ -112,7 +112,6 @@ public class JiraService {
   /**
    * Updates component.
    * 
-   * @param id component id.
    * @param component actual component
    * @return updated component.
    */
@@ -130,7 +129,7 @@ public class JiraService {
    * @param id component id.
    * @return count.
    */
-  public ResponseData<Count> getComponentIssueCount(final int id) {
+  public ResponseData<Count> getComponentIssueCount(final String id) {
     try {
       return parseResponse(jiraEndPoints.getComponentIssueCount(id).execute());
     } catch (Exception e) {
@@ -208,7 +207,7 @@ public class JiraService {
     }
   }
 
-  public ResponseData<Comment> updateComment(final String issueIdorKey, final int id,
+  public ResponseData<Comment> updateComment(final String issueIdorKey, final String id,
       final String comment) {
     try {
       return parseResponse(jiraEndPoints
@@ -219,7 +218,7 @@ public class JiraService {
     }
   }
 
-  public ResponseData<Comment> getComment(final String issueIdorKey, final int commentId) {
+  public ResponseData<Comment> getComment(final String issueIdorKey, final String commentId) {
     try {
       return parseResponse(jiraEndPoints.getComment(issueIdorKey, commentId).execute());
     } catch (Exception e) {
@@ -319,7 +318,7 @@ public class JiraService {
     }
   }
 
-  public ResponseData<Version> getVersion(final int id) {
+  public ResponseData<Version> getVersion(final String id) {
     try {
       return parseResponse(jiraEndPoints.getVersion(id).execute());
     } catch (Exception e) {

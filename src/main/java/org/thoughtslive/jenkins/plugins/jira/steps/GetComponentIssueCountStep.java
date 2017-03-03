@@ -13,6 +13,7 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
 import hudson.Extension;
+import hudson.Util;
 import lombok.Getter;
 
 /**
@@ -25,10 +26,10 @@ public class GetComponentIssueCountStep extends BasicJiraStep {
   private static final long serialVersionUID = -4668092703770930031L;
 
   @Getter
-  private final int id;
+  private final String id;
 
   @DataBoundConstructor
-  public GetComponentIssueCountStep(final int id) {
+  public GetComponentIssueCountStep(final String id) {
     this.id = id;
   }
 
@@ -79,8 +80,8 @@ public class GetComponentIssueCountStep extends BasicJiraStep {
       ResponseData<T> response = verifyCommon(step);
 
       if (response == null) {
-        if (step.getId() <= 0) {
-          errorMessage = "id less than or equals to zero.";
+        if (Util.fixEmpty(step.getId()) == null) {
+          errorMessage = "id is empty or null.";
         }
 
         if (errorMessage != null) {

@@ -82,7 +82,8 @@ public class NewComponentStepTest {
 
   @Test
   public void testSuccessfulNewComponent() throws Exception {
-    final Component component = Component.builder().id(1000).name("testcomponent").project("TEST").build();
+    final Component component =
+        Component.builder().id("1000").name("testcomponent").project("TEST").build();
     final NewComponentStep step = new NewComponentStep(component);
     stepExecution = new NewComponentStep.Execution(step, contextMock);;
 
