@@ -87,12 +87,12 @@ public class EditComponentStep extends BasicJiraStep {
       ResponseData<T> response = verifyCommon(step);
 
       if (response == null) {
-        final int id = step.getComponent().getId();
+        final String id = Util.fixEmpty(step.getComponent().getId());
         final String name = Util.fixEmpty(step.getComponent().getName());
         final String project = Util.fixEmpty(step.getComponent().getProject());
 
-        if (id == 0) {
-          errorMessage = "id required.";
+        if (id == null) {
+          errorMessage = "id is empty or null.";
         }
 
         if (name == null) {

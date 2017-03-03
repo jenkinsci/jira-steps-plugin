@@ -26,16 +26,16 @@ Creates issues in bulk.
   node {
     stage('JIRA') {
       # Look at IssueInput class for more information.
-      def testIssue1 = [fields: [ project: [id: 10000],
+      def testIssue1 = [fields: [ project: [id: '10000'],
                            summary: "New JIRA Created from Jenkins.",
                            description: "New JIRA Created from Jenkins.",
-                           issuetype: [id: 3]]]
+                           issuetype: [id: '3']]]
 
 
-      def testIssue2 = [fields: [ project: [id: 10000],
+      def testIssue2 = [fields: [ project: [id: '10000'],
                                   summary: "New JIRA Created from Jenkins.",
                                   description: "New JIRA Created from Jenkins.",
-                                  issuetype: [id: 3]]]
+                                  issuetype: [id: '3']]]
 
       def testIssues = [issueUpdates: [testIssue1, testIssue2]]
 
@@ -53,16 +53,16 @@ Creates issues in bulk.
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
         # Look at IssueInput class for more information.
-        def testIssue1 = [fields: [ project: [id: 10000],
+        def testIssue1 = [fields: [ project: [id: '10000'],
                              summary: "New JIRA Created from Jenkins.",
                              description: "New JIRA Created from Jenkins.",
                              issuetype: [id: 3]]]
 
 
-        def testIssue2 = [fields: [ project: [id: 10000],
+        def testIssue2 = [fields: [ project: [id: '10000'],
                                     summary: "New JIRA Created from Jenkins.",
                                     description: "New JIRA Created from Jenkins.",
-                                    issuetype: [id: 3]]]
+                                    issuetype: [id: '3']]]
 
         def testIssues = [issueUpdates: [testIssue1, testIssue2]]
 
@@ -78,15 +78,15 @@ Creates issues in bulk.
 
   ```groovy
   # Look at IssueInput class for more information.
-  def testIssue1 = [fields: [ project: [id: 10000],
+  def testIssue1 = [fields: [ project: [id: '10000'],
                        summary: "New JIRA Created from Jenkins.",
-                       issuetype: [id: 3]]]
+                       issuetype: [id: '3']]]
 
 
-  def testIssue2 = [fields: [ project: [id: 10000],
+  def testIssue2 = [fields: [ project: [id: '10000'],
                               summary: "New JIRA Created from Jenkins.",
                               description: "New JIRA Created from Jenkins.",
-                              issuetype: [id: 3]]]
+                              issuetype: [id: '3']]]
 
   def testIssues = [issueUpdates: [testIssue1, testIssue2]]
 

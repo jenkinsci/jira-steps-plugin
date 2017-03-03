@@ -77,8 +77,6 @@ public class EditIssueStep extends BasicJiraStep {
 
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Updating issue: " + step.getIdOrKey());
-        final String description = addPanelMeta(step.getIssue().getFields().getDescription());
-        step.getIssue().getFields().setDescription(description);
         response = jiraService.updateIssue(step.getIdOrKey(), step.getIssue());
       }
 
@@ -106,30 +104,6 @@ public class EditIssueStep extends BasicJiraStep {
         if (issue.getFields() == null) {
           errorMessage = "fields is null.";
           return buildErrorResponse(new RuntimeException(errorMessage));
-        }
-
-        if (Util.fixEmpty(issue.getFields().getSummary()) == null) {
-          errorMessage = "fields->summary is empty or null.";
-        }
-
-        if (Util.fixEmpty(issue.getFields().getDescription()) == null) {
-          errorMessage = "fields->description is empty or null.";
-        }
-
-        if (issue.getFields().getIssuetype() == null) {
-          errorMessage = "fields->issuetype is null.";
-        }
-
-        if (issue.getFields().getIssuetype().getId() == 0) {
-          errorMessage = "fields->issuetype->id is zero or missing";
-        }
-
-        if (issue.getFields().getProject() == null) {
-          errorMessage = "fields->project is null.";
-        }
-
-        if (issue.getFields().getProject().getId() == 0) {
-          errorMessage = "fields->project->id is zero or missing";
         }
 
         if (errorMessage != null) {

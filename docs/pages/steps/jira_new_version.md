@@ -30,7 +30,7 @@ Creates new version based on given input, which should have some minimal informa
                           released: true,
                           description: "desc",
                           project: "TEST" ]
-      jiraEditVersion version: testVersion
+      jiraNewVersion version: testVersion
     }
   }
   ```
@@ -45,7 +45,7 @@ Creates new version based on given input, which should have some minimal informa
                             released: true,
                             description: "desc",
                             project: "TEST" ]
-        jiraEditVersion version: testVersion
+        jiraNewVersion version: testVersion
       }
     }
   }
@@ -58,7 +58,7 @@ Creates new version based on given input, which should have some minimal informa
                         released: true,
                         description: "desc",
                         project: "TEST" ]
-    jiraEditVersion version: testVersion, site: "LOCAL"
+    jiraNewVersion version: testVersion, site: "LOCAL"
   ```
 
 {% include links.html %}

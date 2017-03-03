@@ -32,7 +32,7 @@ Creates new issue based on given input, which should have some minimal informati
                                  description: "New JIRA Created from Jenkins.",
                                  issuetype: [id: 3]]]
 
-      response = jiraNewIssue idOrKey: "TEST-01", issue: testIssue
+      response = jiraEditIssue idOrKey: "TEST-01", issue: testIssue
 
       echo response.successful.toString()
       echo response.data.toString()
@@ -51,7 +51,7 @@ Creates new issue based on given input, which should have some minimal informati
                                    description: "New JIRA Created from Jenkins.",
                                    issuetype: [id: 3]]]
 
-        response = jiraNewIssue idOrKey: "TEST-01", issue: testIssue
+        response = jiraEditIssue idOrKey: "TEST-01", issue: testIssue
 
         echo response.successful.toString()
         echo response.data.toString()
@@ -68,7 +68,7 @@ Creates new issue based on given input, which should have some minimal informati
                              description: "New JIRA Created from Jenkins.",
                              issuetype: [id: 3]]]
 
-  response = jiraNewIssue idOrKey: "TEST-01", issue: testIssue, site: "LOCAL"
+  response = jiraEditIssue idOrKey: "TEST-01", issue: testIssue, site: "LOCAL"
 
   echo response.successful.toString()
   echo response.data.toString()

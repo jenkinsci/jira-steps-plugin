@@ -59,8 +59,6 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
    * Verifies the common input for all the stesp.
    * 
    * @param step
-   * @param listener taskListener
-   * @param envVars environment vars.
    * @return response if JIRA_SITE is empty or if there is no site configured with JIRA_SITE.
    * @throws AbortException when failOnError is true and JIRA_SITE is missing.
    */

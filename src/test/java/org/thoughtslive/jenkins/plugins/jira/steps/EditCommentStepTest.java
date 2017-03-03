@@ -3,7 +3,6 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
@@ -76,7 +75,7 @@ public class EditCommentStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Comment> builder = ResponseData.builder();
-    when(jiraServiceMock.updateComment(anyString(), anyInt(), anyString()))
+    when(jiraServiceMock.updateComment(anyString(), anyString(), anyString()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);
@@ -86,31 +85,31 @@ public class EditCommentStepTest {
 
   @Test
   public void testWithZeroComponentIdThrowsAbortException() throws Exception {
-    final EditCommentStep step = new EditCommentStep("TEST-1", 0, "test comment");
+    final EditCommentStep step = new EditCommentStep("TEST-1", "", "test comment");
     stepExecution = new EditCommentStep.Execution(step, contextMock);;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
       stepExecution.run();
-    }).withMessage("commentId less than or equals to zero.")
-        .withStackTraceContaining("AbortException").withNoCause();
+    }).withMessage("commentId is empty or null.").withStackTraceContaining("AbortException")
+        .withNoCause();
   }
 
   @Test
   public void testWithNegativeComponentIdThrowsAbortException() throws Exception {
-    final EditCommentStep step = new EditCommentStep("TEST-1", -100, "test comment");
+    final EditCommentStep step = new EditCommentStep("TEST-1", null, "test comment");
     stepExecution = new EditCommentStep.Execution(step, contextMock);;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
       stepExecution.run();
-    }).withMessage("commentId less than or equals to zero.")
-        .withStackTraceContaining("AbortException").withNoCause();
+    }).withMessage("commentId is empty or null.").withStackTraceContaining("AbortException")
+        .withNoCause();
   }
 
   @Test
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
-    final EditCommentStep step = new EditCommentStep("", 1000, "test comment");
+    final EditCommentStep step = new EditCommentStep("", "1000", "test comment");
     stepExecution = new EditCommentStep.Execution(step, contextMock);;
 
     // Execute and assert Test.
@@ -122,7 +121,7 @@ public class EditCommentStepTest {
 
   @Test
   public void testWithEmptyCommentThrowsAbortException() throws Exception {
-    final EditCommentStep step = new EditCommentStep("TEST-1", 1000, "");
+    final EditCommentStep step = new EditCommentStep("TEST-1", "1000", "");
     stepExecution = new EditCommentStep.Execution(step, contextMock);;
 
     // Execute and assert Test.
@@ -134,15 +133,15 @@ public class EditCommentStepTest {
 
   @Test
   public void testSuccessfulEditComment() throws Exception {
-    final EditCommentStep step = new EditCommentStep("TEST-1", 1000, "test comment");
+    final EditCommentStep step = new EditCommentStep("TEST-1", "1000", "test comment");
     stepExecution = new EditCommentStep.Execution(step, contextMock);;
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).updateComment("TEST-1", 1000,
-        "test comment\n{panel}Automatically created by: [~anonymous] from [Build URL|http://localhost:8080/jira-testing/job/01]{panel}");
+    verify(jiraServiceMock, times(1)).updateComment("TEST-1", "1000",
+        "test comment");
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

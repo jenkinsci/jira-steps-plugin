@@ -7,6 +7,7 @@ import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.Component;
 import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
+import org.thoughtslive.jenkins.plugins.jira.api.Version;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
 import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
 
@@ -35,14 +36,13 @@ public class JiraServiceTest {
     ObjectMapper mapper = new ObjectMapper();
     String jsonInString1 =
         "{\"fields\": { \"project\": { \"id\":\"10000\" },\"summary\": \"New Issue\", \"issuetype\": {\"id\": \"3\"}}}";
-    String jsonInString2 =
-        "{\"fields\": { \"project\": { \"id\": \"10000\" },\"summary\": \"something\'s wrong4\", \"issuetype\":	 {\"id\": \"3\"}}}";
+    String jsonInString2 = "{\"fields\": { \"fixVersions\":  [{\"name\": \"test-version-1.0\"}]}}";
     // IssueInput issue1 = mapper.readValue(jsonInString1, IssueInput.class);
     IssueInput issue2 = mapper.readValue(jsonInString2, IssueInput.class);
     // System.out.println(issue1);
     // System.out.println(issue2);
     //
-    // ResponseData<BasicIssue> newIssue = service.createIssue(issue1);
+    // ResponseData<BasicIssue> newIssue = service.createIssue(issue2);
     // System.out.println(newIssue);
 
     ResponseData<BasicIssue> updateIssue = service.updateIssue("TEST-2", issue2);
@@ -111,7 +111,13 @@ public class JiraServiceTest {
     // System.out.println(issues);
     //
     // System.out.println(service.getProjects().getData()[0]);
-    // System.out.println(service.getProject("TEST").getData());
+    System.out.println(service.getProject("TEST").getData());
+    System.out.println();
+    System.out.println(
+        service.updateVersion(Version.builder().id("10000").name("test-version-1.0").build()));
+    System.out.println(service.updateComment("TEST-17", "10200", "testing123"));
+    System.out.println(
+        service.updateComponent(Component.builder().id("10101").name("testing-001").build()));
     // System.out.println(service.getIssueLinkTypes().getData().getIssueLinkTypes()[1]);
     // System.out.println(service.linkIssues("Relates", "TEST-1", "TEST-2", "Testing Issue
     // Linking").getError());

@@ -25,7 +25,7 @@ Search Issues by Jql.
   ```groovy
   node {
     stage('JIRA') {
-      def issues = jiraJqlSearch id: "PROJECT = TEST"
+      def issues = jiraJqlSearch jql: "PROJECT = TEST"
       echo issues.data.toString()
     }
   }
@@ -36,7 +36,7 @@ Search Issues by Jql.
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def issues = jiraJqlSearch id: "PROJECT = TEST"
+        def issues = jiraJqlSearch jql: "PROJECT = TEST"
         echo issues.data.toString()
       }
     }
@@ -45,7 +45,7 @@ Search Issues by Jql.
 * Without environment variables.
 
   ```groovy
-    def issues = jiraJqlSearch id: "PROJECT = TEST", site: "LOCAL", failOnError: true
+    def issues = jiraJqlSearch jql: "PROJECT = TEST", site: "LOCAL", failOnError: true
     echo issues.data.toString()
   ```
 

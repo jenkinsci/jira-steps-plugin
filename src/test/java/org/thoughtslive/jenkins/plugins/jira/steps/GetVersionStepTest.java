@@ -3,7 +3,7 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -75,7 +75,7 @@ public class GetVersionStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Version> builder = ResponseData.builder();
-    when(jiraServiceMock.getVersion(anyInt()))
+    when(jiraServiceMock.getVersion(anyString()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);
@@ -85,38 +85,36 @@ public class GetVersionStepTest {
 
   @Test
   public void testWithZeroIdThrowsAbortException() throws Exception {
-    final GetVersionStep step = new GetVersionStep(0);
+    final GetVersionStep step = new GetVersionStep("");
     stepExecution = new GetVersionStep.Execution(step, contextMock);;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
       stepExecution.run();
-    }).withMessage("id less than or equals to zero.").withStackTraceContaining("AbortException")
-        .withNoCause();
+    }).withMessage("id is empty or null.").withStackTraceContaining("AbortException").withNoCause();
   }
 
   @Test
   public void testWithNegativeIdThrowsAbortException() throws Exception {
-    final GetVersionStep step = new GetVersionStep(-100);
+    final GetVersionStep step = new GetVersionStep(null);
     stepExecution = new GetVersionStep.Execution(step, contextMock);;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
       stepExecution.run();
-    }).withMessage("id less than or equals to zero.").withStackTraceContaining("AbortException")
-        .withNoCause();
+    }).withMessage("id is empty or null.").withStackTraceContaining("AbortException").withNoCause();
   }
 
   @Test
   public void testSuccessfulGetVersionStep() throws Exception {
-    final GetVersionStep step = new GetVersionStep(1000);
+    final GetVersionStep step = new GetVersionStep("1000");
     stepExecution = new GetVersionStep.Execution(step, contextMock);;
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).getVersion(1000);
+    verify(jiraServiceMock, times(1)).getVersion("1000");
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

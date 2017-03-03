@@ -25,7 +25,7 @@ Get component by id.
   ```groovy
   node {
     stage('JIRA') {
-      def component = jiraGetComponent id: 10024
+      def component = jiraGetComponent id: '10024'
       echo component.data.toString()
     }
   }
@@ -36,7 +36,7 @@ Get component by id.
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def component = jiraGetComponent id: 10024
+        def component = jiraGetComponent id: '10024'
         echo component.data.toString()
       }
     }

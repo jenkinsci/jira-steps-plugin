@@ -30,13 +30,13 @@ public class EditCommentStep extends BasicJiraStep {
   private final String idOrKey;
 
   @Getter
-  private final int commentId;
+  private final String commentId;
 
   @Getter
   private final String comment;
 
   @DataBoundConstructor
-  public EditCommentStep(final String idOrKey, final int commentId, final String comment) {
+  public EditCommentStep(final String idOrKey, final String commentId, final String comment) {
     this.idOrKey = idOrKey;
     this.commentId = commentId;
     this.comment = comment;
@@ -81,8 +81,7 @@ public class EditCommentStep extends BasicJiraStep {
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Updating comment: " + step.getComment()
             + " on issue: " + step.getIdOrKey());
-        final String comment = addPanelMeta(step.getComment());
-        response = jiraService.updateComment(step.getIdOrKey(), step.getCommentId(), comment);
+        response = jiraService.updateComment(step.getIdOrKey(), step.getCommentId(), step.getComment());
       }
 
       return logResponse(response);
@@ -96,13 +95,14 @@ public class EditCommentStep extends BasicJiraStep {
       if (response == null) {
         final String idOrKey = Util.fixEmpty(step.getIdOrKey());
         final String comment = Util.fixEmpty(step.getComment());
+        final String commentId = Util.fixEmpty(step.getCommentId());
 
         if (idOrKey == null) {
           errorMessage = "idOrKey is empty or null.";
         }
 
-        if (step.getCommentId() <= 0) {
-          errorMessage = "commentId less than or equals to zero.";
+        if (commentId == null) {
+          errorMessage = "commentId is empty or null.";
         }
 
         if (comment == null) {
