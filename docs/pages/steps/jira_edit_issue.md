@@ -10,7 +10,7 @@ folder: steps
 
 ## Overview
 
-Creates new issue based on given input, which should have some minimal information on that object.
+Updates an existing issue based on given input, which should have some minimal information on that object.
 
 ## Fields
 
