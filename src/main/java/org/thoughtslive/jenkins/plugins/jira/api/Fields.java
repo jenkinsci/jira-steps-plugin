@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.joda.time.DateTime;
 import org.kohsuke.stapler.DataBoundConstructor;
+import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -27,7 +28,10 @@ import lombok.ToString;
 @Builder
 public class Fields implements Serializable {
 
-  private static final long serialVersionUID = -6758862154743675930L;
+  private static final long serialVersionUID = 9022728696230161151L;
+
+  @JsonProperty("parent")
+  private BasicIssue parent;
 
   @JsonProperty("fixVersions")
   private List<Version> fixVersions = null;
