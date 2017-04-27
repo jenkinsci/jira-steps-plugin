@@ -41,7 +41,7 @@ public class Component implements Serializable {
 
   // NOT VALID while sending this as Input.
   @JsonProperty("realAssignee")
-  private String realAssignee;
+  private User realAssignee;
 
   @JsonProperty("assigneeType")
   private String userType;
