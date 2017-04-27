@@ -6,6 +6,9 @@ summary: "Change log."
 sidebar: jira_sidebar
 permalink: release_notes.html
 ---
+* ## **1.0.2**
+  * Fix: [#15](https://github.com/jenkinsci/jira-steps-plugin/issues/15) - Serialization error while querying component using getComponent.
+  * Enhancement: [#17](https://github.com/jenkinsci/jira-steps-plugin/issues/17) - Expose access to the parent node for issue.
 * ## **1.0.1**
   * Fix: [#3](https://github.com/jenkinsci/jira-steps-plugin/issues/3) - Error editing issue with existing fix version.
   * More documentation.
