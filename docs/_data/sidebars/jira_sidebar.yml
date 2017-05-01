@@ -40,6 +40,10 @@ entries:
       url: /common_usages.html
       output: web, pdf
 
+    - title: Terms & Privacy Policy
+      url: /terms.html
+      output: web, pdf
+
   - title: Installation
     output: web, pdf
     folderitems:

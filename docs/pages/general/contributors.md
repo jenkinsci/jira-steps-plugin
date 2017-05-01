@@ -11,6 +11,7 @@ folder: general
   * Owner - [Naresh Rayapati](https://github.com/nrayapati).
 
 ## Contributors
+  * [GitHub Contributors](https://github.com/jenkinsci/jira-steps-plugin/graphs/contributors)
   * Help us to make this project better by [contributing](contributing).
 
 {% include links.html %}
