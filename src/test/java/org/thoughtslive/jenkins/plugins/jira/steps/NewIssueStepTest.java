@@ -65,6 +65,12 @@ public class NewIssueStepTest {
           .project(Project.builder().id(10000).build())
           .issuetype(IssueType.builder().id(10000).build()).build())
       .build();
+  
+  final IssueInput issueWithProjectKey = IssueInput.builder()
+      .fields(FieldsInput.builder().description("TEST").summary("TEST")
+          .project(Project.builder().key("TESTPROJECT").build())
+          .issuetype(IssueType.builder().id(10000).build()).build())
+      .build();
 
   @Before
   public void setup() throws IOException, InterruptedException {
@@ -100,6 +106,19 @@ public class NewIssueStepTest {
 
     // Assert Test
     verify(jiraServiceMock, times(1)).createIssue(issue);
+    assertThat(step.isFailOnError()).isEqualTo(true);
+  }
+
+  @Test
+  public void testSuccessfulNewIssueWithProjectKey() throws Exception {
+    final NewIssueStep step = new NewIssueStep(issueWithProjectKey);
+    stepExecution = new NewIssueStep.Execution(step, contextMock);;
+
+    // Execute Test.
+    stepExecution.run();
+
+    // Assert Test
+    verify(jiraServiceMock, times(1)).createIssue(issueWithProjectKey);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

@@ -122,8 +122,8 @@ public class NewIssueStep extends BasicJiraStep {
           return buildErrorResponse(new RuntimeException(errorMessage));
         }
 
-        if (issue.getFields().getProject().getId() == 0) {
-          errorMessage = "fields->project->id is zero or missing";
+        if (issue.getFields().getProject().getId() == 0 && issue.getFields().getProject().getKey() == null) {
+          errorMessage = "fields->project->id is zero or missing and fields->project->key was not specified, one must be present";
         }
 
         if (errorMessage != null) {
