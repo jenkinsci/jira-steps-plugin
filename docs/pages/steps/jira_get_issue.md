@@ -12,11 +12,17 @@ folder: steps
 
 Get issue by id or key.
 
-## Fields
+## Input
 
 * **idOrKey** - Issue id or key.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+
+Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+
+## Output
+
+Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 
 ## Examples
 
@@ -25,7 +31,7 @@ Get issue by id or key.
   ```groovy
   node {
     stage('JIRA') {
-      def issue = jiraGetIssue idOrKey: "TEST-1"
+      def issue = jiraGetIssue idOrKey: 'TEST-1'
       echo issue.data.toString()
     }
   }
@@ -36,7 +42,7 @@ Get issue by id or key.
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def issue = jiraGetIssue idOrKey: "TEST-1"
+        def issue = jiraGetIssue idOrKey: 'TEST-1'
         echo issue.data.toString()
       }
     }
@@ -45,7 +51,7 @@ Get issue by id or key.
 * Without environment variables.
 
   ```groovy
-    def issue = jiraGetIssue idOrKey: "TEST-1", site: "LOCAL"
+    def issue = jiraGetIssue idOrKey: 'TEST-1', site: 'LOCAL'
     echo issue.data.toString()
   ```
 

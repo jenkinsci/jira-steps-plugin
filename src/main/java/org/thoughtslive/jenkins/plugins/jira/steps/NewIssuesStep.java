@@ -116,8 +116,10 @@ public class NewIssuesStep extends BasicJiraStep {
             return buildErrorResponse(new RuntimeException(errorMessage));
           }
 
-          if (issue.getFields().getIssuetype().getId() == 0) {
-            errorMessage = "fields->issuetype->id is zero or missing";
+          if (Util.fixEmpty(issue.getFields().getIssuetype().getId()) == null
+              && Util.fixEmpty(issue.getFields().getIssuetype().getName()) == null) {
+            errorMessage =
+                "fields->issuetype->id is missing and fields->issuetype->name is missing, one of these must present.";
           }
 
           if (issue.getFields().getProject() == null) {
@@ -125,8 +127,10 @@ public class NewIssuesStep extends BasicJiraStep {
             return buildErrorResponse(new RuntimeException(errorMessage));
           }
 
-          if (issue.getFields().getProject().getId() == 0) {
-            errorMessage = "fields->project->id is zero or missing";
+          if (Util.fixEmpty(issue.getFields().getProject().getId()) == null
+              && Util.fixEmpty(issue.getFields().getProject().getKey()) == null) {
+            errorMessage =
+                "fields->project->id is missing and fields->project->key is missing, one of these must present.";
           }
 
           if (errorMessage != null) {

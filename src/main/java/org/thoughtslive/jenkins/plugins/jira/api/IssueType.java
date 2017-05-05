@@ -13,10 +13,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor(onConstructor = @__({@DataBoundConstructor}))
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
@@ -27,7 +25,7 @@ public class IssueType implements Serializable {
   private static final long serialVersionUID = -4350803739177634227L;
 
   @JsonProperty("id")
-  private int id;
+  private String id;
 
   @JsonProperty("description")
   private String description;

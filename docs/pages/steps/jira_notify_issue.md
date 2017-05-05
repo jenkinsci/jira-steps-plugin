@@ -12,12 +12,18 @@ folder: steps
 
 Notify users (like watchers, assignee and so on..) of issue.
 
-## Fields
+## Input
 
 * **idOrKey** - Issue id or key.
 * **notify** - more info about whom should we notify and so on.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+
+Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+
+## Output
+
+Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 
 ## Examples
 
@@ -26,22 +32,22 @@ Notify users (like watchers, assignee and so on..) of issue.
   ```groovy
   node {
     stage('JIRA') {
-      def notify = [ subject: "Update about TEST-01",
-                     textBody: "Just wanted to update about this issue...",
-                     htmlBody: "Just wanted to update about this issue...",
+      def notify = [ subject: 'Update about TEST-01',
+                     textBody: 'Just wanted to update about this issue...',
+                     htmlBody: 'Just wanted to update about this issue...',
                      to: [ reporter: true,
                            assignee: true,
                            watchers: false,
                            voters: false,
                            users: [{
-                                    "name": "rao",
+                                    name: 'rao',
                                   },
                                   {
-                                    "name": "naresh",
+                                    name: 'naresh',
                                   }]
                         ]
                     ]
-      jiraNotifyIssue idOrKey: "TEST-1", notify: notify
+      jiraNotifyIssue idOrKey: 'TEST-1', notify: notify
     }
   }
   ```
@@ -51,22 +57,22 @@ Notify users (like watchers, assignee and so on..) of issue.
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def notify = [ subject: "Update about TEST-01",
-                       textBody: "Just wanted to update about this issue...",
-                       htmlBody: "Just wanted to update about this issue...",
+        def notify = [ subject: 'Update about TEST-01',
+                       textBody: 'Just wanted to update about this issue...',
+                       htmlBody: 'Just wanted to update about this issue...',
                        to: [ reporter: true,
                              assignee: true,
                              watchers: false,
                              voters: false,
                              users: [{
-                                      "name": "rao",
+                                      name: 'rao',
                                     },
                                     {
-                                      "name": "naresh",
+                                      name: 'naresh',
                                     }]
                           ]
                       ]
-        jiraNotifyIssue idOrKey: "TEST-1", notify: notify
+        jiraNotifyIssue idOrKey: 'TEST-1', notify: notify
       }
     }
   }
@@ -74,22 +80,22 @@ Notify users (like watchers, assignee and so on..) of issue.
 * Without environment variables.
 
   ```groovy
-    def notify = [ subject: "Update about TEST-01",
-                   textBody: "Just wanted to update about this issue...",
-                   htmlBody: "Just wanted to update about this issue...",
+    def notify = [ subject: 'Update about TEST-01',
+                   textBody: 'Just wanted to update about this issue...',
+                   htmlBody: 'Just wanted to update about this issue...',
                    to: [ reporter: true,
                          assignee: true,
                          watchers: false,
                          voters: false,
                          users: [{
-                                  "name": "rao",
+                                  name: 'rao',
                                 },
                                 {
-                                  "name": "naresh",
+                                  name: 'naresh',
                                 }]
                        ]
                   ]
-    jiraNotifyIssue idOrKey: "TEST-1", notify: notify, site: "LOCAL"
+    jiraNotifyIssue idOrKey: 'TEST-1', notify: notify, site: 'LOCAL'
   ```
 
 {% include links.html %}

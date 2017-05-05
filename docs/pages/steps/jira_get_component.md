@@ -12,11 +12,17 @@ folder: steps
 
 Get component by id.
 
-## Fields
+## Input
 
 * **id** - componentId.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+
+Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+
+## Output
+
+Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 
 ## Examples
 
@@ -45,7 +51,7 @@ Get component by id.
 * Without environment variables.
 
   ```groovy
-    def component = jiraGetComponent site: "LOCAL", id: 10024, failOnError: false
+    def component = jiraGetComponent site: 'LOCAL', id: '10024', failOnError: false
     echo component.data.toString()
   ```
 

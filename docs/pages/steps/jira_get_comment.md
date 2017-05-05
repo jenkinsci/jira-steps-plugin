@@ -12,12 +12,18 @@ folder: steps
 
 Get comment of the given issue by id.
 
-## Fields
+## Input
 
 * **idOrKey** - Issue id or key.
 * **commentId** - commentId.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+
+Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+
+## Output
+
+Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 
 ## Examples
 
@@ -26,7 +32,7 @@ Get comment of the given issue by id.
   ```groovy
   node {
     stage('JIRA') {
-      def comment = jiraGetComment idOrKey: "TEST-1", commentId: 10004
+      def comment = jiraGetComment idOrKey: 'TEST-1', commentId: '10004'
       echo comment.data.toString()
     }
   }
@@ -37,7 +43,7 @@ Get comment of the given issue by id.
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def comment = jiraGetComment idOrKey: "TEST-1", commentId: 10004
+        def comment = jiraGetComment idOrKey: 'TEST-1', commentId: '10004'
         echo comment.data.toString()
       }
     }
@@ -46,7 +52,7 @@ Get comment of the given issue by id.
 * Without environment variables.
 
   ```groovy
-    def comment = jiraGetComment site: "LOCAL", idOrKey: "TEST-1", commentId: 10004
+    def comment = jiraGetComment site: 'LOCAL', idOrKey: 'TEST-1', commentId: '10004'
     echo comment.data.toString()
   ```
 

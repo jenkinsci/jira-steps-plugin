@@ -15,12 +15,18 @@ Add comment to the given issue.
 ![Comment](https://raw.githubusercontent.com/ThoughtsLive/jira-steps/master/docs/images/jira_add_comment.png)
 
 
-## Fields
+## Input
 
 * **idOrKey** - Issue id or key.
 * **comment** - comment, supports jira wiki formatting.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+
+Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+
+## Output
+
+Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 
 ## Examples
 
@@ -29,7 +35,7 @@ Add comment to the given issue.
   ```groovy
   node {
     stage('JIRA') {
-      jiraAddComment idOrKey: "TEST-1", comment: "test comment"
+      jiraAddComment idOrKey: 'TEST-1', comment: 'test comment'
     }
   }
   ```
@@ -39,7 +45,7 @@ Add comment to the given issue.
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        jiraAddComment idOrKey: "TEST-1", comment: "test comment"
+        jiraAddComment idOrKey: 'TEST-1', comment: 'test comment'
       }
     }
   }
@@ -47,7 +53,7 @@ Add comment to the given issue.
 * Without environment variables.
 
   ```groovy
-    jiraAddComment site: "LOCAL", idOrKey: "TEST-1", comment: "test comment"
+    jiraAddComment site: 'LOCAL', idOrKey: 'TEST-1', comment: 'test comment'
   ```
 
 {% include links.html %}

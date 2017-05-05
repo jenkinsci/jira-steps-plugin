@@ -62,8 +62,8 @@ public class NewIssueStepTest {
 
   final IssueInput issue = IssueInput.builder()
       .fields(FieldsInput.builder().description("TEST").summary("TEST")
-          .project(Project.builder().id(10000).build())
-          .issuetype(IssueType.builder().id(10000).build()).build())
+          .project(Project.builder().id("10000").build())
+          .issuetype(IssueType.builder().id("10000").build()).build())
       .build();
 
   @Before

@@ -9,6 +9,8 @@ import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
@@ -61,7 +63,7 @@ public class NewIssuesStepTest {
 
   NewIssuesStep.Execution stepExecution;
 
-  IssuesInput issues;
+  IssuesInput issuesInput;
 
   @Before
   public void setup() throws IOException, InterruptedException {
@@ -70,13 +72,13 @@ public class NewIssuesStepTest {
     when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
     when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
 
-    final IssueInput[] issue = new IssueInput[1];
-    issue[0] = IssueInput.builder()
+    final List<IssueInput> issues = new ArrayList<IssueInput>();
+    issues.add(IssueInput.builder()
         .fields(FieldsInput.builder().description("TEST").summary("TEST")
-            .project(Project.builder().id(10000).build())
-            .issuetype(IssueType.builder().id(10000).build()).build())
-        .build();
-    issues = IssuesInput.builder().issueUpdates(issue).build();
+            .project(Project.builder().id("10000").build())
+            .issuetype(IssueType.builder().id("10000").build()).build())
+        .build());
+    issuesInput = IssuesInput.builder().issueUpdates(issues).build();
     PowerMockito.mockStatic(Site.class);
     Mockito.when(Site.get(any())).thenReturn(siteMock);
     when(siteMock.getService()).thenReturn(jiraServiceMock);
@@ -96,14 +98,14 @@ public class NewIssuesStepTest {
 
   @Test
   public void testSuccessfulNewIssues() throws Exception {
-    final NewIssuesStep step = new NewIssuesStep(issues);
+    final NewIssuesStep step = new NewIssuesStep(issuesInput);
     stepExecution = new NewIssuesStep.Execution(step, contextMock);;
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).createIssues(issues);
+    verify(jiraServiceMock, times(1)).createIssues(issuesInput);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

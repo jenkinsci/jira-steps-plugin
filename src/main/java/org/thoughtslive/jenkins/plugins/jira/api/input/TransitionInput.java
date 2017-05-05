@@ -2,9 +2,11 @@ package org.thoughtslive.jenkins.plugins.jira.api.input;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.thoughtslive.jenkins.plugins.jira.api.Comment;
+import org.thoughtslive.jenkins.plugins.jira.api.Field;
 import org.thoughtslive.jenkins.plugins.jira.api.Transition;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -15,25 +17,22 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
-@ToString
 @NoArgsConstructor
+@AllArgsConstructor(onConstructor = @__({@DataBoundConstructor}))
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@AllArgsConstructor(onConstructor = @__({@DataBoundConstructor}))
 @Builder
 public class TransitionInput implements Serializable {
 
   private static final long serialVersionUID = 2345079536278547254L;
 
   @Data
-  @ToString
   @NoArgsConstructor
+  @AllArgsConstructor(onConstructor = @__({@DataBoundConstructor}))
   @JsonInclude(JsonInclude.Include.NON_DEFAULT)
   @JsonIgnoreProperties(ignoreUnknown = true)
-  @AllArgsConstructor(onConstructor = @__({@DataBoundConstructor}))
   @Builder
   public static class Update implements Serializable {
 
@@ -44,11 +43,10 @@ public class TransitionInput implements Serializable {
   }
 
   @Data
-  @ToString
   @NoArgsConstructor
+  @AllArgsConstructor(onConstructor = @__({@DataBoundConstructor}))
   @JsonInclude(JsonInclude.Include.NON_DEFAULT)
   @JsonIgnoreProperties(ignoreUnknown = true)
-  @AllArgsConstructor(onConstructor = @__({@DataBoundConstructor}))
   @Builder
   public static class CommentWrapper implements Serializable {
 
@@ -60,6 +58,9 @@ public class TransitionInput implements Serializable {
 
   @JsonProperty("update")
   private Update update;
+
+  @JsonProperty("fields")
+  private Map<String, Field> fields;
 
   @JsonProperty("transition")
   private Transition transition;

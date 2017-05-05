@@ -12,11 +12,17 @@ folder: steps
 
 Search Issues by Jql.
 
-## Fields
+## Input
 
 * **jql** - jql as a string.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+
+Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+
+## Output
+
+Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 
 ## Examples
 
@@ -25,7 +31,7 @@ Search Issues by Jql.
   ```groovy
   node {
     stage('JIRA') {
-      def issues = jiraJqlSearch jql: "PROJECT = TEST"
+      def issues = jiraJqlSearch jql: 'PROJECT = TEST'
       echo issues.data.toString()
     }
   }
@@ -36,7 +42,7 @@ Search Issues by Jql.
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def issues = jiraJqlSearch jql: "PROJECT = TEST"
+        def issues = jiraJqlSearch jql: 'PROJECT = TEST'
         echo issues.data.toString()
       }
     }
@@ -45,7 +51,7 @@ Search Issues by Jql.
 * Without environment variables.
 
   ```groovy
-    def issues = jiraJqlSearch jql: "PROJECT = TEST", site: "LOCAL", failOnError: true
+    def issues = jiraJqlSearch jql: 'PROJECT = TEST', site: 'LOCAL', failOnError: true
     echo issues.data.toString()
   ```
 

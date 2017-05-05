@@ -1,6 +1,7 @@
 package org.thoughtslive.jenkins.plugins.jira.api;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
@@ -9,20 +10,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor(onConstructor = @__({@DataBoundConstructor}))
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@SuppressFBWarnings
 @Builder
 public class SearchResult implements Serializable {
 
@@ -41,5 +38,5 @@ public class SearchResult implements Serializable {
   private int total;
 
   @JsonProperty("issues")
-  private BasicIssue[] issues;
+  private List<BasicIssue> issues;
 }

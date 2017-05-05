@@ -14,11 +14,17 @@ Edit component based on given input, which should have some minimal information 
 
 Note: Sometimes it may not possible to directly edit component (rename it) without un tagging all of its current JIRAs.
 
-## Fields
+## Input
 
 * **component** - component to be edited.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+
+Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+
+## Output
+
+Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 
 ## Examples
 
@@ -27,7 +33,7 @@ Note: Sometimes it may not possible to directly edit component (rename it) witho
   ```groovy
   node {
     stage('JIRA') {
-      def testComponent = [ id: 1000,
+      def testComponent = [ id: "1000",
                             name: "test-component",
                             description: "desc",
                             project: "TEST" ]
@@ -41,7 +47,7 @@ Note: Sometimes it may not possible to directly edit component (rename it) witho
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def testComponent = [ id: 1000,
+        def testComponent = [ id: "1000",
                               name: "test-component",
                               description: "desc",
                               project: "TEST" ]
@@ -53,7 +59,7 @@ Note: Sometimes it may not possible to directly edit component (rename it) witho
 * Without environment variables.
 
   ```groovy
-    def testComponent = [ id: 1000,
+    def testComponent = [ id: "1000",
                           name: "test-component",
                           description: "desc",
                           project: "TEST" ]

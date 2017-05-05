@@ -140,8 +140,7 @@ public class EditCommentStepTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).updateComment("TEST-1", "1000",
-        "test comment");
+    verify(jiraServiceMock, times(1)).updateComment("TEST-1", "1000", "test comment");
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

@@ -14,13 +14,19 @@ Link two issues.
 
 Hint: Try getIssueLinkTypes to know the type.
 
-## Fields
+## Input
 
 * **type** - type of the link. (Ex: Relates, Blocks, Cloners, Duplicate)
 * **inwardKey** - inward issue key.
 * **outwardKey** - outward issue key.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+
+Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+
+## Output
+
+Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 
 ## Examples
 
@@ -29,7 +35,7 @@ Hint: Try getIssueLinkTypes to know the type.
   ```groovy
   node {
     stage('JIRA') {
-      jiraLinkIssues type: "Relates", inwardKey: "TEST-1", outwardKey: "TEST-2"
+      jiraLinkIssues type: 'Relates', inwardKey: 'TEST-1', outwardKey: 'TEST-2'
     }
   }
   ```
@@ -39,7 +45,7 @@ Hint: Try getIssueLinkTypes to know the type.
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        jiraLinkIssues type: "Relates", inwardKey: "TEST-1", outwardKey: "TEST-2"
+        jiraLinkIssues type: 'Relates', inwardKey: 'TEST-1', outwardKey: 'TEST-2'
       }
     }
   }
@@ -47,7 +53,7 @@ Hint: Try getIssueLinkTypes to know the type.
 * Without environment variables.
 
   ```groovy
-    jiraLinkIssues type: "Relates", inwardKey: "TEST-1", outwardKey: "TEST-2", site: "LOCAL"
+    jiraLinkIssues type: 'Relates', inwardKey: 'TEST-1', outwardKey: 'TEST-2', site: 'LOCAL'
   ```
 
 {% include links.html %}

@@ -12,10 +12,16 @@ folder: steps
 
 Query all projects in the given site.
 
-## Fields
+## Input
 
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+
+Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+
+## Output
+
+Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 
 ## Examples
 
@@ -44,7 +50,7 @@ Query all projects in the given site.
 * Without environment variables.
 
   ```groovy
-    def projects = jiraGetProjects()
+    def projects = jiraGetProjects(), site: 'LOCAL'
     echo project.data.toString()
   ```
 
