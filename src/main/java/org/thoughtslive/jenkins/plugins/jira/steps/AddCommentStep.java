@@ -77,7 +77,8 @@ public class AddCommentStep extends BasicJiraStep {
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Add new comment: " + step.getComment()
             + " on issue: " + step.getIdOrKey());
-        final String comment = addPanelMeta(step.getComment());
+        final String comment = step.isAuditLog() ? addPanelMeta(step.getComment())
+                                                 : step.getComment();
         response = jiraService.addComment(step.getIdOrKey(), comment);
       }
       return logResponse(response);
