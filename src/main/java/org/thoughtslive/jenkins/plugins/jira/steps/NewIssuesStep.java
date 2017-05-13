@@ -75,7 +75,8 @@ public class NewIssuesStep extends BasicJiraStep {
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Creating new Issues: " + step.getIssues());
         for (IssueInput issue : step.getIssues().getIssueUpdates()) {
-          final String description = addPanelMeta(issue.getFields().getDescription());
+          final String description = step.isAuditLog() ? addPanelMeta(issue.getFields().getDescription())
+                                                       : issue.getFields().getDescription();
           issue.getFields().setDescription(description);
         }
         response = jiraService.createIssues(step.getIssues());

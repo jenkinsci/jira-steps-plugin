@@ -21,6 +21,7 @@ TODO: probably we should try move version
 * **version** - version to be edited.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+* **auditLog** - Optional. default: `true`. Append the build url and build user name to the description.
 
 Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
 

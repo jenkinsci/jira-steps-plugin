@@ -23,4 +23,8 @@ public abstract class BasicJiraStep extends Step implements Serializable {
   @Getter
   @DataBoundSetter
   private boolean failOnError = true;
+
+  @Getter
+  @DataBoundSetter
+  private boolean auditLog = true;
 }

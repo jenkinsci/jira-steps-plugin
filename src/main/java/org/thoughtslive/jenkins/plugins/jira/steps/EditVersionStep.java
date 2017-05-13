@@ -72,8 +72,12 @@ public class EditVersionStep extends BasicJiraStep {
 
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Updating version: " + step.getVersion());
-        final String description = addMeta(step.getVersion().getDescription());
-        step.getVersion().setDescription(description);
+
+        if (step.isAuditLog()) {
+          final String description = addMeta(step.getVersion().getDescription());
+          step.getVersion().setDescription(description);
+        }
+
         response = jiraService.updateVersion(step.getVersion());
       }
 

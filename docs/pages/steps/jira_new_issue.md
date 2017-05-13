@@ -19,6 +19,7 @@ Creates new issue based on given input, which should have some minimal informati
 * **issue** - issue to be created.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+* **auditLog** - Optional. default: `true`. Append a panel to the comment with the build url and build user name.
 
 Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
 
