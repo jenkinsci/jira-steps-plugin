@@ -90,7 +90,7 @@ public class TransitionIssueStepTest {
   @Test
   public void testSuccessfulTransitionIssue() throws Exception {
     final TransitionInput input =
-        TransitionInput.builder().transition(Transition.builder().id(1000).build()).build();
+        TransitionInput.builder().transition(Transition.builder().id("1000").build()).build();
     final TransitionIssueStep step = new TransitionIssueStep("TEST-1", input);
     stepExecution = new TransitionIssueStep.Execution(step, contextMock);;
 

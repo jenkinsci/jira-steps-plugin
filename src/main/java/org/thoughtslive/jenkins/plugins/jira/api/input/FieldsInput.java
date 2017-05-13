@@ -1,6 +1,8 @@
 package org.thoughtslive.jenkins.plugins.jira.api.input;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.thoughtslive.jenkins.plugins.jira.api.Component;
@@ -13,24 +15,23 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor(onConstructor = @__({@DataBoundConstructor}))
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
-@SuppressFBWarnings
 public class FieldsInput implements Serializable {
 
   private static final long serialVersionUID = 466100668894754241L;
+
+  @JsonProperty("parent")
+  private BasicIssue parent;
 
   @JsonProperty("summary")
   private String summary;
@@ -48,7 +49,7 @@ public class FieldsInput implements Serializable {
 
   // The following are optional.
   @JsonProperty("labels")
-  private String[] labels;
+  private Set<String> labels;
 
   // Only name is required
   @JsonProperty("assignee")
@@ -56,10 +57,10 @@ public class FieldsInput implements Serializable {
 
   // Only Id is required
   @JsonProperty("components")
-  private Component[] components;
+  private List<Component> components;
 
   // Only Id is required
   @JsonProperty("fixVersions")
-  private Version[] fixVersions;
+  private List<Version> fixVersions;
 
 }

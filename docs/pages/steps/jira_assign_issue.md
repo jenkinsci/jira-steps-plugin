@@ -12,12 +12,18 @@ folder: steps
 
 Assign issue to given user.
 
-## Fields
+## Input
 
 * **idOrKey** - Issue id or key.
 * **userName** - user.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+
+Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+
+## Output
+
+Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 
 ## Examples
 
@@ -26,7 +32,7 @@ Assign issue to given user.
   ```groovy
   node {
     stage('JIRA') {
-      jiraAssignIssue idOrKey: "TEST-1", userName: "Jenkins"
+      jiraAssignIssue idOrKey: 'TEST-1', userName: 'Jenkins'
     }
   }
   ```
@@ -36,7 +42,7 @@ Assign issue to given user.
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        jiraAssignIssue idOrKey: "TEST-1", userName: "Jenkins"
+        jiraAssignIssue idOrKey: 'TEST-1', userName: 'Jenkins'
       }
     }
   }
@@ -44,7 +50,7 @@ Assign issue to given user.
 * Without environment variables.
 
   ```groovy
-    jiraAssignIssue site: "LOCAL", idOrKey: "TEST-1", userName: "Jenkins"
+    jiraAssignIssue site: 'LOCAL', idOrKey: 'TEST-1', userName: 'Jenkins'
   ```
 
 {% include links.html %}

@@ -101,8 +101,8 @@ public class TransitionIssueStep extends BasicJiraStep {
           return buildErrorResponse(new RuntimeException(errorMessage));
         }
 
-        if (input.getTransition().getId() == 0) {
-          errorMessage = "notify->transition->id required or can't be zero.";
+        if (input.getTransition().getId() == null) {
+          errorMessage = "notify->transition->id missing";
         }
 
         if (errorMessage != null) {

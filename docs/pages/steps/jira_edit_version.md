@@ -16,11 +16,17 @@ Note: Sometimes it may not possible to directly edit version (rename it) without
 
 TODO: probably we should try move version
 
-## Fields
+## Input
 
 * **version** - version to be edited.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+
+Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+
+## Output
+
+Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 
 ## Examples
 
@@ -29,12 +35,12 @@ TODO: probably we should try move version
   ```groovy
   node {
     stage('JIRA') {
-      def testVersion = [ id: 1000,
-                          name: "test-version",
+      def testVersion = [ id: '1000',
+                          name: 'test-version',
                           archived: true,
                           released: true,
-                          description: "desc",
-                          project: "TEST" ]
+                          description: 'desc',
+                          project: 'TEST' ]
       jiraEditVersion version: testVersion
     }
   }
@@ -45,12 +51,12 @@ TODO: probably we should try move version
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def testVersion = [ id: 1000,
-                            name: "test-version",
+        def testVersion = [ id: '1000',
+                            name: 'test-version',
                             archived: true,
                             released: true,
-                            description: "desc",
-                            project: "TEST" ]
+                            description: 'desc',
+                            project: 'TEST' ]
         jiraEditVersion version: testVersion
       }
     }
@@ -59,13 +65,13 @@ TODO: probably we should try move version
 * Without environment variables.
 
   ```groovy
-    def testVersion = [ id: 1000,
-                        name: "test-version",
+    def testVersion = [ id: '1000',
+                        name: 'test-version',
                         archived: true,
                         released: true,
-                        description: "desc",
-                        project: "TEST" ]
-    jiraEditVersion version: testVersion, site: "LOCAL"
+                        description: 'desc',
+                        project: 'TEST' ]
+    jiraEditVersion version: testVersion, site: 'LOCAL'
   ```
 
 {% include links.html %}

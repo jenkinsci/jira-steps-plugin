@@ -12,12 +12,18 @@ folder: steps
 
 Transition issue to different state.
 
-## Fields
+## Input
 
 * **idOrKey** - Issue id or key.
 * **input** - comment, supports jira wiki formatting.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+
+Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+
+## Output
+
+Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 
 ## Examples
 
@@ -28,29 +34,29 @@ Transition issue to different state.
     stage('JIRA') {
       def transitionInput =
       [
-          "update": [
-              "comment": [
+          update: [
+              comment: [
                   [
-                      "add": [
-                          "body": "Bug has been fixed."
+                      add: [
+                          body: 'Bug has been fixed.'
                       ]
                   ]
               ]
           ],
-          "transition": [
-              "id": "5",
-              "fields": [
-                  "assignee": [
-                      "name": "bob"
+          transition: [
+              id: '5',
+              fields: [
+                  assignee: [
+                      name: 'bob'
                   },
-                  "resolution": [
-                      "name": "Fixed"
+                  resolution: [
+                      name: 'Fixed'
                   ]
               ]
           ]
       ]
 
-      jiraTransitionIssue idOrKey: "TEST-1", input: transitionInput
+      jiraTransitionIssue idOrKey: 'TEST-1', input: transitionInput
     }
   }
   ```
@@ -62,29 +68,29 @@ Transition issue to different state.
       withEnv(['JIRA_SITE=LOCAL']) {
         def transitionInput =
         [
-            "update": [
-                "comment": [
+            update: [
+                comment: [
                     [
-                        "add": [
-                            "body": "Bug has been fixed."
+                        add: [
+                            body: 'Bug has been fixed.'
                         ]
                     ]
                 ]
             ],
-            "transition": [
-                "id": "5",
-                "fields": [
-                    "assignee": [
-                        "name": "bob"
+            transition: [
+                id: '5',
+                fields: [
+                    assignee: [
+                        name: 'bob'
                     },
-                    "resolution": [
-                        "name": "Fixed"
+                    resolution: [
+                        name: 'Fixed'
                     ]
                 ]
             ]
         ]
 
-        jiraTransitionIssue idOrKey: "TEST-1", input: transitionInput
+        jiraTransitionIssue idOrKey: 'TEST-1', input: transitionInput
       }
     }
   }
@@ -94,29 +100,29 @@ Transition issue to different state.
   ```groovy
         def transitionInput =
         [
-            "update": [
-                "comment": [
+            update: [
+                comment: [
                     [
-                        "add": [
-                            "body": "Bug has been fixed."
+                        add: [
+                            body: 'Bug has been fixed.'
                         ]
                     ]
                 ]
             ],
-            "transition": [
-                "id": "5",
-                "fields": [
-                    "assignee": [
-                        "name": "bob"
+            transition: [
+                id: '5',
+                fields: [
+                    assignee: [
+                        name: 'bob'
                     },
-                    "resolution": [
-                        "name": "Fixed"
+                    resolution: [
+                        name: 'Fixed'
                     ]
                 ]
             ]
         ]
 
-        jiraTransitionIssue idOrKey: "TEST-1", input: transitionInput, site: "LOCAL"
+        jiraTransitionIssue idOrKey: 'TEST-1', input: transitionInput, site: 'LOCAL'
   ```
 
 {% include links.html %}

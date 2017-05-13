@@ -12,11 +12,17 @@ folder: steps
 
 Query version by id.
 
-## Fields
+## Input
 
 * **id** - version id.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+
+Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+
+## Output
+
+Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 
 ## Examples
 
@@ -45,7 +51,7 @@ Query version by id.
 * Without environment variables.
 
   ```groovy
-    def version = jiraGetVersion id: '10000', site: "LOCAL", failOnError: false
+    def version = jiraGetVersion id: '10000', site: 'LOCAL', failOnError: false
     echo version.data.toString()
   ```
 

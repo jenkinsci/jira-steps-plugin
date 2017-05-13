@@ -14,11 +14,17 @@ Create new component based on given input, which should have some minimal inform
 
 ![New Component](https://raw.githubusercontent.com/ThoughtsLive/jira-steps/master/docs/images/jira_new_component.png)
 
-## Fields
+## Input
 
 * **component** - component to be created.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+
+Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+
+## Output
+
+Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 
 ## Examples
 
@@ -27,9 +33,9 @@ Create new component based on given input, which should have some minimal inform
   ```groovy
   node {
     stage('JIRA') {
-      def testComponent = [ name: "test-component",
-                            description: "desc",
-                            project: "TEST" ]
+      def testComponent = [ name: 'test-component',
+                            description: 'desc',
+                            project: 'TEST' ]
       jiraNewComponent component: testComponent
     }
   }
@@ -40,9 +46,9 @@ Create new component based on given input, which should have some minimal inform
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def testComponent = [ name: "test-component",
-                              description: "desc",
-                              project: "TEST" ]
+        def testComponent = [ name: 'test-component',
+                              description: 'desc',
+                              project: 'TEST' ]
         jiraNewComponent component: testComponent
       }
     }
@@ -51,9 +57,9 @@ Create new component based on given input, which should have some minimal inform
 * Without environment variables.
 
   ```groovy
-    def testComponent = [ name: "test-component",
-                          description: "desc",
-                          project: "TEST" ]
+    def testComponent = [ name: 'test-component',
+                          description: 'desc',
+                          project: 'TEST' ]
     jiraNewComponent component: testComponent
   ```
 

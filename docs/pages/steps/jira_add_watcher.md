@@ -11,12 +11,18 @@ folder: steps
 
 Add userName as watcher to the given issue.
 
-## Fields
+## Input
 
 * **idOrKey** - Issue id or key.
 * **userName** - userName.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+
+Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+
+## Output
+
+Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 
 ## Examples
 
@@ -25,7 +31,7 @@ Add userName as watcher to the given issue.
   ```groovy
   node {
     stage('JIRA') {
-      jiraAddWatcher idOrKey: "TEST-1", userName: "Jenkins"
+      jiraAddWatcher idOrKey: 'TEST-1', userName: 'Jenkins'
     }
   }
   ```
@@ -35,7 +41,7 @@ Add userName as watcher to the given issue.
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        jiraAddWatcher idOrKey: "TEST-1", userName: "Jenkins"
+        jiraAddWatcher idOrKey: 'TEST-1', userName: 'Jenkins'
       }
     }
   }
@@ -43,7 +49,7 @@ Add userName as watcher to the given issue.
 * Without environment variables.
 
   ```groovy
-    jiraAddWatcher site: "LOCAL", idOrKey: "TEST-1", userName: "Jenkins"
+    jiraAddWatcher site: 'LOCAL', idOrKey: 'TEST-1', userName: 'Jenkins'
   ```
 
 {% include links.html %}

@@ -81,7 +81,8 @@ public class EditCommentStep extends BasicJiraStep {
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Updating comment: " + step.getComment()
             + " on issue: " + step.getIdOrKey());
-        response = jiraService.updateComment(step.getIdOrKey(), step.getCommentId(), step.getComment());
+        response =
+            jiraService.updateComment(step.getIdOrKey(), step.getCommentId(), step.getComment());
       }
 
       return logResponse(response);

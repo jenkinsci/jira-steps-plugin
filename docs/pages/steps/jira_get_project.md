@@ -12,11 +12,17 @@ folder: steps
 
 Query project info by id or key.
 
-## Fields
+## Input
 
 * **idOrKey** - project id or key.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+
+Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+
+## Output
+
+Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 
 ## Examples
 
@@ -25,7 +31,7 @@ Query project info by id or key.
   ```groovy
   node {
     stage('JIRA') {
-      def project = jiraGetProject idOrKey: "TEST"
+      def project = jiraGetProject idOrKey: 'TEST'
       echo project.data.toString()
     }
   }
@@ -36,7 +42,7 @@ Query project info by id or key.
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def project = jiraGetProject idOrKey: "TEST"
+        def project = jiraGetProject idOrKey: 'TEST'
         echo project.data.toString()
       }
     }
@@ -45,7 +51,7 @@ Query project info by id or key.
 * Without environment variables.
 
   ```groovy
-    def project = jiraGetProject idOrKey: "TEST", site: "LOCAL"
+    def project = jiraGetProject idOrKey: 'TEST', site: 'LOCAL'
     echo project.data.toString()
   ```
 
