@@ -27,3 +27,14 @@ Please don't hesitate to log a https://issues.jenkins-ci.org/secure/RapidBoard.j
 Refer to the https://jenkinsci.github.io/jira-steps-plugin/contributing.html[contribution guide] for more information.
 
 Developed by https://github.com/nrayapati[Naresh Rayapati], this repo was initially cloned from https://github.com/ThoughtsLive/jira-steps[ThoughtsLive]
+
+== License
+-------
+Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the
+License. You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an
+“AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific
+ language governing permissions and limitations under the License.
