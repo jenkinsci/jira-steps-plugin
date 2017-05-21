@@ -7,7 +7,6 @@ sidebar: jira_sidebar
 permalink: release_notes.html
 ---
 * ## **1.1.0**
-  * <span style="color:red">Yet to release</span>.
   * <span style="color:red">Upgrading to this version will break few existing steps, please read the following notes for more information.</span>.
   * Multiple Fixes: [#29](https://github.com/jenkinsci/jira-steps-plugin/issues/29) Make `id` type consistent across and other minor fixes.
     * Made `id` type consistent (to `String`) across all the objects. (Non Passive change, existing code need to be changed to use Strings, this is applicable for mostly all the steps).
