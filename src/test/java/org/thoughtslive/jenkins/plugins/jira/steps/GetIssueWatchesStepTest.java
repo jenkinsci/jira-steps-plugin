@@ -24,7 +24,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
-import org.thoughtslive.jenkins.plugins.jira.api.Watches;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
 import hudson.AbortException;
@@ -74,7 +73,7 @@ public class GetIssueWatchesStepTest {
     when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
     doNothing().when(printStreamMock).println();
 
-    final ResponseDataBuilder<Watches> builder = ResponseData.builder();
+    final ResponseDataBuilder<Object> builder = ResponseData.builder();
     when(jiraServiceMock.getIssueWatches(anyString()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 

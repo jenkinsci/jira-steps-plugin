@@ -53,7 +53,7 @@ public class NewVersionStep extends BasicJiraStep {
     }
   }
 
-  public static class Execution extends JiraStepExecution<ResponseData<Version>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Object>> {
 
     private static final long serialVersionUID = 7109283776054289821L;
 
@@ -66,9 +66,9 @@ public class NewVersionStep extends BasicJiraStep {
     }
 
     @Override
-    protected ResponseData<Version> run() throws Exception {
+    protected ResponseData<Object> run() throws Exception {
 
-      ResponseData<Version> response = verifyInput();
+      ResponseData<Object> response = verifyInput();
 
       if (response == null) {
         logger

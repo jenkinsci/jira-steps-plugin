@@ -19,11 +19,7 @@ Updates an existing issue based on given input, which should have some minimal i
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
 
-#### Notes:
-
-* Edit issue only support few fields as input for now. Please refer to the [DTO](https://github.com/jenkinsci/jira-steps-plugin/blob/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api/input/FieldsInput.java) for more information.
-
-* For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+**Note**: Since 1.2.0 newIssue and editIssue steps supports all the fields that any jira instance supports including custom fields.
 
 ## Output
 
@@ -41,6 +37,7 @@ Each step generates generic output, please refer to this [link](config.html#comm
                                  project: [id: '10000'],
                                  summary: 'New JIRA Created from Jenkins.',
                                  description: 'New JIRA Created from Jenkins.',
+                                 customfield_1000: 'customValue',
                                  // id or name must present for issuetype.
                                  issuetype: [id: '3']]]
 

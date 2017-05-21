@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.thoughtslive.jenkins.plugins.jira.api.Project;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
@@ -39,7 +38,7 @@ public class GetProjectsStep extends BasicJiraStep {
 
   }
 
-  public static class Execution extends JiraStepExecution<ResponseData<Project[]>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Object>> {
 
     private static final long serialVersionUID = -5702548715847670073L;
 
@@ -52,9 +51,9 @@ public class GetProjectsStep extends BasicJiraStep {
     }
 
     @Override
-    protected ResponseData<Project[]> run() throws Exception {
+    protected ResponseData<Object> run() throws Exception {
 
-      ResponseData<Project[]> response = verifyInput();
+      ResponseData<Object> response = verifyInput();
 
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Querying All Projects");

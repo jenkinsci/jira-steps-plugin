@@ -29,7 +29,6 @@ import org.thoughtslive.jenkins.plugins.jira.api.Issues;
 import org.thoughtslive.jenkins.plugins.jira.api.Project;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
-import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssues;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
 import hudson.EnvVars;
@@ -87,7 +86,7 @@ public class NewIssuesStepTest {
     when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
     doNothing().when(printStreamMock).println();
 
-    final ResponseDataBuilder<BasicIssues> builder = ResponseData.builder();
+    final ResponseDataBuilder<Object> builder = ResponseData.builder();
     when(jiraServiceMock.createIssues(any()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 

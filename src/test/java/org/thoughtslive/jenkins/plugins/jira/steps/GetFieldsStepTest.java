@@ -1,9 +1,7 @@
 package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -22,28 +20,23 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.Fields;
-import org.thoughtslive.jenkins.plugins.jira.api.Issue;
-import org.thoughtslive.jenkins.plugins.jira.api.IssueType;
-import org.thoughtslive.jenkins.plugins.jira.api.Project;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
-import hudson.AbortException;
 import hudson.EnvVars;
 import hudson.model.Run;
 import hudson.model.TaskListener;
 
 /**
- * Unit test cases for EditIssueStep class.
+ * Unit test cases for GetFieldsStep class.
  * 
  * @author Naresh Rayapati
  *
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({EditIssueStep.class, Site.class})
-public class EditIssueStepTest {
+@PrepareForTest({GetFieldsStep.class, Site.class})
+public class GetFieldsStepTest {
 
   @Mock
   TaskListener taskListenerMock;
@@ -60,13 +53,7 @@ public class EditIssueStepTest {
   @Mock
   StepContext contextMock;
 
-  EditIssueStep.Execution stepExecution;
-
-  final Issue issue = Issue.builder()
-      .fields(Fields.builder().description("TEST").summary("TEST")
-          .project(Project.builder().id("10000").build())
-          .issuetype(IssueType.builder().id("10000").build()).build())
-      .build();
+  GetFieldsStep.Execution stepExecution;
 
   @Before
   public void setup() throws IOException, InterruptedException {
@@ -84,7 +71,7 @@ public class EditIssueStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Object> builder = ResponseData.builder();
-    when(jiraServiceMock.updateIssue(anyString(), any()))
+    when(jiraServiceMock.getFields())
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);
@@ -93,27 +80,15 @@ public class EditIssueStepTest {
   }
 
   @Test
-  public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
-    final EditIssueStep step = new EditIssueStep("", issue);
-    stepExecution = new EditIssueStep.Execution(step, contextMock);;
-
-    // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-      stepExecution.run();
-    }).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException")
-        .withNoCause();
-  }
-
-  @Test
-  public void testSuccessfulUpdateIssue() throws Exception {
-    final EditIssueStep step = new EditIssueStep("TEST-1", issue);
-    stepExecution = new EditIssueStep.Execution(step, contextMock);;
+  public void testSuccessfulGetFieldsStep() throws Exception {
+    final GetFieldsStep step = new GetFieldsStep();
+    stepExecution = new GetFieldsStep.Execution(step, contextMock);;
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).updateIssue("TEST-1", issue);
+    verify(jiraServiceMock, times(1)).getFields();
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

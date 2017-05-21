@@ -1,10 +1,9 @@
-
-package org.thoughtslive.jenkins.plugins.jira.api;
+package org.thoughtslive.jenkins.plugins.jira.api.input;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -21,22 +20,13 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
-public class IssueLink implements Serializable {
+public class IssuesInput implements Serializable {
 
-  private static final long serialVersionUID = -6353677854648448215L;
+  private static final long serialVersionUID = 3299430745665528801L;
 
-  @JsonProperty("id")
-  private String id;
+  @JsonProperty("issueUpdates")
+  private List<IssueInput> issueUpdates;
 
-  @JsonProperty("type")
-  private IssueLinkType type;
-
-  @JsonProperty("inwardIssue")
-  private BasicIssue inwardIssue;
-
-  @JsonProperty("outwardIssue")
-  private BasicIssue outwardIssue;
-
-  @JsonProperty("comment")
-  private Comment comment;
+  @JsonProperty("issues")
+  private List<IssueInput> issues;
 }

@@ -9,8 +9,11 @@ import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.jenkinsci.plugins.workflow.steps.StepContext;
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,13 +23,11 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.Fields;
-import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.IssueType;
 import org.thoughtslive.jenkins.plugins.jira.api.Project;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
-import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
+import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
 import hudson.EnvVars;
@@ -60,14 +61,19 @@ public class NewIssueStepTest {
 
   NewIssueStep.Execution stepExecution;
 
-  final Issue issue = Issue.builder()
-      .fields(Fields.builder().description("TEST").summary("TEST")
-          .project(Project.builder().id("10000").build())
-          .issuetype(IssueType.builder().id("10000").build()).build())
-      .build();
+  IssueInput issue = null;
 
   @Before
   public void setup() throws IOException, InterruptedException {
+
+    final Map<String, Object> fields = new HashMap<String, Object>();
+    fields.put("summary", "Summary");
+    fields.put("description", "description");
+    fields.put("duedate", DateTime.now().toString());
+    fields.put("project", Project.builder().key("TEST").build());
+    fields.put("issuetype", IssueType.builder().name("Task").build());
+
+    issue = IssueInput.builder().fields(fields).build();
 
     // Prepare site.
     when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
@@ -81,7 +87,7 @@ public class NewIssueStepTest {
     when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
     doNothing().when(printStreamMock).println();
 
-    final ResponseDataBuilder<BasicIssue> builder = ResponseData.builder();
+    final ResponseDataBuilder<Object> builder = ResponseData.builder();
     when(jiraServiceMock.createIssue(any()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 

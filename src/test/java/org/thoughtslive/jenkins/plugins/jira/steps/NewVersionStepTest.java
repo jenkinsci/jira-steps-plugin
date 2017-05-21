@@ -71,7 +71,7 @@ public class NewVersionStepTest {
     when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
     doNothing().when(printStreamMock).println();
 
-    final ResponseDataBuilder<Version> builder = ResponseData.builder();
+    final ResponseDataBuilder<Object> builder = ResponseData.builder();
     when(jiraServiceMock.createVersion(any()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 

@@ -53,7 +53,7 @@ public class NewComponentStep extends BasicJiraStep {
     }
   }
 
-  public static class Execution extends JiraStepExecution<ResponseData<Component>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Object>> {
 
     private static final long serialVersionUID = -6324419009842564119L;
 
@@ -66,9 +66,9 @@ public class NewComponentStep extends BasicJiraStep {
     }
 
     @Override
-    protected ResponseData<Component> run() throws Exception {
+    protected ResponseData<Object> run() throws Exception {
 
-      ResponseData<Component> response = verifyInput();
+      ResponseData<Object> response = verifyInput();
 
       if (response == null) {
         logger.println(

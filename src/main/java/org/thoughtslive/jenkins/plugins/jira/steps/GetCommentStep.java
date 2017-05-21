@@ -7,7 +7,6 @@ import java.io.IOException;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.thoughtslive.jenkins.plugins.jira.api.Comment;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
@@ -52,7 +51,7 @@ public class GetCommentStep extends BasicJiraStep {
 
   }
 
-  public static class Execution extends JiraStepExecution<ResponseData<Comment>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Object>> {
 
     private static final long serialVersionUID = 6956525377031302225L;
 
@@ -65,9 +64,9 @@ public class GetCommentStep extends BasicJiraStep {
     }
 
     @Override
-    protected ResponseData<Comment> run() throws Exception {
+    protected ResponseData<Object> run() throws Exception {
 
-      ResponseData<Comment> response = verifyInput();
+      ResponseData<Object> response = verifyInput();
 
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Querying issue: " + step.getIdOrKey()

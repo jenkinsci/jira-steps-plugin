@@ -71,7 +71,7 @@ public class NewComponentStepTest {
     when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
     doNothing().when(printStreamMock).println();
 
-    final ResponseDataBuilder<Component> builder = ResponseData.builder();
+    final ResponseDataBuilder<Object> builder = ResponseData.builder();
     when(jiraServiceMock.createComponent(any()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 

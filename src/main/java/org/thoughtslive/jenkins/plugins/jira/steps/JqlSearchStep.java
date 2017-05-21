@@ -9,7 +9,6 @@ import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
-import org.thoughtslive.jenkins.plugins.jira.api.SearchResult;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -62,7 +61,7 @@ public class JqlSearchStep extends BasicJiraStep {
     }
   }
 
-  public static class Execution extends JiraStepExecution<ResponseData<SearchResult>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Object>> {
 
     private static final long serialVersionUID = 3640953129479843111L;
 
@@ -75,9 +74,9 @@ public class JqlSearchStep extends BasicJiraStep {
     }
 
     @Override
-    protected ResponseData<SearchResult> run() throws Exception {
+    protected ResponseData<Object> run() throws Exception {
 
-      ResponseData<SearchResult> response = verifyInput();
+      ResponseData<Object> response = verifyInput();
 
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Search JQL: " + step.getJql() + " startAt: "

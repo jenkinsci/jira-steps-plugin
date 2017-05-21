@@ -2,6 +2,7 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -72,7 +73,7 @@ public class EditVersionStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Void> builder = ResponseData.builder();
-    when(jiraServiceMock.updateVersion(any()))
+    when(jiraServiceMock.updateVersion(anyString(), any()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);
@@ -92,7 +93,7 @@ public class EditVersionStepTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).updateVersion(version);
+    verify(jiraServiceMock, times(1)).updateVersion("10000", version);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

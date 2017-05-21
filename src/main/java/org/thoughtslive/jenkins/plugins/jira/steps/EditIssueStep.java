@@ -7,9 +7,7 @@ import java.io.IOException;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
-import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -31,10 +29,10 @@ public class EditIssueStep extends BasicJiraStep {
   private final String idOrKey;
 
   @Getter
-  private final Issue issue;
+  private final Object issue;
 
   @DataBoundConstructor
-  public EditIssueStep(final String idOrKey, final Issue issue) {
+  public EditIssueStep(final String idOrKey, final Object issue) {
     this.idOrKey = idOrKey;
     this.issue = issue;
   }
@@ -58,7 +56,7 @@ public class EditIssueStep extends BasicJiraStep {
     }
   }
 
-  public static class Execution extends JiraStepExecution<ResponseData<BasicIssue>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Object>> {
 
     private static final long serialVersionUID = -4127725325057889625L;
 
@@ -71,9 +69,9 @@ public class EditIssueStep extends BasicJiraStep {
     }
 
     @Override
-    protected ResponseData<BasicIssue> run() throws Exception {
+    protected ResponseData<Object> run() throws Exception {
 
-      ResponseData<BasicIssue> response = verifyInput();
+      ResponseData<Object> response = verifyInput();
 
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Updating issue: " + step.getIdOrKey());
@@ -90,7 +88,7 @@ public class EditIssueStep extends BasicJiraStep {
 
       if (response == null) {
         final String idOrKey = Util.fixEmpty(step.getIdOrKey());
-        final Issue issue = step.getIssue();
+        final Object issue = step.getIssue();
 
         if (idOrKey == null) {
           errorMessage = "idOrKey is empty or null.";
@@ -98,11 +96,6 @@ public class EditIssueStep extends BasicJiraStep {
 
         if (issue == null) {
           errorMessage = "issue is null.";
-          return buildErrorResponse(new RuntimeException(errorMessage));
-        }
-
-        if (issue.getFields() == null) {
-          errorMessage = "fields is null.";
           return buildErrorResponse(new RuntimeException(errorMessage));
         }
 

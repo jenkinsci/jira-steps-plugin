@@ -78,7 +78,7 @@ public class EditVersionStep extends BasicJiraStep {
           step.getVersion().setDescription(description);
         }
 
-        response = jiraService.updateVersion(step.getVersion());
+        response = jiraService.updateVersion(step.getVersion().getId(), step.getVersion());
       }
 
       return logResponse(response);

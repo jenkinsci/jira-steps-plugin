@@ -25,7 +25,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
-import org.thoughtslive.jenkins.plugins.jira.api.SearchResult;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
 import hudson.AbortException;
@@ -75,7 +74,7 @@ public class JqlSearchStepTest {
     when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
     doNothing().when(printStreamMock).println();
 
-    final ResponseDataBuilder<SearchResult> builder = ResponseData.builder();
+    final ResponseDataBuilder<Object> builder = ResponseData.builder();
     when(jiraServiceMock.searchIssues(anyString(), anyInt(), anyInt()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 

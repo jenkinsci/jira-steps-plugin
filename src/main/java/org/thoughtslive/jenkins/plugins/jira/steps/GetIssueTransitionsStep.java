@@ -8,7 +8,6 @@ import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
-import org.thoughtslive.jenkins.plugins.jira.api.Transitions;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -48,7 +47,7 @@ public class GetIssueTransitionsStep extends BasicJiraStep {
 
   }
 
-  public static class Execution extends JiraStepExecution<ResponseData<Transitions>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Object>> {
 
     private static final long serialVersionUID = 4731872444274410275L;
 
@@ -61,14 +60,14 @@ public class GetIssueTransitionsStep extends BasicJiraStep {
     }
 
     @Override
-    protected ResponseData<Transitions> run() throws Exception {
+    protected ResponseData<Object> run() throws Exception {
 
-      ResponseData<Transitions> response = verifyInput();
+      ResponseData<Object> response = verifyInput();
 
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Querying issue transitions with idOrKey: "
             + step.getIdOrKey());
-        response = jiraService.getTransitions(step.getIdOrKey());
+        response = jiraService.getIssueTransitions(step.getIdOrKey());
       }
 
       return logResponse(response);

@@ -21,7 +21,7 @@ Creates new issue based on given input, which should have some minimal informati
 * **failOnError** - Optional. default: `true`.
 * **auditLog** - Optional. default: `true`. Append a panel to the comment with the build url and build user name.
 
-Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
+**Note**: Since 1.2.0 newIssue and editIssue steps supports all the fields that any jira instance supports including custom fields.
 
 ## Output
 
@@ -39,6 +39,7 @@ Each step generates generic output, please refer to this [link](config.html#comm
                                  project: [id: '10000'],
                                  summary: 'New JIRA Created from Jenkins.',
                                  description: 'New JIRA Created from Jenkins.',
+                                 customfield_1000: 'customValue',
                                  // id or name must present for issueType.
                                  issuetype: [id: '3']]]
 

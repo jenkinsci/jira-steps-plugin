@@ -163,3 +163,7 @@ entries:
     - title: jiraJqlSearch
       url: /jira_jql_search.html
       output: web, pdf
+
+    - title: jiraGetFields
+      url: /jira_get_fields.html
+      output: web, pdf
