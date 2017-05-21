@@ -16,6 +16,7 @@ import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.IssueLink;
 import org.thoughtslive.jenkins.plugins.jira.api.IssueLinkType;
 import org.thoughtslive.jenkins.plugins.jira.api.IssueLinkTypes;
+import org.thoughtslive.jenkins.plugins.jira.api.Issues;
 import org.thoughtslive.jenkins.plugins.jira.api.Notify;
 import org.thoughtslive.jenkins.plugins.jira.api.Project;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
@@ -27,8 +28,6 @@ import org.thoughtslive.jenkins.plugins.jira.api.Version;
 import org.thoughtslive.jenkins.plugins.jira.api.Watches;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssues;
-import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
-import org.thoughtslive.jenkins.plugins.jira.api.input.IssuesInput;
 import org.thoughtslive.jenkins.plugins.jira.api.input.TransitionInput;
 import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
 
@@ -157,7 +156,7 @@ public class JiraService {
    * @param issue
    * @return issue.
    */
-  public ResponseData<BasicIssue> createIssue(final IssueInput issue) {
+  public ResponseData<BasicIssue> createIssue(final Issue issue) {
     try {
       return parseResponse(jiraEndPoints.createIssue(issue).execute());
     } catch (Exception e) {
@@ -165,7 +164,7 @@ public class JiraService {
     }
   }
 
-  public ResponseData<BasicIssue> updateIssue(final String issueIdOrKey, final IssueInput issue) {
+  public ResponseData<BasicIssue> updateIssue(final String issueIdOrKey, final Issue issue) {
     try {
       return parseResponse(jiraEndPoints.updateIssue(issueIdOrKey, issue).execute());
     } catch (Exception e) {
@@ -182,7 +181,7 @@ public class JiraService {
     }
   }
 
-  public ResponseData<BasicIssues> createIssues(final IssuesInput issues) {
+  public ResponseData<BasicIssues> createIssues(final Issues issues) {
     try {
       return parseResponse(jiraEndPoints.createIssues(issues).execute());
     } catch (Exception e) {

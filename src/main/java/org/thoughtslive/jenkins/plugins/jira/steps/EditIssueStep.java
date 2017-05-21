@@ -7,9 +7,9 @@ import java.io.IOException;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
+import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
-import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -31,10 +31,10 @@ public class EditIssueStep extends BasicJiraStep {
   private final String idOrKey;
 
   @Getter
-  private final IssueInput issue;
+  private final Issue issue;
 
   @DataBoundConstructor
-  public EditIssueStep(final String idOrKey, final IssueInput issue) {
+  public EditIssueStep(final String idOrKey, final Issue issue) {
     this.idOrKey = idOrKey;
     this.issue = issue;
   }
@@ -90,7 +90,7 @@ public class EditIssueStep extends BasicJiraStep {
 
       if (response == null) {
         final String idOrKey = Util.fixEmpty(step.getIdOrKey());
-        final IssueInput issue = step.getIssue();
+        final Issue issue = step.getIssue();
 
         if (idOrKey == null) {
           errorMessage = "idOrKey is empty or null.";

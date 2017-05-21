@@ -8,10 +8,12 @@ import java.util.Set;
 import org.joda.time.DateTime;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
+import org.thoughtslive.jenkins.plugins.jira.util.CustomDateTimeSerializer;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -107,6 +109,7 @@ public class Fields implements Serializable {
   private String summary;
 
   @JsonProperty("duedate")
+  @JsonSerialize(using = CustomDateTimeSerializer.class)
   private DateTime duedate;
 
   @JsonProperty("comment")

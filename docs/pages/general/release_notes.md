@@ -10,15 +10,15 @@ permalink: release_notes.html
   * <span style="color:red">Yet to release</span>.
   * <span style="color:red">Upgrading to this version will break few existing steps, please read the following notes for more information.</span>.
   * Multiple Fixes: [#29](https://github.com/jenkinsci/jira-steps-plugin/issues/29) Make `id` type consistent across and other minor fixes.
-    * Make `id` type consistent (to `String`) across all the objects.
-    * `jiraNewIssue` and `jiraNewIssues`
-      * Allow issue type look up by name (`fields->issuetype->name`)
-      * Allow project look up by key (`fields->project->key`)
-    * `@ToString` is duplicate in all api objects (`@Data` should take care of
-it already.)
-    * `Array` type can be just either `List` or `Set`. Changed across all objects. No need of as String[] ans more. Ex: `['a','b'] as String[]` is now just `['a', 'b']`.
+    * Made `id` type consistent (to `String`) across all the objects. (Non Passive change, existing code need to be changed to use Strings, this is applicable for mostly all the steps).
+    * Changes to `jiraNewIssue` and `jiraNewIssues`.
+      * Allow issue type look up by name (`fields->issuetype->name`).
+      * Allow project look up by key (`fields->project->key`).
+    * `@ToString` is duplicate in all api objects (`@Data` should take care of it already.)
+    * `Array` type can be just either `List` or `Set`. Changed across all objects. No need of as String[] anymore. Ex: `['a','b'] as String[]` is now just `['a', 'b']`. (Non Passive change).
     * `fields` variable is in the wrong position for `Transitions`.
     * Updated documentation accordingly.
+  * [#28](https://github.com/jenkinsci/jira-steps-plugin/issues/28) ISSUE-28 Enable more fields while creating/updating issues.
   * Added Terms and Conditions - Google Analytics.
   * [JENKINS-44252](https://issues.jenkins-ci.org/browse/JENKINS-44252) - Make auditLog optional.
 
