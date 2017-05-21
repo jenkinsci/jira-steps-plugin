@@ -22,14 +22,14 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
+import org.thoughtslive.jenkins.plugins.jira.api.Fields;
+import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.IssueType;
+import org.thoughtslive.jenkins.plugins.jira.api.Issues;
 import org.thoughtslive.jenkins.plugins.jira.api.Project;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssues;
-import org.thoughtslive.jenkins.plugins.jira.api.input.FieldsInput;
-import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
-import org.thoughtslive.jenkins.plugins.jira.api.input.IssuesInput;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
 import hudson.EnvVars;
@@ -63,7 +63,7 @@ public class NewIssuesStepTest {
 
   NewIssuesStep.Execution stepExecution;
 
-  IssuesInput issuesInput;
+  Issues issuesInput;
 
   @Before
   public void setup() throws IOException, InterruptedException {
@@ -72,13 +72,13 @@ public class NewIssuesStepTest {
     when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
     when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
 
-    final List<IssueInput> issues = new ArrayList<IssueInput>();
-    issues.add(IssueInput.builder()
-        .fields(FieldsInput.builder().description("TEST").summary("TEST")
+    final List<Issue> issues = new ArrayList<Issue>();
+    issues.add(Issue.builder()
+        .fields(Fields.builder().description("TEST").summary("TEST")
             .project(Project.builder().id("10000").build())
             .issuetype(IssueType.builder().id("10000").build()).build())
         .build());
-    issuesInput = IssuesInput.builder().issueUpdates(issues).build();
+    issuesInput = Issues.builder().issueUpdates(issues).build();
     PowerMockito.mockStatic(Site.class);
     Mockito.when(Site.get(any())).thenReturn(siteMock);
     when(siteMock.getService()).thenReturn(jiraServiceMock);

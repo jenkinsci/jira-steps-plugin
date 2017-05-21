@@ -9,6 +9,7 @@ import org.thoughtslive.jenkins.plugins.jira.api.Count;
 import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.IssueLink;
 import org.thoughtslive.jenkins.plugins.jira.api.IssueLinkTypes;
+import org.thoughtslive.jenkins.plugins.jira.api.Issues;
 import org.thoughtslive.jenkins.plugins.jira.api.Notify;
 import org.thoughtslive.jenkins.plugins.jira.api.Project;
 import org.thoughtslive.jenkins.plugins.jira.api.SearchResult;
@@ -19,8 +20,6 @@ import org.thoughtslive.jenkins.plugins.jira.api.Version;
 import org.thoughtslive.jenkins.plugins.jira.api.Watches;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssues;
-import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
-import org.thoughtslive.jenkins.plugins.jira.api.input.IssuesInput;
 import org.thoughtslive.jenkins.plugins.jira.api.input.TransitionInput;
 
 import retrofit2.Call;
@@ -60,13 +59,13 @@ public interface JiraEndPoints {
   Call<Issue> getIssue(@Path("issueIdOrKey") String issueIdOrKey);
 
   @POST("rest/api/2/issue")
-  Call<BasicIssue> createIssue(@Body IssueInput issue);
+  Call<BasicIssue> createIssue(@Body Issue issue);
 
   @PUT("rest/api/2/issue/{issueIdOrKey}")
-  Call<BasicIssue> updateIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body IssueInput issue);
+  Call<BasicIssue> updateIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Issue issue);
 
   @POST("rest/api/2/issue/bulk")
-  Call<BasicIssues> createIssues(@Body IssuesInput issues);
+  Call<BasicIssues> createIssues(@Body Issues issues);
 
   @PUT("rest/api/2/issue/{issueIdOrKey}/assignee")
   Call<Void> assignIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body User user);

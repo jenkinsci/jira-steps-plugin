@@ -7,9 +7,9 @@ import java.io.IOException;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
+import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
-import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -28,10 +28,10 @@ public class NewIssueStep extends BasicJiraStep {
   private static final long serialVersionUID = -3952881085849787165L;
 
   @Getter
-  private final IssueInput issue;
+  private final Issue issue;
 
   @DataBoundConstructor
-  public NewIssueStep(final IssueInput issue) {
+  public NewIssueStep(final Issue issue) {
     this.issue = issue;
   }
 
@@ -73,8 +73,9 @@ public class NewIssueStep extends BasicJiraStep {
 
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Creating new issue: " + step.getIssue());
-        final String description = step.isAuditLog() ? addPanelMeta(step.getIssue().getFields().getDescription())
-                                                     : step.getIssue().getFields().getDescription();
+        final String description =
+            step.isAuditLog() ? addPanelMeta(step.getIssue().getFields().getDescription())
+                : step.getIssue().getFields().getDescription();
         step.getIssue().getFields().setDescription(description);
         response = jiraService.createIssue(step.getIssue());
       }
@@ -88,7 +89,7 @@ public class NewIssueStep extends BasicJiraStep {
       ResponseData<T> response = verifyCommon(step);
 
       if (response == null) {
-        final IssueInput issue = step.getIssue();
+        final Issue issue = step.getIssue();
 
         if (issue == null) {
           errorMessage = "issue is null.";
