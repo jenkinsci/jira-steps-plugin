@@ -10,7 +10,7 @@ folder: steps
 
 ## Overview
 
-Get all issue links types.
+This step queries all issue links types from the provided JIRA site.
 
 ## Input
 
@@ -21,16 +21,21 @@ Note: For more information about input, please refer to the model objects in the
 
 ## Output
 
-Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
+* Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
+* The api response of this jira_get_issue_link_types step can be reused later in your script by doing `response.data.required_field_name`.
+* You can see some example scenarios [here](https://jenkinsci.github.io/jira-steps-plugin/common_usages.html)
+* All the available fields for a jira component can be found in [JIRA Api documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.
 
-## Examples
+Note: response.data returns all the fields returned by JIRA API.
+
+## Example usages of generated script
 
 * With default [site](config#environment-variables) from global variables.
 
   ```groovy
   node {
     stage('JIRA') {
-      def issueLinkTypes = jiraGetIssueLinkTypes()
+      def issueLinkTypes = jiraGetIssueLinkTypes idOrKey: 'TEST-1'
       echo issueLinkTypes.data.toString()
     }
   }
@@ -41,7 +46,7 @@ Each step generates generic output, please refer to this [link](config.html#comm
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def issueLinkTypes = jiraGetIssueLinkTypes()
+        def issueLinkTypes = jiraGetIssueLinkTypes idOrKey: 'TEST-1', site: 'LOCAL'
         echo issueLinkTypes.data.toString()
       }
     }
