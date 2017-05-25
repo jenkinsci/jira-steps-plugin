@@ -20,7 +20,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.IssueLinkTypes;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
@@ -71,7 +70,7 @@ public class GetIssueLinkTypesStepTest {
     when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
     doNothing().when(printStreamMock).println();
 
-    final ResponseDataBuilder<IssueLinkTypes> builder = ResponseData.builder();
+    final ResponseDataBuilder<Object> builder = ResponseData.builder();
     when(jiraServiceMock.getIssueLinkTypes())
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 

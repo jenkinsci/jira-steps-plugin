@@ -1,7 +1,5 @@
 package org.thoughtslive.jenkins.plugins.jira.steps;
 
-import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
-
 import java.io.IOException;
 
 import org.jenkinsci.plugins.workflow.steps.StepContext;
@@ -12,48 +10,41 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
 import hudson.Extension;
-import hudson.Util;
-import lombok.Getter;
 
 /**
- * Step to query a JIRA Project.
+ * Step to query a JIRA Fields.
  *
  * @author Naresh Rayapati
  */
-public class GetProjectStep extends BasicJiraStep {
+public class GetFieldsStep extends BasicJiraStep {
 
-  private static final long serialVersionUID = 8326344234130259321L;
-
-  @Getter
-  private final String idOrKey;
+  private static final long serialVersionUID = 2689031885988669114L;
 
   @DataBoundConstructor
-  public GetProjectStep(final String idOrKey) {
-    this.idOrKey = idOrKey;
-  }
+  public GetFieldsStep() {}
 
   @Extension
   public static class DescriptorImpl extends JiraStepDescriptorImpl {
 
     @Override
     public String getFunctionName() {
-      return "jiraGetProject";
+      return "jiraGetFields";
     }
 
     @Override
     public String getDisplayName() {
-      return getPrefix() + "Get Project";
+      return getPrefix() + "Get Fields";
     }
 
   }
 
   public static class Execution extends JiraStepExecution<ResponseData<Object>> {
 
-    private static final long serialVersionUID = -1946537791588473196L;
+    private static final long serialVersionUID = -5702548715847670073L;
 
-    private final GetProjectStep step;
+    private final GetFieldsStep step;
 
-    protected Execution(final GetProjectStep step, final StepContext context)
+    protected Execution(final GetFieldsStep step, final StepContext context)
         throws IOException, InterruptedException {
       super(context);
       this.step = step;
@@ -65,9 +56,8 @@ public class GetProjectStep extends BasicJiraStep {
       ResponseData<Object> response = verifyInput();
 
       if (response == null) {
-        logger.println(
-            "JIRA: Site - " + siteName + " - Querying Project with idOrKey:" + step.getIdOrKey());
-        response = jiraService.getProject(step.getIdOrKey());
+        logger.println("JIRA: Site - " + siteName + " - Querying All Fields including Custom fields.");
+        response = jiraService.getFields();
       }
 
       return logResponse(response);
@@ -75,21 +65,7 @@ public class GetProjectStep extends BasicJiraStep {
 
     @Override
     protected <T> ResponseData<T> verifyInput() throws Exception {
-      String errorMessage = null;
-      ResponseData<T> response = verifyCommon(step);
-
-      if (response == null) {
-        final String idOrKey = Util.fixEmpty(step.getIdOrKey());
-
-        if (idOrKey == null) {
-          errorMessage = "idOrKey is empty or null.";
-        }
-
-        if (errorMessage != null) {
-          response = buildErrorResponse(new RuntimeException(errorMessage));
-        }
-      }
-      return response;
+      return verifyCommon(step);
     }
   }
 

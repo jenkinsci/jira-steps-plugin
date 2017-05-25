@@ -24,7 +24,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
-import org.thoughtslive.jenkins.plugins.jira.api.Transitions;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
 import hudson.AbortException;
@@ -74,8 +73,8 @@ public class GetIssueTransitionsStepTest {
     when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
     doNothing().when(printStreamMock).println();
 
-    final ResponseDataBuilder<Transitions> builder = ResponseData.builder();
-    when(jiraServiceMock.getTransitions(anyString()))
+    final ResponseDataBuilder<Object> builder = ResponseData.builder();
+    when(jiraServiceMock.getIssueTransitions(anyString()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);
@@ -104,7 +103,7 @@ public class GetIssueTransitionsStepTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).getTransitions("TEST-1");
+    verify(jiraServiceMock, times(1)).getIssueTransitions("TEST-1");
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

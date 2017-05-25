@@ -8,7 +8,6 @@ import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
-import org.thoughtslive.jenkins.plugins.jira.api.Version;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -47,7 +46,7 @@ public class GetVersionStep extends BasicJiraStep {
 
   }
 
-  public static class Execution extends JiraStepExecution<ResponseData<Version>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Object>> {
 
     private static final long serialVersionUID = 325576266548671174L;
 
@@ -60,9 +59,9 @@ public class GetVersionStep extends BasicJiraStep {
     }
 
     @Override
-    protected ResponseData<Version> run() throws Exception {
+    protected ResponseData<Object> run() throws Exception {
 
-      ResponseData<Version> response = verifyInput();
+      ResponseData<Object> response = verifyInput();
 
       if (response == null) {
         logger.println(

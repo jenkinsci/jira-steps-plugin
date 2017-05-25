@@ -34,25 +34,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
     stage('JIRA') {
       def transitionInput =
       [
-          update: [
-              comment: [
-                  [
-                      add: [
-                          body: 'Bug has been fixed.'
-                      ]
-                  ]
-              ]
-          ],
           transition: [
               id: '5',
-              fields: [
-                  assignee: [
-                      name: 'bob'
-                  },
-                  resolution: [
-                      name: 'Fixed'
-                  ]
-              ]
           ]
       ]
 
@@ -68,25 +51,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
       withEnv(['JIRA_SITE=LOCAL']) {
         def transitionInput =
         [
-            update: [
-                comment: [
-                    [
-                        add: [
-                            body: 'Bug has been fixed.'
-                        ]
-                    ]
-                ]
-            ],
             transition: [
                 id: '5',
-                fields: [
-                    assignee: [
-                        name: 'bob'
-                    },
-                    resolution: [
-                        name: 'Fixed'
-                    ]
-                ]
             ]
         ]
 
@@ -98,29 +64,12 @@ Each step generates generic output, please refer to this [link](config.html#comm
 * Without environment variables.
 
   ```groovy
-        def transitionInput =
-        [
-            update: [
-                comment: [
-                    [
-                        add: [
-                            body: 'Bug has been fixed.'
-                        ]
-                    ]
-                ]
-            ],
-            transition: [
-                id: '5',
-                fields: [
-                    assignee: [
-                        name: 'bob'
-                    },
-                    resolution: [
-                        name: 'Fixed'
-                    ]
-                ]
-            ]
-        ]
+  def transitionInput =
+  [
+      transition: [
+          id: '5',
+      ]
+  ]
 
         jiraTransitionIssue idOrKey: 'TEST-1', input: transitionInput, site: 'LOCAL'
   ```

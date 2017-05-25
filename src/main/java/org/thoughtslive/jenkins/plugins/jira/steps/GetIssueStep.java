@@ -7,7 +7,6 @@ import java.io.IOException;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
@@ -48,7 +47,7 @@ public class GetIssueStep extends BasicJiraStep {
 
   }
 
-  public static class Execution extends JiraStepExecution<ResponseData<Issue>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Object>> {
 
     private static final long serialVersionUID = 6898696015602575211L;
 
@@ -61,9 +60,9 @@ public class GetIssueStep extends BasicJiraStep {
     }
 
     @Override
-    protected ResponseData<Issue> run() throws Exception {
+    protected ResponseData<Object> run() throws Exception {
 
-      ResponseData<Issue> response = verifyInput();
+      ResponseData<Object> response = verifyInput();
 
       if (response == null) {
         logger.println(

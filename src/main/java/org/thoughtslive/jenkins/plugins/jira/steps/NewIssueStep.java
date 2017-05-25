@@ -7,9 +7,8 @@ import java.io.IOException;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
-import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
+import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -28,10 +27,10 @@ public class NewIssueStep extends BasicJiraStep {
   private static final long serialVersionUID = -3952881085849787165L;
 
   @Getter
-  private final Issue issue;
+  private final IssueInput issue;
 
   @DataBoundConstructor
-  public NewIssueStep(final Issue issue) {
+  public NewIssueStep(final IssueInput issue) {
     this.issue = issue;
   }
 
@@ -54,7 +53,7 @@ public class NewIssueStep extends BasicJiraStep {
     }
   }
 
-  public static class Execution extends JiraStepExecution<ResponseData<BasicIssue>> {
+  public static class Execution extends JiraStepExecution<ResponseData<Object>> {
 
     private static final long serialVersionUID = 2782781910330634547L;
 
@@ -67,16 +66,16 @@ public class NewIssueStep extends BasicJiraStep {
     }
 
     @Override
-    protected ResponseData<BasicIssue> run() throws Exception {
+    protected ResponseData<Object> run() throws Exception {
 
-      ResponseData<BasicIssue> response = verifyInput();
+      ResponseData<Object> response = verifyInput();
 
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Creating new issue: " + step.getIssue());
-        final String description =
-            step.isAuditLog() ? addPanelMeta(step.getIssue().getFields().getDescription())
-                : step.getIssue().getFields().getDescription();
-        step.getIssue().getFields().setDescription(description);
+        final String description = step.isAuditLog()
+            ? addPanelMeta(step.getIssue().getFields().get("description").toString())
+            : step.getIssue().getFields().get("description").toString();
+        step.getIssue().getFields().put("description", description);
         response = jiraService.createIssue(step.getIssue());
       }
 
@@ -89,7 +88,7 @@ public class NewIssueStep extends BasicJiraStep {
       ResponseData<T> response = verifyCommon(step);
 
       if (response == null) {
-        final Issue issue = step.getIssue();
+        final IssueInput issue = step.getIssue();
 
         if (issue == null) {
           errorMessage = "issue is null.";
@@ -101,35 +100,23 @@ public class NewIssueStep extends BasicJiraStep {
           return buildErrorResponse(new RuntimeException(errorMessage));
         }
 
-        if (Util.fixEmpty(issue.getFields().getSummary()) == null) {
+        if (Util.fixEmpty(issue.getFields().get("summary").toString()) == null) {
           errorMessage = "fields->summary is empty or null.";
         }
 
-        if (Util.fixEmpty(issue.getFields().getDescription()) == null) {
+        if (Util.fixEmpty(issue.getFields().get("description").toString()) == null) {
           errorMessage = "fields->description is empty or null.";
         }
 
-        if (issue.getFields().getIssuetype() == null) {
+        if (issue.getFields().get("issuetype") == null) {
           errorMessage = "fields->issuetype is null.";
           return buildErrorResponse(new RuntimeException(errorMessage));
 
         }
 
-        if (Util.fixEmpty(issue.getFields().getIssuetype().getId()) == null
-            && Util.fixEmpty(issue.getFields().getIssuetype().getName()) == null) {
-          errorMessage =
-              "fields->issuetype->id is missing and fields->issuetype->name is missing, one of these must present.";
-        }
-
-        if (issue.getFields().getProject() == null) {
+        if (issue.getFields().get("project") == null) {
           errorMessage = "fields->project is null.";
           return buildErrorResponse(new RuntimeException(errorMessage));
-        }
-
-        if (Util.fixEmpty(issue.getFields().getProject().getId()) == null
-            && Util.fixEmpty(issue.getFields().getProject().getKey()) == null) {
-          errorMessage =
-              "fields->project->id is missing and fields->project->key is missing, one of these must present.";
         }
 
         if (errorMessage != null) {

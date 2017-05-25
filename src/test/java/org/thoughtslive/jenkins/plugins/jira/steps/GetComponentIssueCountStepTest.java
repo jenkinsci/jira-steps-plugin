@@ -22,7 +22,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.Count;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
@@ -74,7 +73,7 @@ public class GetComponentIssueCountStepTest {
     when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
     doNothing().when(printStreamMock).println();
 
-    final ResponseDataBuilder<Count> builder = ResponseData.builder();
+    final ResponseDataBuilder<Object> builder = ResponseData.builder();
     when(jiraServiceMock.getComponentIssueCount(anyString()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 

@@ -6,6 +6,10 @@ summary: "Change log."
 sidebar: jira_sidebar
 permalink: release_notes.html
 ---
+* ## **1.2.0** (Unreleased)
+  * [JENKINS-44254](https://issues.jenkins-ci.org/browse/JENKINS-44254) Ability to retrieve and update custom fields.
+    * All Steps: No restrictions on what(fields) can be sent to JIRA and retrieve from JIRA. Every field can either be int or string.
+  * [JENKINS-44460](https://issues.jenkins-ci.org/browse/JENKINS-44460) no DataBoundConstructor on joda.time.DateTime.
 * ## **1.1.0**
   * <span style="color:red">Upgrading to this version will break few existing steps, please read the following notes for more information.</span>.
   * Multiple Fixes: [#29](https://github.com/jenkinsci/jira-steps-plugin/issues/29) Make `id` type consistent across and other minor fixes.

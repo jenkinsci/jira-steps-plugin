@@ -22,7 +22,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.Comment;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
@@ -74,37 +73,13 @@ public class EditCommentStepTest {
     when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
     doNothing().when(printStreamMock).println();
 
-    final ResponseDataBuilder<Comment> builder = ResponseData.builder();
+    final ResponseDataBuilder<Object> builder = ResponseData.builder();
     when(jiraServiceMock.updateComment(anyString(), anyString(), anyString()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);
     when(contextMock.get(TaskListener.class)).thenReturn(taskListenerMock);
     when(contextMock.get(EnvVars.class)).thenReturn(envVarsMock);
-  }
-
-  @Test
-  public void testWithZeroComponentIdThrowsAbortException() throws Exception {
-    final EditCommentStep step = new EditCommentStep("TEST-1", "", "test comment");
-    stepExecution = new EditCommentStep.Execution(step, contextMock);;
-
-    // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-      stepExecution.run();
-    }).withMessage("commentId is empty or null.").withStackTraceContaining("AbortException")
-        .withNoCause();
-  }
-
-  @Test
-  public void testWithNegativeComponentIdThrowsAbortException() throws Exception {
-    final EditCommentStep step = new EditCommentStep("TEST-1", null, "test comment");
-    stepExecution = new EditCommentStep.Execution(step, contextMock);;
-
-    // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-      stepExecution.run();
-    }).withMessage("commentId is empty or null.").withStackTraceContaining("AbortException")
-        .withNoCause();
   }
 
   @Test
@@ -116,18 +91,6 @@ public class EditCommentStepTest {
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
       stepExecution.run();
     }).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException")
-        .withNoCause();
-  }
-
-  @Test
-  public void testWithEmptyCommentThrowsAbortException() throws Exception {
-    final EditCommentStep step = new EditCommentStep("TEST-1", "1000", "");
-    stepExecution = new EditCommentStep.Execution(step, contextMock);;
-
-    // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-      stepExecution.run();
-    }).withMessage("comment is empty or null.").withStackTraceContaining("AbortException")
         .withNoCause();
   }
 
