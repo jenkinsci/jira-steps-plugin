@@ -92,7 +92,13 @@ class JiraServiceIT {
 	
 	println service.transitionIssue('TEST-27', transitionInput).code
 	
-	println service.getFields().code                                             
+	println service.getFields().code
+
+	println service.getProjectVersions('TEST').code
+	
+	println service.getProjectComponents('TEST').code                                            
+
+	println service.getProjectStatuses('TEST').code                                          
 	
   }
 
