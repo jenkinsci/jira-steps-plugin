@@ -28,8 +28,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
   ```groovy
   node {
     stage('JIRA') {
-      def projects = jiraGetFields()
-      echo project.data.toString()
+      def fields = jiraGetFields()
+      echo fields.data.toString()
     }
   }
   ```
@@ -39,8 +39,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def projects = jiraGetFields()
-        echo project.data.toString()
+        def fields = jiraGetFields()
+        echo fields.data.toString()
       }
     }
   }
@@ -48,8 +48,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
 * Without environment variables.
 
   ```groovy
-    def projects = jiraGetFields(), site: 'LOCAL'
-    echo project.data.toString()
+    def fields = jiraGetFields(), site: 'LOCAL'
+    echo fields.data.toString()
   ```
 
 {% include links.html %}

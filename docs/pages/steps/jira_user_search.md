@@ -30,8 +30,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
   node {
     stage('JIRA') {
       // where jenkins is actual username
-      def issues = jiraUserSearch queryStr: 'jenk'
-      echo issues.data.toString()
+      def users = jiraUserSearch queryStr: 'jenk'
+      echo users.data.toString()
     }
   }
   ```
@@ -42,8 +42,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
         // where Naresh Rayapati is actual name.
-        def issues = jiraUserSearch queryStr: 'Nare'
-        echo issues.data.toString()
+        def users = jiraUserSearch queryStr: 'Nare'
+        echo users.data.toString()
       }
     }
   }
@@ -51,8 +51,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
 * Without environment variables.
 
   ```groovy
-    def issues = jiraUserSearch queryStr: 'jenkins@thoughtslive.org', site: 'LOCAL', failOnError: true
-    echo issues.data.toString()
+    def users = jiraUserSearch queryStr: 'jenkins@thoughtslive.org', site: 'LOCAL', failOnError: true
+    echo users.data.toString()
   ```
 
 {% include links.html %}

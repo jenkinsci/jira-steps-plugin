@@ -139,9 +139,6 @@ public class JiraService {
 
   /**
    * Creates issue based on given {@link Issue}
-   * 
-   * @param issue
-   * @return issue.
    */
   public ResponseData<Object> createIssue(final Object issue) {
     try {
@@ -334,6 +331,23 @@ public class JiraService {
     }
   }
 
+  // Issue Links
+  public ResponseData<Object> getIssueLink(final String id) {
+    try {
+      return parseResponse(jiraEndPoints.getIssueLink(id).execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
+  public ResponseData<Object> deleteIssueLink(final String id) {
+    try {
+      return parseResponse(jiraEndPoints.deleteIssueLink(id).execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
   public ResponseData<Void> linkIssues(final String name, final String inwardIssueKey,
       final String outwardIssueKey, final String comment) {
     Comment linkComment = null;
@@ -352,6 +366,47 @@ public class JiraService {
     }
   }
   
+  // Remote Issue Links
+  public ResponseData<Object> getIssueRemoteLinks(final String idOrKey, final String globalId) {
+    try {
+      return parseResponse(jiraEndPoints.getIssueRemoteLinks(idOrKey, globalId).execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
+  public ResponseData<Object> getIssueRemoteLink(final String idOrKey, final String linkId) {
+    try {
+      return parseResponse(jiraEndPoints.getIssueRemoteLink(idOrKey, linkId).execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
+  public ResponseData<Object> createIssueRemoteLink(final String idOrKey, final Object remoteLink) {
+    try {
+      return parseResponse(jiraEndPoints.createIssueRemoteLink(idOrKey, remoteLink).execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
+  public ResponseData<Object> deleteIssueRemoteLink(final String idOrKey, final String linkId) {
+    try {
+      return parseResponse(jiraEndPoints.deleteIssueRemoteLink(idOrKey, linkId).execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
+  public ResponseData<Object> deleteIssueRemoteLinks(final String idOrKey, final String globalId) {
+    try {
+      return parseResponse(jiraEndPoints.deleteIssueRemoteLinks(idOrKey, globalId).execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
   public ResponseData<Object> getFields() {
     try {
         return parseResponse(jiraEndPoints.getFields().execute());

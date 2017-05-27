@@ -1,20 +1,21 @@
 ---
-title: jiraGetProjectComponents
+title: jiraGetRemoteIssueLink
 tags: [steps]
-keywords: steps, components
-summary: "More about jiraGetProjectComponents step."
+keywords: steps, remote, issuelink
+summary: "More about jiraGetRemoteIssueLink step."
 sidebar: jira_sidebar
-permalink: jira_get_project_components.html
+permalink: jira_get_remote_issuelink.html
 folder: steps
 ---
 
 ## Overview
 
-Query all components by project id or key.
+Query issue remote link by link id.
 
 ## Input
 
-* **idOrKey** - project id or key.
+* **idOrKey** - issue id or key.
+* **linkId** - remote link id.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
 
@@ -29,8 +30,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
   ```groovy
   node {
     stage('JIRA') {
-      def components = jiraGetProjectComponents idOrKey: 'TEST'
-      echo components.data.toString()
+      def issueLink = jiraGetRemoteIssueLink idOrKey: 'TEST-27', linkId: '10000'
+      echo issueLink.data.toString()
     }
   }
   ```
@@ -40,8 +41,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def components = jiraGetProjectComponents idOrKey: 'TEST'
-        echo components.data.toString()
+        def issueLink = jiraGetRemoteIssueLink idOrKey: 'TEST-27', linkId: '10000'
+        echo issueLink.data.toString()
       }
     }
   }
@@ -49,8 +50,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
 * Without environment variables.
 
   ```groovy
-    def components = jiraGetProjectComponents idOrKey: 'TEST', site: 'LOCAL'
-    echo components.data.toString()
+    def issueLink = jiraGetRemoteIssueLink idOrKey: 'TEST-27', linkId: '10000', site: 'LOCAL', failOnError: false
+    echo issueLink.data.toString()
   ```
 
 {% include links.html %}

@@ -1,20 +1,20 @@
 ---
-title: jiraGetProjectComponents
+title: jiraDeleteIssueLink
 tags: [steps]
-keywords: steps, components
-summary: "More about jiraGetProjectComponents step."
+keywords: steps, issuelink
+summary: "More about jiraDeleteIssueLink step."
 sidebar: jira_sidebar
-permalink: jira_get_project_components.html
+permalink: jira_delete_issuelink.html
 folder: steps
 ---
 
 ## Overview
 
-Query all components by project id or key.
+Delete issue link by id.
 
 ## Input
 
-* **idOrKey** - project id or key.
+* **id** - issue link's id.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
 
@@ -29,8 +29,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
   ```groovy
   node {
     stage('JIRA') {
-      def components = jiraGetProjectComponents idOrKey: 'TEST'
-      echo components.data.toString()
+      def issueLink = jiraDeleteIssueLink id: '10000'
+      echo issueLink.data.toString()
     }
   }
   ```
@@ -40,8 +40,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def components = jiraGetProjectComponents idOrKey: 'TEST'
-        echo components.data.toString()
+        def issueLink = jiraDeleteIssueLink id: '10000'
+        echo issueLink.data.toString()
       }
     }
   }
@@ -49,8 +49,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
 * Without environment variables.
 
   ```groovy
-    def components = jiraGetProjectComponents idOrKey: 'TEST', site: 'LOCAL'
-    echo components.data.toString()
+    def issueLink = jiraDeleteIssueLink id: '10000', site: 'LOCAL', failOnError: false
+    echo issueLink.data.toString()
   ```
 
 {% include links.html %}

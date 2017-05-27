@@ -1,7 +1,7 @@
 ---
 title: jiraGetProjectVersions
 tags: [steps]
-keywords: steps, project
+keywords: steps, versions
 summary: "More about jiraGetProjectVersions step."
 sidebar: jira_sidebar
 permalink: jira_get_project_versions.html
@@ -29,8 +29,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
   ```groovy
   node {
     stage('JIRA') {
-      def project = jiraGetProjectVersions idOrKey: 'TEST'
-      echo project.data.toString()
+      def versions = jiraGetProjectVersions idOrKey: 'TEST'
+      echo versions.data.toString()
     }
   }
   ```
@@ -40,8 +40,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def project = jiraGetProjectVersions idOrKey: 'TEST'
-        echo project.data.toString()
+        def versions = jiraGetProjectVersions idOrKey: 'TEST'
+        echo versions.data.toString()
       }
     }
   }
@@ -49,8 +49,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
 * Without environment variables.
 
   ```groovy
-    def project = jiraGetProjectVersions idOrKey: 'TEST', site: 'LOCAL'
-    echo project.data.toString()
+    def versions = jiraGetProjectVersions idOrKey: 'TEST', site: 'LOCAL'
+    echo versions.data.toString()
   ```
 
 {% include links.html %}
