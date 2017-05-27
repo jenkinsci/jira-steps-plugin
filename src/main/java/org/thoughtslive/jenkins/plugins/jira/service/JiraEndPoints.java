@@ -4,6 +4,7 @@ import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -79,12 +80,34 @@ public interface JiraEndPoints {
   @POST("rest/api/2/issue/{issueIdOrKey}/watchers")
   Call<Void> addIssueWatcher(@Path("issueIdOrKey") String issueIdOrKey, @Body String user);
 
+  // Remote Issue Links
+  @GET("rest/api/2/issue/{issueIdOrKey}/remotelink")
+  Call<Object> getIssueRemoteLinks(@Path("issueIdOrKey") String issueIdOrKey, @Query("globalId") String globalId);
+
+  @GET("rest/api/2/issue/{issueIdOrKey}/remotelink/{linkId}")
+  Call<Object> getIssueRemoteLink(@Path("issueIdOrKey") String issueIdOrKey, @Path("linkId") String linkId);
+
+  @POST("rest/api/2/issue/{issueIdOrKey}/remotelink")
+  Call<Object> createIssueRemoteLink(@Path("issueIdOrKey") String issueIdOrKey, @Body Object issueLink);
+
+  @POST("rest/api/2/issue/{issueIdOrKey}/remotelink/{linkId}")
+  Call<Object> updateIssueRemoteLink(@Path("issueIdOrKey") String issueIdOrKey, @Path("linkId") String linkId, @Body Object issueLink);
+
+  @DELETE("rest/api/2/issue/{issueIdOrKey}/remotelink")
+  Call<Object> deleteIssueRemoteLinks(@Path("issueIdOrKey") String issueIdOrKey, @Query("globalId") String globalId);
+
+  @DELETE("rest/api/2/issue/{issueIdOrKey}/remotelink/{linkId}")
+  Call<Object> deleteIssueRemoteLink(@Path("issueIdOrKey") String issueIdOrKey, @Path("linkId") String linkId);
+
   // Issue Links
   @POST("rest/api/2/issueLink")
   Call<Void> createIssueLink(@Body Object issueLink);
 
   @GET("rest/api/2/issueLink/{linkId}")
   Call<Object> getIssueLink(@Path("linkId") String linkId);
+
+  @DELETE("rest/api/2/issueLink/{linkId}")
+  Call<Object> deleteIssueLink(@Path("linkId") String linkId);
 
   // Issue Link Types
   @GET("rest/api/2/issueLinkType")

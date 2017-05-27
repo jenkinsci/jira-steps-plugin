@@ -1,7 +1,7 @@
 ---
 title: jiraGetProjects
 tags: [steps]
-keywords: steps, project
+keywords: steps, projects
 summary: "More about jiraGetProjects step."
 sidebar: jira_sidebar
 permalink: jira_get_projects.html
@@ -31,7 +31,7 @@ Each step generates generic output, please refer to this [link](config.html#comm
   node {
     stage('JIRA') {
       def projects = jiraGetProjects()
-      echo project.data.toString()
+      echo projects.data.toString()
     }
   }
   ```
@@ -42,7 +42,7 @@ Each step generates generic output, please refer to this [link](config.html#comm
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
         def projects = jiraGetProjects()
-        echo project.data.toString()
+        echo projects.data.toString()
       }
     }
   }
@@ -51,7 +51,7 @@ Each step generates generic output, please refer to this [link](config.html#comm
 
   ```groovy
     def projects = jiraGetProjects(), site: 'LOCAL'
-    echo project.data.toString()
+    echo projects.data.toString()
   ```
 
 {% include links.html %}

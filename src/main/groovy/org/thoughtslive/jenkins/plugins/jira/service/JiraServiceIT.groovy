@@ -102,7 +102,16 @@ class JiraServiceIT {
 	
 	println service.userSearch('jenkins', 0, 10).code    
 
-	println service.assignableUserSearch('jenkins', 'TEST', '', 0, 10).code    
+	println service.assignableUserSearch('jenkins', 'TEST', '', 0, 10).code   
+	
+	println service.linkIssues('Duplicate', 'TEST-27', 'TEST-33', 'Linked Issue Comment').code
+	
+	def issueLinkId =  service.getIssue('TEST-27').data.fields.issuelinks[0].id
+
+	println service.getIssueLink(issueLinkId).code
+	
+	println service.deleteIssueLink(issueLinkId).code
+	 
   }
 
 }

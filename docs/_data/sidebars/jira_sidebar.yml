@@ -164,8 +164,40 @@ entries:
       url: /jira_edit_version.html
       output: web, pdf
 
+  - title: Pipeline Steps (More...)
+    output: web, pdf
+
+    folderitems:
+    - title: jiraGetRemoteIssueLink
+      url: /jira_get_remote_issuelink.html
+      output: web, pdf
+
+    - title: jiraGetRemoteIssueLinks
+      url: /jira_get_remote_issuelinks.html
+      output: web, pdf
+
+    - title: jiraNewRemoteIssueLink
+      url: /jira_new_remote_issuelink.html
+      output: web, pdf
+
+    - title: jiraDeleteRemoteIssueLink
+      url: /jira_delete_remote_issuelink.html
+      output: web, pdf
+
+    - title: jiraDeleteRemoteIssueLinks
+      url: /jira_delete_remote_issuelinks.html
+      output: web, pdf
+
+    - title: jiraGetIssueLink
+      url: /jira_get_issuelink.html
+      output: web, pdf
+
     - title: jiraLinkIssues
       url: /jira_link_issues.html
+      output: web, pdf
+
+    - title: jiraDeleteIssueLink
+      url: /jira_delete_issuelink.html
       output: web, pdf
 
     - title: jiraGetIssueLinkTypes

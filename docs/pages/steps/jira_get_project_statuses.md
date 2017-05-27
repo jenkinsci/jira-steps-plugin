@@ -1,7 +1,7 @@
 ---
 title: jiraGetProjectStatuses
 tags: [steps]
-keywords: steps, project
+keywords: steps, statuses
 summary: "More about jiraGetProjectStatuses step."
 sidebar: jira_sidebar
 permalink: jira_get_project_statuses.html
@@ -29,8 +29,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
   ```groovy
   node {
     stage('JIRA') {
-      def project = jiraGetProjectStatuses idOrKey: 'TEST'
-      echo project.data.toString()
+      def statuses = jiraGetProjectStatuses idOrKey: 'TEST'
+      echo statuses.data.toString()
     }
   }
   ```
@@ -40,8 +40,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def project = jiraGetProjectStatuses idOrKey: 'TEST'
-        echo project.data.toString()
+        def statuses = jiraGetProjectStatuses idOrKey: 'TEST'
+        echo statuses.data.toString()
       }
     }
   }
@@ -49,8 +49,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
 * Without environment variables.
 
   ```groovy
-    def project = jiraGetProjectStatuses idOrKey: 'TEST', site: 'LOCAL'
-    echo project.data.toString()
+    def statuses = jiraGetProjectStatuses idOrKey: 'TEST', site: 'LOCAL'
+    echo statuses.data.toString()
   ```
 
 {% include links.html %}

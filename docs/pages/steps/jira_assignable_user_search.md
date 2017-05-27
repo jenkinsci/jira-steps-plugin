@@ -20,8 +20,6 @@ Search users by name, username or email address those can be assignable to given
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
 
-Note: For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
-
 ## Output
 
 Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
@@ -33,8 +31,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
   ```groovy
   node {
     stage('JIRA') {
-      def issues = jiraAssignableUserSearch project: 'TEST'
-      echo issues.data.toString()
+      def users = jiraAssignableUserSearch project: 'TEST'
+      echo users.data.toString()
     }
   }
   ```
@@ -44,8 +42,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def issues = jiraAssignableUserSearch project: 'TEST', issueKey: 'TEST-01'
-        echo issues.data.toString()
+        def users = jiraAssignableUserSearch project: 'TEST', issueKey: 'TEST-01'
+        echo users.data.toString()
       }
     }
   }
@@ -53,8 +51,8 @@ Each step generates generic output, please refer to this [link](config.html#comm
 * Without environment variables.
 
   ```groovy
-    def issues = jiraAssignableUserSearch  queryStr: 'jenkin', project: 'TEST', site: 'LOCAL', failOnError: true
-    echo issues.data.toString()
+    def users = jiraAssignableUserSearch  queryStr: 'jenkin', project: 'TEST', site: 'LOCAL', failOnError: true
+    echo users.data.toString()
   ```
 
 {% include links.html %}
