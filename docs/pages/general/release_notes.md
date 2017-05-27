@@ -6,7 +6,8 @@ summary: "Change log."
 sidebar: jira_sidebar
 permalink: release_notes.html
 ---
-* ## **1.2.0** (Unreleased)
+* ## **1.3.0** (Unreleased)
+* ## **1.2.0**
   * [JENKINS-44254](https://issues.jenkins-ci.org/browse/JENKINS-44254) Ability to retrieve and update custom fields.
     * All Steps: No restrictions on what(fields) can be sent to JIRA and retrieve from JIRA. Every field can either be int or string.
   * [JENKINS-44460](https://issues.jenkins-ci.org/browse/JENKINS-44460) No DataBoundConstructor on joda.time.DateTime.
