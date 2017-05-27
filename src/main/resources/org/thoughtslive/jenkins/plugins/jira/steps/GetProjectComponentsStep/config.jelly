@@ -8,14 +8,8 @@
 	xmlns:t="/lib/hudson"
 	xmlns:f="/lib/form"
 	xmlns:i="jelly:fmt">
-  <f:entry field="jql" title="JIRA JQL">
+  <f:entry field="idOrKey" title="Project Id/Key">
   	<f:textbox/>
-  </f:entry>
-	<f:entry field="startAt" title="startAt">
-		<f:textbox default="0" />
-	</f:entry>
-	<f:entry field="maxResults" title="maxResults">
-    <f:textbox default="1000" />
   </f:entry>
   <f:advanced>
   	<f:entry field="site" title="Site Name">
@@ -26,6 +20,6 @@
   	</f:entry>
   </f:advanced>
   <f:block>
-     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_jql_search.html" target="_blank">jiraJqlSearch</a> for more information.</p>
+     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_get_project_components.html" target="_blank">jiraGetProjectComponents</a> for more information.</p>
   </f:block>
 </j:jelly>

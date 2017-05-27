@@ -140,6 +140,18 @@ entries:
       url: /jira_get_project.html
       output: web, pdf
 
+    - title: jiraGetProjectComponents
+      url: /jira_get_project_components.html
+      output: web, pdf
+
+    - title: jiraGetProjectStatuses
+      url: /jira_get_project_statuses.html
+      output: web, pdf
+
+    - title: jiraGetProjectVersions
+      url: /jira_get_project_versions.html
+      output: web, pdf
+
     - title: jiraGetVersion
       url: /jira_get_version.html
       output: web, pdf
@@ -166,4 +178,12 @@ entries:
 
     - title: jiraGetFields
       url: /jira_get_fields.html
+      output: web, pdf
+
+    - title: jiraUserSearch
+      url: /jira_user_search.html
+      output: web, pdf
+
+    - title: jiraAssignableUserSearch
+      url: /jira_assignable_user_search.html
       output: web, pdf

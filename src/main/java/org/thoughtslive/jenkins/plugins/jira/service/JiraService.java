@@ -359,4 +359,22 @@ public class JiraService {
         return buildErrorResponse(e);
     }
   }
+
+  public ResponseData<Object> userSearch(final String userName, final int startAt,
+      final int maxResults) {
+    try {
+        return parseResponse(jiraEndPoints.userSearch(userName, startAt, maxResults).execute());
+    } catch (Exception e) {
+        return buildErrorResponse(e);
+    }
+  }
+
+  public ResponseData<Object> assignableUserSearch(final String userName, final String project, final String issueKey, final int startAt,
+      final int maxResults) {
+    try {
+        return parseResponse(jiraEndPoints.assignableUserSearch(userName, project, issueKey, startAt, maxResults).execute());
+    } catch (Exception e) {
+        return buildErrorResponse(e);
+    }
+  }
 }

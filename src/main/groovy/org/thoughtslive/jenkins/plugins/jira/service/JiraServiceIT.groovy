@@ -98,8 +98,11 @@ class JiraServiceIT {
 	
 	println service.getProjectComponents('TEST').code                                            
 
-	println service.getProjectStatuses('TEST').code                                          
+	println service.getProjectStatuses('TEST').code
 	
+	println service.userSearch('jenkins', 0, 10).code    
+
+	println service.assignableUserSearch('jenkins', 'TEST', '', 0, 10).code    
   }
 
 }

@@ -14,6 +14,9 @@ permalink: release_notes.html
     * jiraGetProjectVersions.
     * jiraGetProjectComponents.
     * jiraGetProjectStatuses.
+  * [JENKINS-44253](https://issues.jenkins-ci.org/browse/JENKINS-44253) Add few user related steps.
+    * jiraUserSearch.
+    * jiraAssignableUserSearch.
 * ## **1.1.0**
   * <span style="color:red">Upgrading to this version will break few existing steps, please read the following notes for more information.</span>.
   * Multiple Fixes: [#29](https://github.com/jenkinsci/jira-steps-plugin/issues/29) Make `id` type consistent across and other minor fixes.
