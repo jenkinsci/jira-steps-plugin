@@ -10,7 +10,7 @@ folder: general
 
 # Contributing
 
-Help us to make this project better by contributing. Whether it's new features, bug fixes, or simply improving documentation, your contributions are welcome. Please start with logging a [github issue][1] or submit a pull request.
+Help us to make this project better by contributing. Whether it's new features, bug fixes, or simply improving documentation, your contributions are welcome. Please start with logging a [JIRA][1] or submit a pull request.
 
 Before you contribute, please review these guidelines to help ensure a smooth process for everyone.
 
@@ -40,7 +40,7 @@ Thanks.
 * Open a [pull request][7].
 * The pull request will be reviewed by the community and merged by the project committers.
 
-[1]: https://github.com/thoughtslive/jira-steps/issues
+[1]: http://issues.jenkins-ci.org/secure/IssueNavigator.jspa?mode=hide&reset=true&jqlQuery=project+%3D+JENKINS+AND+status+in+%28Open%2C+%22In+Progress%22%2C+Reopened%29+AND+component+%3D+%27jira-steps-plugin%27
 [2]: http://gun.io/blog/how-to-github-fork-branch-and-pull-request
 [3]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 [4]: ./release_notes.html

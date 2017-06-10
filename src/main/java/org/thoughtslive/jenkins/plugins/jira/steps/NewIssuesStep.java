@@ -108,30 +108,14 @@ public class NewIssuesStep extends BasicJiraStep {
             errorMessage = "fields->summary is empty or null.";
           }
 
-          if (Util.fixEmpty(issue.getFields().getDescription()) == null) {
-            errorMessage = "fields->description is empty or null.";
-          }
-
           if (issue.getFields().getIssuetype() == null) {
             errorMessage = "fields->issuetype is null.";
             return buildErrorResponse(new RuntimeException(errorMessage));
           }
 
-          if (Util.fixEmpty(issue.getFields().getIssuetype().getId()) == null
-              && Util.fixEmpty(issue.getFields().getIssuetype().getName()) == null) {
-            errorMessage =
-                "fields->issuetype->id is missing and fields->issuetype->name is missing, one of these must present.";
-          }
-
           if (issue.getFields().getProject() == null) {
             errorMessage = "fields->project is null.";
             return buildErrorResponse(new RuntimeException(errorMessage));
-          }
-
-          if (Util.fixEmpty(issue.getFields().getProject().getId()) == null
-              && Util.fixEmpty(issue.getFields().getProject().getKey()) == null) {
-            errorMessage =
-                "fields->project->id is missing and fields->project->key is missing, one of these must present.";
           }
 
           if (errorMessage != null) {

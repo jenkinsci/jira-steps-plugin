@@ -100,16 +100,6 @@ public class NotifyIssueStep extends BasicJiraStep {
           return buildErrorResponse(new RuntimeException(errorMessage));
         }
 
-        if (Util.fixEmpty(notify.getSubject()) == null) {
-          errorMessage = "notify->subject is empty or null.";
-        }
-
-        if ((Util.fixEmpty(notify.getHtmlBody()) == null
-            && Util.fixEmpty(notify.getTextBody()) == null)) {
-          errorMessage =
-              "notify->htmlBody or notify->textBody is required. (One of these two is required.)";
-        }
-
         if (errorMessage != null) {
           response = buildErrorResponse(new RuntimeException(errorMessage));
         }

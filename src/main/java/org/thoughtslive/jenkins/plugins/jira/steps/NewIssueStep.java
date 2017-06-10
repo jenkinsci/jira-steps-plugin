@@ -104,10 +104,6 @@ public class NewIssueStep extends BasicJiraStep {
           errorMessage = "fields->summary is empty or null.";
         }
 
-        if (Util.fixEmpty(issue.getFields().get("description").toString()) == null) {
-          errorMessage = "fields->description is empty or null.";
-        }
-
         if (issue.getFields().get("issuetype") == null) {
           errorMessage = "fields->issuetype is null.";
           return buildErrorResponse(new RuntimeException(errorMessage));
