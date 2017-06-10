@@ -23,7 +23,7 @@ Quick links:
 
 == Disclaimer
 
-Please don't hesitate to log a https://issues.jenkins-ci.org/secure/RapidBoard.jspa?rapidView=171&projectKey=JENKINS[JIRA] or github pull request if you need any help or if you can be of help with this plugin :).
+Please don't hesitate to log a http://issues.jenkins-ci.org/secure/IssueNavigator.jspa?mode=hide&reset=true&jqlQuery=project+%3D+JENKINS+AND+status+in+%28Open%2C+%22In+Progress%22%2C+Reopened%29+AND+component+%3D+%27jira-steps-plugin%27[JIRA] or github pull request if you need any help or if you can be of help with this plugin :).
 Refer to the https://jenkinsci.github.io/jira-steps-plugin/contributing.html[contribution guide] for more information.
 
 Developed by https://github.com/nrayapati[Naresh Rayapati], this repo was initially cloned from https://github.com/ThoughtsLive/jira-steps[ThoughtsLive]
