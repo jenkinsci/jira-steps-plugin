@@ -8,7 +8,7 @@ permalink: release_notes.html
 ---
 * ## **1.3.0** (Unreleased)
 * ## **1.2.1**
-  * Relaxed few steps input validation.
+  * [#40](https://github.com/jenkinsci/jira-steps-plugin/pull/40) Relaxed few step's input validation.
 * ## **1.2.0**
   * [JENKINS-44254](https://issues.jenkins-ci.org/browse/JENKINS-44254) Ability to retrieve and update custom fields.
     * All Steps: No restrictions on what(fields) can be sent to JIRA and retrieve from JIRA. Every field can either be int or string.
