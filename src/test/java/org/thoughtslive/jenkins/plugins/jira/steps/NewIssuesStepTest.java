@@ -10,9 +10,12 @@ import static org.mockito.Mockito.when;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.jenkinsci.plugins.workflow.steps.StepContext;
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,13 +25,12 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.Fields;
-import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.IssueType;
-import org.thoughtslive.jenkins.plugins.jira.api.Issues;
 import org.thoughtslive.jenkins.plugins.jira.api.Project;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
+import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
+import org.thoughtslive.jenkins.plugins.jira.api.input.IssuesInput;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
 import hudson.EnvVars;
@@ -62,7 +64,7 @@ public class NewIssuesStepTest {
 
   NewIssuesStep.Execution stepExecution;
 
-  Issues issuesInput;
+  IssuesInput issuesInput;
 
   @Before
   public void setup() throws IOException, InterruptedException {
@@ -71,13 +73,19 @@ public class NewIssuesStepTest {
     when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
     when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
 
-    final List<Issue> issues = new ArrayList<Issue>();
-    issues.add(Issue.builder()
-        .fields(Fields.builder().description("TEST").summary("TEST")
-            .project(Project.builder().id("10000").build())
-            .issuetype(IssueType.builder().id("10000").build()).build())
-        .build());
-    issuesInput = Issues.builder().issueUpdates(issues).build();
+    final List<IssueInput> issues = new ArrayList<IssueInput>();
+    
+    final Map<String, Object> fields = new HashMap<String, Object>();
+    fields.put("summary", "Summary");
+    fields.put("description", null);
+    fields.put("duedate", DateTime.now().toString());
+    fields.put("project", Project.builder().key("TEST").build());
+    fields.put("issuetype", IssueType.builder().name("Task").build());
+
+    final IssueInput issue = IssueInput.builder().fields(fields).build();
+    issues.add(issue);
+
+    issuesInput = IssuesInput.builder().issueUpdates(issues).build();
     PowerMockito.mockStatic(Site.class);
     Mockito.when(Site.get(any())).thenReturn(siteMock);
     when(siteMock.getService()).thenReturn(jiraServiceMock);

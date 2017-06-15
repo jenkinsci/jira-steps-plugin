@@ -7,9 +7,9 @@ import java.io.IOException;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.thoughtslive.jenkins.plugins.jira.api.Issue;
-import org.thoughtslive.jenkins.plugins.jira.api.Issues;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
+import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
+import org.thoughtslive.jenkins.plugins.jira.api.input.IssuesInput;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -28,10 +28,10 @@ public class NewIssuesStep extends BasicJiraStep {
   private static final long serialVersionUID = -1390437007976428509L;
 
   @Getter
-  private final Issues issues;
+  private final IssuesInput issues;
 
   @DataBoundConstructor
-  public NewIssuesStep(final Issues issues) {
+  public NewIssuesStep(final IssuesInput issues) {
     this.issues = issues;
   }
 
@@ -73,11 +73,12 @@ public class NewIssuesStep extends BasicJiraStep {
 
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Creating new Issues: " + step.getIssues());
-        for (Issue issue : step.getIssues().getIssueUpdates()) {
-          final String description =
-              step.isAuditLog() ? addPanelMeta(issue.getFields().getDescription())
-                  : issue.getFields().getDescription();
-          issue.getFields().setDescription(description);
+        for (IssueInput issue : step.getIssues().getIssueUpdates()) {
+          
+          String description = issue.getFields().get("description") != null ? issue.getFields().get("description").toString() : "" ; 
+          description = step.isAuditLog() ? addPanelMeta(description) : description;
+          issue.getFields().put("description", description);
+
         }
         response = jiraService.createIssues(step.getIssues());
       }
@@ -91,9 +92,9 @@ public class NewIssuesStep extends BasicJiraStep {
       ResponseData<T> response = verifyCommon(step);
 
       if (response == null) {
-        final Issues issues = step.getIssues();
+        final IssuesInput issues = step.getIssues();
 
-        for (Issue issue : issues.getIssueUpdates()) {
+        for (IssueInput issue : issues.getIssueUpdates()) {
           if (issue == null) {
             errorMessage = "issue is null.";
             return buildErrorResponse(new RuntimeException(errorMessage));
@@ -104,16 +105,17 @@ public class NewIssuesStep extends BasicJiraStep {
             return buildErrorResponse(new RuntimeException(errorMessage));
           }
 
-          if (Util.fixEmpty(issue.getFields().getSummary()) == null) {
+          if (issue.getFields().get("summary") == null || Util.fixEmpty(issue.getFields().get("summary").toString()) == null) {
             errorMessage = "fields->summary is empty or null.";
           }
 
-          if (issue.getFields().getIssuetype() == null) {
+          if (issue.getFields().get("issuetype") == null) {
             errorMessage = "fields->issuetype is null.";
             return buildErrorResponse(new RuntimeException(errorMessage));
+
           }
 
-          if (issue.getFields().getProject() == null) {
+          if (issue.getFields().get("project") == null) {
             errorMessage = "fields->project is null.";
             return buildErrorResponse(new RuntimeException(errorMessage));
           }

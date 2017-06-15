@@ -68,7 +68,7 @@ public class NewIssueStepTest {
 
     final Map<String, Object> fields = new HashMap<String, Object>();
     fields.put("summary", "Summary");
-    fields.put("description", "description");
+    fields.put("description", null);
     fields.put("duedate", DateTime.now().toString());
     fields.put("project", Project.builder().key("TEST").build());
     fields.put("issuetype", IssueType.builder().name("Task").build());
