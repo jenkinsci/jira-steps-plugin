@@ -72,9 +72,9 @@ public class NewIssueStep extends BasicJiraStep {
 
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Creating new issue: " + step.getIssue());
-        final String description = step.isAuditLog()
-            ? addPanelMeta(step.getIssue().getFields().get("description").toString())
-            : step.getIssue().getFields().get("description").toString();
+        String description = step.getIssue().getFields().get("description") != null
+            ? step.getIssue().getFields().get("description").toString() : "";
+        description = step.isAuditLog() ? addPanelMeta(description) : description;
         step.getIssue().getFields().put("description", description);
         response = jiraService.createIssue(step.getIssue());
       }
@@ -100,7 +100,8 @@ public class NewIssueStep extends BasicJiraStep {
           return buildErrorResponse(new RuntimeException(errorMessage));
         }
 
-        if (Util.fixEmpty(issue.getFields().get("summary").toString()) == null) {
+        if (issue.getFields().get("summary") == null
+            || Util.fixEmpty(issue.getFields().get("summary").toString()) == null) {
           errorMessage = "fields->summary is empty or null.";
         }
 
