@@ -78,18 +78,17 @@ public class DownloadAttachmentStep extends BasicJiraStep {
             if (response == null) {
                 if (idOrKey == null || idOrKey.isEmpty()) {
                     errorMessage = "ID or key is null or empty";
+                    return buildErrorResponse(new RuntimeException(errorMessage));
                 }
 
                 if (attachmentName == null || attachmentName.isEmpty()) {
                     errorMessage = "Attachment-Name is null or emtpy";
+                    return buildErrorResponse(new RuntimeException(errorMessage));
                 }
 
                 if (targetLocation == null || targetLocation.isEmpty()) {
-                    targetLocation = System.getProperty("user.home");
-                }
-
-                if (errorMessage != null) {
-                    response = buildErrorResponse(new RuntimeException(errorMessage));
+                    errorMessage = "Target location is null or emtpy";
+                    return buildErrorResponse(new RuntimeException(errorMessage));
                 }
             }
             return response;
@@ -102,7 +101,7 @@ public class DownloadAttachmentStep extends BasicJiraStep {
             if (responseData == null) {
                 logger.println("JIRA: Site - " + siteName + " - Downloading file: " + new File(step.getAttachmentName())
                         + "from " + step.getIdOrKey() + "to " + step.getTargetLocation());
-                responseData = jiraService.downloadFile(step.getIdOrKey(), step.getAttachmentName(), step.getTargetLocation());
+                responseData = jiraService.downloadAttachment(step.getIdOrKey(), step.getAttachmentName(), step.getTargetLocation());
             }
             return logResponse(responseData);
         }

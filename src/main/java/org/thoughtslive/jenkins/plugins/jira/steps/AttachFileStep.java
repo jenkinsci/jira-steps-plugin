@@ -74,21 +74,13 @@ public class AttachFileStep extends BasicJiraStep {
                 final File attachment = new File(step.getAttachmentPath());
 
                 if (idOrKey == null) {
-                    errorMessage = "idOrKey is empty or null";
+                    errorMessage = "ID or key is null or empty";
+                    return buildErrorResponse(new RuntimeException(errorMessage));
                 }
 
                 if (!attachment.exists()) {
-                    errorMessage = "attachment does not exist";
+                    errorMessage = "Attachment does not exist";
                     return buildErrorResponse(new RuntimeException(errorMessage));
-                }
-
-                if (!attachment.canRead()) {
-                    errorMessage = "no reading-permissions on file " + attachment.getAbsolutePath();
-                    return buildErrorResponse(new RuntimeException(errorMessage));
-                }
-
-                if (errorMessage != null) {
-                    response = buildErrorResponse(new RuntimeException(errorMessage));
                 }
             }
             return response;

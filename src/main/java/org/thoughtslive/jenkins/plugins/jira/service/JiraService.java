@@ -433,7 +433,7 @@ public class JiraService {
     }
   }
 
-  public ResponseData<Object> downloadFile(final String issueIdOrKey, final String attachmentName, final String targetLocation) {
+  public ResponseData<Object> downloadAttachment(final String issueIdOrKey, final String attachmentName, final String targetLocation) {
     try {
       retrofit2.Response<Object> attachmentsInfoResponse = jiraEndPoints.getAttachmentsInfo(issueIdOrKey).execute();
       Attachments attachments = new ObjectMapper().convertValue(attachmentsInfoResponse.body(), Attachments.class);
