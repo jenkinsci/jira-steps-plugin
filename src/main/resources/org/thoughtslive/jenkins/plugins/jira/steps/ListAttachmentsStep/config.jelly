@@ -20,6 +20,6 @@
   	</f:entry>
   </f:advanced>
   <f:block>
-     <p>Ask <a href="mailto:oliver.breitenbach@sprengnetter.de?subject=Jira Step Plugin - Step: Attach File">Oliver Breitenbach</a> for more information.</p>
+     <p>Ask <a href="mailto:oliver.breitenbach@sprengnetter.de?subject=Jira Step Plugin - Step: List Attachments">Oliver Breitenbach</a> for more information.</p>
   </f:block>
 </j:jelly>
