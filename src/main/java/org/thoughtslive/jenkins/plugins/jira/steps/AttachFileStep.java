@@ -18,6 +18,7 @@ import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorRespon
 /**
  * @author Oliver Breitenbach
  * @version 1.0.0
+ *          Step to attach a file to an issue.
  */
 public class AttachFileStep extends BasicJiraStep {
 

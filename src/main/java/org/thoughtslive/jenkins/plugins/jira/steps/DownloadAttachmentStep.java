@@ -18,6 +18,7 @@ import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorRespon
 /**
  * @author Oliver Breitenbach
  * @version 1.0.0
+ *          Step to download a file from an issue.
  */
 public class DownloadAttachmentStep extends BasicJiraStep {
 

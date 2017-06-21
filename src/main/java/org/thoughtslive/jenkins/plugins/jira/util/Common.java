@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * Common utility functions.
- * 
+ *
  * @author Naresh Rayapati
  *
  */
@@ -25,7 +25,7 @@ public class Common {
 
   /**
    * Empty check for string.
-   * 
+   *
    * @param str
    * @return true if given string is null or empty.
    */
@@ -35,7 +35,7 @@ public class Common {
 
   /**
    * Attaches the "/" at end of given url.
-   * 
+   *
    * @param url url as a string.
    * @return url which ends with "/"
    */
@@ -48,7 +48,7 @@ public class Common {
 
   /**
    * Write a message to the given print stream.
-   * 
+   *
    * @param logger {@link PrintStream}
    * @param message to log.
    */
@@ -64,7 +64,7 @@ public class Common {
 
   /**
    * Returns build number from the given Environemnt Vars.
-   * 
+   *
    * @param logger {@link PrintStream}
    * @param envVars {@link EnvVars}
    * @return build number of current job.
@@ -80,7 +80,7 @@ public class Common {
 
   /**
    * Converts Retrofit's {@link Response} to {@link ResponseData}
-   * 
+   *
    * @param response instance of {@link Response}
    * @return an instance of {@link ResponseData}
    * @throws IOException
@@ -99,7 +99,7 @@ public class Common {
 
   /**
    * Builds error response from the given exception.
-   * 
+   *
    * @param e instance of {@link Exception}
    * @return an instance of {@link ResponseData}
    */
@@ -111,7 +111,7 @@ public class Common {
 
   /**
    * Returns actual Cause from the given exception.
-   * 
+   *
    * @param throwable
    * @return {@link Throwable}
    */
@@ -121,10 +121,22 @@ public class Common {
     return throwable;
   }
 
-  public static String findAttachmentId(final Attachments attachments, final String attachmentName) throws IOException {
+  /**
+   * Filters the found attachments and searches for the wanted attachmentId, based on the given attachment name.
+   * @param attachments The attachments, which get filtered.
+   * @param attachmentName The name of the searched attachment.
+   * @return The attachmentId of the searched attachment.
+   */
+  public static String findAttachmentId(final Attachments attachments, final String attachmentName) {
     return filterMatchingAttachmentId(attachments, attachmentName);
   }
 
+    /**
+     * Saves an arry of bytes to a specified target location.
+     * @param binaryFileContent The array of bytes containing the binary file data.
+     * @param targetLocation The target location of the file.
+     * @throws IOException Is thrown when something went wrong while writing the file to the file-system.
+     */
   public static void saveFile(final byte[] binaryFileContent, final String targetLocation) throws IOException {
     Files.write(Paths.get(new File(targetLocation).getAbsolutePath()), binaryFileContent, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
   }

@@ -29,6 +29,7 @@ import static org.mockito.Mockito.*;
 /**
  * @author Oliver Breitenbach
  * @version 1.0.0
+ *          Test class for the DownloadAttachmentStep.
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({DownloadAttachmentStep.class, Site.class})
@@ -114,7 +115,7 @@ public class DownloadAttachmentStepTest {
         stepExecution.run();
 
         // Assert Test
-        verify(jiraServiceMock, times(1)).downloadAttachment("TEST-27","test.xlsx", "test.xlsx");
+        verify(jiraServiceMock, times(1)).downloadAttachment("TEST-27", "test.xlsx", "test.xlsx");
         assertThat(step.isFailOnError()).isEqualTo(true);
     }
 }

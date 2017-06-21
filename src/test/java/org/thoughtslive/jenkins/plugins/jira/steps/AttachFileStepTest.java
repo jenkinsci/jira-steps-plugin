@@ -30,6 +30,7 @@ import static org.mockito.Mockito.*;
 /**
  * @author Oliver Breitenbach
  * @version 1.0.0
+ *          Test class for the AttachFileStep.
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({AttachFileStep.class, Site.class})
