@@ -444,4 +444,12 @@ public class JiraService {
       return buildErrorResponse(e);
     }
   }
+
+  public ResponseData<Object> listAttachments(final String isseIdOrKey) {
+    try {
+      return parseResponse(jiraEndPoints.getAttachmentsInfo(isseIdOrKey).execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
 }
