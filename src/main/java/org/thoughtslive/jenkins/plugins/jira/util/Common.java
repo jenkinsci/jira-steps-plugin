@@ -1,13 +1,19 @@
 package org.thoughtslive.jenkins.plugins.jira.util;
 
-import java.io.IOException;
-import java.io.PrintStream;
-
+import hudson.EnvVars;
+import org.thoughtslive.jenkins.plugins.jira.api.Attachments;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
-
-import hudson.EnvVars;
 import retrofit2.Response;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Common utility functions.
@@ -113,5 +119,30 @@ public class Common {
     if (throwable.getCause() != null)
       return getRootCause(throwable.getCause());
     return throwable;
+  }
+
+  public static String findAttachmentId(final Attachments attachments, final String attachmentName) throws IOException {
+    return filterMatchingAttachmentId(attachments, attachmentName);
+  }
+
+  public static void saveFile(final byte[] binaryFileContent, final String targetLocation) throws IOException {
+    Files.write(Paths.get(new File(targetLocation).getAbsolutePath()), binaryFileContent, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+  }
+
+  private static String filterMatchingAttachmentId(final Attachments attachments, final String attachmentName) {
+    List<String> foundAttachmentIds = new ArrayList<>();
+    attachments.getFields().getAttachment().stream()
+            .filter(s -> s.getFilename().equals(attachmentName))
+            .forEach(s -> foundAttachmentIds.add(s.getId()));
+    validateIds(foundAttachmentIds, attachmentName);
+    return foundAttachmentIds.get(0);
+  }
+
+  private static void validateIds(final List<String> attachmentIdList, final String attachmentName) {
+    if (attachmentIdList.size() == 0) {
+      throw new RuntimeException("No attachment with name " + attachmentName + " was found");
+    } else if (attachmentIdList.size() > 1) {
+      throw new RuntimeException("Multiple attachments with the same name were found: " + attachmentName);
+    }
   }
 }
