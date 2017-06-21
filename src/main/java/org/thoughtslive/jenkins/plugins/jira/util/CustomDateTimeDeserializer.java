@@ -6,9 +6,6 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdScalarDeserializer;
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 import java.io.IOException;
 
@@ -32,9 +29,7 @@ public class CustomDateTimeDeserializer extends StdScalarDeserializer<DateTime> 
     JsonToken currentToken = jsonParser.getCurrentToken();
     if (currentToken == JsonToken.VALUE_STRING) {
       String dateTimeAsString = jsonParser.getText().trim();
-      DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss")
-          .withZone(DateTimeZone.forID("Europe/London"));
-      return DateTime.parse(dateTimeAsString, fmt);
+      return DateTime.parse(dateTimeAsString);
     }
     throw deserializationContext.mappingException(handledType());
   }
