@@ -6,14 +6,23 @@ sidebar: jira_sidebar
 permalink: install.html
 folder: general
 ---
-This plugin is currently under active development.
 
-* **Install or upgrade released versions using the Jenkins UI.**
+### Jenkins provides a couple of different methods for installing plugins on the master
 
-* Run `mvn package` to build a deployable hpi bundle for Jenkins.
+1. [Installing Plugin From Web UI](https://jenkins.io/doc/book/managing/plugins/#from-the-web-ui)
 
-* Build the code and copy the target/hubot-steps.hpi plugin bundle to $JENKINS_HOME/plugins/ directory, and restart Jenkins. Check pom.xml file for more dependencies.
+2. [Updating Plugin](https://jenkins.io/doc/book/managing/plugins/#updating-a-plugin)
 
-Note this plugin **REQUIRES JDK 1.8** to build.
+3. [Advanced installation](https://jenkins.io/doc/book/managing/plugins/#advanced-installation)
+
+### Packaging .hpi file for advanced installation
+
+1. Clone the repository.
+
+2. Run `mvn package` to build a deployable hpi bundle for Jenkins.
+
+3. `jira-steps.hpi` file can be found in jira-steps-plugin/target folder.
+
+**Note:** This plugin **`REQUIRES JDK 1.8`** to build.
 
 {% include links.html %}
