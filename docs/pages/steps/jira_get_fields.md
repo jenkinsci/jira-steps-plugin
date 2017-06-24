@@ -10,7 +10,7 @@ folder: steps
 
 ## Overview
 
-Query all fields in the given site.
+This step queries all fields from the provided JIRA site.
 
 ## Input
 
@@ -19,16 +19,21 @@ Query all fields in the given site.
 
 ## Output
 
-Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
+* Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
+* The api response of this jira_get_fields step can be reused later in your script by doing `response.data.required_field_name`.
+* You can see some example scenarios [here](https://jenkinsci.github.io/jira-steps-plugin/common_usages.html)
+* All the available fields for a jira component can be found in [JIRA Api documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.
 
-## Examples
+Note: response.data returns all the fields including custom fields added in customizing your JIRA  as an array.
+
+## Example usages of generated script
 
 * With default [site](config#environment-variables) from global variables.
 
   ```groovy
   node {
     stage('JIRA') {
-      def fields = jiraGetFields()
+      def fields = jiraGetFields idOrKey: 'TEST-1'
       echo fields.data.toString()
     }
   }
@@ -39,7 +44,7 @@ Each step generates generic output, please refer to this [link](config.html#comm
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def fields = jiraGetFields()
+        def fields = jiraGetFields idOrKey: 'TEST-1'
         echo fields.data.toString()
       }
     }
@@ -48,7 +53,7 @@ Each step generates generic output, please refer to this [link](config.html#comm
 * Without environment variables.
 
   ```groovy
-    def fields = jiraGetFields(), site: 'LOCAL'
+    def fields = jiraGetFields idOrKey: 'TEST-1', site: 'LOCAL'
     echo fields.data.toString()
   ```
 
