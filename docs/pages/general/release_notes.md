@@ -8,6 +8,8 @@ permalink: release_notes.html
 ---
 * ## **1.3.0** (Unreleased)
   *
+* ## **1.2.3**
+  * [JENKINS-44817](https://issues.jenkins-ci.org/browse/JENKINS-44817) NewIssueStep is not null safe when there is no description.
 * ## **1.2.2**
   * [#42](https://github.com/jenkinsci/jira-steps-plugin/pull/40) Enhanced NewIssues step to support custom fields.
 * ## **1.2.1**
