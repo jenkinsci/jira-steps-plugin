@@ -15,4 +15,4 @@ First and foremost, we will never share your personal information to anyone with
 
 ### Google Analytics
 
-Google Analytics is a web analytics tool we use to help understand how visitors engage with this website. This purely to encourage ourself to work more on this plugin and provide more functionally. It reports website trends using cookies and web beacons without identifying individual visitors. You can read [Google Analytics Privacy Policy](http://www.google.com/analytics/learn/privacy.html).
+Google Analytics is a web analytics tool we use to help understand how visitors engage with this website. This is purely to encourage ourself to work more on this plugin and provide more functionally. It reports website trends using cookies and web beacons without identifying individual visitors. You can read [Google Analytics Privacy Policy](http://www.google.com/analytics/learn/privacy.html).

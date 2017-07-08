@@ -21,13 +21,18 @@ Creates new issue based on given input, which should have some minimal informati
 * **failOnError** - Optional. default: `true`.
 * **auditLog** - Optional. default: `true`. Append a panel to the comment with the build url and build user name.
 
-**Note**: Since 1.2.0 newIssue and editIssue steps supports all the fields that any jira instance supports including custom fields.
+**Note**: It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA Api documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.
 
 ## Output
 
-Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
+* Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
+* The api response of this jira_new_issue step can be reused later in your script by doing `response.data.required_field_name`.
+* You can see some example scenarios [here](https://jenkinsci.github.io/jira-steps-plugin/common_usages.html)
+* All the available fields for a jira component can be found in [JIRA Api documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.
 
-## Examples
+Note: response.data returns all the fields returned by JIRA API.
+
+## Example usages of generated script
 
 * With default [site](config#environment-variables) from global variables.
 
