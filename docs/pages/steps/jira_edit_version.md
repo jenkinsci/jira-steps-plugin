@@ -30,11 +30,11 @@ TODO: probably we should try move version
 * Each step generates generic output, please refer to this [link](config.html#common-response--error-handling) for more information.
 * The api response of this jira_edit_version step can be reused later in your script by doing `response.data.required_field_name`.
 * You can see some example scenarios [here](https://jenkinsci.github.io/jira-steps-plugin/common_usages.html)
-* All the available fields for a jira component can be found in [JIRA Api documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.
+* All the available fields for a jira response can be found in [JIRA Api documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.
 
 Note: response.data returns all the fields returned by JIRA API.
 
-## Example usages of generated script
+## Examples:
 
 * With default [site](config#environment-variables) from global variables.
 

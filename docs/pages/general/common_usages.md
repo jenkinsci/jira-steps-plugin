@@ -7,112 +7,51 @@ permalink: common_usages.html
 folder: general
 ---
 
+## Releasing a project?
+
 For instance, if you are releasing more than one project and you want to create a `release review jira issue`, add Description, Fix version, comment on the issue with error message for a failure in the release process or close the issue, if release is successful.
 
-  * Script for the above scenario with error comments the JIRA:
-      
-    ```groovy
-    import static java.util.UUID.randomUUID 
+* Create new Release review JIRA.
+* Release your project.
+* Create new fix version, just to tag a release review JIRA.
+* Close issue if when releasing that project is successful.
+* Finally if there is an error comment on a JIRA.
 
-    node {
-      stage('JIRA') {
-        def issueKey;
-        try {
-          def issue = [fields: [ project: [key: 'TESTPRO'],
-                                 summary: 'New JIRA Created from Jenkins.',
-                                 description: 'New JIRA Created from Jenkins.',
-                                 issuetype: [name: 'Task']]]
-          
-          // creates new issue
-          def newIssue = jiraNewIssue issue: issue, site: 'LOCAL'
+```groovy
+import static java.util.UUID.randomUUID
 
-          issueKey = newIssue.data.key
-          
-          // creates new fix version tag
-          def newVersion = jiraNewVersion version: [ name: "new-fix-version-"+ randomUUID() as String,
-                                                     archived: false,
-                                                     released: false,
-                                                     description: 'desc',
-                                                     project: 'TESTPRO'], site: 'LOCAL'
-          
-          def testIssue = [ fields: [ fixVersions: [newVersion.data] ] ]                                              
-          
-          // assigns the created fix version tag to the jira
-          response = jiraEditIssue idOrKey: issueKey, issue: testIssue, site: 'LOCAL'
-          
-          // added an error manually for testing purposes
-          error "Exception" 
+node {
+  stage('Releasing A Project') {
+    def issueKey;
+    try {
+      def issue = [fields: [ project: [key: 'TESTPRO'],
+                             summary: 'Release x.y.z Review',
+                             description: 'Review changes for release x.y.z ',
+                             issuetype: [name: 'Task']]]
+      def newIssue = jiraNewIssue issue: issue
+      issueKey = newIssue.data.key
 
-          def transitionInput = [ transition: [ id: '21'] ]
-          
-          // jira is transitioned to closed state if there's no error
-          jiraTransitionIssue idOrKey: issueKey, input: transitionInput, site: 'LOCAL'
-          
-          // adds a comment on the issue
-          jiraAddComment idOrKey: issueKey, comment: "RELEASING JIRA SUCCESSFUL", site: 'LOCAL'
-        } 
-        catch(error) {
-          // adds a comment on the issue when there's error
-          jiraAddComment idOrKey: issueKey, comment: "ERROR RELEASING JIRA", site: 'LOCAL'
-          
-          // makes the build job fail
-          currentBuild.result = 'FAILURE'
-        }
-      }
+      ...
+      ...
+      ...
+
+      def newVersion = jiraNewVersion version: [ name: "new-fix-version-"+ randomUUID() as String,
+                                                 description: 'desc',
+                                                 project: 'TESTPRO'],
+
+      def updateIssue = [ fields: [ fixVersions: [ newVersion.data]]]                                              
+      def response = jiraEditIssue idOrKey: issueKey, issue: updateIssue
+
+      def transitionInput = [transition: [name: 'Close']]
+      jiraTransitionIssue idOrKey: issueKey, input: transitionInput
+      jiraAddComment idOrKey: issueKey, comment: "RELEASING SUCCESSFUL"
+    } catch(error) {
+      jiraAddComment idOrKey: issueKey, comment: "${BUILD_URL} ERROR WHILE RELEASING ${error}"
+      currentBuild.result = 'FAILURE'
     }
-    ```
-  ![Failure](https://raw.githubusercontent.com/ThoughtsLive/jira-steps/master/docs/images/jira_release_failure.png)
-
-  * Script for the above scenario without error closes the JIRA:
-
-    ```groovy
-    import static java.util.UUID.randomUUID 
-
-    node {
-      stage('JIRA') {
-        def issueKey;
-        try {
-          def issue = [fields: [ project: [key: 'TESTPRO'],
-                                 summary: 'New JIRA Created from Jenkins.',
-                                 description: 'New JIRA Created from Jenkins.',
-                                 issuetype: [name: 'Task']]]
-          
-          // creates new issue
-          def newIssue = jiraNewIssue issue: issue, site: 'LOCAL'
-
-          issueKey = newIssue.data.key
-          
-          // creates new fix version tag
-          def newVersion = jiraNewVersion version: [ name: "new-fix-version-"+ randomUUID() as String,
-                                                     archived: false,
-                                                     released: false,
-                                                     description: 'desc',
-                                                     project: 'TESTPRO'], site: 'LOCAL'
-          
-          def testIssue = [ fields: [ fixVersions: [newVersion.data] ] ]                                              
-          
-          // assigns the created fix version tag to the jira
-          response = jiraEditIssue idOrKey: issueKey, issue: testIssue, site: 'LOCAL'
-
-          def transitionInput = [ transition: [ id: '21'] ]
-          
-          // jira is transitioned to closed state if there's no error
-          jiraTransitionIssue idOrKey: issueKey, input: transitionInput, site: 'LOCAL'
-          
-          // adds a comment on the issue
-          jiraAddComment idOrKey: issueKey, comment: "RELEASING JIRA SUCCESSFUL", site: 'LOCAL'
-        } 
-        catch(error) {
-          // adds a comment on the issue when there's error
-          jiraAddComment idOrKey: issueKey, comment: "ERROR RELEASING JIRA", site: 'LOCAL'
-
-          // makes the build job fail
-          currentBuild.result = 'FAILURE'
-        }
-      }
-    }
-    ```
-  ![Successful](https://raw.githubusercontent.com/ThoughtsLive/jira-steps/master/docs/images/jira_release_successful.png)
+  }
+}
+```
 
 ## Add new fix version to existing issue.
 

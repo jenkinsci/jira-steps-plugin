@@ -12,9 +12,7 @@ folder: general
 
 Help us to make this project better by contributing. Whether it's new features, bug fixes, or simply improving documentation, your contributions are welcome. Please start with logging a [JIRA][1] and submit a pull request.
 
-Before you contribute, please review these guidelines to help ensure a smooth process for everyone.
-
-Thanks.
+Before you contribute, please review these guidelines to help ensure a smooth process for everyone. Thanks :).
 
 ## Issue reporting
 
@@ -52,7 +50,7 @@ Thanks.
 * Spin up [docker](https://www.docker.com/) instances for JIRA and JENKINS locally or install JIRA and JENKINS on your machine.
 * [Configure Jenkins](https://jenkinsci.github.io/jira-steps-plugin/config.html)
 * Run **`mvn package`** from command line or terminal.
-* Jira-steps-plugin .hpi file can be found in target folder of the project.
+* jira-steps-plugin.hpi file can be found in target folder of the project.
 * [Install plugin manually using .hpi file in jenkins](https://jenkins.io/doc/book/managing/plugins/#advanced-installation).
 * Test your functionality.
 * It helps reviewers if the screenshots of these evidences are added in the pull request.
@@ -61,11 +59,11 @@ Thanks.
 
 ## Updating Documentation
 
-* Jira-steps-plugin uses [github pages site](https://pages.github.com/) for hosting the project documentation.
+* This plugin currently using [github pages site](https://pages.github.com/) for hosting the project documentation.
 * Documentation can be updated and a pull request can be issued by changing site pages in **`jira-steps-plugin/docs/pages/`** folder.
 * Once the changes are committed on your branch, merge it to master branch of your fork and go to **`settings > github pages`** and select source as master branch/docs folder.
 * Site will be published at https://YourUserName.github.io/jira-steps-plugin/
-* FYI [Setting up GitHub Pages site locally with Jekyll](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/).
+* More information about Jekyll [Setting up GitHub Pages site locally with Jekyll](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/).
 
 [1]: http://issues.jenkins-ci.org/secure/IssueNavigator.jspa?mode=hide&reset=true&jqlQuery=project+%3D+JENKINS+AND+status+in+%28Open%2C+%22In+Progress%22%2C+Reopened%29+AND+component+%3D+%27jira-steps-plugin%27
 [2]: http://gun.io/blog/how-to-github-fork-branch-and-pull-request

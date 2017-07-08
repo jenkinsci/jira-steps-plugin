@@ -17,7 +17,7 @@ This plugin supports both Basic and OAuth, OAuth is preferred over the Basic aut
       * URL = Jira Site URL
       * User Name = Jira Account Username
       * Password = Jira Account Password
-      
+
     ![Basic](https://raw.githubusercontent.com/ThoughtsLive/jira-steps/master/docs/images/jira_site_basic.png)
 
 * **OAuth Authentication**
@@ -36,7 +36,7 @@ This plugin supports both Basic and OAuth, OAuth is preferred over the Basic aut
 ## Optional Params for all Steps.
 
 * `site` - Optional param which will override `JIRA_SITE` global variable.
-* `failOnError` - is optional and by default it is `true`. 
+* `failOnError` - is optional and by default it is `true`.
 
    **NOTE:** When set to true, then the step will abort the job as a failure when there is an error sending message. To make it false, it should always be provided as global environment variable `JIRA_FAIL_ON_ERROR`.
 
@@ -52,14 +52,13 @@ Every step returns a common response, which will have more information about the
 * `successful` - Returns `true` or `false`. Status of the step.
 * `code` - HTTP code, response code returned from JIRA. or `-1` if there is any internal server error.
 * `data` - Corresponding object being returned from JIRA when request was successful. For instance `jiraGetProject` returns `Project` and `jiraGetVersion` returns `FixVersion`.
-* `error` - Error message when the actual request to JIRA failed. 
-         
-   Usually, if the error is
-     * From JIRA, `code` will be `400`. 
-     * Caused by the plugin it will be `-1`.
-     
-Example:
+* `error` - Error message when the actual request to JIRA failed.
 
+   Usually, if the error is
+     * From JIRA, `code` will be `400`.
+     * Caused by the plugin it will be `-1`.
+
+Example:
 ```groovy
   def response = jiraGetComponent id: 10000
   echo response.successful
