@@ -42,7 +42,7 @@ public class Component implements Serializable {
   private User realAssignee;
 
   @JsonProperty("assigneeType")
-  private String userType;
+  private String assigneeType;
 
   @JsonProperty("isAssigneeTypeValid")
   private boolean isAssigneeTypeValid;
