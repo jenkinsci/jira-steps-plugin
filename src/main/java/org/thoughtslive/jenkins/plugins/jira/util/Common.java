@@ -1,17 +1,23 @@
 package org.thoughtslive.jenkins.plugins.jira.util;
 
-import java.io.IOException;
-import java.io.PrintStream;
-
+import hudson.EnvVars;
+import org.thoughtslive.jenkins.plugins.jira.api.Attachments;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
-
-import hudson.EnvVars;
 import retrofit2.Response;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Common utility functions.
- * 
+ *
  * @author Naresh Rayapati
  *
  */
@@ -19,7 +25,7 @@ public class Common {
 
   /**
    * Empty check for string.
-   * 
+   *
    * @param str
    * @return true if given string is null or empty.
    */
@@ -29,7 +35,7 @@ public class Common {
 
   /**
    * Attaches the "/" at end of given url.
-   * 
+   *
    * @param url url as a string.
    * @return url which ends with "/"
    */
@@ -42,7 +48,7 @@ public class Common {
 
   /**
    * Write a message to the given print stream.
-   * 
+   *
    * @param logger {@link PrintStream}
    * @param message to log.
    */
@@ -58,7 +64,7 @@ public class Common {
 
   /**
    * Returns build number from the given Environemnt Vars.
-   * 
+   *
    * @param logger {@link PrintStream}
    * @param envVars {@link EnvVars}
    * @return build number of current job.
@@ -74,7 +80,7 @@ public class Common {
 
   /**
    * Converts Retrofit's {@link Response} to {@link ResponseData}
-   * 
+   *
    * @param response instance of {@link Response}
    * @return an instance of {@link ResponseData}
    * @throws IOException
@@ -93,7 +99,7 @@ public class Common {
 
   /**
    * Builds error response from the given exception.
-   * 
+   *
    * @param e instance of {@link Exception}
    * @return an instance of {@link ResponseData}
    */
@@ -105,7 +111,7 @@ public class Common {
 
   /**
    * Returns actual Cause from the given exception.
-   * 
+   *
    * @param throwable
    * @return {@link Throwable}
    */
@@ -113,5 +119,42 @@ public class Common {
     if (throwable.getCause() != null)
       return getRootCause(throwable.getCause());
     return throwable;
+  }
+
+  /**
+   * Filters the found attachments and searches for the wanted attachmentId, based on the given attachment name.
+   * @param attachments The attachments, which get filtered.
+   * @param attachmentName The name of the searched attachment.
+   * @return The attachmentId of the searched attachment.
+   */
+  public static String findAttachmentId(final Attachments attachments, final String attachmentName) {
+    return filterMatchingAttachmentId(attachments, attachmentName);
+  }
+
+    /**
+     * Saves an arry of bytes to a specified target location.
+     * @param binaryFileContent The array of bytes containing the binary file data.
+     * @param targetLocation The target location of the file.
+     * @throws IOException Is thrown when something went wrong while writing the file to the file-system.
+     */
+  public static void saveFile(final byte[] binaryFileContent, final String targetLocation) throws IOException {
+    Files.write(Paths.get(new File(targetLocation).getAbsolutePath()), binaryFileContent, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+  }
+
+  private static String filterMatchingAttachmentId(final Attachments attachments, final String attachmentName) {
+    List<String> foundAttachmentIds = new ArrayList<>();
+    attachments.getFields().getAttachment().stream()
+            .filter(s -> s.getFilename().equals(attachmentName))
+            .forEach(s -> foundAttachmentIds.add(s.getId()));
+    validateIds(foundAttachmentIds, attachmentName);
+    return foundAttachmentIds.get(0);
+  }
+
+  private static void validateIds(final List<String> attachmentIdList, final String attachmentName) {
+    if (attachmentIdList.size() == 0) {
+      throw new RuntimeException("No attachment with name " + attachmentName + " was found");
+    } else if (attachmentIdList.size() > 1) {
+      throw new RuntimeException("Multiple attachments with the same name were found: " + attachmentName);
+    }
   }
 }

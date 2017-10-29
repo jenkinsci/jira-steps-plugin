@@ -1,15 +1,11 @@
 package org.thoughtslive.jenkins.plugins.jira.service;
 
-import java.util.Map;
-
+import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.DELETE;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.PUT;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
+import retrofit2.http.*;
+
+import java.util.Map;
 
 /**
  * JIRA Restful Endpoints.
@@ -103,6 +99,14 @@ public interface JiraEndPoints {
   @POST("rest/api/2/issueLink")
   Call<Void> createIssueLink(@Body Object issueLink);
 
+  @Headers("X-Atlassian-Token: no-check")
+  @Multipart
+  @POST("/rest/api/2/issue/{projectIdOrKey}/attachments")
+  Call<Object> attachFile(@Path("projectIdOrKey") String projectId, @Part MultipartBody.Part file);
+
+  @GET("/rest/api/2/issue/{projectIdOrKey}?fields=attachment")
+  Call<Object> getAttachmentsInfo(@Path("projectIdOrKey") String projectId);
+
   @GET("rest/api/2/issueLink/{linkId}")
   Call<Object> getIssueLink(@Path("linkId") String linkId);
 
@@ -157,4 +161,8 @@ public interface JiraEndPoints {
   @GET("rest/api/2/user/assignable/search")
   Call<Object> assignableUserSearch(@Query("username") String userName, @Query("project") String project, @Query("issueKey") String issueKey, @Query("startAt") int startAt, @Query("maxResults") int maxResults);
 
+  // Attachments
+  @Streaming
+  @GET("secure/attachment/{attachmentId}/{attachmentName}")
+  Call<ResponseBody> attachmentEndpoint(@Path("attachmentId") String attachmentId, @Path("attachmentName") String attachmentName);
 }

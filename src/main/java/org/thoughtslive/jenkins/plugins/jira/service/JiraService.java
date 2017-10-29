@@ -1,31 +1,21 @@
 package org.thoughtslive.jenkins.plugins.jira.service;
 
-import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
-import static org.thoughtslive.jenkins.plugins.jira.util.Common.empty;
-import static org.thoughtslive.jenkins.plugins.jira.util.Common.parseResponse;
-
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.Comment;
-import org.thoughtslive.jenkins.plugins.jira.api.Component;
-import org.thoughtslive.jenkins.plugins.jira.api.IssueLink;
-import org.thoughtslive.jenkins.plugins.jira.api.IssueLinkType;
-import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
-import org.thoughtslive.jenkins.plugins.jira.api.SearchResult;
-import org.thoughtslive.jenkins.plugins.jira.api.User;
-import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
-import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
-
-import okhttp3.ConnectionPool;
-import okhttp3.OkHttpClient;
+import okhttp3.*;
+import org.thoughtslive.jenkins.plugins.jira.Site;
+import org.thoughtslive.jenkins.plugins.jira.api.*;
+import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
+import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
+
+import java.io.File;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import static org.thoughtslive.jenkins.plugins.jira.util.Common.*;
 
 /**
  * Service to interact with jira instance/site.
@@ -430,6 +420,36 @@ public class JiraService {
         return parseResponse(jiraEndPoints.assignableUserSearch(userName, project, issueKey, startAt, maxResults).execute());
     } catch (Exception e) {
         return buildErrorResponse(e);
+    }
+  }
+
+  public ResponseData<Object> attachFile(final String issueIdOrKey, final File fileToAttach) {
+    try {
+      RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), fileToAttach);
+      MultipartBody.Part multipartBody = MultipartBody.Part.createFormData("file", fileToAttach.getName(), requestFile);
+      return parseResponse(jiraEndPoints.attachFile(issueIdOrKey, multipartBody).execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
+  public ResponseData<Object> downloadAttachment(final String issueIdOrKey, final String attachmentName, final String targetLocation) {
+    try {
+      retrofit2.Response<Object> attachmentsInfoResponse = jiraEndPoints.getAttachmentsInfo(issueIdOrKey).execute();
+      Attachments attachments = new ObjectMapper().convertValue(attachmentsInfoResponse.body(), Attachments.class);
+      retrofit2.Response<ResponseBody> fileDataResponse = jiraEndPoints.attachmentEndpoint(findAttachmentId(attachments, attachmentName), attachmentName).execute();
+      saveFile(fileDataResponse.body().bytes(), targetLocation);
+      return parseResponse(retrofit2.Response.success(fileDataResponse.body()));
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
+  public ResponseData<Object> listAttachments(final String isseIdOrKey) {
+    try {
+      return parseResponse(jiraEndPoints.getAttachmentsInfo(isseIdOrKey).execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
     }
   }
 }

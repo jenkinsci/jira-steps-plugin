@@ -1,19 +1,19 @@
 
 package org.thoughtslive.jenkins.plugins.jira.api;
 
-import java.io.Serializable;
-
-import org.joda.time.DateTime;
-import org.kohsuke.stapler.DataBoundConstructor;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.joda.time.DateTime;
+import org.kohsuke.stapler.DataBoundConstructor;
+import org.thoughtslive.jenkins.plugins.jira.util.CustomDateTimeDeserializer;
+
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
@@ -34,6 +34,7 @@ public class Attachment implements Serializable {
   @JsonProperty("author")
   private User author;
 
+  @JsonDeserialize(using = CustomDateTimeDeserializer.class)
   @JsonProperty("created")
   private DateTime created;
 
