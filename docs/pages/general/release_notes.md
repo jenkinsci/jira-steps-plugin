@@ -8,6 +8,9 @@ permalink: release_notes.html
 ---
 * ## **1.3.0** (Unreleased)
   *
+* ## **1.2.4**
+  * [JENKINS-47668](https://issues.jenkins-ci.org/browse/JENKINS-47668) jiraNewComponent/jiraEditComponent ends with an error.
+  * <span style="color:red">Note: Component related steps (new/edit) would break as we have corrected a filed name (userType -> assigneeType)</span>.
 * ## **1.2.3**
   * [JENKINS-44817](https://issues.jenkins-ci.org/browse/JENKINS-44817) NewIssueStep is not null safe when there is no description.
 * ## **1.2.2**
