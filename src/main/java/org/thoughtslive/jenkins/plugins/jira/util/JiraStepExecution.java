@@ -45,7 +45,7 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
   protected transient PrintStream logger = null;
   protected transient String siteName = null;
   protected transient boolean failOnError = true;
-  protected transient String buildUser = null;
+  protected transient String buildUserId = null;
   protected transient String buildUrl = null;
 
   protected JiraStepExecution(final StepContext context) throws IOException, InterruptedException {
@@ -93,7 +93,7 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
       return buildErrorResponse(new RuntimeException(errorMessage));
     }
 
-    buildUser = prepareBuildUser(run.getCauses());
+    buildUserId = prepareBuildUser(run.getCauses());
     buildUrl = envVars.get("BUILD_URL");
 
     return null;
@@ -133,7 +133,7 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
     String buildUser = "anonymous";
     if (causes != null && causes.size() > 0) {
       if (causes.get(0) instanceof UserIdCause) {
-        buildUser = ((UserIdCause) causes.get(0)).getUserName();
+        buildUser = ((UserIdCause) causes.get(0)).getUserId();
       } else if (causes.get(0) instanceof UpstreamCause) {
         List<Cause> upstreamCauses = ((UpstreamCause) causes.get(0)).getUpstreamCauses();
         prepareBuildUser(upstreamCauses);
@@ -149,7 +149,7 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
    * @return message added with metadata.
    */
   protected String addPanelMeta(final String message) {
-    return message + "\n{panel}Automatically created by: [~" + buildUser + "] from [Build URL|"
+    return message + "\n{panel}Automatically created by: [~" + buildUserId + "] from [Build URL|"
         + buildUrl + "]{panel}";
   }
 
@@ -160,7 +160,7 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
    * @return message added with metadata.
    */
   protected String addMeta(final String message) {
-    return message + "\nAutomatically created by: " + buildUser + " from " + buildUrl;
+    return message + "\nAutomatically created by: " + buildUserId + " from " + buildUrl;
   }
 
   @SuppressWarnings("hiding")
