@@ -8,6 +8,8 @@ permalink: release_notes.html
 ---
 * ## **1.3.0** (Unreleased)
   *
+* ## **1.2.5**
+  * [JENKINS-47914](https://issues.jenkins-ci.org/browse/JENKINS-47914) Use Jenkins user id instead of user name as buildUser.
 * ## **1.2.4**
   * [JENKINS-47668](https://issues.jenkins-ci.org/browse/JENKINS-47668) jiraNewComponent/jiraEditComponent ends with an error.
   * <span style="color:red">Note: Component related steps (new/edit) would break as we have corrected a filed name (userType -> assigneeType)</span>.
