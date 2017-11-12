@@ -1,26 +1,24 @@
 package org.thoughtslive.jenkins.plugins.jira;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Map;
-import java.util.logging.Level;
-
-import org.kohsuke.stapler.DataBoundConstructor;
-import org.kohsuke.stapler.DataBoundSetter;
-import org.kohsuke.stapler.QueryParameter;
-import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
-import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
-
 import hudson.Extension;
 import hudson.Util;
 import hudson.model.AbstractDescribableImpl;
 import hudson.model.Descriptor;
 import hudson.util.FormValidation;
 import hudson.util.Secret;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Map;
+import java.util.logging.Level;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.java.Log;
+import org.kohsuke.stapler.DataBoundConstructor;
+import org.kohsuke.stapler.DataBoundSetter;
+import org.kohsuke.stapler.QueryParameter;
+import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
+import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
 /**
  * Represents a configuration needed to access this JIRA.
@@ -30,10 +28,6 @@ import lombok.extern.java.Log;
 @Log
 public class Site extends AbstractDescribableImpl<Site> {
 
-  public enum LoginType {
-    BASIC, OAUTH
-  }
-
   @Getter
   private final String name;
   @Getter
@@ -42,14 +36,12 @@ public class Site extends AbstractDescribableImpl<Site> {
   private final String loginType;
   @Getter
   private int timeout;
-
   // Basic
   @Getter
   @Setter(onMethod = @__({@DataBoundSetter}))
   private String userName;
   @Getter
   private Secret password;
-
   // OAuth
   @Getter
   @Setter(onMethod = @__({@DataBoundSetter}))
@@ -61,7 +53,6 @@ public class Site extends AbstractDescribableImpl<Site> {
   private Secret secret;
   @Getter
   private Secret token;
-
   private transient JiraService jiraService = null;
 
   @DataBoundConstructor
@@ -71,6 +62,16 @@ public class Site extends AbstractDescribableImpl<Site> {
     this.url = url;
     this.loginType = Util.fixEmpty(loginType);
     this.timeout = timeout;
+  }
+
+  public static Site get(final String siteName) {
+    Site[] sites = Config.DESCRIPTOR.getSites();
+    for (Site site : sites) {
+      if (site.getName().equalsIgnoreCase(siteName)) {
+        return site;
+      }
+    }
+    return null;
   }
 
   public String isLoginType(String loginType) {
@@ -92,16 +93,6 @@ public class Site extends AbstractDescribableImpl<Site> {
     this.token = Secret.fromString(Util.fixEmpty(token));
   }
 
-  public static Site get(final String siteName) {
-    Site[] sites = Config.DESCRIPTOR.getSites();
-    for (Site site : sites) {
-      if (site.getName().equalsIgnoreCase(siteName)) {
-        return site;
-      }
-    }
-    return null;
-  }
-
   public JiraService getService() {
     if (jiraService == null) {
       this.jiraService = new JiraService(this);
@@ -109,8 +100,13 @@ public class Site extends AbstractDescribableImpl<Site> {
     return jiraService;
   }
 
+  public enum LoginType {
+    BASIC, OAUTH
+  }
+
   @Extension
   public static class DescriptorImpl extends Descriptor<Site> {
+
     @Override
     public String getDisplayName() {
       return "JIRA Steps: Site";

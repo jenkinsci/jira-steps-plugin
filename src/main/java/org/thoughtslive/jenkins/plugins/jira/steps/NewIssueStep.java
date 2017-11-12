@@ -2,8 +2,10 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
 
+import hudson.Extension;
+import hudson.Util;
 import java.io.IOException;
-
+import lombok.Getter;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -12,15 +14,10 @@ import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
-import hudson.Extension;
-import hudson.Util;
-import lombok.Getter;
-
 /**
  * Step to create a new JIRA Issue.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 public class NewIssueStep extends BasicJiraStep {
 
@@ -32,6 +29,11 @@ public class NewIssueStep extends BasicJiraStep {
   @DataBoundConstructor
   public NewIssueStep(final IssueInput issue) {
     this.issue = issue;
+  }
+
+  @Override
+  public StepExecution start(StepContext context) throws Exception {
+    return new Execution(this, context);
   }
 
   @Extension
@@ -72,12 +74,12 @@ public class NewIssueStep extends BasicJiraStep {
 
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Creating new issue: " + step.getIssue());
-        if(step.getIssue().getFields().get("description") != null) {
+        if (step.getIssue().getFields().get("description") != null) {
           String description = step.getIssue().getFields().get("description").toString();
           description = step.isAuditLog() ? addPanelMeta(description) : description;
           step.getIssue().getFields().put("description", description);
         } else {
-          if(step.isAuditLog()) {
+          if (step.isAuditLog()) {
             step.getIssue().getFields().put("description", addPanelMeta(""));
           }
         }
@@ -127,10 +129,5 @@ public class NewIssueStep extends BasicJiraStep {
       }
       return response;
     }
-  }
-
-  @Override
-  public StepExecution start(StepContext context) throws Exception {
-    return new Execution(this, context);
   }
 }

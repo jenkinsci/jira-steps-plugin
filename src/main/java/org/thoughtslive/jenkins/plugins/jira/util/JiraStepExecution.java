@@ -4,10 +4,17 @@ import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorRespon
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.empty;
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.log;
 
+import hudson.AbortException;
+import hudson.EnvVars;
+import hudson.Util;
+import hudson.model.Cause;
+import hudson.model.Cause.UpstreamCause;
+import hudson.model.Cause.UserIdCause;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
-
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.SynchronousNonBlockingStepExecution;
 import org.thoughtslive.jenkins.plugins.jira.Site;
@@ -15,38 +22,26 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 import org.thoughtslive.jenkins.plugins.jira.steps.BasicJiraStep;
 
-import hudson.AbortException;
-import hudson.EnvVars;
-import hudson.Util;
-import hudson.model.Cause;
-import hudson.model.Run;
-import hudson.model.TaskListener;
-import hudson.model.Cause.UpstreamCause;
-import hudson.model.Cause.UserIdCause;
-
 /**
  * Common Execution for all JIRA steps.
- * 
- * @see SynchronousNonBlockingStepExecution
- * @author Naresh Rayapati
  *
  * @param <T> the type of the return value (may be {@link Void})
+ * @author Naresh Rayapati
+ * @see SynchronousNonBlockingStepExecution
  */
 public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExecution<T> {
 
   private static final long serialVersionUID = 3856797875872780808L;
 
   public transient JiraService jiraService = null;
-
-  private transient Run<?, ?> run;
-  private transient TaskListener listener;
-  private transient EnvVars envVars;
-
   protected transient PrintStream logger = null;
   protected transient String siteName = null;
   protected transient boolean failOnError = true;
   protected transient String buildUserId = null;
   protected transient String buildUrl = null;
+  private transient Run<?, ?> run;
+  private transient TaskListener listener;
+  private transient EnvVars envVars;
 
   protected JiraStepExecution(final StepContext context) throws IOException, InterruptedException {
     super(context);
@@ -56,9 +51,27 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
   }
 
   /**
+   * Return the current build user.
+   *
+   * @param causes build causes.
+   * @return user name.
+   */
+  protected static String prepareBuildUser(List<Cause> causes) {
+    String buildUser = "anonymous";
+    if (causes != null && causes.size() > 0) {
+      if (causes.get(0) instanceof UserIdCause) {
+        buildUser = ((UserIdCause) causes.get(0)).getUserId();
+      } else if (causes.get(0) instanceof UpstreamCause) {
+        List<Cause> upstreamCauses = ((UpstreamCause) causes.get(0)).getUpstreamCauses();
+        prepareBuildUser(upstreamCauses);
+      }
+    }
+    return Util.fixEmpty(buildUser) == null ? "anonymous" : buildUser;
+  }
+
+  /**
    * Verifies the common input for all the stesp.
-   * 
-   * @param step
+   *
    * @return response if JIRA_SITE is empty or if there is no site configured with JIRA_SITE.
    * @throws AbortException when failOnError is true and JIRA_SITE is missing.
    */
@@ -85,8 +98,9 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
     if (site == null) {
       errorMessage = "No JIRA site configured with " + siteName + " name.";
     } else {
-      if (jiraService == null)
+      if (jiraService == null) {
         jiraService = site.getService();
+      }
     }
 
     if (errorMessage != null) {
@@ -101,8 +115,7 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
 
   /**
    * Log code and error message if any.
-   * 
-   * @param response
+   *
    * @return same response back.
    * @throws AbortException if failOnError is true and response is not successful.
    */
@@ -124,28 +137,8 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
   }
 
   /**
-   * Return the current build user.
-   * 
-   * @param causes build causes.
-   * @return user name.
-   */
-  protected static String prepareBuildUser(List<Cause> causes) {
-    String buildUser = "anonymous";
-    if (causes != null && causes.size() > 0) {
-      if (causes.get(0) instanceof UserIdCause) {
-        buildUser = ((UserIdCause) causes.get(0)).getUserId();
-      } else if (causes.get(0) instanceof UpstreamCause) {
-        List<Cause> upstreamCauses = ((UpstreamCause) causes.get(0)).getUpstreamCauses();
-        prepareBuildUser(upstreamCauses);
-      }
-    }
-    return Util.fixEmpty(buildUser) == null ? "anonymous": buildUser;
-  }
-
-  /**
    * Adds Job info to the given message.
-   * 
-   * @param message
+   *
    * @return message added with metadata.
    */
   protected String addPanelMeta(final String message) {
@@ -155,8 +148,7 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
 
   /**
    * Adds Job info to the given message.
-   * 
-   * @param message
+   *
    * @return message added with metadata.
    */
   protected String addMeta(final String message) {

@@ -8,13 +8,15 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.google.common.collect.ImmutableMap;
+import hudson.EnvVars;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.joda.time.DateTime;
 import org.junit.Before;
@@ -32,15 +34,10 @@ import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
 import org.thoughtslive.jenkins.plugins.jira.api.input.IssuesInput;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
-import hudson.EnvVars;
-import hudson.model.Run;
-import hudson.model.TaskListener;
-
 /**
  * Unit test cases for NewComponentStep class.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({NewIssuesStep.class, Site.class})
@@ -73,7 +70,7 @@ public class NewIssuesStepTest {
     when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
 
     final List<IssueInput> issues = new ArrayList<IssueInput>();
-    
+
     final Map<String, Object> fields = new HashMap<String, Object>();
     fields.put("summary", "Summary");
     fields.put("description", null);
@@ -105,7 +102,8 @@ public class NewIssuesStepTest {
   @Test
   public void testSuccessfulNewIssues() throws Exception {
     final NewIssuesStep step = new NewIssuesStep(issuesInput);
-    stepExecution = new NewIssuesStep.Execution(step, contextMock);;
+    stepExecution = new NewIssuesStep.Execution(step, contextMock);
+    ;
 
     // Execute Test.
     stepExecution.run();

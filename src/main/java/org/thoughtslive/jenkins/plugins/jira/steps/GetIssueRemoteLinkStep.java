@@ -2,18 +2,16 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
 
+import hudson.Extension;
+import hudson.Util;
 import java.io.IOException;
-
+import lombok.Getter;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
-
-import hudson.Extension;
-import hudson.Util;
-import lombok.Getter;
 
 /**
  * Step to query a JIRA remote Issue Link by linkId.
@@ -34,6 +32,11 @@ public class GetIssueRemoteLinkStep extends BasicJiraStep {
   public GetIssueRemoteLinkStep(final String idOrKey, final String linkId) {
     this.idOrKey = idOrKey;
     this.linkId = linkId;
+  }
+
+  @Override
+  public StepExecution start(StepContext context) throws Exception {
+    return new Execution(this, context);
   }
 
   @Extension
@@ -70,7 +73,8 @@ public class GetIssueRemoteLinkStep extends BasicJiraStep {
 
       if (response == null) {
         logger.println(
-            "JIRA: Site - " + siteName + " - Querying Issue's " + step.getIdOrKey() + " remote link by linkId:" + step.getLinkId());
+            "JIRA: Site - " + siteName + " - Querying Issue's " + step.getIdOrKey()
+                + " remote link by linkId:" + step.getLinkId());
         response = jiraService.getIssueRemoteLink(step.getIdOrKey(), step.getLinkId());
       }
 
@@ -97,10 +101,5 @@ public class GetIssueRemoteLinkStep extends BasicJiraStep {
       }
       return response;
     }
-  }
-
-  @Override
-  public StepExecution start(StepContext context) throws Exception {
-    return new Execution(this, context);
   }
 }

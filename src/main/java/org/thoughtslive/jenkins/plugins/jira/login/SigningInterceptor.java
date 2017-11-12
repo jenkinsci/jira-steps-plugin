@@ -1,21 +1,18 @@
 package org.thoughtslive.jenkins.plugins.jira.login;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.util.Base64;
-
-import org.thoughtslive.jenkins.plugins.jira.Site;
-
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import oauth.signpost.exception.OAuthException;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.thoughtslive.jenkins.plugins.jira.Site;
 
 /**
  * SigningInterceptor for Retrofit API.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 @SuppressFBWarnings
 public class SigningInterceptor implements Interceptor {

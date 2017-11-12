@@ -1,26 +1,22 @@
 package org.thoughtslive.jenkins.plugins.jira.util;
 
+import hudson.EnvVars;
 import java.io.IOException;
 import java.io.PrintStream;
-
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
-
-import hudson.EnvVars;
 import retrofit2.Response;
 
 /**
  * Common utility functions.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 public class Common {
 
   /**
    * Empty check for string.
-   * 
-   * @param str
+   *
    * @return true if given string is null or empty.
    */
   public static boolean empty(final String str) {
@@ -29,7 +25,7 @@ public class Common {
 
   /**
    * Attaches the "/" at end of given url.
-   * 
+   *
    * @param url url as a string.
    * @return url which ends with "/"
    */
@@ -42,7 +38,7 @@ public class Common {
 
   /**
    * Write a message to the given print stream.
-   * 
+   *
    * @param logger {@link PrintStream}
    * @param message to log.
    */
@@ -58,7 +54,7 @@ public class Common {
 
   /**
    * Returns build number from the given Environemnt Vars.
-   * 
+   *
    * @param logger {@link PrintStream}
    * @param envVars {@link EnvVars}
    * @return build number of current job.
@@ -74,10 +70,9 @@ public class Common {
 
   /**
    * Converts Retrofit's {@link Response} to {@link ResponseData}
-   * 
+   *
    * @param response instance of {@link Response}
    * @return an instance of {@link ResponseData}
-   * @throws IOException
    */
   public static <T> ResponseData<T> parseResponse(final Response<T> response) throws IOException {
     final ResponseDataBuilder<T> builder = ResponseData.builder();
@@ -93,7 +88,7 @@ public class Common {
 
   /**
    * Builds error response from the given exception.
-   * 
+   *
    * @param e instance of {@link Exception}
    * @return an instance of {@link ResponseData}
    */
@@ -105,13 +100,13 @@ public class Common {
 
   /**
    * Returns actual Cause from the given exception.
-   * 
-   * @param throwable
+   *
    * @return {@link Throwable}
    */
   public static Throwable getRootCause(Throwable throwable) {
-    if (throwable.getCause() != null)
+    if (throwable.getCause() != null) {
       return getRootCause(throwable.getCause());
+    }
     return throwable;
   }
 }

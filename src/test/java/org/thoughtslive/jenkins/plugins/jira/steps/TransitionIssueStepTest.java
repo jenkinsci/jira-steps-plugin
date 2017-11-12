@@ -10,9 +10,11 @@ import static org.mockito.Mockito.when;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import hudson.EnvVars;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
-
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,15 +29,10 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
-import hudson.EnvVars;
-import hudson.model.Run;
-import hudson.model.TaskListener;
-
 /**
  * Unit test cases for TransitionIssueStep class.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({TransitionIssueStep.class, Site.class})
@@ -84,9 +81,12 @@ public class TransitionIssueStepTest {
 
   @Test
   public void testSuccessfulTransitionIssue() throws Exception {
-    final Object input = Maps.newHashMap(ImmutableMap.builder().put("transition", ImmutableMap.builder().put("id", "1000").put("name", "TEST").build()).build());
+    final Object input = Maps.newHashMap(ImmutableMap.builder()
+        .put("transition", ImmutableMap.builder().put("id", "1000").put("name", "TEST").build())
+        .build());
     final TransitionIssueStep step = new TransitionIssueStep("TEST-1", input);
-    stepExecution = new TransitionIssueStep.Execution(step, contextMock);;
+    stepExecution = new TransitionIssueStep.Execution(step, contextMock);
+    ;
 
     // Execute Test.
     stepExecution.run();

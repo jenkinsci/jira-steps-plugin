@@ -2,8 +2,10 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
 
+import hudson.Extension;
+import hudson.Util;
 import java.io.IOException;
-
+import lombok.Getter;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -11,15 +13,10 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
-import hudson.Extension;
-import hudson.Util;
-import lombok.Getter;
-
 /**
  * Step to update JIRA issue comment.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 public class EditCommentStep extends BasicJiraStep {
 
@@ -39,6 +36,11 @@ public class EditCommentStep extends BasicJiraStep {
     this.idOrKey = idOrKey;
     this.commentId = commentId;
     this.comment = comment;
+  }
+
+  @Override
+  public StepExecution start(StepContext context) throws Exception {
+    return new Execution(this, context);
   }
 
   @Extension
@@ -115,10 +117,5 @@ public class EditCommentStep extends BasicJiraStep {
       }
       return response;
     }
-  }
-
-  @Override
-  public StepExecution start(StepContext context) throws Exception {
-    return new Execution(this, context);
   }
 }

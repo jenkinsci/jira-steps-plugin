@@ -2,18 +2,16 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
 
+import hudson.Extension;
+import hudson.Util;
 import java.io.IOException;
-
+import lombok.Getter;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
-
-import hudson.Extension;
-import hudson.Util;
-import lombok.Getter;
 
 /**
  * Step to query a JIRA Project Components.
@@ -30,6 +28,11 @@ public class GetProjectComponentsStep extends BasicJiraStep {
   @DataBoundConstructor
   public GetProjectComponentsStep(final String idOrKey) {
     this.idOrKey = idOrKey;
+  }
+
+  @Override
+  public StepExecution start(StepContext context) throws Exception {
+    return new Execution(this, context);
   }
 
   @Extension
@@ -66,7 +69,8 @@ public class GetProjectComponentsStep extends BasicJiraStep {
 
       if (response == null) {
         logger.println(
-            "JIRA: Site - " + siteName + " - Querying Project Components with idOrKey:" + step.getIdOrKey());
+            "JIRA: Site - " + siteName + " - Querying Project Components with idOrKey:" + step
+                .getIdOrKey());
         response = jiraService.getProjectComponents(step.getIdOrKey());
       }
 
@@ -91,10 +95,5 @@ public class GetProjectComponentsStep extends BasicJiraStep {
       }
       return response;
     }
-  }
-
-  @Override
-  public StepExecution start(StepContext context) throws Exception {
-    return new Execution(this, context);
   }
 }

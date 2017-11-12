@@ -9,9 +9,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import hudson.AbortException;
+import hudson.EnvVars;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
-
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,16 +29,10 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
-import hudson.AbortException;
-import hudson.EnvVars;
-import hudson.model.Run;
-import hudson.model.TaskListener;
-
 /**
  * Unit test cases for DeleteIssueLinkStep class.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({DeleteIssueLinkStep.class, Site.class})
@@ -85,7 +82,8 @@ public class DeleteIssueLinkStepTest {
   @Test
   public void testWithZeroIdThrowsAbortException() throws Exception {
     final DeleteIssueLinkStep step = new DeleteIssueLinkStep("");
-    stepExecution = new DeleteIssueLinkStep.Execution(step, contextMock);;
+    stepExecution = new DeleteIssueLinkStep.Execution(step, contextMock);
+    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -96,7 +94,8 @@ public class DeleteIssueLinkStepTest {
   @Test
   public void testWithNegativeIdThrowsAbortException() throws Exception {
     final DeleteIssueLinkStep step = new DeleteIssueLinkStep(null);
-    stepExecution = new DeleteIssueLinkStep.Execution(step, contextMock);;
+    stepExecution = new DeleteIssueLinkStep.Execution(step, contextMock);
+    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -107,7 +106,8 @@ public class DeleteIssueLinkStepTest {
   @Test
   public void testSuccessfulDeleteIssueLinkStep() throws Exception {
     final DeleteIssueLinkStep step = new DeleteIssueLinkStep("1000");
-    stepExecution = new DeleteIssueLinkStep.Execution(step, contextMock);;
+    stepExecution = new DeleteIssueLinkStep.Execution(step, contextMock);
+    ;
 
     // Execute Test.
     stepExecution.run();

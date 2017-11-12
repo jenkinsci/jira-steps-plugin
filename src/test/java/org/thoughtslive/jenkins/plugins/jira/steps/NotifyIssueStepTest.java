@@ -11,9 +11,12 @@ import static org.mockito.Mockito.when;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import hudson.AbortException;
+import hudson.EnvVars;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
-
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,21 +31,17 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
-import hudson.AbortException;
-import hudson.EnvVars;
-import hudson.model.Run;
-import hudson.model.TaskListener;
-
 /**
  * Unit test cases for NotifyIssueStep class.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({NotifyIssueStep.class, Site.class})
 public class NotifyIssueStepTest {
 
+  final Object notify = Maps.newHashMap(
+      ImmutableMap.builder().put("subject", "TEST SUBJECT").put("textBody", "TEST BODY").build());
   @Mock
   TaskListener taskListenerMock;
   @Mock
@@ -57,10 +56,7 @@ public class NotifyIssueStepTest {
   Site siteMock;
   @Mock
   StepContext contextMock;
-
   NotifyIssueStep.Execution stepExecution;
-
-  final Object notify = Maps.newHashMap(ImmutableMap.builder().put("subject", "TEST SUBJECT").put("textBody", "TEST BODY").build());
 
   @Before
   public void setup() throws IOException, InterruptedException {
@@ -89,7 +85,8 @@ public class NotifyIssueStepTest {
   @Test
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final NotifyIssueStep step = new NotifyIssueStep("", notify);
-    stepExecution = new NotifyIssueStep.Execution(step, contextMock);;
+    stepExecution = new NotifyIssueStep.Execution(step, contextMock);
+    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -101,7 +98,8 @@ public class NotifyIssueStepTest {
   @Test
   public void testSuccessfulNotifyIssue() throws Exception {
     final NotifyIssueStep step = new NotifyIssueStep("TEST-1", notify);
-    stepExecution = new NotifyIssueStep.Execution(step, contextMock);;
+    stepExecution = new NotifyIssueStep.Execution(step, contextMock);
+    ;
 
     // Execute Test.
     stepExecution.run();

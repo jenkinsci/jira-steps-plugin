@@ -10,9 +10,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import hudson.AbortException;
+import hudson.EnvVars;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
-
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,16 +30,10 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
-import hudson.AbortException;
-import hudson.EnvVars;
-import hudson.model.Run;
-import hudson.model.TaskListener;
-
 /**
  * Unit test cases for UserSearchStep class.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({UserSearchStep.class, Site.class})
@@ -86,7 +83,8 @@ public class UserSearchStepTest {
   @Test
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final UserSearchStep step = new UserSearchStep("");
-    stepExecution = new UserSearchStep.Execution(step, contextMock);;
+    stepExecution = new UserSearchStep.Execution(step, contextMock);
+    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -98,7 +96,8 @@ public class UserSearchStepTest {
   @Test
   public void testSuccessfulUserSearch() throws Exception {
     final UserSearchStep step = new UserSearchStep("jenkins");
-    stepExecution = new UserSearchStep.Execution(step, contextMock);;
+    stepExecution = new UserSearchStep.Execution(step, contextMock);
+    ;
 
     // Execute Test.
     stepExecution.run();

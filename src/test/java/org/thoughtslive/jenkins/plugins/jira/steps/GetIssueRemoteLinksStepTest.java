@@ -9,9 +9,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import hudson.AbortException;
+import hudson.EnvVars;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
-
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,16 +29,10 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
-import hudson.AbortException;
-import hudson.EnvVars;
-import hudson.model.Run;
-import hudson.model.TaskListener;
-
 /**
  * Unit test cases for GetIssueRemoteLinksStep class.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({GetIssueRemoteLinksStep.class, Site.class})
@@ -85,29 +82,34 @@ public class GetIssueRemoteLinksStepTest {
   @Test
   public void testWithZeroIdThrowsAbortException() throws Exception {
     final GetIssueRemoteLinksStep step = new GetIssueRemoteLinksStep("", "");
-    stepExecution = new GetIssueRemoteLinksStep.Execution(step, contextMock);;
+    stepExecution = new GetIssueRemoteLinksStep.Execution(step, contextMock);
+    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
       stepExecution.run();
-    }).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException").withNoCause();
+    }).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException")
+        .withNoCause();
   }
 
   @Test
   public void testWithNegativeIdThrowsAbortException() throws Exception {
     final GetIssueRemoteLinksStep step = new GetIssueRemoteLinksStep(null, "");
-    stepExecution = new GetIssueRemoteLinksStep.Execution(step, contextMock);;
+    stepExecution = new GetIssueRemoteLinksStep.Execution(step, contextMock);
+    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
       stepExecution.run();
-    }).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException").withNoCause();
+    }).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException")
+        .withNoCause();
   }
 
   @Test
   public void testSuccessfulGetIssueRemoteLinksStep() throws Exception {
     final GetIssueRemoteLinksStep step = new GetIssueRemoteLinksStep("TEST-27", "1000");
-    stepExecution = new GetIssueRemoteLinksStep.Execution(step, contextMock);;
+    stepExecution = new GetIssueRemoteLinksStep.Execution(step, contextMock);
+    ;
 
     // Execute Test.
     stepExecution.run();

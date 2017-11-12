@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-
 import oauth.signpost.http.HttpRequest;
 import okhttp3.Request;
 import okio.Buffer;
@@ -61,13 +60,13 @@ public class RequestAdapter implements HttpRequest {
   }
 
   @Override
-  public void setHeader(String key, String value) {
-    request = request.newBuilder().header(key, value).build();
+  public void setRequestUrl(String url) {
+    request = request.newBuilder().url(url).build();
   }
 
   @Override
-  public void setRequestUrl(String url) {
-    request = request.newBuilder().url(url).build();
+  public void setHeader(String key, String value) {
+    request = request.newBuilder().header(key, value).build();
   }
 
   @Override

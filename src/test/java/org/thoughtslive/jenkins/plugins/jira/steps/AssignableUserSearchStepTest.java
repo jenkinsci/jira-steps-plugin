@@ -10,9 +10,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import hudson.AbortException;
+import hudson.EnvVars;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
-
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,16 +30,10 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
-import hudson.AbortException;
-import hudson.EnvVars;
-import hudson.model.Run;
-import hudson.model.TaskListener;
-
 /**
  * Unit test cases for AssignableUserSearchStep class.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({AssignableUserSearchStep.class, Site.class})
@@ -75,7 +72,8 @@ public class AssignableUserSearchStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Object> builder = ResponseData.builder();
-    when(jiraServiceMock.assignableUserSearch(anyString(), anyString(), anyString(), anyInt(), anyInt()))
+    when(jiraServiceMock
+        .assignableUserSearch(anyString(), anyString(), anyString(), anyInt(), anyInt()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);
@@ -86,19 +84,22 @@ public class AssignableUserSearchStepTest {
   @Test
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final AssignableUserSearchStep step = new AssignableUserSearchStep("", "");
-    stepExecution = new AssignableUserSearchStep.Execution(step, contextMock);;
+    stepExecution = new AssignableUserSearchStep.Execution(step, contextMock);
+    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
       stepExecution.run();
-    }).withMessage("either project or issueKey is required.").withStackTraceContaining("AbortException")
+    }).withMessage("either project or issueKey is required.")
+        .withStackTraceContaining("AbortException")
         .withNoCause();
   }
 
   @Test
   public void testSuccessfulJqlSearch() throws Exception {
     final AssignableUserSearchStep step = new AssignableUserSearchStep("TEST", "TEST-1");
-    stepExecution = new AssignableUserSearchStep.Execution(step, contextMock);;
+    stepExecution = new AssignableUserSearchStep.Execution(step, contextMock);
+    ;
 
     // Execute Test.
     stepExecution.run();

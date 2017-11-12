@@ -9,9 +9,11 @@ import static org.mockito.Mockito.when;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import hudson.EnvVars;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
-
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,15 +28,10 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
-import hudson.EnvVars;
-import hudson.model.Run;
-import hudson.model.TaskListener;
-
 /**
  * Unit test cases for NewComponentStep class.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({NewComponentStep.class, Site.class})
@@ -84,9 +81,11 @@ public class NewComponentStepTest {
   @Test
   public void testSuccessfulNewComponent() throws Exception {
     final Object component =
-        Maps.newHashMap(ImmutableMap.builder().put("id", "1000").put("name","testcomponent").put("project","TEST").build());
+        Maps.newHashMap(ImmutableMap.builder().put("id", "1000").put("name", "testcomponent")
+            .put("project", "TEST").build());
     final NewComponentStep step = new NewComponentStep(component);
-    stepExecution = new NewComponentStep.Execution(step, contextMock);;
+    stepExecution = new NewComponentStep.Execution(step, contextMock);
+    ;
 
     // Execute Test.
     stepExecution.run();
