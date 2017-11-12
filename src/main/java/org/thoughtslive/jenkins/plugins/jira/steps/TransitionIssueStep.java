@@ -8,7 +8,6 @@ import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
-import org.thoughtslive.jenkins.plugins.jira.api.input.TransitionInput;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -29,10 +28,10 @@ public class TransitionIssueStep extends BasicJiraStep {
   private final String idOrKey;
 
   @Getter
-  private final TransitionInput input;
+  private final Object input;
 
   @DataBoundConstructor
-  public TransitionIssueStep(final String idOrKey, final TransitionInput input) {
+  public TransitionIssueStep(final String idOrKey, final Object input) {
     this.idOrKey = idOrKey;
     this.input = input;
   }
@@ -85,19 +84,13 @@ public class TransitionIssueStep extends BasicJiraStep {
 
       if (response == null) {
         final String idOrKey = Util.fixEmpty(step.getIdOrKey());
-        final TransitionInput input = step.getInput();
 
         if (idOrKey == null) {
           errorMessage = "idOrKey is empty or null.";
         }
 
-        if (input == null) {
+        if (step.getInput() == null) {
           errorMessage = "input is null.";
-          return buildErrorResponse(new RuntimeException(errorMessage));
-        }
-
-        if (input.getTransition() == null) {
-          errorMessage = "transition is null.";
           return buildErrorResponse(new RuntimeException(errorMessage));
         }
 

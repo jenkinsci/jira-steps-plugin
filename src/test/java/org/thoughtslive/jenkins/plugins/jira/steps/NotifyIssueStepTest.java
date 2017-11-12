@@ -9,6 +9,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
 import java.io.IOException;
 import java.io.PrintStream;
 
@@ -22,7 +24,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.Notify;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
@@ -59,7 +60,7 @@ public class NotifyIssueStepTest {
 
   NotifyIssueStep.Execution stepExecution;
 
-  final Notify notify = Notify.builder().subject("TEST SUBJECT").textBody("Test Body").build();
+  final Object notify = Maps.newHashMap(ImmutableMap.builder().put("subject", "TEST SUBJECT").put("textBody", "TEST BODY").build());
 
   @Before
   public void setup() throws IOException, InterruptedException {

@@ -9,9 +9,14 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
+import hudson.AbortException;
+import hudson.EnvVars;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
-
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,29 +27,24 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.Fields;
-import org.thoughtslive.jenkins.plugins.jira.api.Issue;
-import org.thoughtslive.jenkins.plugins.jira.api.IssueType;
-import org.thoughtslive.jenkins.plugins.jira.api.Project;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
-import hudson.AbortException;
-import hudson.EnvVars;
-import hudson.model.Run;
-import hudson.model.TaskListener;
-
 /**
  * Unit test cases for EditIssueStep class.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({EditIssueStep.class, Site.class})
 public class EditIssueStepTest {
 
+  final Object issue = Maps.newHashMap(ImmutableMap.builder().put("fields",
+      ImmutableMap.builder().put("description", "TEST")
+          .put("summary", "TEST")
+          .put("project", ImmutableMap.builder().put("id", "1000").build())
+          .put("issueype", ImmutableMap.builder().put("id", "10000").build()).build()).build());
   @Mock
   TaskListener taskListenerMock;
   @Mock
@@ -59,14 +59,7 @@ public class EditIssueStepTest {
   Site siteMock;
   @Mock
   StepContext contextMock;
-
   EditIssueStep.Execution stepExecution;
-
-  final Issue issue = Issue.builder()
-      .fields(Fields.builder().description("TEST").summary("TEST")
-          .project(Project.builder().id("10000").build())
-          .issuetype(IssueType.builder().id("10000").build()).build())
-      .build();
 
   @Before
   public void setup() throws IOException, InterruptedException {
@@ -95,7 +88,8 @@ public class EditIssueStepTest {
   @Test
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final EditIssueStep step = new EditIssueStep("", issue);
-    stepExecution = new EditIssueStep.Execution(step, contextMock);;
+    stepExecution = new EditIssueStep.Execution(step, contextMock);
+    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -107,7 +101,8 @@ public class EditIssueStepTest {
   @Test
   public void testSuccessfulUpdateIssue() throws Exception {
     final EditIssueStep step = new EditIssueStep("TEST-1", issue);
-    stepExecution = new EditIssueStep.Execution(step, contextMock);;
+    stepExecution = new EditIssueStep.Execution(step, contextMock);
+    ;
 
     // Execute Test.
     stepExecution.run();

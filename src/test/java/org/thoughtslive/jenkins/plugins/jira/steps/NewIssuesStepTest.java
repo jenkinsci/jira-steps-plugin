@@ -7,6 +7,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.google.common.collect.ImmutableMap;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -25,8 +26,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.IssueType;
-import org.thoughtslive.jenkins.plugins.jira.api.Project;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.api.input.IssueInput;
@@ -79,8 +78,8 @@ public class NewIssuesStepTest {
     fields.put("summary", "Summary");
     fields.put("description", null);
     fields.put("duedate", DateTime.now().toString());
-    fields.put("project", Project.builder().key("TEST").build());
-    fields.put("issuetype", IssueType.builder().name("Task").build());
+    fields.put("project", ImmutableMap.builder().put("key", "TEST").build());
+    fields.put("issuetype", ImmutableMap.builder().put("name", "Task").build());
 
     final IssueInput issue = IssueInput.builder().fields(fields).build();
     issues.add(issue);

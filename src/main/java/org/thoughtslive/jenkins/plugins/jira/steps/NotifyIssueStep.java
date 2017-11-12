@@ -7,7 +7,6 @@ import java.io.IOException;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.thoughtslive.jenkins.plugins.jira.api.Notify;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
@@ -30,10 +29,10 @@ public class NotifyIssueStep extends BasicJiraStep {
   private final String idOrKey;
 
   @Getter
-  private final Notify notify;
+  private final Object notify;
 
   @DataBoundConstructor
-  public NotifyIssueStep(final String idOrKey, final Notify notify) {
+  public NotifyIssueStep(final String idOrKey, final Object notify) {
     this.idOrKey = idOrKey;
     this.notify = notify;
   }
@@ -89,7 +88,7 @@ public class NotifyIssueStep extends BasicJiraStep {
 
       if (response == null) {
         final String idOrKey = Util.fixEmpty(step.getIdOrKey());
-        final Notify notify = step.getNotify();
+        final Object notify = step.getNotify();
 
         if (idOrKey == null) {
           errorMessage = "idOrKey is empty or null.";

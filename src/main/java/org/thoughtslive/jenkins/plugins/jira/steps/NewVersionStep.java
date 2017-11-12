@@ -1,19 +1,16 @@
 package org.thoughtslive.jenkins.plugins.jira.steps;
 
-import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
-
 import java.io.IOException;
 
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
+import org.thoughtslive.jenkins.plugins.jira.api.InputBuilder;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
-import org.thoughtslive.jenkins.plugins.jira.api.Version;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
 import hudson.Extension;
-import hudson.Util;
 import lombok.Getter;
 
 /**
@@ -27,10 +24,10 @@ public class NewVersionStep extends BasicJiraStep {
   private static final long serialVersionUID = -528328534268615694L;
 
   @Getter
-  private final Version version;
+  private final Object version;
 
   @DataBoundConstructor
-  public NewVersionStep(final Version version) {
+  public NewVersionStep(final Object version) {
     this.version = version;
   }
 
@@ -75,8 +72,8 @@ public class NewVersionStep extends BasicJiraStep {
             .println("JIRA: Site - " + siteName + " - Creating new version: " + step.getVersion());
 
         if (step.isAuditLog()) {
-          final String description = addMeta(step.getVersion().getDescription());
-          step.getVersion().setDescription(description);
+          final String description = addMeta("");
+          InputBuilder.appendDescription(step.getVersion(), description);
         }
 
         response = jiraService.createVersion(step.getVersion());
@@ -90,22 +87,6 @@ public class NewVersionStep extends BasicJiraStep {
       String errorMessage = null;
       ResponseData<T> response = verifyCommon(step);
 
-      if (response == null) {
-        final String name = Util.fixEmpty(step.getVersion().getName());
-        final String project = Util.fixEmpty(step.getVersion().getProject());
-
-        if (name == null) {
-          errorMessage = "name is empty or null.";
-        }
-
-        if (project == null) {
-          errorMessage = "project is empty or null.";
-        }
-
-        if (errorMessage != null) {
-          response = buildErrorResponse(new RuntimeException(errorMessage));
-        }
-      }
       return response;
     }
   }

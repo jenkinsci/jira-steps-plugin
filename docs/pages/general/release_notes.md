@@ -7,7 +7,8 @@ sidebar: jira_sidebar
 permalink: release_notes.html
 ---
 * ## **1.3.0** (Unreleased)
-  *
+  * [JENKINS-47948]() Delete deprecated api classes with Object.
+    * <span style="color:red">Note: EditVersion and EditComponent are updated to support all the JIRA Versions, which would break existing code. Please refer the appropriate steps guides for the new Syntax.</span>.  
 * ## **1.2.5**
   * [JENKINS-47914](https://issues.jenkins-ci.org/browse/JENKINS-47914) Use Jenkins user id instead of user name as buildUser.
 * ## **1.2.4**
