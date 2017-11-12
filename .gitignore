@@ -20,3 +20,8 @@ _site/
 .jekyll-metadata
 _pdf
 /.gradle/
+*.DS_Store
+.project
+*.settings
+*.bak
+public/
