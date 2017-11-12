@@ -2,14 +2,19 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
+import hudson.EnvVars;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
-
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,20 +25,14 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.Component;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
-import hudson.EnvVars;
-import hudson.model.Run;
-import hudson.model.TaskListener;
-
 /**
  * Unit test cases for EditComponentStep class.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({EditComponentStep.class, Site.class})
@@ -72,7 +71,7 @@ public class EditComponentStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Void> builder = ResponseData.builder();
-    when(jiraServiceMock.updateComponent(any()))
+    when(jiraServiceMock.updateComponent(anyString(), any()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);
@@ -82,16 +81,18 @@ public class EditComponentStepTest {
 
   @Test
   public void testSuccessfulEditComponent() throws Exception {
-    final Component component =
-        Component.builder().id("1000").name("testcomponent").project("TEST").build();
-    final EditComponentStep step = new EditComponentStep(component);
-    stepExecution = new EditComponentStep.Execution(step, contextMock);;
+    final Object component =
+        Maps.newHashMap(ImmutableMap.builder().put("id", "1000").put("name", "testcomponent")
+            .put("project", "TEST").build());
+    final EditComponentStep step = new EditComponentStep("100", component);
+    stepExecution = new EditComponentStep.Execution(step, contextMock);
+    ;
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).updateComponent(component);
+    verify(jiraServiceMock, times(1)).updateComponent("100", component);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

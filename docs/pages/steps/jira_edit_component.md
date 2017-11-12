@@ -16,6 +16,7 @@ Note: Sometimes it may not possible to directly edit component (rename it) witho
 
 ## Input
 
+* **id** - component id. (Note: Applicable only from version 1.3.0)
 * **component** - component to be edited.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
@@ -39,11 +40,10 @@ Note: response.data returns all the fields returned by JIRA API.
   ```groovy
   node {
     stage('JIRA') {
-      def testComponent = [ id: "1000",
-                            name: "test-component",
+      def testComponent = [ name: "test-component",
                             description: "desc",
                             project: "TEST" ]
-      jiraEditComponent component: testComponent
+      jiraEditComponent id:'1000', component: testComponent
     }
   }
   ```
@@ -53,11 +53,10 @@ Note: response.data returns all the fields returned by JIRA API.
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def testComponent = [ id: "1000",
-                              name: "test-component",
+        def testComponent = [ name: "test-component",
                               description: "desc",
                               project: "TEST" ]
-        jiraEditComponent component: testComponent
+        jiraEditComponent id: '1000', component: testComponent
       }
     }
   }
@@ -65,11 +64,10 @@ Note: response.data returns all the fields returned by JIRA API.
 * Without environment variables.
 
   ```groovy
-    def testComponent = [ id: "1000",
-                          name: "test-component",
+    def testComponent = [ name: "test-component",
                           description: "desc",
                           project: "TEST" ]
-    jiraEditComponent site: "LOCAL", component: testComponent
+    jiraEditComponent id: '1000', site: "LOCAL", component: testComponent
   ```
 
 {% include links.html %}

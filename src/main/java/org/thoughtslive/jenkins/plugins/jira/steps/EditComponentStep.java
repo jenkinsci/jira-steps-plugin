@@ -7,7 +7,6 @@ import java.io.IOException;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.thoughtslive.jenkins.plugins.jira.api.Component;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
@@ -27,10 +26,14 @@ public class EditComponentStep extends BasicJiraStep {
   private static final long serialVersionUID = 6528605492208170984L;
 
   @Getter
-  private final Component component;
+  private final String id;
+
+  @Getter
+  private final Object component;
 
   @DataBoundConstructor
-  public EditComponentStep(final Component component) {
+  public EditComponentStep(final String id, final Object component) {
+    this.id = id;
     this.component = component;
   }
 
@@ -74,12 +77,7 @@ public class EditComponentStep extends BasicJiraStep {
         logger
             .println("JIRA: Site - " + siteName + " - Updating component: " + step.getComponent());
 
-        if (step.isAuditLog()) {
-          final String description = addMeta(step.getComponent().getDescription());
-          step.getComponent().setDescription(description);
-        }
-
-        response = jiraService.updateComponent(step.getComponent());
+        response = jiraService.updateComponent(step.getId(), step.getComponent());
       }
 
       return logResponse(response);
@@ -91,20 +89,14 @@ public class EditComponentStep extends BasicJiraStep {
       ResponseData<T> response = verifyCommon(step);
 
       if (response == null) {
-        final String id = Util.fixEmpty(step.getComponent().getId());
-        final String name = Util.fixEmpty(step.getComponent().getName());
-        final String project = Util.fixEmpty(step.getComponent().getProject());
+        final String id = Util.fixEmpty(step.getId());
 
         if (id == null) {
           errorMessage = "id is empty or null.";
         }
 
-        if (name == null) {
-          errorMessage = "name is empty or null.";
-        }
-
-        if (project == null) {
-          errorMessage = "project is empty or null.";
+        if (step.getComponent() == null) {
+          errorMessage = "component is empty or null.";
         }
 
         if (errorMessage != null) {

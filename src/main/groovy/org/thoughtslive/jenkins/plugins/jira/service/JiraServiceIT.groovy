@@ -1,7 +1,5 @@
 package org.thoughtslive.jenkins.plugins.jira.service
 
-import org.thoughtslive.jenkins.plugins.jira.api.Component;
-import org.thoughtslive.jenkins.plugins.jira.api.Version;
 import org.thoughtslive.jenkins.plugins.jira.Site;
  
 
@@ -24,14 +22,14 @@ class JiraServiceIT {
     
     println service.updateComment('TEST-27', '10604', 'changing it to something else again').code
 
-    def component = Component.builder().id('10100').name('test-comp').build()
+    def component = [id: '10100', name: 'test-comp']
     println service.updateComponent(component).code
     
     def issue = [fields: [summary: 'newSummary001',
                           customfield_10000: 'Testing']]
     println service.updateIssue('TEST-27', issue).error
 
-    def version = Version.builder().id('10300').name('testingT').build()
+    def version = [id: '10300', name: 'testingT']
     println service.updateVersion('10300', version).code
     
     println service.getComments('TEST-27').code

@@ -8,7 +8,6 @@ import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
-import org.thoughtslive.jenkins.plugins.jira.api.Version;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
@@ -27,10 +26,14 @@ public class EditVersionStep extends BasicJiraStep {
   private static final long serialVersionUID = -2029161404995143511L;
 
   @Getter
-  private final Version version;
+  private final String id;
+
+  @Getter
+  private final Object version;
 
   @DataBoundConstructor
-  public EditVersionStep(final Version version) {
+  public EditVersionStep(final String id, final Object version) {
+    this.id = id;
     this.version = version;
   }
 
@@ -73,12 +76,7 @@ public class EditVersionStep extends BasicJiraStep {
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Updating version: " + step.getVersion());
 
-        if (step.isAuditLog()) {
-          final String description = addMeta(step.getVersion().getDescription());
-          step.getVersion().setDescription(description);
-        }
-
-        response = jiraService.updateVersion(step.getVersion().getId(), step.getVersion());
+        response = jiraService.updateVersion(step.getId(), step.getVersion());
       }
 
       return logResponse(response);
@@ -90,20 +88,13 @@ public class EditVersionStep extends BasicJiraStep {
       ResponseData<T> response = verifyCommon(step);
 
       if (response == null) {
-        final String id = Util.fixEmpty(step.getVersion().getId());
-        final String name = Util.fixEmpty(step.getVersion().getName());
-        final String project = Util.fixEmpty(step.getVersion().getProject());
 
-        if (id == null) {
+        if (step.getId() == null) {
           errorMessage = "id is empty or null.";
         }
 
-        if (name == null) {
-          errorMessage = "name is empty or null.";
-        }
-
-        if (project == null) {
-          errorMessage = "project is empty or null.";
+        if (step.getVersion() == null) {
+          errorMessage = "version is empty or null.";
         }
 
         if (errorMessage != null) {

@@ -18,6 +18,7 @@ TODO: probably we should try move version
 
 ## Input
 
+* **id** - version id. (Note: Applicable only from version 1.3.0)
 * **version** - version to be edited.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
@@ -41,13 +42,12 @@ Note: response.data returns all the fields returned by JIRA API.
   ```groovy
   node {
     stage('JIRA') {
-      def testVersion = [ id: '1000',
-                          name: 'test-version',
+      def testVersion = [ name: 'test-version',
                           archived: true,
                           released: true,
                           description: 'desc',
                           project: 'TEST' ]
-      jiraEditVersion version: testVersion
+      jiraEditVersion id: '1000', version: testVersion
     }
   }
   ```
@@ -57,13 +57,12 @@ Note: response.data returns all the fields returned by JIRA API.
   node {
     stage('JIRA') {
       withEnv(['JIRA_SITE=LOCAL']) {
-        def testVersion = [ id: '1000',
-                            name: 'test-version',
+        def testVersion = [ name: 'test-version',
                             archived: true,
                             released: true,
                             description: 'desc',
                             project: 'TEST' ]
-        jiraEditVersion version: testVersion
+        jiraEditVersion id: '1000', version: testVersion
       }
     }
   }
@@ -71,13 +70,12 @@ Note: response.data returns all the fields returned by JIRA API.
 * Without environment variables.
 
   ```groovy
-    def testVersion = [ id: '1000',
-                        name: 'test-version',
+    def testVersion = [ name: 'test-version',
                         archived: true,
                         released: true,
                         description: 'desc',
                         project: 'TEST' ]
-    jiraEditVersion version: testVersion, site: 'LOCAL'
+    jiraEditVersion id: '1000', version: testVersion, site: 'LOCAL'
   ```
 
 {% include links.html %}

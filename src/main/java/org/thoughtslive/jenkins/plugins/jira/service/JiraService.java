@@ -4,18 +4,12 @@ import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorRespon
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.empty;
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.parseResponse;
 
+import com.google.common.collect.ImmutableMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.Comment;
-import org.thoughtslive.jenkins.plugins.jira.api.Component;
-import org.thoughtslive.jenkins.plugins.jira.api.IssueLink;
-import org.thoughtslive.jenkins.plugins.jira.api.IssueLinkType;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
-import org.thoughtslive.jenkins.plugins.jira.api.SearchResult;
-import org.thoughtslive.jenkins.plugins.jira.api.User;
-import org.thoughtslive.jenkins.plugins.jira.api.input.BasicIssue;
 import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -84,7 +78,7 @@ public class JiraService {
   /**
    * Creates component.
    * 
-   * @param component an instance of {@link Component}
+   * @param component an instance of {@link Object}
    * @return created component.
    */
   public ResponseData<Object> createComponent(final Object component) {
@@ -101,9 +95,9 @@ public class JiraService {
    * @param component actual component
    * @return updated component.
    */
-  public ResponseData<Void> updateComponent(final Component component) {
+  public ResponseData<Void> updateComponent(final String id, final Object component) {
     try {
-      return parseResponse(jiraEndPoints.updateComponent(component.getId(), component).execute());
+      return parseResponse(jiraEndPoints.updateComponent(id, component).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
@@ -138,7 +132,7 @@ public class JiraService {
   }
 
   /**
-   * Creates issue based on given {@link Issue}
+   * Creates issue based on given {@link Object}
    */
   public ResponseData<Object> createIssue(final Object issue) {
     try {
@@ -159,7 +153,7 @@ public class JiraService {
   public ResponseData<Void> assignIssue(final String issueIdorKey, final String userName) {
     try {
       return parseResponse(
-          jiraEndPoints.assignIssue(issueIdorKey, User.builder().name(userName).build()).execute());
+          jiraEndPoints.assignIssue(issueIdorKey, ImmutableMap.builder().put("name", userName).build()).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
@@ -184,7 +178,7 @@ public class JiraService {
   public ResponseData<Object> addComment(final String issueIdorKey, final String comment) {
     try {
       return parseResponse(jiraEndPoints
-          .addComment(issueIdorKey, Comment.builder().body(comment).build()).execute());
+          .addComment(issueIdorKey, ImmutableMap.builder().put("body", comment).build()).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
@@ -193,7 +187,9 @@ public class JiraService {
   public ResponseData<Object> updateComment(final String issueIdorKey, final String commentId, final String comment) {
     try {
       return parseResponse(
-          jiraEndPoints.updateComment(issueIdorKey, commentId, Comment.builder().body(comment).build()).execute());
+          jiraEndPoints
+              .updateComment(issueIdorKey, commentId, ImmutableMap.builder().put("body", comment).build())
+              .execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
@@ -250,10 +246,8 @@ public class JiraService {
 
   public ResponseData<Object> searchIssues(final String jql, final int startAt,
       final int maxResults) {
-    final SearchResult searchInput =
-        SearchResult.builder().jql(jql).startAt(startAt).maxResults(maxResults).build();
     try {
-      return parseResponse(jiraEndPoints.searchIssues(searchInput).execute());
+      return parseResponse(jiraEndPoints.searchIssues(ImmutableMap.builder().put("jql", jql).put("startAt", startAt).put("maxResults", maxResults).build()).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
@@ -350,14 +344,19 @@ public class JiraService {
 
   public ResponseData<Void> linkIssues(final String name, final String inwardIssueKey,
       final String outwardIssueKey, final String comment) {
-    Comment linkComment = null;
+    Object linkComment = null;
+    Object issueLink = null;
     if (!empty(comment)) {
-      linkComment = Comment.builder().body(comment).build();
+      linkComment = ImmutableMap.builder().put("body", comment).build();
+      issueLink = ImmutableMap.builder().put("type", ImmutableMap.builder().put("name", name).build())
+          .put("comment", linkComment)
+          .put("inwardIssue", ImmutableMap.builder().put("key", inwardIssueKey).build())
+          .put("outwardIssue", ImmutableMap.builder().put("key", outwardIssueKey).build()).build();
+    } else {
+      issueLink = ImmutableMap.builder().put("type", ImmutableMap.builder().put("name", name).build())
+          .put("inwardIssue", ImmutableMap.builder().put("key", inwardIssueKey).build())
+          .put("outwardIssue", ImmutableMap.builder().put("key", outwardIssueKey).build()).build();
     }
-
-    final IssueLink issueLink = IssueLink.builder().type(IssueLinkType.builder().name(name).build())
-        .comment(linkComment).inwardIssue(BasicIssue.builder().key(inwardIssueKey).build())
-        .outwardIssue(BasicIssue.builder().key(outwardIssueKey).build()).build();
 
     try {
       return parseResponse(jiraEndPoints.createIssueLink(issueLink).execute());

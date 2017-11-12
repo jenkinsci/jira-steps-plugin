@@ -8,6 +8,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
 import java.io.IOException;
 import java.io.PrintStream;
 
@@ -21,12 +23,8 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.Fields;
-import org.thoughtslive.jenkins.plugins.jira.api.Issue;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
-import org.thoughtslive.jenkins.plugins.jira.api.Transition;
-import org.thoughtslive.jenkins.plugins.jira.api.input.TransitionInput;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
 import hudson.EnvVars;
@@ -60,9 +58,6 @@ public class TransitionIssueStepTest {
 
   TransitionIssueStep.Execution stepExecution;
 
-  final Issue issue =
-      Issue.builder().fields(Fields.builder().description("TEST").summary("TEST").build()).build();
-
   @Before
   public void setup() throws IOException, InterruptedException {
 
@@ -89,8 +84,7 @@ public class TransitionIssueStepTest {
 
   @Test
   public void testSuccessfulTransitionIssue() throws Exception {
-    final TransitionInput input =
-        TransitionInput.builder().transition(Transition.builder().id("1000").build()).build();
+    final Object input = Maps.newHashMap(ImmutableMap.builder().put("transition", ImmutableMap.builder().put("id", "1000").put("name", "TEST").build()).build());
     final TransitionIssueStep step = new TransitionIssueStep("TEST-1", input);
     stepExecution = new TransitionIssueStep.Execution(step, contextMock);;
 

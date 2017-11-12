@@ -7,6 +7,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
 import java.io.IOException;
 import java.io.PrintStream;
 
@@ -22,7 +24,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
-import org.thoughtslive.jenkins.plugins.jira.api.Version;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
 import hudson.EnvVars;
@@ -82,8 +83,7 @@ public class NewVersionStepTest {
 
   @Test
   public void testSuccessfulNewVersion() throws Exception {
-    final Version version =
-        Version.builder().name("testVersion").id("10000").project("TEST").build();
+    final Object version = Maps.newHashMap(ImmutableMap.builder().put("name", "testVersion").put("id", "10000").put("project", "TEST").put("description", "hello").build());
     final NewVersionStep step = new NewVersionStep(version);
     stepExecution = new NewVersionStep.Execution(step, contextMock);;
 

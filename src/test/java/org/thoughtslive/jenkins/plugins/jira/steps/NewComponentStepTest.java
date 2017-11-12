@@ -7,6 +7,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
 import java.io.IOException;
 import java.io.PrintStream;
 
@@ -20,7 +22,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
-import org.thoughtslive.jenkins.plugins.jira.api.Component;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
@@ -82,8 +83,8 @@ public class NewComponentStepTest {
 
   @Test
   public void testSuccessfulNewComponent() throws Exception {
-    final Component component =
-        Component.builder().id("1000").name("testcomponent").project("TEST").build();
+    final Object component =
+        Maps.newHashMap(ImmutableMap.builder().put("id", "1000").put("name","testcomponent").put("project","TEST").build());
     final NewComponentStep step = new NewComponentStep(component);
     stepExecution = new NewComponentStep.Execution(step, contextMock);;
 

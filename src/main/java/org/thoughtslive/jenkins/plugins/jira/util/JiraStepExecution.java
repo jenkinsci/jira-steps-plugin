@@ -139,7 +139,7 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
         prepareBuildUser(upstreamCauses);
       }
     }
-    return buildUser;
+    return Util.fixEmpty(buildUser) == null ? "anonymous": buildUser;
   }
 
   /**
