@@ -6,7 +6,7 @@
     <description>Recent content in JIRA Pipline Steps on JIRA Jenkins Pipeline Steps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 12 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jenkinsci.github.io/jira-steps-plugin/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,18 +14,17 @@
     <item>
       <title>Authentication</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/authentication/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/authentication/</guid>
       <description>Authentication This plugin supports both Basic and OAuth, OAuth is preferred over the Basic authentication.
-Basic Authentication  Goto Manage Jenkins &amp;gt; Configure System &amp;gt; JIRA Steps &amp;gt; Add Site &amp;gt; Choose Basic.  Name = Jira Site Name URL = Jira Site URL User Name = Jira Account Username Password = Jira Account Password   OAuth Authentication  Follow the jira-rest-api-oauth-authentication guide to setup OAuth Authentication.
- Add site to Jenkins.</description>
+Basic Authentication  Goto Manage Jenkins &amp;gt; Configure System &amp;gt; JIRA Steps &amp;gt; Add Site &amp;gt; Choose Basic.  Name = Jira Site Name URL = Jira Site URL User Name = Jira Account Username Password = Jira Account Password   OAuth Authentication  Follow the jira-rest-api-oauth-authentication guide to setup OAuth Authentication. Add site to Jenkins.</description>
     </item>
     
     <item>
       <title>Create New Fix Version</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/getting-started/examples/new_fix_version/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/examples/new_fix_version/</guid>
       <description> Add new fix version to existing issue.  JQL Search. Create new version. Edit an issue.  node { stage(&#39;JIRA&#39;) { def searchResults = jiraJqlSearch jql: &amp;quot;project = TEST AND issuekey = &#39;TEST-1&#39;&amp;quot; def issues = searchResults.data.issues for (i = 0; i &amp;lt;issues.size(); i++) { def fixVersion = jiraNewVersion version: [name: &amp;quot;new-fix-version-1.0&amp;quot;, project: &amp;quot;TEST&amp;quot;] def testIssue = [fields: [fixVersions: [fixVersion.data]]] response = jiraEditIssue idOrKey: issues[i].key, issue: testIssue } } }  </description>
@@ -34,7 +33,7 @@ Basic Authentication  Goto Manage Jenkins &amp;gt; Configure System &amp;gt; JIR
     <item>
       <title>GetComment</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_get_comment/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_get_comment/</guid>
       <description>jiraGetComment This step queries a particular comment on an issue.
@@ -45,7 +44,7 @@ Input  idOrKey - Issue id or key. commentId - commentId. site - Optional, defaul
     <item>
       <title>GetComponent</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/component/jira_get_component/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/component/jira_get_component/</guid>
       <description>jiraGetComponent This step queries a particular component from the provided JIRA site.
@@ -56,7 +55,7 @@ Input  id - componentId. site - Optional, default: JIRA_SITE environment variabl
     <item>
       <title>GetFields</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_get_fields/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_get_fields/</guid>
       <description>jiraGetFields This step queries all fields from the provided JIRA site.
@@ -66,7 +65,7 @@ Input  site - Optional, default: JIRA_SITE environment variable. failOnError - O
     <item>
       <title>GetIssueLink</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_issuelink/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_issuelink/</guid>
       <description>jiraGetIssueLink This step queries issue links from the provided JIRA site.
@@ -76,7 +75,7 @@ Input  id - issue link&amp;rsquo;s id. site - Optional, default: JIRA_SITE envir
     <item>
       <title>GetIssueWatches</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/watcher/jira_get_issue_watches/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/watcher/jira_get_issue_watches/</guid>
       <description>jiraGetIssueWatches This step queries all the issue watchers on a particular issue.
@@ -87,12 +86,43 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
     <item>
       <title>GetProject</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project/</guid>
       <description>jiraGetProject This queries project info from the provided JIRA site.
 Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_project step can be reused later in your script by doing response.</description>
+    </item>
+    
+    <item>
+      <title>JqlSearch</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/search/jira_jql_search/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/search/jira_jql_search/</guid>
+      <description>jiraJqlSearch This step searches issues from the provided JIRA site by Jql.
+Input  jql - jql as a string. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.
+ Output  Each step generates generic output, please refer to this link for more information.</description>
+    </item>
+    
+    <item>
+      <title>NewVersion</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_new_version/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_new_version/</guid>
+      <description>jiraNewVersion Creates new version based on given input, which should have some minimal information on that object.
+Input  version - version to be created. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append the build url and build user name to the description.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.</description>
+    </item>
+    
+    <item>
+      <title>UserSearch</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/user/jira_user_search/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/user/jira_user_search/</guid>
+      <description>jiraUserSearch This step searches users by name, username or email address form the JIRA SITE.
+Input  queryStr - name, username or email address. (partial string are allowed) site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -107,40 +137,9 @@ Installing from UI.  Installing Plugin From Web UI Updating Plugin  Manual insta
     </item>
     
     <item>
-      <title>JqlSearch</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/search/jira_jql_search/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/search/jira_jql_search/</guid>
-      <description>jiraJqlSearch This step searches issues from the provided JIRA site by Jql.
-Input  jql - jql as a string. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.
- Output  Each step generates generic output, please refer to this link for more information.</description>
-    </item>
-    
-    <item>
-      <title>NewVersion</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_new_version/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_new_version/</guid>
-      <description>jiraNewVersion Creates new version based on given input, which should have some minimal information on that object.
-Input  version - version to be created. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append the build url and build user name to the description.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.</description>
-    </item>
-    
-    <item>
-      <title>UserSearch</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/user/jira_user_search/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/user/jira_user_search/</guid>
-      <description>jiraUserSearch This step searches users by name, username or email address form the JIRA SITE.
-Input  queryStr - name, username or email address. (partial string are allowed) site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.</description>
-    </item>
-    
-    <item>
       <title>AddWatcher</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/watcher/jira_add_watcher/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/watcher/jira_add_watcher/</guid>
       <description>jiraAddWatcher This step adds a user as watcher to a particular issue.
@@ -150,7 +149,7 @@ Input  idOrKey - Issue id or key. userName - username of the person who should b
     <item>
       <title>Append Fix Version</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/getting-started/examples/append_fix_version/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/examples/append_fix_version/</guid>
       <description>Append new fix version to existing issue.  JQL Search. Create new version. Edit an issue.  node { stage(&#39;JIRA&#39;) { def searchResults = jiraJqlSearch jql: &amp;quot;project = TEST AND issuekey = &#39;TEST-1&#39;&amp;quot; def issues = searchResults.data.issues for (i = 0; i &amp;lt;issues.size(); i++) { def result = jiraGetIssue idOrKey: issues[i].key def newVersion = jiraNewVersion version: [name: &amp;quot;new-fix-version-1.1&amp;quot;, project: &amp;quot;TEST&amp;quot;] def fixVersions = result.data.fields.fixVersions &amp;lt;&amp;lt; newVersion.data def testIssue = [fields: [fixVersions: fixVersions]] response = jiraEditIssue idOrKey: issues[i].</description>
@@ -159,7 +158,7 @@ Input  idOrKey - Issue id or key. userName - username of the person who should b
     <item>
       <title>AssignableUserSearch</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/user/jira_assignable_user_search/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/user/jira_assignable_user_search/</guid>
       <description>jiraAssignableUserSearch This step searches for a user by name, username or email address and assigns them to given project and/or issueKey.
@@ -169,7 +168,7 @@ Input  queryStr - name, username or email address. (partial string are allowed) 
     <item>
       <title>Common Config</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/common/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/common/</guid>
       <description>Optional Params for all Steps.  site - Optional param which will override JIRA_SITE global variable. failOnError - is optional and by default it is true.  When set to true, then the step will abort the job as a failure when there is an error sending message. To make it false, it should always be provided as global environment variable JIRA_FAIL_ON_ERROR.
@@ -179,7 +178,7 @@ Input  queryStr - name, username or email address. (partial string are allowed) 
     <item>
       <title>GetComments</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_get_comments/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_get_comments/</guid>
       <description>jiraGetComments This step queries all comments on a particular issue.
@@ -190,7 +189,7 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
     <item>
       <title>GetIssueLinkTypes</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_issue_link_types/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_issue_link_types/</guid>
       <description>jiraGetIssueLinkTypes This step queries all issue links types from the provided JIRA site.
@@ -201,7 +200,7 @@ Input  site - Optional, default: JIRA_SITE environment variable. failOnError - O
     <item>
       <title>GetProjects</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_projects/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_projects/</guid>
       <description>jiraGetProjects This step queries all projects from the provided JIRA site.
@@ -212,7 +211,7 @@ Input  site - Optional, default: JIRA_SITE environment variable. failOnError - O
     <item>
       <title>GetVersion</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_get_version/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_get_version/</guid>
       <description>jiraGetVersion This step queries the project version from the provided JIRA site.
@@ -223,7 +222,7 @@ Input  id - version id. site - Optional, default: JIRA_SITE environment variable
     <item>
       <title>NewComponent</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/component/jira_new_component/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/component/jira_new_component/</guid>
       <description>jiraNewComponent Create new component based on given input, which should have some minimal information on that object.
@@ -233,7 +232,7 @@ Input  component - component to be created. site - Optional, default: JIRA_SITE 
     <item>
       <title>NewIssue</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_new_issue/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_new_issue/</guid>
       <description>jiraNewIssue Creates new issue based on given input, which should have some minimal information on that object.
@@ -243,7 +242,7 @@ Input  issue - issue to be created. site - Optional, default: JIRA_SITE environm
     <item>
       <title>AddComment</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_add_comment/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_add_comment/</guid>
       <description>jiraAddComment This step adds a comment on a particular issue.
@@ -253,30 +252,30 @@ Input  idOrKey - Issue id or key. comment - comment, supports jira wiki formatti
     <item>
       <title>EditComponent</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/component/jira_edit_component/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/component/jira_edit_component/</guid>
       <description>jiraEditComponent Edit component based on given input, which should have some minimal information on that object.
 Sometimes it may not possible to directly edit component (rename it) without un tagging all of its current JIRAs.
- Input  component - component to be edited. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append the build url and build user name to the description.</description>
+ Input  id - component id. (Note: Applicable only from version 1.3.0) component - component to be edited. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true.</description>
     </item>
     
     <item>
       <title>EditVersion</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_edit_version/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_edit_version/</guid>
       <description>jiraEditVersion Edit version based on given input, which should have some minimal information on that object.
 Note: Sometimes it may not possible to directly edit version (rename it) without un tagging all of its current JIRAs.
 TODO: probably we should try move version
-Input  version - version to be edited. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append the build url and build user name to the description.</description>
+Input  id - version id. (Note: Applicable only from version 1.3.0) version - version to be edited. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional.</description>
     </item>
     
     <item>
       <title>GetProjectComponents</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project_components/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project_components/</guid>
       <description>jiraGetProjectComponents This step queries all components of a particular project.
@@ -286,7 +285,7 @@ Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environm
     <item>
       <title>GetRemoteIssueLink</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_remote_issuelink/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_remote_issuelink/</guid>
       <description>jiraGetRemoteIssueLink This step queries a particular remote link of an issue.
@@ -296,7 +295,7 @@ Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, defa
     <item>
       <title>Jenkins Script</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/script/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/script/</guid>
       <description>Automate configuring via Jenkins Script Console The following Jenkins Script Console script will automatically configure the global settings of this plugin.
@@ -306,7 +305,7 @@ import net.sf.json.JSONArray import net.sf.json.JSONObject import org.thoughtsli
     <item>
       <title>NewIssues</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_new_issues/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_new_issues/</guid>
       <description>jiraNewIssues This step creates new issues in bulk in the provided JIRA site.
@@ -316,7 +315,7 @@ Input  issues - issues to be created. site - Optional, default: JIRA_SITE enviro
     <item>
       <title>Releasing a Project?</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/getting-started/examples/release_project/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/examples/release_project/</guid>
       <description>Releasing a project? For instance, if you are releasing more than one project and you want to create a release review jira issue, add Description, Fix version, comment on the issue with error message for a failure in the release process or close the issue, if release is successful.
@@ -326,7 +325,7 @@ Input  issues - issues to be created. site - Optional, default: JIRA_SITE enviro
     <item>
       <title>AssignIssue</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_assign_issue/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_assign_issue/</guid>
       <description>jiraAssignIssue This step assigns a particular issue to a user.
@@ -336,7 +335,7 @@ Input  idOrKey - Issue id or key. userName - username of the person who should b
     <item>
       <title>EditComment</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_edit_comment/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_edit_comment/</guid>
       <description>jiraEditComment This step updates a particular comment on particular issue.
@@ -346,7 +345,7 @@ Input  idOrKey - Issue id or key. commentId - comment id. comment - comment, sup
     <item>
       <title>GetComponentIssueCount</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/component/jira_get_component_issue_count/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/component/jira_get_component_issue_count/</guid>
       <description>jiraGetComponentIssueCount This step queries a particular component&amp;rsquo;s issue-count.
@@ -357,7 +356,7 @@ Input  id - componentId. site - Optional, default: JIRA_SITE environment variabl
     <item>
       <title>GetIssue</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_get_issue/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_get_issue/</guid>
       <description>jiraGetIssue This step queries a particular issue from the provided JIRA site.
@@ -368,7 +367,7 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
     <item>
       <title>GetProjectStatuses</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project_statuses/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project_statuses/</guid>
       <description>jiraGetProjectStatuses This step queries all the statuses of a particular project.
@@ -378,7 +377,7 @@ Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environm
     <item>
       <title>GetRemoteIssueLinks</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_remote_issuelinks/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_remote_issuelinks/</guid>
       <description>jiraGetRemoteIssueLinks This step queries all the remote links of a particular issue.
@@ -388,7 +387,7 @@ Input  idOrKey - issue id or key. globalId - global application id (Optional). s
     <item>
       <title>GetProjectVersions</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project_versions/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project_versions/</guid>
       <description>jiraGetProjectVersions This step queries all the versions of a particular project.
@@ -398,7 +397,7 @@ Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environm
     <item>
       <title>NewRemoteIssueLink</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_new_remote_issuelink/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_new_remote_issuelink/</guid>
       <description>jiraNewRemoteIssueLink This step creates a new remote link to a particular issue.
@@ -408,7 +407,7 @@ Input  idOrKey - issue id or key. remoteLink - remote link. site - Optional, def
     <item>
       <title>EditIssue</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_edit_issue/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_edit_issue/</guid>
       <description>jiraEditIssue Updates an existing issue based on given input, which should have some minimal information on that object.
@@ -418,7 +417,7 @@ Input  idOrKey - issue id or key. issue - issue to be updated. site - Optional, 
     <item>
       <title>LinkIssues</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_link_issues/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_link_issues/</guid>
       <description>jiraLinkIssues This step links two issues in the provided JIRA site.
@@ -429,7 +428,7 @@ Input  type - type of the link. (Ex: Relates, Blocks, Cloners, Duplicate) inward
     <item>
       <title>DeleteIssueLink</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_delete_issuelink/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_delete_issuelink/</guid>
       <description>jiraDeleteIssueLink This step deletes an issue link.
@@ -440,7 +439,7 @@ Input  id - issue link&amp;rsquo;s id. site - Optional, default: JIRA_SITE envir
     <item>
       <title>GetIssueTransitions</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_get_issue_transitions/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_get_issue_transitions/</guid>
       <description>jiraGetIssueTransitions This step queries all transitions of a particular issue.
@@ -451,7 +450,7 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
     <item>
       <title>DeleteRemoteIssueLink</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_delete_remote_issuelink/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_delete_remote_issuelink/</guid>
       <description>jiraDeleteRemoteIssueLink This step deletes a particular remote link of an issue.
@@ -461,7 +460,7 @@ Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, defa
     <item>
       <title>NotifyIssue</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_notify_issue/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_notify_issue/</guid>
       <description>jiraNotifyIssue This step notifies users (like watchers, assignee and so on..) of a particular issue.
@@ -471,7 +470,7 @@ Input  idOrKey - Issue id or key. notify - more info about whom should we notify
     <item>
       <title>DeleteRemoteIssueLinks</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_delete_remote_issuelinks/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_delete_remote_issuelinks/</guid>
       <description>jiraDeleteRemoteIssueLinks This step deletes all remote links of an issue.
@@ -481,7 +480,7 @@ Input  idOrKey - issue id or key. globalId - global application id (Optional). s
     <item>
       <title>TransitionIssue</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_transition_issue/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_transition_issue/</guid>
       <description>jiraTransitionIssue This step transitions a particular issue in the JIRA site.
@@ -491,27 +490,29 @@ Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting
     <item>
       <title>Change Log</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/changelog/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/changelog/</guid>
-      <description>1.3.0  Yet to Release  1.2.3  JENKINS-44817 NewIssueStep is not null safe when there is no description.  1.2.2  #42 Enhanced NewIssues step to support custom fields.  1.2.1  #40 Relaxed few step&amp;rsquo;s input validation.  1.2.0  JENKINS-44254 Ability to retrieve and update custom fields.  All Steps: No restrictions on what(fields) can be sent to JIRA and retrieve from JIRA. Every field can either be int or string.</description>
+      <description>1.3.0 (Unreleased)  JENKINS-47948 Delete deprecated api classes with Object.  Note: EditVersion and EditComponent are updated to support all the JIRA Versions, which would break existing code. Please refer the appropriate steps guides for the new Syntax..
+  JENKINS-47949 Apply Google Style Guide. JENKINS-47954 Migrate documentation to hugo.   1.2.5  JENKINS-47914 Use Jenkins user id instead of user name as buildUser.  1.2.4  JENKINS-47668 jiraNewComponent/jiraEditComponent ends with an error.</description>
     </item>
     
     <item>
       <title>Contributing</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/contributing/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/contributing/</guid>
       <description>Help us to make this project better by contributing. Whether it&amp;rsquo;s new features, bug fixes, or simply improving documentation, your contributions are welcome. Please start with logging a JIRA and submit a pull request.
 Before you contribute, please review these guidelines to help ensure a smooth process for everyone. Thanks :).
-Issue reporting  Please browse our existing issues before logging new issues. Check that the issue was not already fixed in the master branch.</description>
+Copyright JIRA Steps plugins is licensed under Apache License, []Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+Issue reporting  Please browse our existing issues before logging new issues.</description>
     </item>
     
     <item>
       <title>Credits</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/credits/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/credits/</guid>
       <description>Maintainers  Owner - Naresh Rayapati.  github contributors .ghContributors{ display:flex; flex-flow: wrap; align-content: flex-start } .ghContributors  div{ width: 50% ; display: inline-flex; margin-bottom: 5px; } .ghContributors  div label{ padding-left: 4px ; } .ghContributors  div span{ font-size: x-small; padding-left: 4px ; }   @nrayapati 80 commits   @jpgauthier 1 commits   @samrocketman 1 commits   @abeeskau 1 commits   @bhram999 1 commits   @merykozlowska 1 commits   Help us to make this project better by contributing.</description>
@@ -520,7 +521,7 @@ Issue reporting  Please browse our existing issues before logging new issues. Ch
     <item>
       <title>Terms and Privacy Policy</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/terms/</link>
-      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/terms/</guid>
       <description>The privacy of visitors is extremely important to us (maintainers). This Privacy Policy outlines the types of personal information that is received and collected and how it is used.
@@ -531,7 +532,7 @@ Google Analytics Google Analytics is a web analytics tool we use to help underst
     <item>
       <title>header</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/_header/</link>
-      <pubDate>Mon, 24 Apr 2017 18:36:24 +0200</pubDate>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/_header/</guid>
       <description>Jenkins JIRA Pipeline Steps</description>

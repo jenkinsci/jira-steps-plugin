@@ -528,6 +528,7 @@ Copyright © 2017 Naresh Rayapati.
 <h4 id="input">Input</h4>
 
 <ul>
+<li><strong>id</strong> - version id. (Note: Applicable only from version 1.3.0)</li>
 <li><strong>version</strong> - version to be edited.</li>
 <li><strong>site</strong> - Optional, default: <code>JIRA_SITE</code> environment variable.</li>
 <li><strong>failOnError</strong> - Optional. default: <code>true</code>.</li>
@@ -564,7 +565,7 @@ Copyright © 2017 Naresh Rayapati.
                         released: true,
                         description: 'desc',
                         project: 'TEST' ]
-    jiraEditVersion version: testVersion
+    jiraEditVersion id: '1000', version: testVersion
   }
 }
 </code></pre></li>
@@ -580,7 +581,7 @@ Copyright © 2017 Naresh Rayapati.
                           released: true,
                           description: 'desc',
                           project: 'TEST' ]
-      jiraEditVersion version: testVersion
+      jiraEditVersion id: '1000', version: testVersion
     }
   }
 }
@@ -594,7 +595,7 @@ Copyright © 2017 Naresh Rayapati.
                     released: true,
                     description: 'desc',
                     project: 'TEST' ]
-jiraEditVersion version: testVersion, site: 'LOCAL'
+jiraEditVersion id: '1000', version: testVersion, site: 'LOCAL'
 </code></pre></li>
 </ul>
 
@@ -603,7 +604,7 @@ jiraEditVersion version: testVersion, site: 'LOCAL'
     
           <footer class=" footline" >
 	
-	    <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 21/10/2017
+	    <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
 	    </div>
 	
 </footer>

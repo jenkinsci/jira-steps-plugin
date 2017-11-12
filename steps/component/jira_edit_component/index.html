@@ -528,6 +528,7 @@ Copyright © 2017 Naresh Rayapati.
 <h4 id="input">Input</h4>
 
 <ul>
+<li><strong>id</strong> - component id. (Note: Applicable only from version 1.3.0)</li>
 <li><strong>component</strong> - component to be edited.</li>
 <li><strong>site</strong> - Optional, default: <code>JIRA_SITE</code> environment variable.</li>
 <li><strong>failOnError</strong> - Optional. default: <code>true</code>.</li>
@@ -558,11 +559,10 @@ Copyright © 2017 Naresh Rayapati.
 
 <pre><code class="language-groovy">node {
   stage('JIRA') {
-    def testComponent = [ id: &quot;1000&quot;,
-                          name: &quot;test-component&quot;,
+    def testComponent = [ name: &quot;test-component&quot;,
                           description: &quot;desc&quot;,
                           project: &quot;TEST&quot; ]
-    jiraEditComponent component: testComponent
+    jiraEditComponent id: &quot;1000&quot;, component: testComponent
   }
 }
 </code></pre></li>
@@ -572,11 +572,10 @@ Copyright © 2017 Naresh Rayapati.
 <pre><code class="language-groovy">node {
   stage('JIRA') {
     withEnv(['JIRA_SITE=LOCAL']) {
-      def testComponent = [ id: &quot;1000&quot;,
-                            name: &quot;test-component&quot;,
+      def testComponent = [ name: &quot;test-component&quot;,
                             description: &quot;desc&quot;,
                             project: &quot;TEST&quot; ]
-      jiraEditComponent component: testComponent
+      jiraEditComponent id: &quot;1000&quot;, component: testComponent
     }
   }
 }
@@ -584,11 +583,10 @@ Copyright © 2017 Naresh Rayapati.
 
 <li><p>Without environment variables.</p>
 
-<pre><code class="language-groovy">def testComponent = [ id: &quot;1000&quot;,
-                      name: &quot;test-component&quot;,
+<pre><code class="language-groovy">def testComponent = [ name: &quot;test-component&quot;,
                       description: &quot;desc&quot;,
                       project: &quot;TEST&quot; ]
-jiraEditComponent site: &quot;LOCAL&quot;, component: testComponent
+jiraEditComponent id: &quot;1000&quot;, site: &quot;LOCAL&quot;, component: testComponent
 </code></pre></li>
 </ul>
 
@@ -597,7 +595,7 @@ jiraEditComponent site: &quot;LOCAL&quot;, component: testComponent
     
           <footer class=" footline" >
 	
-	    <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 21/10/2017
+	    <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
 	    </div>
 	
 </footer>

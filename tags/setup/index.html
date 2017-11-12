@@ -482,68 +482,16 @@ Copyright © 2017 Naresh Rayapati.
 
    <article class="post getting-started">
     <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/getting-started/examples/append_fix_version/">Append Fix Version</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>Append new fix version to existing issue.  JQL Search. Create new version. Edit an issue.  node { stage('JIRA') { def searchResults = jiraJqlSearch jql: &quot;project = TEST AND issuekey = 'TEST-1'&quot; def issues = searchResults.data.issues for (i = 0; i &lt;issues.size(); i++) { def result = jiraGetIssue idOrKey: issues[i].key def newVersion = jiraNewVersion version: [name: &quot;new-fix-version-1.1&quot;, project: &quot;TEST&quot;] def fixVersions = result.data.fields.fixVersions &lt;&lt; newVersion.data def testIssue = [fields: [fixVersions: fixVersions]] response = jiraEditIssue idOrKey: issues[i]. <a class="read-more" href="/jira-steps-plugin/getting-started/examples/append_fix_version/">&raquo;</a></p>
-    </section>
-    <footer class=" footline" >
-         
-        
-            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 21/10/2017
-        
-
-        
-          
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/setup/">Setup</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/get-started/">Get Started</a>
-            
-        
-
-    </footer>
-</article>
-
-   <article class="post getting-started">
-    <header class="post-header">
         <h2 class="post-title"><a href="/jira-steps-plugin/getting-started/config/authentication/">Authentication</a></h2>
     </header>
     <section class="post-excerpt">
         <p>Authentication This plugin supports both Basic and OAuth, OAuth is preferred over the Basic authentication.
-Basic Authentication  Goto Manage Jenkins &gt; Configure System &gt; JIRA Steps &gt; Add Site &gt; Choose Basic.  Name = Jira Site Name URL = Jira Site URL User Name = Jira Account Username Password = Jira Account Password   OAuth Authentication  Follow the jira-rest-api-oauth-authentication guide to setup OAuth Authentication.
- Add site to Jenkins. <a class="read-more" href="/jira-steps-plugin/getting-started/config/authentication/">&raquo;</a></p>
+Basic Authentication  Goto Manage Jenkins &gt; Configure System &gt; JIRA Steps &gt; Add Site &gt; Choose Basic.  Name = Jira Site Name URL = Jira Site URL User Name = Jira Account Username Password = Jira Account Password   OAuth Authentication  Follow the jira-rest-api-oauth-authentication guide to setup OAuth Authentication. Add site to Jenkins. <a class="read-more" href="/jira-steps-plugin/getting-started/config/authentication/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
         
-            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 21/10/2017
-        
-
-        
-          
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/setup/">Setup</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/get-started/">Get Started</a>
-            
-        
-
-    </footer>
-</article>
-
-   <article class="post getting-started">
-    <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/getting-started/config/common/">Common Config</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>Optional Params for all Steps.  site - Optional param which will override JIRA_SITE global variable. failOnError - is optional and by default it is true.  When set to true, then the step will abort the job as a failure when there is an error sending message. To make it false, it should always be provided as global environment variable JIRA_FAIL_ON_ERROR.
- Global Environment Variables.  JIRA_SITE - Global variable to set default site for all JIRA steps. <a class="read-more" href="/jira-steps-plugin/getting-started/config/common/">&raquo;</a></p>
-    </section>
-    <footer class=" footline" >
-         
-        
-            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 21/10/2017
+            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
         
 
         
@@ -568,7 +516,7 @@ Basic Authentication  Goto Manage Jenkins &gt; Configure System &gt; JIRA Steps 
     <footer class=" footline" >
          
         
-            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 21/10/2017
+            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
         
 
         
@@ -612,6 +560,57 @@ Installing from UI.  Installing Plugin From Web UI Updating Plugin  Manual insta
 
    <article class="post getting-started">
     <header class="post-header">
+        <h2 class="post-title"><a href="/jira-steps-plugin/getting-started/examples/append_fix_version/">Append Fix Version</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>Append new fix version to existing issue.  JQL Search. Create new version. Edit an issue.  node { stage('JIRA') { def searchResults = jiraJqlSearch jql: &quot;project = TEST AND issuekey = 'TEST-1'&quot; def issues = searchResults.data.issues for (i = 0; i &lt;issues.size(); i++) { def result = jiraGetIssue idOrKey: issues[i].key def newVersion = jiraNewVersion version: [name: &quot;new-fix-version-1.1&quot;, project: &quot;TEST&quot;] def fixVersions = result.data.fields.fixVersions &lt;&lt; newVersion.data def testIssue = [fields: [fixVersions: fixVersions]] response = jiraEditIssue idOrKey: issues[i]. <a class="read-more" href="/jira-steps-plugin/getting-started/examples/append_fix_version/">&raquo;</a></p>
+    </section>
+    <footer class=" footline" >
+         
+        
+            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
+        
+
+        
+          
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/setup/">Setup</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/get-started/">Get Started</a>
+            
+        
+
+    </footer>
+</article>
+
+   <article class="post getting-started">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/jira-steps-plugin/getting-started/config/common/">Common Config</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>Optional Params for all Steps.  site - Optional param which will override JIRA_SITE global variable. failOnError - is optional and by default it is true.  When set to true, then the step will abort the job as a failure when there is an error sending message. To make it false, it should always be provided as global environment variable JIRA_FAIL_ON_ERROR.
+ Global Environment Variables.  JIRA_SITE - Global variable to set default site for all JIRA steps. <a class="read-more" href="/jira-steps-plugin/getting-started/config/common/">&raquo;</a></p>
+    </section>
+    <footer class=" footline" >
+         
+        
+            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
+        
+
+        
+          
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/setup/">Setup</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/get-started/">Get Started</a>
+            
+        
+
+    </footer>
+</article>
+
+   <article class="post getting-started">
+    <header class="post-header">
         <h2 class="post-title"><a href="/jira-steps-plugin/getting-started/config/script/">Jenkins Script</a></h2>
     </header>
     <section class="post-excerpt">
@@ -621,7 +620,7 @@ import net.sf.json.JSONArray import net.sf.json.JSONObject import org.thoughtsli
     <footer class=" footline" >
          
         
-            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 21/10/2017
+            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
         
 
         
@@ -647,7 +646,7 @@ import net.sf.json.JSONArray import net.sf.json.JSONObject import org.thoughtsli
     <footer class=" footline" >
          
         
-            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 21/10/2017
+            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
         
 
         
