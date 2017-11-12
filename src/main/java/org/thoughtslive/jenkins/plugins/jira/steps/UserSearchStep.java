@@ -2,8 +2,10 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
 
+import hudson.Extension;
+import hudson.Util;
 import java.io.IOException;
-
+import lombok.Getter;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -12,15 +14,10 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
-import hudson.Extension;
-import hudson.Util;
-import lombok.Getter;
-
 /**
  * Step to search JIRA Users.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 public class UserSearchStep extends BasicJiraStep {
 
@@ -28,19 +25,22 @@ public class UserSearchStep extends BasicJiraStep {
 
   @Getter
   private final String queryStr;
+  @Getter
+  @DataBoundSetter
+  private int startAt = 0;
+  @Getter
+  @DataBoundSetter
+  private int maxResults = 1000;
 
   @DataBoundConstructor
   public UserSearchStep(final String queryStr) {
     this.queryStr = queryStr;
   }
 
-  @Getter
-  @DataBoundSetter
-  private int startAt = 0;
-
-  @Getter
-  @DataBoundSetter
-  private int maxResults = 1000;
+  @Override
+  public StepExecution start(StepContext context) throws Exception {
+    return new Execution(this, context);
+  }
 
   @Extension
   public static class DescriptorImpl extends JiraStepDescriptorImpl {
@@ -79,9 +79,12 @@ public class UserSearchStep extends BasicJiraStep {
       ResponseData<Object> response = verifyInput();
 
       if (response == null) {
-        logger.println("JIRA: Site - " + siteName + " - Searching JIRA Active Users: " + step.getQueryStr() + " startAt: "
-            + step.getStartAt() + " maxResults: " + step.getMaxResults());
-        response = jiraService.userSearch(step.getQueryStr(), step.getStartAt(), step.getMaxResults());
+        logger.println(
+            "JIRA: Site - " + siteName + " - Searching JIRA Active Users: " + step.getQueryStr()
+                + " startAt: "
+                + step.getStartAt() + " maxResults: " + step.getMaxResults());
+        response = jiraService
+            .userSearch(step.getQueryStr(), step.getStartAt(), step.getMaxResults());
       }
 
       return logResponse(response);
@@ -109,10 +112,5 @@ public class UserSearchStep extends BasicJiraStep {
       }
       return response;
     }
-  }
-
-  @Override
-  public StepExecution start(StepContext context) throws Exception {
-    return new Execution(this, context);
   }
 }

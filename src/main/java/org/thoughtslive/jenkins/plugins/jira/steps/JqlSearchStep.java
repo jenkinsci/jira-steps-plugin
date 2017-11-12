@@ -2,8 +2,10 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
 
+import hudson.Extension;
+import hudson.Util;
 import java.io.IOException;
-
+import lombok.Getter;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -12,15 +14,10 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
-import hudson.Extension;
-import hudson.Util;
-import lombok.Getter;
-
 /**
  * Step to search JIRAs by JQL.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 public class JqlSearchStep extends BasicJiraStep {
 
@@ -28,19 +25,22 @@ public class JqlSearchStep extends BasicJiraStep {
 
   @Getter
   private final String jql;
+  @Getter
+  @DataBoundSetter
+  private int startAt = 0;
+  @Getter
+  @DataBoundSetter
+  private int maxResults = 1000;
 
   @DataBoundConstructor
   public JqlSearchStep(final String jql) {
     this.jql = jql;
   }
 
-  @Getter
-  @DataBoundSetter
-  private int startAt = 0;
-
-  @Getter
-  @DataBoundSetter
-  private int maxResults = 1000;
+  @Override
+  public StepExecution start(StepContext context) throws Exception {
+    return new Execution(this, context);
+  }
 
   @Extension
   public static class DescriptorImpl extends JiraStepDescriptorImpl {
@@ -109,10 +109,5 @@ public class JqlSearchStep extends BasicJiraStep {
       }
       return response;
     }
-  }
-
-  @Override
-  public StepExecution start(StepContext context) throws Exception {
-    return new Execution(this, context);
   }
 }

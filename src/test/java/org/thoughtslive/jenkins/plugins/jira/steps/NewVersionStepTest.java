@@ -9,9 +9,11 @@ import static org.mockito.Mockito.when;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import hudson.EnvVars;
+import hudson.model.Run;
+import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
-
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,15 +28,10 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
-import hudson.EnvVars;
-import hudson.model.Run;
-import hudson.model.TaskListener;
-
 /**
  * Unit test cases for NewVersionStep class.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({NewVersionStep.class, Site.class})
@@ -83,9 +80,12 @@ public class NewVersionStepTest {
 
   @Test
   public void testSuccessfulNewVersion() throws Exception {
-    final Object version = Maps.newHashMap(ImmutableMap.builder().put("name", "testVersion").put("id", "10000").put("project", "TEST").put("description", "hello").build());
+    final Object version = Maps.newHashMap(
+        ImmutableMap.builder().put("name", "testVersion").put("id", "10000").put("project", "TEST")
+            .put("description", "hello").build());
     final NewVersionStep step = new NewVersionStep(version);
-    stepExecution = new NewVersionStep.Execution(step, contextMock);;
+    stepExecution = new NewVersionStep.Execution(step, contextMock);
+    ;
 
     // Execute Test.
     stepExecution.run();

@@ -1,7 +1,8 @@
 package org.thoughtslive.jenkins.plugins.jira.steps;
 
+import hudson.Extension;
 import java.io.IOException;
-
+import lombok.Getter;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -10,14 +11,10 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
-import hudson.Extension;
-import lombok.Getter;
-
 /**
  * Step to create a new JIRA Version.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 public class NewVersionStep extends BasicJiraStep {
 
@@ -29,6 +26,11 @@ public class NewVersionStep extends BasicJiraStep {
   @DataBoundConstructor
   public NewVersionStep(final Object version) {
     this.version = version;
+  }
+
+  @Override
+  public StepExecution start(StepContext context) throws Exception {
+    return new Execution(this, context);
   }
 
   @Extension
@@ -89,10 +91,5 @@ public class NewVersionStep extends BasicJiraStep {
 
       return response;
     }
-  }
-
-  @Override
-  public StepExecution start(StepContext context) throws Exception {
-    return new Execution(this, context);
   }
 }

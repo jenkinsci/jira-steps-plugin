@@ -1,11 +1,15 @@
 package org.thoughtslive.jenkins.plugins.jira;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import hudson.Extension;
+import hudson.model.AbstractDescribableImpl;
+import hudson.model.Descriptor;
+import hudson.util.CopyOnWriteList;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import javax.annotation.Nonnull;
-
+import net.sf.json.JSONObject;
 import org.apache.commons.beanutils.Converter;
 import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.NoExternalUse;
@@ -13,22 +17,16 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.Stapler;
 import org.kohsuke.stapler.StaplerRequest;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import hudson.Extension;
-import hudson.model.AbstractDescribableImpl;
-import hudson.model.Descriptor;
-import hudson.util.CopyOnWriteList;
-import net.sf.json.JSONObject;
-
 /**
  * Represents JIRA Global Configuration.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 @SuppressFBWarnings
 public class Config extends AbstractDescribableImpl<Config> {
 
+  @Extension
+  public static final ConfigDescriptorImpl DESCRIPTOR = new ConfigDescriptorImpl();
   public final String siteName;
 
   @DataBoundConstructor
@@ -62,11 +60,9 @@ public class Config extends AbstractDescribableImpl<Config> {
     return DESCRIPTOR;
   }
 
-  @Extension
-  public static final ConfigDescriptorImpl DESCRIPTOR = new ConfigDescriptorImpl();
-
   public static final class ConfigDescriptorImpl extends Descriptor<Config>
       implements Serializable {
+
     private static final long serialVersionUID = 6174559183832237318L;
     private final CopyOnWriteList<Site> sites = new CopyOnWriteList<Site>();
 
@@ -80,12 +76,12 @@ public class Config extends AbstractDescribableImpl<Config> {
       return "JIRA Steps: Config";
     }
 
-    public void setSites(Site site) {
-      sites.add(site);
-    }
-
     public Site[] getSites() {
       return sites.toArray(new Site[0]);
+    }
+
+    public void setSites(Site site) {
+      sites.add(site);
     }
 
     @Override
@@ -109,6 +105,7 @@ public class Config extends AbstractDescribableImpl<Config> {
 
     @Restricted(NoExternalUse.class)
     public static class EmptyFriendlyURLConverter implements Converter {
+
       @Override
       public Object convert(@SuppressWarnings("rawtypes") Class aClass, Object o) {
         if (o == null || "".equals(o) || "null".equals(o)) {

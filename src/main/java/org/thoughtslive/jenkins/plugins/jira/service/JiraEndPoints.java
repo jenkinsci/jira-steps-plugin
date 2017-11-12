@@ -1,7 +1,6 @@
 package org.thoughtslive.jenkins.plugins.jira.service;
 
 import java.util.Map;
-
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -13,9 +12,8 @@ import retrofit2.http.Query;
 
 /**
  * JIRA Restful Endpoints.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 public interface JiraEndPoints {
 
@@ -82,22 +80,28 @@ public interface JiraEndPoints {
 
   // Remote Issue Links
   @GET("rest/api/2/issue/{issueIdOrKey}/remotelink")
-  Call<Object> getIssueRemoteLinks(@Path("issueIdOrKey") String issueIdOrKey, @Query("globalId") String globalId);
+  Call<Object> getIssueRemoteLinks(@Path("issueIdOrKey") String issueIdOrKey,
+      @Query("globalId") String globalId);
 
   @GET("rest/api/2/issue/{issueIdOrKey}/remotelink/{linkId}")
-  Call<Object> getIssueRemoteLink(@Path("issueIdOrKey") String issueIdOrKey, @Path("linkId") String linkId);
+  Call<Object> getIssueRemoteLink(@Path("issueIdOrKey") String issueIdOrKey,
+      @Path("linkId") String linkId);
 
   @POST("rest/api/2/issue/{issueIdOrKey}/remotelink")
-  Call<Object> createIssueRemoteLink(@Path("issueIdOrKey") String issueIdOrKey, @Body Object issueLink);
+  Call<Object> createIssueRemoteLink(@Path("issueIdOrKey") String issueIdOrKey,
+      @Body Object issueLink);
 
   @POST("rest/api/2/issue/{issueIdOrKey}/remotelink/{linkId}")
-  Call<Object> updateIssueRemoteLink(@Path("issueIdOrKey") String issueIdOrKey, @Path("linkId") String linkId, @Body Object issueLink);
+  Call<Object> updateIssueRemoteLink(@Path("issueIdOrKey") String issueIdOrKey,
+      @Path("linkId") String linkId, @Body Object issueLink);
 
   @DELETE("rest/api/2/issue/{issueIdOrKey}/remotelink")
-  Call<Object> deleteIssueRemoteLinks(@Path("issueIdOrKey") String issueIdOrKey, @Query("globalId") String globalId);
+  Call<Object> deleteIssueRemoteLinks(@Path("issueIdOrKey") String issueIdOrKey,
+      @Query("globalId") String globalId);
 
   @DELETE("rest/api/2/issue/{issueIdOrKey}/remotelink/{linkId}")
-  Call<Object> deleteIssueRemoteLink(@Path("issueIdOrKey") String issueIdOrKey, @Path("linkId") String linkId);
+  Call<Object> deleteIssueRemoteLink(@Path("issueIdOrKey") String issueIdOrKey,
+      @Path("linkId") String linkId);
 
   // Issue Links
   @POST("rest/api/2/issueLink")
@@ -142,19 +146,22 @@ public interface JiraEndPoints {
 
   @PUT("rest/api/2/version/{id}")
   Call<Void> updateVersion(@Path("id") String id, @Body Object version);
-  
+
   // Fields
   @GET("rest/api/2/field")
   Call<Object> getFields();
 
   @POST("rest/api/2/field")
   Call<Object> createField(@Body Object field);
-  
+
   // Users
   @GET("rest/api/2/user/search")
-  Call<Object> userSearch(@Query("username") String userName, @Query("startAt") int startAt, @Query("maxResults") int maxResults);
+  Call<Object> userSearch(@Query("username") String userName, @Query("startAt") int startAt,
+      @Query("maxResults") int maxResults);
 
   @GET("rest/api/2/user/assignable/search")
-  Call<Object> assignableUserSearch(@Query("username") String userName, @Query("project") String project, @Query("issueKey") String issueKey, @Query("startAt") int startAt, @Query("maxResults") int maxResults);
+  Call<Object> assignableUserSearch(@Query("username") String userName,
+      @Query("project") String project, @Query("issueKey") String issueKey,
+      @Query("startAt") int startAt, @Query("maxResults") int maxResults);
 
 }

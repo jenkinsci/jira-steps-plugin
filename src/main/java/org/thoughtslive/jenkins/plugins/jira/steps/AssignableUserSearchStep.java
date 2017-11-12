@@ -2,8 +2,10 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
 
+import hudson.Extension;
+import hudson.Util;
 import java.io.IOException;
-
+import lombok.Getter;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -12,15 +14,10 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
 
-import hudson.Extension;
-import hudson.Util;
-import lombok.Getter;
-
 /**
  * Step to search JIRA Users those can be assigned  for particular project, issue.
- * 
- * @author Naresh Rayapati
  *
+ * @author Naresh Rayapati
  */
 public class AssignableUserSearchStep extends BasicJiraStep {
 
@@ -31,6 +28,15 @@ public class AssignableUserSearchStep extends BasicJiraStep {
 
   @Getter
   private String issueKey;
+  @Getter
+  @DataBoundSetter
+  private String queryStr;
+  @Getter
+  @DataBoundSetter
+  private int startAt = 0;
+  @Getter
+  @DataBoundSetter
+  private int maxResults = 1000;
 
   @DataBoundConstructor
   public AssignableUserSearchStep(final String project, final String issueKey) {
@@ -38,17 +44,10 @@ public class AssignableUserSearchStep extends BasicJiraStep {
     this.issueKey = issueKey;
   }
 
-  @Getter
-  @DataBoundSetter
-  private String queryStr;
-
-  @Getter
-  @DataBoundSetter
-  private int startAt = 0;
-
-  @Getter
-  @DataBoundSetter
-  private int maxResults = 1000;
+  @Override
+  public StepExecution start(StepContext context) throws Exception {
+    return new Execution(this, context);
+  }
 
   @Extension
   public static class DescriptorImpl extends JiraStepDescriptorImpl {
@@ -60,7 +59,8 @@ public class AssignableUserSearchStep extends BasicJiraStep {
 
     @Override
     public String getDisplayName() {
-      return getPrefix() + "Searches assignable JIRA Users by username, name or email address for the given project/issueKey";
+      return getPrefix()
+          + "Searches assignable JIRA Users by username, name or email address for the given project/issueKey";
     }
 
     @Override
@@ -87,9 +87,14 @@ public class AssignableUserSearchStep extends BasicJiraStep {
       ResponseData<Object> response = verifyInput();
 
       if (response == null) {
-        logger.println("JIRA: Site - " + siteName + " - Searching assignable JIRA Users: "+ step.getQueryStr() + " by project/issueKey: " + step.getProject() + " / " + step.getIssueKey()  + " startAt: "
-            + step.getStartAt() + " maxResults: " + step.getMaxResults());
-        response = jiraService.assignableUserSearch(step.getQueryStr(), step.getProject(), step.getIssueKey(), step.getStartAt(), step.getMaxResults());
+        logger.println(
+            "JIRA: Site - " + siteName + " - Searching assignable JIRA Users: " + step.getQueryStr()
+                + " by project/issueKey: " + step.getProject() + " / " + step.getIssueKey()
+                + " startAt: "
+                + step.getStartAt() + " maxResults: " + step.getMaxResults());
+        response = jiraService
+            .assignableUserSearch(step.getQueryStr(), step.getProject(), step.getIssueKey(),
+                step.getStartAt(), step.getMaxResults());
       }
 
       return logResponse(response);
@@ -118,10 +123,5 @@ public class AssignableUserSearchStep extends BasicJiraStep {
       }
       return response;
     }
-  }
-
-  @Override
-  public StepExecution start(StepContext context) throws Exception {
-    return new Execution(this, context);
   }
 }
