@@ -380,14 +380,19 @@
         <span>Watcher</span><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
       </a>
         <ul>
-      <li data-nav-id="/jira-steps-plugin/steps/watcher/jira_get_issue_watches/" class="dd-item">
-        <a href="/jira-steps-plugin/steps/watcher/jira_get_issue_watches/">
-          <span>GetIssueWatches</span><i class="fa fa-circle-thin read-icon"></i>
+      <li data-nav-id="/jira-steps-plugin/steps/versions/jira_new_version/" class="dd-item">
+        <a href="/jira-steps-plugin/steps/versions/jira_new_version/">
+          <span>NewVersion</span><i class="fa fa-circle-thin read-icon"></i>
         </a>
     </li>
-      <li data-nav-id="/jira-steps-plugin/steps/watcher/jira_add_watcher/" class="dd-item">
-        <a href="/jira-steps-plugin/steps/watcher/jira_add_watcher/">
-          <span>AddWatcher</span><i class="fa fa-circle-thin read-icon"></i>
+      <li data-nav-id="/jira-steps-plugin/steps/versions/jira_get_version/" class="dd-item">
+        <a href="/jira-steps-plugin/steps/versions/jira_get_version/">
+          <span>GetVersion</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/steps/versions/jira_edit_version/" class="dd-item">
+        <a href="/jira-steps-plugin/steps/versions/jira_edit_version/">
+          <span>EditVersion</span><i class="fa fa-circle-thin read-icon"></i>
         </a>
     </li>
         </ul>
@@ -555,11 +560,14 @@ Copyright © 2017 Naresh Rayapati.
 <h2 id="updating-documentation">Updating Documentation</h2>
 
 <ul>
-<li>This plugin currently using <a href="https://pages.github.com/">github pages site</a> for hosting the project documentation.</li>
-<li>Documentation can be updated and a pull request can be issued by changing site pages in <strong><code>jira-steps-plugin/docs/pages/</code></strong> folder.</li>
-<li>Once the changes are committed on your branch, merge it to master branch of your fork and go to <strong><code>settings &gt; github pages</code></strong> and select source as master branch/docs folder.</li>
-<li>Site will be published at <a href="https://YourUserName.github.io/jira-steps-plugin/">https://YourUserName.github.io/jira-steps-plugin/</a></li>
-<li>More information about Jekyll <a href="https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/">Setting up GitHub Pages site locally with Jekyll</a>.</li>
+<li>This plugin currently using <a href="https://pages.github.com/">github pages site</a> and <a href="http://gohugo.io/">Hugo</a> for hosting the project documentation.</li>
+<li>Documentation can be updated in <strong><code>jira-steps-plugin/hugo/</code></strong> folder.</li>
+<li>Install hugo <code>brew install hugo</code>.</li>
+<li>Navigate to hugo foloder <code>cd jira-steps-plugin/hugo</code>.</li>
+<li>Pull the docdock submodule <code>git submodule update --init --force</code>.</li>
+<li>Start hugo <code>hugo server -D</code>.</li>
+<li>Local site should be available at <a href="http://localhost:1313/jira-steps-plugin/">http://localhost:1313/jira-steps-plugin/</a>.</li>
+<li>Change the content as needed and the changes should refresh automatically (if not refresh web page).</li>
 </ul>
 
 
