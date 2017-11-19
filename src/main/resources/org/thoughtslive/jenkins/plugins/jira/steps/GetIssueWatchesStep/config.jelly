@@ -20,6 +20,6 @@
   	</f:entry>
   </f:advanced>
   <f:block>
-     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/watcher/jira_get_issue_watches/" target="_blank">jiraGetIssueWatches</a> for more information.</p>
+     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/steps/watcher/jira_get_issue_watches/" target="_blank">jiraGetIssueWatches</a> for more information.</p>
   </f:block>    
 </j:jelly>

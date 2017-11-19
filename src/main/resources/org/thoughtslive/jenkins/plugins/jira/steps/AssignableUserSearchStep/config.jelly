@@ -32,6 +32,6 @@
   	</f:entry>
   </f:advanced>
   <f:block>
-     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/user/jira_assignable_user_search/" target="_blank">jiraAssignableUserSearch</a> for more information.</p>
+     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/steps/user/jira_assignable_user_search/" target="_blank">jiraAssignableUserSearch</a> for more information.</p>
   </f:block>
 </j:jelly>

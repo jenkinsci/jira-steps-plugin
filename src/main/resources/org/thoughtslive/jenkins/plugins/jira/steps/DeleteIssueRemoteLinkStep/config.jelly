@@ -23,6 +23,6 @@
   	</f:entry>
   </f:advanced>
   <f:block>
-     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/issuelink/jira_delete_remote_issuelink/" target="_blank">jiraDeleteRemoteIssueLink</a> for more information.</p>
+     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/" target="_blank">jiraDeleteRemoteIssueLink</a> for more information.</p>
   </f:block>  
 </j:jelly>
