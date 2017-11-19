@@ -5,12 +5,13 @@ date = "2017-11-12"
 lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
-* #### **1.3.0** (Unreleased)
+* #### **1.4.0** (Unreleased)
+
+* #### **1.3.0**
   * [JENKINS-47948](https://issues.jenkins-ci.org/browse/JENKINS-47948) Delete deprecated api classes with Object.
       * <span style="color:red">Note: EditVersion and EditComponent are updated to support all the JIRA Versions, which would break existing code. Please refer the appropriate steps guides for the new Syntax.</span>.  
   * [JENKINS-47949](https://issues.jenkins-ci.org/browse/JENKINS-47949) Apply Google Style Guide.
   * [JENKINS-47954](https://issues.jenkins-ci.org/browse/JENKINS-47954) Migrate documentation to hugo.
-  
 * #### **1.2.5**
   * [JENKINS-47914](https://issues.jenkins-ci.org/browse/JENKINS-47914) Use Jenkins user id instead of user name as buildUser.
 * #### **1.2.4**
