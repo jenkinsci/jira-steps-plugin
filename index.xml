@@ -64,10 +64,10 @@ Input  site - Optional, default: JIRA_SITE environment variable. failOnError - O
     
     <item>
       <title>GetIssueLink</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_issuelink/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_issuelink/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_issuelink/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_issuelink/</guid>
       <description>jiraGetIssueLink This step queries issue links from the provided JIRA site.
 Input  id - issue link&amp;rsquo;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issuelink step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
@@ -85,10 +85,10 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
     
     <item>
       <title>GetProject</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project/</guid>
       <description>jiraGetProject This queries project info from the provided JIRA site.
 Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_project step can be reused later in your script by doing response.</description>
@@ -107,10 +107,10 @@ Input  jql - jql as a string. site - Optional, default: JIRA_SITE environment va
     
     <item>
       <title>NewVersion</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_new_version/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/version/jira_new_version/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_new_version/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/version/jira_new_version/</guid>
       <description>jiraNewVersion Creates new version based on given input, which should have some minimal information on that object.
 Input  version - version to be created. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append the build url and build user name to the description.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.</description>
     </item>
@@ -188,10 +188,10 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
     
     <item>
       <title>GetIssueLinkTypes</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_issue_link_types/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_issue_link_types/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_issue_link_types/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_issue_link_types/</guid>
       <description>jiraGetIssueLinkTypes This step queries all issue links types from the provided JIRA site.
 Input  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.
  Output  Each step generates generic output, please refer to this link for more information.</description>
@@ -199,10 +199,10 @@ Input  site - Optional, default: JIRA_SITE environment variable. failOnError - O
     
     <item>
       <title>GetProjects</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_projects/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_projects/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_projects/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_projects/</guid>
       <description>jiraGetProjects This step queries all projects from the provided JIRA site.
 Input  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_projects step can be reused later in your script by doing response.</description>
@@ -210,10 +210,10 @@ Input  site - Optional, default: JIRA_SITE environment variable. failOnError - O
     
     <item>
       <title>GetVersion</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_get_version/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/version/jira_get_version/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_get_version/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/version/jira_get_version/</guid>
       <description>jiraGetVersion This step queries the project version from the provided JIRA site.
 Input  id - version id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_version step can be reused later in your script by doing response.</description>
@@ -262,10 +262,10 @@ Sometimes it may not possible to directly edit component (rename it) without un 
     
     <item>
       <title>EditVersion</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_edit_version/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/version/jira_edit_version/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_edit_version/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/version/jira_edit_version/</guid>
       <description>jiraEditVersion Edit version based on given input, which should have some minimal information on that object.
 Note: Sometimes it may not possible to directly edit version (rename it) without un tagging all of its current JIRAs.
 TODO: probably we should try move version
@@ -274,20 +274,20 @@ Input  id - version id. (Note: Applicable only from version 1.3.0) version - ver
     
     <item>
       <title>GetProjectComponents</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project_components/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_components/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project_components/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_components/</guid>
       <description>jiraGetProjectComponents This step queries all components of a particular project.
 Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_project_components step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
       <title>GetRemoteIssueLink</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_remote_issuelink/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelink/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_remote_issuelink/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelink/</guid>
       <description>jiraGetRemoteIssueLink This step queries a particular remote link of an issue.
 Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_remote_issue_link step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
@@ -366,40 +366,40 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
     
     <item>
       <title>GetProjectStatuses</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project_statuses/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_statuses/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project_statuses/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_statuses/</guid>
       <description>jiraGetProjectStatuses This step queries all the statuses of a particular project.
 Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_project_statuses step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
       <title>GetRemoteIssueLinks</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_remote_issuelinks/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelinks/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_remote_issuelinks/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelinks/</guid>
       <description>jiraGetRemoteIssueLinks This step queries all the remote links of a particular issue.
 Input  idOrKey - issue id or key. globalId - global application id (Optional). site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_remote_issuelinks step can be reused later in your script by doing response.</description>
     </item>
     
     <item>
       <title>GetProjectVersions</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project_versions/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_versions/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project_versions/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_versions/</guid>
       <description>jiraGetProjectVersions This step queries all the versions of a particular project.
 Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_project_versions step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
       <title>NewRemoteIssueLink</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_new_remote_issuelink/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_new_remote_issuelink/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_new_remote_issuelink/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_new_remote_issuelink/</guid>
       <description>jiraNewRemoteIssueLink This step creates a new remote link to a particular issue.
 Input  idOrKey - issue id or key. remoteLink - remote link. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.</description>
     </item>
@@ -416,10 +416,10 @@ Input  idOrKey - issue id or key. issue - issue to be updated. site - Optional, 
     
     <item>
       <title>LinkIssues</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_link_issues/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_link_issues/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_link_issues/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_link_issues/</guid>
       <description>jiraLinkIssues This step links two issues in the provided JIRA site.
 Hint: Try getIssueLinkTypes to know the type.
 Input  type - type of the link. (Ex: Relates, Blocks, Cloners, Duplicate) inwardKey - inward issue key. outwardKey - outward issue key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.</description>
@@ -427,10 +427,10 @@ Input  type - type of the link. (Ex: Relates, Blocks, Cloners, Duplicate) inward
     
     <item>
       <title>DeleteIssueLink</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_delete_issuelink/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_issuelink/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_delete_issuelink/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_issuelink/</guid>
       <description>jiraDeleteIssueLink This step deletes an issue link.
 Input  id - issue link&amp;rsquo;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.
  Output  Each step generates generic output, please refer to this link for more information.</description>
@@ -449,10 +449,10 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
     
     <item>
       <title>DeleteRemoteIssueLink</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_delete_remote_issuelink/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_delete_remote_issuelink/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/</guid>
       <description>jiraDeleteRemoteIssueLink This step deletes a particular remote link of an issue.
 Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.</description>
     </item>
@@ -469,10 +469,10 @@ Input  idOrKey - Issue id or key. notify - more info about whom should we notify
     
     <item>
       <title>DeleteRemoteIssueLinks</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_delete_remote_issuelinks/</link>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelinks/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_delete_remote_issuelinks/</guid>
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelinks/</guid>
       <description>jiraDeleteRemoteIssueLinks This step deletes all remote links of an issue.
 Input  idOrKey - issue id or key. globalId - global application id (Optional). site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.</description>
     </item>
@@ -505,7 +505,7 @@ Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting
       <guid>https://jenkinsci.github.io/jira-steps-plugin/contributing/</guid>
       <description>Help us to make this project better by contributing. Whether it&amp;rsquo;s new features, bug fixes, or simply improving documentation, your contributions are welcome. Please start with logging a JIRA and submit a pull request.
 Before you contribute, please review these guidelines to help ensure a smooth process for everyone. Thanks :).
-Copyright JIRA Steps plugins is licensed under Apache License, []Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+Copyright JIRA Steps plugins is licensed under Apache License, Version 2.0
 Issue reporting  Please browse our existing issues before logging new issues.</description>
     </item>
     

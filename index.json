@@ -42,7 +42,7 @@
 	"content": " jiraGetFields This step queries all fields from the provided JIRA site.\nInput  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_fields step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.  response.data returns all the fields including custom fields added in customizing your JIRA as an array.\n Examples  With default site from global variables.\nnode { stage('JIRA') { def fields = jiraGetFields idOrKey: 'TEST-1' echo fields.data.toString() } }  withEnv to override the default site (or if there is not global site)\nnode { stage('JIRA') { withEnv(['JIRA_SITE=LOCAL']) { def fields = jiraGetFields idOrKey: 'TEST-1' echo fields.data.toString() } } }  Without environment variables.\ndef fields = jiraGetFields idOrKey: 'TEST-1', site: 'LOCAL' echo fields.data.toString()   "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_issuelink/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_issuelink/",
 	"title": "GetIssueLink",
 	"tags": ["steps", "issue", "issuelink"],
 	"description": "More about jiraGetIssueLink step.",
@@ -56,7 +56,7 @@
 	"content": " jiraGetIssueWatches This step queries all the issue watchers on a particular issue.\nInput  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.\n Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_watches step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.  response.data returns all the fields returned by JIRA API.\n Examples  With default site from global variables.\nnode { stage('JIRA') { def watches = jiraGetIssueWatches idOrKey: 'TEST-1' echo watches.data.toString() } }  withEnv to override the default site (or if there is not global site)\nnode { stage('JIRA') { withEnv(['JIRA_SITE=LOCAL']) { def watches = jiraGetIssueWatches idOrKey: 'TEST-1' echo watches.data.toString() } } }  Without environment variables.\ndef watches = jiraGetIssueWatches idOrKey: 'TEST-1', site: 'LOCAL' echo watches.data.toString()   "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project/",
 	"title": "GetProject",
 	"tags": ["steps", "project"],
 	"description": "More about jiraGetProject step.",
@@ -70,7 +70,7 @@
 	"content": " jiraJqlSearch This step searches issues from the provided JIRA site by Jql.\nInput  jql - jql as a string. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.\n Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_jql_search step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.  response.data returns all the fields returned by JIRA API.\n Examples  With default site from global variables.\nnode { stage('JIRA') { def issues = jiraJqlSearch jql: 'PROJECT = TEST' echo issues.data.toString() } }  withEnv to override the default site (or if there is not global site)\nnode { stage('JIRA') { withEnv(['JIRA_SITE=LOCAL']) { def issues = jiraJqlSearch jql: 'PROJECT = TEST' echo issues.data.toString() } } }  Without environment variables.\ndef issues = jiraJqlSearch jql: 'PROJECT = TEST', site: 'LOCAL', failOnError: true echo issues.data.toString()   "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_new_version/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/version/jira_new_version/",
 	"title": "NewVersion",
 	"tags": ["steps", "version"],
 	"description": "More about jiraNewVersion step.",
@@ -147,21 +147,21 @@
 	"content": " jiraGetComments This step queries all comments on a particular issue.\nInput  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the api package.\n Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_comments step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.  response.data returns all the fields including custom fields added in customizing your JIRA.\n Examples  With default site from global variables.\nnode { stage('JIRA') { def comments = jiraGetComments idOrKey: 'TEST-1' echo comments.data.toString() } }  withEnv to override the default site (or if there is not global site)\nnode { stage('JIRA') { withEnv(['JIRA_SITE=LOCAL']) { def comments = jiraGetComments idOrKey: 'TEST-1' echo comments.data.toString() } } }  Without environment variables.\ndef comments = jiraGetComments site: 'LOCAL', idOrKey: 'TEST-1' echo comments.data.toString()   "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_issue_link_types/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_issue_link_types/",
 	"title": "GetIssueLinkTypes",
 	"tags": ["steps", "issue", "issuelink"],
 	"description": "More about jiraGetIssueLinkTypes step.",
 	"content": " jiraGetIssueLinkTypes This step queries all issue links types from the provided JIRA site.\nInput  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.\n Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_link_types step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.  response.data returns all the fields returned by JIRA API.\n Examples  With default site from global variables.\nnode { stage('JIRA') { def issueLinkTypes = jiraGetIssueLinkTypes idOrKey: 'TEST-1' echo issueLinkTypes.data.toString() } }  withEnv to override the default site (or if there is not global site)\nnode { stage('JIRA') { withEnv(['JIRA_SITE=LOCAL']) { def issueLinkTypes = jiraGetIssueLinkTypes idOrKey: 'TEST-1', site: 'LOCAL' echo issueLinkTypes.data.toString() } } }  Without environment variables.\ndef issueLinkTypes = jiraGetIssueLinkTypes site: 'LOCAL', failOnError: false echo issueLinkTypes.data.toString()   "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_projects/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_projects/",
 	"title": "GetProjects",
 	"tags": ["steps", "project"],
 	"description": "More about jiraGetProjects step.",
 	"content": " jiraGetProjects This step queries all projects from the provided JIRA site.\nInput  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.\n Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_projects step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.  response.data returns all the fields returned by JIRA API.\n Examples  With default site from global variables.\nnode { stage('JIRA') { def projects = jiraGetProjects() echo projects.data.toString() } }  withEnv to override the default site (or if there is not global site)\nnode { stage('JIRA') { withEnv(['JIRA_SITE=LOCAL']) { def projects = jiraGetProjects() echo projects.data.toString() } } }  Without environment variables.\ndef projects = jiraGetProjects(), site: 'LOCAL' echo projects.data.toString()   "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_get_version/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/version/jira_get_version/",
 	"title": "GetVersion",
 	"tags": ["steps", "version"],
 	"description": "More about jiraGetVersion step.",
@@ -186,7 +186,7 @@
 	"title": "Pipeline Steps",
 	"tags": [],
 	"description": "",
-	"content": " List of Pipeline Steps  Comment  GetComment GetComments AddComment EditComment  Component  GetComponent NewComponent EditComponent GetComponentIssueCount  Issue  GetFields NewIssue NewIssues AssignIssue GetIssue EditIssue GetIssueTransitions NotifyIssue TransitionIssue  Issue Links  GetIssueLink GetIssueLinkTypes GetRemoteIssueLink GetRemoteIssueLinks NewRemoteIssueLink LinkIssues DeleteIssueLink DeleteRemoteIssueLink DeleteRemoteIssueLinks  Project  GetProject GetProjects GetProjectComponents GetProjectStatuses GetProjectVersions  Search  JqlSearch  User  UserSearch AssignableUserSearch  Version  NewVersion GetVersion EditVersion  Watcher  GetIssueWatches AddWatcher   "
+	"content": " List of Pipeline Steps  Comment  GetComment GetComments AddComment EditComment  Component  GetComponent NewComponent EditComponent GetComponentIssueCount  Issue  GetFields NewIssue NewIssues AssignIssue GetIssue EditIssue GetIssueTransitions NotifyIssue TransitionIssue  Issue Link  GetIssueLink GetIssueLinkTypes GetRemoteIssueLink GetRemoteIssueLinks NewRemoteIssueLink LinkIssues DeleteIssueLink DeleteRemoteIssueLink DeleteRemoteIssueLinks  Project  GetProject GetProjects GetProjectComponents GetProjectStatuses GetProjectVersions  Search  JqlSearch  User  UserSearch AssignableUserSearch  Version  NewVersion GetVersion EditVersion  Watcher  GetIssueWatches AddWatcher   "
 },
 {
 	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_add_comment/",
@@ -203,7 +203,7 @@
 	"content": " jiraEditComponent Edit component based on given input, which should have some minimal information on that object.\nSometimes it may not possible to directly edit component (rename it) without un tagging all of its current JIRAs.\n Input  id - component id. (Note: Applicable only from version 1.3.0) component - component to be edited. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append the build url and build user name to the description.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.\n Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_edit_component step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.  response.data returns all the fields returned by JIRA API.\n Examples  With default site from global variables.\nnode { stage('JIRA') { def testComponent = [ name: \u0026quot;test-component\u0026quot;, description: \u0026quot;desc\u0026quot;, project: \u0026quot;TEST\u0026quot; ] jiraEditComponent id: \u0026quot;1000\u0026quot;, component: testComponent } }  withEnv to override the default site (or if there is not global site)\nnode { stage('JIRA') { withEnv(['JIRA_SITE=LOCAL']) { def testComponent = [ name: \u0026quot;test-component\u0026quot;, description: \u0026quot;desc\u0026quot;, project: \u0026quot;TEST\u0026quot; ] jiraEditComponent id: \u0026quot;1000\u0026quot;, component: testComponent } } }  Without environment variables.\ndef testComponent = [ name: \u0026quot;test-component\u0026quot;, description: \u0026quot;desc\u0026quot;, project: \u0026quot;TEST\u0026quot; ] jiraEditComponent id: \u0026quot;1000\u0026quot;, site: \u0026quot;LOCAL\u0026quot;, component: testComponent   "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/versions/jira_edit_version/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/version/jira_edit_version/",
 	"title": "EditVersion",
 	"tags": ["steps", "version"],
 	"description": "More about jiraEditVersion step.",
@@ -217,14 +217,14 @@
 	"content": " Few Common Examples  Create New Fix Version   Append Fix Version   Releasing a Project?    "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project_components/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_components/",
 	"title": "GetProjectComponents",
 	"tags": ["steps", "project"],
 	"description": "More about jiraGetProjectComponents step.",
 	"content": " jiraGetProjectComponents This step queries all components of a particular project.\nInput  idOrKey - project id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_project_components step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.  response.data returns all the fields returned by JIRA API.\n Examples  With default site from global variables.\nnode { stage('JIRA') { def components = jiraGetProjectComponents idOrKey: 'TEST' echo components.data.toString() } }  withEnv to override the default site (or if there is not global site)\nnode { stage('JIRA') { withEnv(['JIRA_SITE=LOCAL']) { def components = jiraGetProjectComponents idOrKey: 'TEST' echo components.data.toString() } } }  Without environment variables.\ndef components = jiraGetProjectComponents idOrKey: 'TEST', site: 'LOCAL' echo components.data.toString()   "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_remote_issuelink/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelink/",
 	"title": "GetRemoteIssueLink",
 	"tags": ["steps", "issue", "issuelink"],
 	"description": "More about jiraGetRemoteIssueLink step.",
@@ -287,42 +287,42 @@
 	"content": " jiraGetIssue This step queries a particular issue from the provided JIRA site.\nInput  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.\n Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.  response.data returns all the fields returned by JIRA API.\n Examples  With default site from global variables.\nnode { stage('JIRA') { def issue = jiraGetIssue idOrKey: 'TEST-1' echo issue.data.toString() } }  withEnv to override the default site (or if there is not global site)\nnode { stage('JIRA') { withEnv(['JIRA_SITE=LOCAL']) { def issue = jiraGetIssue idOrKey: 'TEST-1' echo issue.data.toString() } } }  Without environment variables.\ndef issue = jiraGetIssue idOrKey: 'TEST-1', site: 'LOCAL' echo issue.data.toString()   "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project_statuses/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_statuses/",
 	"title": "GetProjectStatuses",
 	"tags": ["steps", "project"],
 	"description": "More about jiraGetProjectStatuses step.",
 	"content": " jiraGetProjectStatuses This step queries all the statuses of a particular project.\nInput  idOrKey - project id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_project_statuses step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.  response.data returns all the fields returned by JIRA API.\n Examples  With default site from global variables.\nnode { stage('JIRA') { def statuses = jiraGetProjectStatuses idOrKey: 'TEST' echo statuses.data.toString() } }  withEnv to override the default site (or if there is not global site)\nnode { stage('JIRA') { withEnv(['JIRA_SITE=LOCAL']) { def statuses = jiraGetProjectStatuses idOrKey: 'TEST' echo statuses.data.toString() } } }  Without environment variables.\ndef statuses = jiraGetProjectStatuses idOrKey: 'TEST', site: 'LOCAL' echo statuses.data.toString()   "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_get_remote_issuelinks/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelinks/",
 	"title": "GetRemoteIssueLinks",
 	"tags": ["steps", "issue", "issuelink"],
 	"description": "More about jiraGetRemoteIssueLinks step.",
 	"content": " jiraGetRemoteIssueLinks This step queries all the remote links of a particular issue.\nInput  idOrKey - issue id or key. globalId - global application id (Optional). site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_remote_issuelinks step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.  response.data returns all the fields returned by JIRA API.\n Examples  With default site from global variables.\nnode { stage('JIRA') { def issueLink = jiraGetRemoteIssueLinks idOrKey: 'TEST-27', globalId: '10000' echo issueLink.data.toString() } }  withEnv to override the default site (or if there is not global site)\nnode { stage('JIRA') { withEnv(['JIRA_SITE=LOCAL']) { def issueLink = jiraGetRemoteIssueLinks idOrKey: 'TEST-27', globalId: '10000' echo issueLink.data.toString() } } }  Without environment variables.\ndef issueLink = jiraGetRemoteIssueLinks idOrKey: 'TEST-27', globalId: '10000', site: 'LOCAL', failOnError: false echo issueLink.data.toString()   "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/",
-	"title": "Issue Links",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/",
+	"title": "Issue Link",
 	"tags": [],
 	"description": "",
 	"content": " IssueLink Steps  GetIssueLink   GetIssueLinkTypes   GetRemoteIssueLink   GetRemoteIssueLinks   NewRemoteIssueLink   LinkIssues   DeleteIssueLink   DeleteRemoteIssueLink   DeleteRemoteIssueLinks    "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/projects/jira_get_project_versions/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_versions/",
 	"title": "GetProjectVersions",
 	"tags": ["steps", "project"],
 	"description": "More about jiraGetProjectVersions step.",
 	"content": " jiraGetProjectVersions This step queries all the versions of a particular project.\nInput  idOrKey - project id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_project_versions step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.  response.data returns all the fields returned by JIRA API.\n Examples  With default site from global variables.\nnode { stage('JIRA') { def versions = jiraGetProjectVersions idOrKey: 'TEST' echo versions.data.toString() } }  withEnv to override the default site (or if there is not global site)\nnode { stage('JIRA') { withEnv(['JIRA_SITE=LOCAL']) { def versions = jiraGetProjectVersions idOrKey: 'TEST' echo versions.data.toString() } } }  Without environment variables.\ndef versions = jiraGetProjectVersions idOrKey: 'TEST', site: 'LOCAL' echo versions.data.toString()   "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_new_remote_issuelink/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_new_remote_issuelink/",
 	"title": "NewRemoteIssueLink",
 	"tags": ["steps", "issue", "issuelink"],
 	"description": "More about jiraNewRemoteIssueLink step.",
 	"content": " jiraNewRemoteIssueLink This step creates a new remote link to a particular issue.\nInput  idOrKey - issue id or key. remoteLink - remote link. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.\n Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_new_remote_issuelinks step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.  response.data returns all the fields returned by JIRA API.\n Examples  With default site from global variables.\nnode { stage('JIRA') { def remoteLink = [globalId: \u0026quot;system=http://www.mycompany.com/support\u0026amp;id=1\u0026quot;, application: [type: \u0026quot;com.acme.tracker\u0026quot;, name: \u0026quot;My Acme Tracker\u0026quot;], relationship: \u0026quot;causes\u0026quot;, object: [url: \u0026quot;http://www.mycompany.com/support?id=1\u0026quot;, title: \u0026quot;MYTEST-111\u0026quot;]] def issueLink = jiraNewRemoteIssueLink idOrKey: 'TEST-27', remoteLink: remoteLink echo issueLink.data.toString() } }  withEnv to override the default site (or if there is not global site)\nnode { stage('JIRA') { withEnv(['JIRA_SITE=LOCAL']) { def remoteLink = [globalId: \u0026quot;system=http://www.mycompany.com/support\u0026amp;id=1\u0026quot;, application: [type: \u0026quot;com.acme.tracker\u0026quot;, name: \u0026quot;My Acme Tracker\u0026quot;], relationship: \u0026quot;causes\u0026quot;, object: [url: \u0026quot;http://www.mycompany.com/support?id=1\u0026quot;, title: \u0026quot;MYTEST-111\u0026quot;]] def issueLink = jiraNewRemoteIssueLink idOrKey: 'TEST-27', remoteLink: remoteLink echo issueLink.data.toString() } } }  Without environment variables.\ndef remoteLink = [globalId: \u0026quot;system=http://www.mycompany.com/support\u0026amp;id=1\u0026quot;, application: [type: \u0026quot;com.acme.tracker\u0026quot;, name: \u0026quot;My Acme Tracker\u0026quot;], relationship: \u0026quot;causes\u0026quot;, object: [url: \u0026quot;http://www.mycompany.com/support?id=1\u0026quot;, title: \u0026quot;MYTEST-111\u0026quot;]] def issueLink = jiraNewRemoteIssueLink idOrKey: 'TEST-27', remoteLink: remoteLink, site: 'LOCAL', failOnError: false echo issueLink.data.toString()   "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/projects/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/project/",
 	"title": "Project",
 	"tags": [],
 	"description": "",
@@ -336,7 +336,7 @@
 	"content": " jiraEditIssue Updates an existing issue based on given input, which should have some minimal information on that object.\nInput  idOrKey - issue id or key. issue - issue to be updated. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.\n Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_edit_issue step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.  response.data returns all the fields returned by JIRA API.\n Examples  With default site from global variables.\nnode { stage('JIRA') { # Look at IssueInput class for more information. def testIssue = [fields: [ // id or key must present for project. project: [id: '10000'], summary: 'New JIRA Created from Jenkins.', description: 'New JIRA Created from Jenkins.', customfield_1000: 'customValue', // id or name must present for issuetype. issuetype: [id: '3']]] response = jiraEditIssue idOrKey: 'TEST-01', issue: testIssue echo response.successful.toString() echo response.data.toString() } }  withEnv to override the default site (or if there is not global site)\nnode { stage('JIRA') { withEnv(['JIRA_SITE=LOCAL']) { # Look at IssueInput class for more information. def testIssue = [fields: [ project: [id: '10000'], summary: 'New JIRA Created from Jenkins.', description: 'New JIRA Created from Jenkins.', issuetype: [id: '3']]] response = jiraEditIssue idOrKey: 'TEST-01', issue: testIssue echo response.successful.toString() echo response.data.toString() } } }  Without environment variables.\n# Look at IssueInput class for more information. def testIssue = [fields: [ project: [id: '10000'], summary: 'New JIRA Created from Jenkins.', description: 'New JIRA Created from Jenkins.', issuetype: [id: '3']]] response = jiraEditIssue idOrKey: 'TEST-01', issue: testIssue, site: 'LOCAL' echo response.successful.toString() echo response.data.toString()   "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_link_issues/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_link_issues/",
 	"title": "LinkIssues",
 	"tags": ["steps", "issue", "issuelink"],
 	"description": "More about jiraLinkIssues step.",
@@ -350,7 +350,7 @@
 	"content": " Search Steps  JqlSearch    "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_delete_issuelink/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_issuelink/",
 	"title": "DeleteIssueLink",
 	"tags": ["steps", "issue", "issuelink"],
 	"description": "More about jiraDeleteIssueLink step.",
@@ -371,7 +371,7 @@
 	"content": " User Steps  UserSearch   AssignableUserSearch    "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_delete_remote_issuelink/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/",
 	"title": "DeleteRemoteIssueLink",
 	"tags": ["steps", "issue", "issuelink"],
 	"description": "More about jiraDeleteRemoteIssueLink step.",
@@ -385,14 +385,14 @@
 	"content": " jiraNotifyIssue This step notifies users (like watchers, assignee and so on..) of a particular issue.\nInput  idOrKey - Issue id or key. notify - more info about whom should we notify and so on. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.\n Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_notify_issue step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.  response.data returns all the fields returned by JIRA API.\n Examples  With default site from global variables.\nnode { stage('JIRA') { def notify = [ subject: 'Update about TEST-01', textBody: 'Just wanted to update about this issue...', htmlBody: 'Just wanted to update about this issue...', to: [ reporter: true, assignee: true, watchers: false, voters: false, users: [{ name: 'rao' }, { name: 'naresh' }] ] ] jiraNotifyIssue idOrKey: 'TEST-1', notify: notify } }  withEnv to override the default site (or if there is not global site)\nnode { stage('JIRA') { withEnv(['JIRA_SITE=LOCAL']) { def notify = [ subject: 'Update about TEST-01', textBody: 'Just wanted to update about this issue...', htmlBody: 'Just wanted to update about this issue...', to: [ reporter: true, assignee: true, watchers: false, voters: false, users: [{ name: 'rao' }, { name: 'naresh' }] ] ] jiraNotifyIssue idOrKey: 'TEST-1', notify: notify } } }  Without environment variables.\ndef notify = [ subject: 'Update about TEST-01', textBody: 'Just wanted to update about this issue...', htmlBody: 'Just wanted to update about this issue...', to: [ reporter: true, assignee: true, watchers: false, voters: false, users: [{ name: 'rao' }, { name: 'naresh' }] ] ] jiraNotifyIssue idOrKey: 'TEST-1', notify: notify, site: 'LOCAL'   "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/versions/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/version/",
 	"title": "Version",
 	"tags": [],
 	"description": "",
 	"content": " Version Steps  NewVersion   GetVersion   EditVersion    "
 },
 {
-	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelinks/jira_delete_remote_issuelinks/",
+	"uri": "https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelinks/",
 	"title": "DeleteRemoteIssueLinks",
 	"tags": ["steps", "issue", "issuelink"],
 	"description": "More about jiraDeleteRemoteIssueLinks step.",
@@ -424,7 +424,7 @@
 	"title": "Contributing",
 	"tags": [],
 	"description": "Guidelines for Contributing.",
-	"content": " Help us to make this project better by contributing. Whether it\u0026rsquo;s new features, bug fixes, or simply improving documentation, your contributions are welcome. Please start with logging a JIRA and submit a pull request.\nBefore you contribute, please review these guidelines to help ensure a smooth process for everyone. Thanks :).\nCopyright JIRA Steps plugins is licensed under Apache License, []Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)\nIssue reporting  Please browse our existing issues before logging new issues. Check that the issue was not already fixed in the master branch. Open an issue with a descriptive title and a summary. Please be as clear and explicit as you can in your description of the issue. Include any relevant code in the issue summary.  Pull requests  Follow Standard procedures in contributing to open source projects on Github.  Fork the project. Use a feature branch. Add good commit messages. Use the same coding conventions as the rest of the project. This project is using Google StyleGuide. Download StyleGuides from Github. Commit locally and push to your fork until you are happy with your improvements. Make sure to add tests and verify all the tests are passing when merging upstream. Add an entry to the Release notes accordingly. Squash commits before merging to master. Open a pull request. The pull request will be reviewed by the community and merged by the project committers.   Development  Fork the repository. Clone the forked repository. Make the code changes. Add Tests Open a pull request directly from the forked repository.  Testing  Spin up docker instances for JIRA and JENKINS locally or install JIRA and JENKINS on your machine. Configure Jenkins Run mvn package from command line or terminal. jira-steps-plugin.hpi file can be found in target folder of the project. Install plugin manually using .hpi file in jenkins. Test your functionality. It helps reviewers if the screenshots of these evidences are added in the pull request.  Note: This plugin requires JDK 1.8 and latest maven version to build.\nUpdating Documentation  This plugin currently using github pages site and Hugo for hosting the project documentation. Documentation can be updated in jira-steps-plugin/hugo/ folder. Install hugo brew install hugo. Navigate to hugo foloder cd jira-steps-plugin/hugo. Pull the docdock submodule git submodule update --init --force. Start hugo hugo server -D. Local site should be available at http://localhost:1313/jira-steps-plugin/. Change the content as needed and the changes should refresh automatically (if not refresh web page).  "
+	"content": " Help us to make this project better by contributing. Whether it\u0026rsquo;s new features, bug fixes, or simply improving documentation, your contributions are welcome. Please start with logging a JIRA and submit a pull request.\nBefore you contribute, please review these guidelines to help ensure a smooth process for everyone. Thanks :).\nCopyright JIRA Steps plugins is licensed under Apache License, Version 2.0\nIssue reporting  Please browse our existing issues before logging new issues. Check that the issue was not already fixed in the master branch. Open an issue with a descriptive title and a summary. Please be as clear and explicit as you can in your description of the issue. Include any relevant code in the issue summary.  Pull requests  Follow Standard procedures in contributing to open source projects on Github.  Fork the project. Use a feature branch. Add good commit messages. Use the same coding conventions as the rest of the project. This project is using Google StyleGuide. Download StyleGuides from Github. Commit locally and push to your fork until you are happy with your improvements. Make sure to add tests and verify all the tests are passing when merging upstream. Add an entry to the Release notes accordingly. Squash commits before merging to master. Open a pull request. The pull request will be reviewed by the community and merged by the project committers.   Development  Fork the repository. Clone the forked repository. Make the code changes. Add Tests Open a pull request directly from the forked repository.  Testing  Spin up docker instances for JIRA and JENKINS locally or install JIRA and JENKINS on your machine. Configure Jenkins Run mvn package from command line or terminal. jira-steps-plugin.hpi file can be found in target folder of the project. Install plugin manually using .hpi file in jenkins. Test your functionality. It helps reviewers if the screenshots of these evidences are added in the pull request.  Note: This plugin requires JDK 1.8 and latest maven version to build.\nUpdating Documentation  This plugin currently using github pages site and Hugo for hosting the project documentation. Documentation can be updated in jira-steps-plugin/hugo/ folder. Install hugo brew install hugo. Navigate to hugo foloder cd jira-steps-plugin/hugo. Pull the docdock submodule git submodule update --init --force. Start hugo hugo server -D. Local site should be available at http://localhost:1313/jira-steps-plugin/. Change the content as needed and the changes should refresh automatically (if not refresh web page).  "
 },
 {
 	"uri": "https://jenkinsci.github.io/jira-steps-plugin/credits/",
