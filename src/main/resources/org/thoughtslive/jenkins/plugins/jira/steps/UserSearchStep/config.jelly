@@ -26,6 +26,6 @@
   	</f:entry>
   </f:advanced>
   <f:block>
-     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_user_search.html" target="_blank">jiraUserSearch</a> for more information.</p>
+     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/user/jira_user_search/" target="_blank">jiraUserSearch</a> for more information.</p>
   </f:block>
 </j:jelly>

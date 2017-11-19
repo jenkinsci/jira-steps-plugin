@@ -11,7 +11,7 @@ Before you contribute, please review these guidelines to help ensure a smooth pr
 
 ## Copyright
 
-JIRA Steps plugins is licensed under Apache License, []Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+JIRA Steps plugins is licensed under Apache License, [Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 ## Issue reporting
 

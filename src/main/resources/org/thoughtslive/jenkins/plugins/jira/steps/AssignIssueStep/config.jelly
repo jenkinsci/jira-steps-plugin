@@ -23,6 +23,6 @@
   	</f:entry>
   </f:advanced>
   <f:block>
-     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_assign_issue.html" target="_blank">jiraAssignIssue</a> for more information.</p>
+     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/issue/jira_assign_issue/" target="_blank">jiraAssignIssue</a> for more information.</p>
   </f:block>  
 </j:jelly>

@@ -20,6 +20,6 @@
   	</f:entry>
   </f:advanced>
   <f:block>
-     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_get_issue_transitions.html" target="_blank">jiraGetIssueTransitions</a> for more information.</p>
+     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/isue/jira_get_issue_transitions/" target="_blank">jiraGetIssueTransitions</a> for more information.</p>
   </f:block>    
 </j:jelly>
