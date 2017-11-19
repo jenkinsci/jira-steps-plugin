@@ -10,8 +10,8 @@ Documentation for this plugin is at https://jenkinsci.github.io/jira-steps-plugi
 
 Quick links:
 
-* https://jenkinsci.github.io/jira-steps-plugin/[Get Started]
-* https://jenkinsci.github.io/jira-steps-plugin/getting-started/[Installation]
+* https://jenkinsci.github.io/jira-steps-plugin/getting-started/[Get Started]
+* https://jenkinsci.github.io/jira-steps-plugin/getting-started/install/[Installation]
 * https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/[Configuration]
 * https://jenkinsci.github.io/jira-steps-plugin/steps/[Pipeline Steps]
 * https://jenkinsci.github.io/jira-steps-plugin/contributing/[Contribution]
