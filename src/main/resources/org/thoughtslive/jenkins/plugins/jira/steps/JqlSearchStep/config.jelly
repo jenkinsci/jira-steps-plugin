@@ -26,6 +26,6 @@
   	</f:entry>
   </f:advanced>
   <f:block>
-     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/search/jira_jql_search/" target="_blank">jiraJqlSearch</a> for more information.</p>
+     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/steps/search/jira_jql_search/" target="_blank">jiraJqlSearch</a> for more information.</p>
   </f:block>
 </j:jelly>
