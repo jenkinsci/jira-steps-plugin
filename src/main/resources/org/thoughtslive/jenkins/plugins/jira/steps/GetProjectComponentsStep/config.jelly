@@ -20,6 +20,6 @@
   	</f:entry>
   </f:advanced>
   <f:block>
-     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_get_project_components.html" target="_blank">jiraGetProjectComponents</a> for more information.</p>
+     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/project/jira_get_project_components/" target="_blank">jiraGetProjectComponents</a> for more information.</p>
   </f:block>
 </j:jelly>

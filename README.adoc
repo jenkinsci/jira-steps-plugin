@@ -4,18 +4,18 @@ image::images/JiraSteps.png[JIRA Steps,300]
 
 link:https://ci.jenkins.io/job/Plugins/job/jira-steps-plugin/job/master/[image:https://ci.jenkins.io/job/Plugins/job/jira-steps-plugin/job/master/badge/icon[Build]] image:https://img.shields.io/badge/License-Apache%202.0-blue.svg[License] link:https://plugins.jenkins.io/jira-steps[image:https://img.shields.io/badge/JIRA%20Steps-WIKI-blue.svg[Wiki]]
 
-`Jira-steps-plugin` is an open source `Jenkins Pipeline Steps` plugin. This offers Pipeline-compatible Jira steps.
+Jenkins Pipeline Steps for integraton with [JIRA](https://www.atlassian.com/software/jira)
 
 Documentation for this plugin is at https://jenkinsci.github.io/jira-steps-plugin[Jira Steps].
 
 Quick links:
 
-* https://jenkinsci.github.io/jira-steps-plugin/index.html[Get Started]
-* https://jenkinsci.github.io/jira-steps-plugin/install.html[Installation]
-* https://jenkinsci.github.io/jira-steps-plugin/config.html[Configuration]
-* https://jenkinsci.github.io/jira-steps-plugin/jira_get_component.html[Pipeline Steps]
-* https://jenkinsci.github.io/jira-steps-plugin/contributing.html[Contribution]
-* https://jenkinsci.github.io/jira-steps-plugin/release_notes.html[Release Notes]
+* https://jenkinsci.github.io/jira-steps-plugin/[Get Started]
+* https://jenkinsci.github.io/jira-steps-plugin/getting-started/[Installation]
+* https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/[Configuration]
+* https://jenkinsci.github.io/jira-steps-plugin/steps/[Pipeline Steps]
+* https://jenkinsci.github.io/jira-steps-plugin/contributing/[Contribution]
+* https://jenkinsci.github.io/jira-steps-plugin/changelog/[Release Notes]
 
 == Maintainers
 

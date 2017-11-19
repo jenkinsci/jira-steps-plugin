@@ -10,7 +10,7 @@
 	xmlns:i="jelly:fmt">
   <f:block>
      <p>No snippet generation available except some advanced default options. 
-     <br/>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_new_component.html" target="_blank">jiraNewComponent</a> for more information.</p>
+     <br/>See <a href="https://jenkinsci.github.io/jira-steps-plugin/component/jira_new_component/" target="_blank">jiraNewComponent</a> for more information.</p>
   </f:block>  
   <f:advanced>
   	<f:entry field="site" title="Site Name">

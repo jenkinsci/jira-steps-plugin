@@ -1,5 +1,5 @@
 +++
-title = "Issue Links"
+title = "Issue Link"
 description = ""
 weight = 4
 date = "2017-11-12"

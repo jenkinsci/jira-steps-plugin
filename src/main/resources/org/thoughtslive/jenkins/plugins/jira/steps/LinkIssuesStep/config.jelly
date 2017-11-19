@@ -26,6 +26,6 @@
   	</f:entry>
   </f:advanced>
   <f:block>
-     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_link_issues.html" target="_blank">jiraLinkIssues</a> for more information.</p>
+     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/issue/jira_link_issues/" target="_blank">jiraLinkIssues</a> for more information.</p>
   </f:block>  
 </j:jelly>

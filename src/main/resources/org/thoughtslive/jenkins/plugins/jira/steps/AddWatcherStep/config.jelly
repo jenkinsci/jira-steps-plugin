@@ -23,6 +23,6 @@
   	</f:entry>
   </f:advanced>
   <f:block>
-     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_add_watcher.html" target="_blank">jiraAddWatcher</a> for more information.</p>
+     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/watcher/jira_add_watcher/" target="_blank">jiraAddWatcher</a> for more information.</p>
   </f:block>  
 </j:jelly>

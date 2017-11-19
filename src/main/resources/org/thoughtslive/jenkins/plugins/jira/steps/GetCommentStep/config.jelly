@@ -23,6 +23,6 @@
   	</f:entry>
   </f:advanced>
   <f:block>
-     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/jira_get_comment.html" target="_blank">jiraGetComment</a> for more information.</p>
+     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/comment/jira_get_comment/" target="_blank">jiraGetComment</a> for more information.</p>
   </f:block>  
 </j:jelly>
