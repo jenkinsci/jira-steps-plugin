@@ -58,7 +58,7 @@
     <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
     <tag>HEAD</tag>
   </scm>
-  
+
   <distributionManagement>
     <repository>
       <id>repo.jenkins-ci.org</id>
@@ -184,7 +184,7 @@
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-all</artifactId>
-      <version>2.4.12</version>
+      <version>2.4.11</version>
     </dependency>
   </dependencies>
   <build>
