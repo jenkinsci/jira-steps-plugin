@@ -54,11 +54,6 @@ public class UserSearchStep extends BasicJiraStep {
     public String getDisplayName() {
       return getPrefix() + "Search Active JIRA Users by username, name or email address.";
     }
-
-    @Override
-    public boolean isMetaStep() {
-      return true;
-    }
   }
 
   public static class Execution extends JiraStepExecution<ResponseData<Object>> {

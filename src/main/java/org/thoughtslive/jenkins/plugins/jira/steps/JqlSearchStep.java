@@ -54,11 +54,6 @@ public class JqlSearchStep extends BasicJiraStep {
     public String getDisplayName() {
       return getPrefix() + "JQL Search";
     }
-
-    @Override
-    public boolean isMetaStep() {
-      return true;
-    }
   }
 
   public static class Execution extends JiraStepExecution<ResponseData<Object>> {

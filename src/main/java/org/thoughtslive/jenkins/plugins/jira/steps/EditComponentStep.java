@@ -51,11 +51,6 @@ public class EditComponentStep extends BasicJiraStep {
     public String getDisplayName() {
       return getPrefix() + "Edit Component";
     }
-
-    @Override
-    public boolean isMetaStep() {
-      return true;
-    }
   }
 
   public static class Execution extends JiraStepExecution<ResponseData<Void>> {

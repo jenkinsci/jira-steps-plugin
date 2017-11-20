@@ -49,11 +49,6 @@ public class NewIssuesStep extends BasicJiraStep {
     public String getDisplayName() {
       return getPrefix() + "Create New Issues";
     }
-
-    @Override
-    public boolean isMetaStep() {
-      return true;
-    }
   }
 
   public static class Execution extends JiraStepExecution<ResponseData<Object>> {

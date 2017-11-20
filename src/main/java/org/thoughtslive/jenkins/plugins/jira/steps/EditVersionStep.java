@@ -50,11 +50,6 @@ public class EditVersionStep extends BasicJiraStep {
     public String getDisplayName() {
       return getPrefix() + "Edit Version";
     }
-
-    @Override
-    public boolean isMetaStep() {
-      return true;
-    }
   }
 
   public static class Execution extends JiraStepExecution<ResponseData<Void>> {
