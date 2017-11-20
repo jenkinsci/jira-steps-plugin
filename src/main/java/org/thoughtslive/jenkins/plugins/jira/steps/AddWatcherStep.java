@@ -51,11 +51,6 @@ public class AddWatcherStep extends BasicJiraStep {
     public String getDisplayName() {
       return getPrefix() + "Add Watcher";
     }
-
-    @Override
-    public boolean isMetaStep() {
-      return true;
-    }
   }
 
   public static class Execution extends JiraStepExecution<ResponseData<Void>> {

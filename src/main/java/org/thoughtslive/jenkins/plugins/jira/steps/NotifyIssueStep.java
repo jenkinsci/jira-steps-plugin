@@ -51,11 +51,6 @@ public class NotifyIssueStep extends BasicJiraStep {
     public String getDisplayName() {
       return getPrefix() + "Notify Issue";
     }
-
-    @Override
-    public boolean isMetaStep() {
-      return true;
-    }
   }
 
   public static class Execution extends JiraStepExecution<ResponseData<Void>> {

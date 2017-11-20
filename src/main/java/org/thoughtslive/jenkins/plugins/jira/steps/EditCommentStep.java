@@ -55,11 +55,6 @@ public class EditCommentStep extends BasicJiraStep {
     public String getDisplayName() {
       return getPrefix() + "Edit Issue Comment";
     }
-
-    @Override
-    public boolean isMetaStep() {
-      return true;
-    }
   }
 
   public static class Execution extends JiraStepExecution<ResponseData<Object>> {

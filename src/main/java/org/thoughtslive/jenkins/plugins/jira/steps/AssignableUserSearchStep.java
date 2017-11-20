@@ -62,11 +62,6 @@ public class AssignableUserSearchStep extends BasicJiraStep {
       return getPrefix()
           + "Searches assignable JIRA Users by username, name or email address for the given project/issueKey";
     }
-
-    @Override
-    public boolean isMetaStep() {
-      return true;
-    }
   }
 
   public static class Execution extends JiraStepExecution<ResponseData<Object>> {
