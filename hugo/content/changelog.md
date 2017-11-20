@@ -7,11 +7,16 @@ lastmodifierdisplayname = "Naresh Rayapati"
 
 * #### **1.4.0** (Unreleased)
 
+* #### **1.3.1**
+  * [JENKINS-48104](https://issues.jenkins-ci.org/browse/JENKINS-48104) Fix Documentation Links.
+  * [JENKINS-48097](https://issues.jenkins-ci.org/browse/JENKINS-48097) Delete deprecated jekyll documentation.
+  * [JENKINS-48115](https://issues.jenkins-ci.org/browse/JENKINS-48115) Get rid of isMetaStep()==true everywhere.
 * #### **1.3.0**
   * [JENKINS-47948](https://issues.jenkins-ci.org/browse/JENKINS-47948) Delete deprecated api classes with Object.
       * <span style="color:red">Note: EditVersion and EditComponent are updated to support all the JIRA Versions, which would break existing code. Please refer the appropriate steps guides for the new Syntax.</span>.  
   * [JENKINS-47949](https://issues.jenkins-ci.org/browse/JENKINS-47949) Apply Google Style Guide.
   * [JENKINS-47954](https://issues.jenkins-ci.org/browse/JENKINS-47954) Migrate documentation to hugo.
+  * <span style="color:red"> Please upgrade to 1.3.1, as I was reported some problems with declarative pipelines, see JENKINS-48115 for more details. </span>.
 * #### **1.2.5**
   * [JENKINS-47914](https://issues.jenkins-ci.org/browse/JENKINS-47914) Use Jenkins user id instead of user name as buildUser.
 * #### **1.2.4**
