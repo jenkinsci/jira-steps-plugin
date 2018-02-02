@@ -17,6 +17,9 @@
   <f:entry title="Connection Timeout(ms) " field="timeout">
     <f:textbox default="10000" />
   </f:entry>
+  <f:entry title="Read Timeout(ms) " field="readTimeout">
+    <f:textbox default="10000" />
+  </f:entry>
   <f:section title="Choose Login Type:">
     <f:radioBlock name="loginType" field="loginType" value="BASIC" checked="${instance.isLoginType('BASIC')}" title="Basic" inline="true">
       <f:nested>
@@ -28,7 +31,7 @@
 	  	</f:entry>
   		<f:entry>	
     		<f:validateButton title="${%Test Connection}"
-		            method="validateBasic" with="name,url,loginType,timeout,userName,password,consumerKey,privateKey,secret,token" progress="Checking..." inline="true" />
+		            method="validateBasic" with="name,url,loginType,timeout,readTimeout,userName,password,consumerKey,privateKey,secret,token" progress="Checking..." inline="true" />
   		</f:entry>
       </f:nested>
     </f:radioBlock>
@@ -48,7 +51,7 @@
 	  	</f:entry>
   		<f:entry>	
     		<f:validateButton title="${%Test Connection}"
-            		method="validateOAuth" with="name,url,loginType,timeout,userName,password,consumerKey,privateKey,secret,token" progress="Checking..." inline="true" />
+            		method="validateOAuth" with="name,url,loginType,timeout,readTimeout,userName,password,consumerKey,privateKey,secret,token" progress="Checking..." inline="true" />
   		</f:entry>
       </f:nested>
     </f:radioBlock>

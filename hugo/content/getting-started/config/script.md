@@ -23,6 +23,7 @@ JSONArray sites = [
     name: 'another',
     url: 'http://example.com',
     timeout: 10000,
+    readTimeout: 10000,
     loginType: 'BASIC',
     userName: 'foo',
     password: 'some pass'
@@ -31,6 +32,7 @@ JSONArray sites = [
     name: 'moar jira',
     url: 'http://example.com',
     timeout: 10000,
+    readTimeout: 10000,
     loginType: 'OAUTH',
     consumerKey: 'my consumer key',
     privateKey: 'my private key',
@@ -49,7 +51,8 @@ config.@sites.clear()
 sites.each { s ->
   String loginType = s.optString('loginType', '').toUpperCase()
   if(loginType in ['BASIC', 'OAUTH']) {
-    Site site = new Site(s.optString('name',''), new URL(s.optString('url', '')), s.optString('loginType', ''), s.optInt('timeout', 10000))
+    Site site = new Site(s.optString('name',''), new URL(s.optString('url', '')), s.optString('loginType', ''),
+        s.optInt('timeout', 10000), s.optInt('readTimeout', 10000))
     if(loginType == 'BASIC') {
       site.setUserName(s.optString('userName', ''))
       site.setPassword(s.optString('password', ''))
