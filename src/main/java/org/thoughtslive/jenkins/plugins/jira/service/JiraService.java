@@ -7,10 +7,15 @@ import static org.thoughtslive.jenkins.plugins.jira.util.Common.parseResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.google.common.collect.ImmutableMap;
+import java.io.File;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import okhttp3.ConnectionPool;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
@@ -434,6 +439,41 @@ public class JiraService {
       return parseResponse(
           jiraEndPoints.assignableUserSearch(userName, project, issueKey, startAt, maxResults)
               .execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
+  public ResponseData<Object> uploadAttachment(final String issueIdOrKey, final File file) {
+    try {
+      RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+      MultipartBody.Part multipartBody = MultipartBody.Part
+          .createFormData("file", file.getName(), requestFile);
+      return parseResponse(jiraEndPoints.uploadAttachment(issueIdOrKey, multipartBody).execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
+  public ResponseData<Object> getAttachment(final String attachmentId) {
+    try {
+      return parseResponse(jiraEndPoints.getAttachment(attachmentId).execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
+  public ResponseData<Object> deleteAttachment(final String attachmentId) {
+    try {
+      return parseResponse(jiraEndPoints.deleteAttachment(attachmentId).execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
+  public ResponseData<ResponseBody> downloadAttachment(final String attachmentLink) {
+    try {
+      return parseResponse(jiraEndPoints.downloadFileWithDynamicUrl(attachmentLink).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }

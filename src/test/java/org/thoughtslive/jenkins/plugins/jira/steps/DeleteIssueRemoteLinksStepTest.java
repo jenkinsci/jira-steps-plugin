@@ -80,7 +80,7 @@ public class DeleteIssueRemoteLinksStepTest {
   }
 
   @Test
-  public void testWithZeroIdThrowsAbortException() throws Exception {
+  public void testWithEmptyIdThrowsAbortException() throws Exception {
     final DeleteIssueRemoteLinksStep step = new DeleteIssueRemoteLinksStep("", "");
     stepExecution = new DeleteIssueRemoteLinksStep.Execution(step, contextMock);
     ;
@@ -93,7 +93,7 @@ public class DeleteIssueRemoteLinksStepTest {
   }
 
   @Test
-  public void testWithNegativeIdThrowsAbortException() throws Exception {
+  public void testWithNullIdThrowsAbortException() throws Exception {
     final DeleteIssueRemoteLinksStep step = new DeleteIssueRemoteLinksStep(null, "");
     stepExecution = new DeleteIssueRemoteLinksStep.Execution(step, contextMock);
     ;

@@ -30,13 +30,13 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilde
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
 /**
- * Unit test cases for DeleteIssueRemoteLinkStep class.
+ * Unit test cases for GetAttachmentInfoStep class.
  *
  * @author Naresh Rayapati
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({DeleteIssueRemoteLinkStep.class, Site.class})
-public class DeleteIssueRemoteLinkStepTest {
+@PrepareForTest({GetAttachmentInfoStep.class, Site.class})
+public class GetAttachmentInfoStepTest {
 
   @Mock
   TaskListener taskListenerMock;
@@ -53,7 +53,7 @@ public class DeleteIssueRemoteLinkStepTest {
   @Mock
   StepContext contextMock;
 
-  DeleteIssueRemoteLinkStep.Execution stepExecution;
+  private GetAttachmentInfoStep.Execution stepExecution;
 
   @Before
   public void setup() throws IOException, InterruptedException {
@@ -71,7 +71,7 @@ public class DeleteIssueRemoteLinkStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Object> builder = ResponseData.builder();
-    when(jiraServiceMock.deleteIssueRemoteLink(anyString(), anyString()))
+    when(jiraServiceMock.getAttachment(anyString()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);
@@ -80,42 +80,29 @@ public class DeleteIssueRemoteLinkStepTest {
   }
 
   @Test
-  public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
-    final DeleteIssueRemoteLinkStep step = new DeleteIssueRemoteLinkStep("", "10000");
-    stepExecution = new DeleteIssueRemoteLinkStep.Execution(step, contextMock);
+  public void testWithEmptyIdThrowsAbortException() throws Exception {
+    final GetAttachmentInfoStep step = new GetAttachmentInfoStep("");
+    stepExecution = new GetAttachmentInfoStep.Execution(step, contextMock);
     ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
       stepExecution.run();
-    }).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException")
+    }).withMessage("id is empty or null.").withStackTraceContaining("AbortException")
         .withNoCause();
   }
 
   @Test
-  public void testWithEmptyLinkIdThrowsAbortException() throws Exception {
-    final DeleteIssueRemoteLinkStep step = new DeleteIssueRemoteLinkStep("TEST-27", "");
-    stepExecution = new DeleteIssueRemoteLinkStep.Execution(step, contextMock);
-    ;
-
-    // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-      stepExecution.run();
-    }).withMessage("linkId is empty or null.").withStackTraceContaining("AbortException")
-        .withNoCause();
-  }
-
-  @Test
-  public void testSuccessfulDeleteIssueRemoteLinksStep() throws Exception {
-    final DeleteIssueRemoteLinkStep step = new DeleteIssueRemoteLinkStep("TEST-27", "1000");
-    stepExecution = new DeleteIssueRemoteLinkStep.Execution(step, contextMock);
+  public void testSuccessfulGetAttachment() throws Exception {
+    final GetAttachmentInfoStep step = new GetAttachmentInfoStep( "1000");
+    stepExecution = new GetAttachmentInfoStep.Execution(step, contextMock);
     ;
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).deleteIssueRemoteLink("TEST-27", "1000");
+    verify(jiraServiceMock, times(1)).getAttachment("1000");
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

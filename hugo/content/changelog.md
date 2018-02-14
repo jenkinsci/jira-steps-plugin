@@ -7,6 +7,13 @@ lastmodifierdisplayname = "Naresh Rayapati"
 
 * #### **1.4.0** (Unreleased)
 
+* #### **1.3.2** (Unreleased)
+  * [JENKINS-45764](https://issues.jenkins-ci.org/browse/JENKINS-45764) Add issue attachment related steps.
+      * jiraUploadAttachment
+      * jiraGetAttachmentInfo
+      * jiraDownloadAttachment
+      * jiraDeleteAttachment
+
 * #### **1.3.1**
   * [JENKINS-48104](https://issues.jenkins-ci.org/browse/JENKINS-48104) Fix Documentation Links.
   * [JENKINS-48097](https://issues.jenkins-ci.org/browse/JENKINS-48097) Delete deprecated jekyll documentation.
