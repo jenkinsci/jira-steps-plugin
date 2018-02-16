@@ -7,4 +7,8 @@ class InputBuilder {
             return object.description += description
         }
     }
+
+    static String getAttachmentLink(object) {
+        return object.content
+    }
 }

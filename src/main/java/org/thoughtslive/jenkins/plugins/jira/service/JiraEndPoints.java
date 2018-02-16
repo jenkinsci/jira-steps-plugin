@@ -1,14 +1,21 @@
 package org.thoughtslive.jenkins.plugins.jira.service;
 
 import java.util.Map;
+import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Streaming;
+import retrofit2.http.Url;
 
 /**
  * JIRA Restful Endpoints.
@@ -164,4 +171,19 @@ public interface JiraEndPoints {
       @Query("project") String project, @Query("issueKey") String issueKey,
       @Query("startAt") int startAt, @Query("maxResults") int maxResults);
 
+  @Multipart
+  @Headers("X-Atlassian-Token: no-check")
+  @POST("/rest/api/2/issue/{issueIdOrKey}/attachments")
+  Call<Object> uploadAttachment(@Path("issueIdOrKey") String issueIdOrKey,
+      @Part MultipartBody.Part file);
+
+  @GET("/rest/api/2/attachment/{attachmentId}")
+  Call<Object> getAttachment(@Path("attachmentId") String attachmentId);
+
+  @DELETE("/rest/api/2/attachment/{attachmentId}")
+  Call<Object> deleteAttachment(@Path("attachmentId") String attachmentId);
+
+  @Streaming
+  @GET
+  Call<ResponseBody> downloadFileWithDynamicUrl(@Url String fileUrl);
 }
