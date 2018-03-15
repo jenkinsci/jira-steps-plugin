@@ -13,6 +13,7 @@ lastmodifierdisplayname = "Naresh Rayapati"
       * jiraGetAttachmentInfo
       * jiraDownloadAttachment
       * jiraDeleteAttachment
+  * [JENKINS-50194](https://issues.jenkins-ci.org/browse/JENKINS-50194) Build userId missing for a job being built by other Jobs.
 
 * #### **1.3.1**
   * [JENKINS-48104](https://issues.jenkins-ci.org/browse/JENKINS-48104) Fix Documentation Links.
