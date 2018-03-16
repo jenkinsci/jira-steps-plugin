@@ -36,6 +36,8 @@ public class Site extends AbstractDescribableImpl<Site> {
   private final String loginType;
   @Getter
   private int timeout;
+  @Getter
+  private int readTimeout;
   // Basic
   @Getter
   @Setter(onMethod = @__({@DataBoundSetter}))
@@ -56,12 +58,13 @@ public class Site extends AbstractDescribableImpl<Site> {
   private transient JiraService jiraService = null;
 
   @DataBoundConstructor
-  public Site(final String name, final URL url, final String loginType, final int timeout) {
+  public Site(final String name, final URL url, final String loginType, final int timeout, final int readTimeout) {
 
     this.name = Util.fixEmpty(name);
     this.url = url;
     this.loginType = Util.fixEmpty(loginType);
     this.timeout = timeout;
+    this.readTimeout = readTimeout;
   }
 
   public static Site get(final String siteName) {
@@ -117,7 +120,8 @@ public class Site extends AbstractDescribableImpl<Site> {
      * moved to Config so that we can also verify the name is valid.
      */
     public FormValidation doValidateBasic(@QueryParameter String name, @QueryParameter String url,
-        @QueryParameter String loginType, @QueryParameter String timeout,
+        @QueryParameter String loginType, @QueryParameter String timeout, 
+        @QueryParameter String readTimeout,
         @QueryParameter String userName, @QueryParameter String password,
         @QueryParameter String consumerKey, @QueryParameter String privateKey,
         @QueryParameter String secret, @QueryParameter String token) throws IOException {
@@ -144,13 +148,23 @@ public class Site extends AbstractDescribableImpl<Site> {
       try {
         t = Integer.parseInt(timeout);
         if (t <= 100) {
-          return FormValidation.error("Timeout can't be lessthan 100.");
+          return FormValidation.error("Timeout can't be less than 100.");
         }
       } catch (NumberFormatException e) {
         return FormValidation.error("Timeout is not a number");
       }
+      
+      int rt = 0;
+      try {
+        rt = Integer.parseInt(readTimeout);
+        if (rt <= 100) {
+          return FormValidation.error("Read Timeout can't be less than 100.");
+        }
+      } catch (NumberFormatException e) {
+        return FormValidation.error("Read Timeout is not a number");
+      }
 
-      Site site = new Site(name, mainURL, "BASIC", t);
+      Site site = new Site(name, mainURL, "BASIC", t, rt);
 
       if (userName == null) {
         return FormValidation.error("UserName is empty or null.");
@@ -180,6 +194,7 @@ public class Site extends AbstractDescribableImpl<Site> {
     // value loginType (radioBlock as a @QueryParameter)
     public FormValidation doValidateOAuth(@QueryParameter String name, @QueryParameter String url,
         @QueryParameter String loginType, @QueryParameter String timeout,
+        @QueryParameter String readTimeout,
         @QueryParameter String userName, @QueryParameter String password,
         @QueryParameter String consumerKey, @QueryParameter String privateKey,
         @QueryParameter String secret, @QueryParameter String token) throws IOException {
@@ -208,13 +223,23 @@ public class Site extends AbstractDescribableImpl<Site> {
       try {
         t = Integer.parseInt(timeout);
         if (t <= 100) {
-          return FormValidation.error("Timeout can't be lessthan 100.");
+          return FormValidation.error("Timeout can't be less than 100.");
         }
       } catch (NumberFormatException e) {
         return FormValidation.error("Timeout is not a number");
       }
+      
+      int rt = 0;
+      try {
+        rt = Integer.parseInt(readTimeout);
+        if (rt <= 100) {
+          return FormValidation.error("Read Timeout can't be less than 100.");
+        }
+      } catch (NumberFormatException e) {
+        return FormValidation.error("Read Timeout is not a number");
+      }
 
-      Site site = new Site(name, mainURL, "OAUTH", t);
+      Site site = new Site(name, mainURL, "OAUTH", t, rt);
 
       if (consumerKey == null) {
         return FormValidation.error("Consumer Key is empty or null.");
