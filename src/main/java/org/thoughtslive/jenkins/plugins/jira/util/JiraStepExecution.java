@@ -56,14 +56,14 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
    * @param causes build causes.
    * @return user name.
    */
-  protected static String prepareBuildUser(List<Cause> causes) {
+  protected static String prepareBuildUserId(List<Cause> causes) {
     String buildUser = "anonymous";
     if (causes != null && causes.size() > 0) {
       if (causes.get(0) instanceof UserIdCause) {
         buildUser = ((UserIdCause) causes.get(0)).getUserId();
       } else if (causes.get(0) instanceof UpstreamCause) {
         List<Cause> upstreamCauses = ((UpstreamCause) causes.get(0)).getUpstreamCauses();
-        prepareBuildUser(upstreamCauses);
+        buildUser = prepareBuildUserId(upstreamCauses);
       }
     }
     return Util.fixEmpty(buildUser) == null ? "anonymous" : buildUser;
@@ -107,7 +107,7 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
       return buildErrorResponse(new RuntimeException(errorMessage));
     }
 
-    buildUserId = prepareBuildUser(run.getCauses());
+    buildUserId = prepareBuildUserId(run.getCauses());
     buildUrl = envVars.get("BUILD_URL");
 
     return null;
