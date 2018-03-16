@@ -21,6 +21,8 @@ This plugin supports both Basic and OAuth, OAuth is preferred over the Basic aut
 
 ![Basic](https://raw.githubusercontent.com/ThoughtsLive/jira-steps/master/docs/images/jira_site_basic.png)
 
+{{% alert theme="info" %}} Please take note that above screenshot missing **ReadTimeout(ms)** {{% /alert %}}
+
 ### OAuth Authentication
 
 * Follow the [jira-rest-api-oauth-authentication guide](https://developer.atlassian.com/cloud/jira/platform/jira-rest-api-oauth-authentication/) to setup OAuth Authentication.
@@ -34,3 +36,5 @@ This plugin supports both Basic and OAuth, OAuth is preferred over the Basic aut
   * Token  = access_token from `config.properties`.
 
 ![OAuth](https://raw.githubusercontent.com/ThoughtsLive/jira-steps/master/docs/images/jira_site_oauth.png)
+
+{{% alert theme="info" %}} Please take note that above screenshot missing **ReadTimeout(ms)** {{% /alert %}}

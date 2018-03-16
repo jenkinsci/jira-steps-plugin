@@ -40,7 +40,7 @@ public class JiraService {
 
     OkHttpClient httpClient = new OkHttpClient.Builder()
         .connectTimeout(jiraSite.getTimeout(), TimeUnit.MILLISECONDS)
-        .readTimeout(10000, TimeUnit.MILLISECONDS).connectionPool(CONNECTION_POOL)
+        .readTimeout(jiraSite.getReadTimeout(), TimeUnit.MILLISECONDS).connectionPool(CONNECTION_POOL)
         .retryOnConnectionFailure(true).addInterceptor(new SigningInterceptor(jiraSite)).build();
 
     final ObjectMapper mapper = new ObjectMapper();

@@ -31,7 +31,7 @@ JIRA Steps plugins is licensed under Apache License, [Version 2.0](http://www.ap
   * Download StyleGuides from [Github](https://github.com/google/styleguide).
   * Commit locally and push to your fork until you are happy with your improvements.
   * Make sure to add tests and verify all the tests are passing when merging upstream.
-  * Add an entry to the [Release notes][4] accordingly.
+  * Add an entry to the [Change Log](../changelog) accordingly.
   * [Squash commits before merging to master][5].
   * Open a [pull request][6].
   * The pull request will be reviewed by the community and merged by the project committers.

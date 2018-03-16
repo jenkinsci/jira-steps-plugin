@@ -36,6 +36,8 @@ public class Site extends AbstractDescribableImpl<Site> {
   private final String loginType;
   @Getter
   private int timeout;
+  @Getter
+  private int readTimeout;
   // Basic
   @Getter
   @Setter(onMethod = @__({@DataBoundSetter}))
@@ -57,7 +59,6 @@ public class Site extends AbstractDescribableImpl<Site> {
 
   @DataBoundConstructor
   public Site(final String name, final URL url, final String loginType, final int timeout) {
-
     this.name = Util.fixEmpty(name);
     this.url = url;
     this.loginType = Util.fixEmpty(loginType);
@@ -89,6 +90,11 @@ public class Site extends AbstractDescribableImpl<Site> {
   }
 
   @DataBoundSetter
+  public void setReadTimeout(final int readTimeout) {
+    this.readTimeout = readTimeout;
+  }
+
+  @DataBoundSetter
   public void setToken(final String token) {
     this.token = Secret.fromString(Util.fixEmpty(token));
   }
@@ -117,7 +123,8 @@ public class Site extends AbstractDescribableImpl<Site> {
      * moved to Config so that we can also verify the name is valid.
      */
     public FormValidation doValidateBasic(@QueryParameter String name, @QueryParameter String url,
-        @QueryParameter String loginType, @QueryParameter String timeout,
+        @QueryParameter String loginType, @QueryParameter String timeout, 
+        @QueryParameter String readTimeout,
         @QueryParameter String userName, @QueryParameter String password,
         @QueryParameter String consumerKey, @QueryParameter String privateKey,
         @QueryParameter String secret, @QueryParameter String token) throws IOException {
@@ -144,10 +151,20 @@ public class Site extends AbstractDescribableImpl<Site> {
       try {
         t = Integer.parseInt(timeout);
         if (t <= 100) {
-          return FormValidation.error("Timeout can't be lessthan 100.");
+          return FormValidation.error("Timeout can't be less than 100.");
         }
       } catch (NumberFormatException e) {
         return FormValidation.error("Timeout is not a number");
+      }
+      
+      int rt = 0;
+      try {
+        rt = Integer.parseInt(readTimeout);
+        if (rt <= 100) {
+          return FormValidation.error("Read Timeout can't be less than 100.");
+        }
+      } catch (NumberFormatException e) {
+        return FormValidation.error("Read Timeout is not a number");
       }
 
       Site site = new Site(name, mainURL, "BASIC", t);
@@ -160,6 +177,7 @@ public class Site extends AbstractDescribableImpl<Site> {
       }
       site.setUserName(userName);
       site.setPassword(password);
+      site.setReadTimeout(rt);
 
       try {
         final JiraService service = new JiraService(site);
@@ -180,6 +198,7 @@ public class Site extends AbstractDescribableImpl<Site> {
     // value loginType (radioBlock as a @QueryParameter)
     public FormValidation doValidateOAuth(@QueryParameter String name, @QueryParameter String url,
         @QueryParameter String loginType, @QueryParameter String timeout,
+        @QueryParameter String readTimeout,
         @QueryParameter String userName, @QueryParameter String password,
         @QueryParameter String consumerKey, @QueryParameter String privateKey,
         @QueryParameter String secret, @QueryParameter String token) throws IOException {
@@ -208,10 +227,20 @@ public class Site extends AbstractDescribableImpl<Site> {
       try {
         t = Integer.parseInt(timeout);
         if (t <= 100) {
-          return FormValidation.error("Timeout can't be lessthan 100.");
+          return FormValidation.error("Timeout can't be less than 100.");
         }
       } catch (NumberFormatException e) {
         return FormValidation.error("Timeout is not a number");
+      }
+      
+      int rt = 0;
+      try {
+        rt = Integer.parseInt(readTimeout);
+        if (rt <= 100) {
+          return FormValidation.error("Read Timeout can't be less than 100.");
+        }
+      } catch (NumberFormatException e) {
+        return FormValidation.error("Read Timeout is not a number");
       }
 
       Site site = new Site(name, mainURL, "OAUTH", t);
@@ -232,6 +261,7 @@ public class Site extends AbstractDescribableImpl<Site> {
       site.setPrivateKey(privateKey);
       site.setSecret(secret);
       site.setToken(token);
+      site.setReadTimeout(rt);
 
       try {
         final JiraService service = new JiraService(site);
