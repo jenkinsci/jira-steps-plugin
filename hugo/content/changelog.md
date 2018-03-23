@@ -14,6 +14,8 @@ lastmodifierdisplayname = "Naresh Rayapati"
       * jiraDownloadAttachment
       * jiraDeleteAttachment
   * [JENKINS-50194](https://issues.jenkins-ci.org/browse/JENKINS-50194) Build userId missing for a job being built by other Jobs.
+  * [JENKINS-49314](https://issues.jenkins-ci.org/browse/JENKINS-49314) Added readTimeout to Site configuration.
+  * [JENKINS-50356](https://issues.jenkins-ci.org/browse/JENKINS-50356) Upgrade hugo theme to latest.
 
 * #### **1.3.1**
   * [JENKINS-48104](https://issues.jenkins-ci.org/browse/JENKINS-48104) Fix Documentation Links.
