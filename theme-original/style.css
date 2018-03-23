@@ -518,6 +518,9 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
   vertical-align: middle;
   text-align: center; }
 
+#navigation label {
+  display: none; }
+
 #body .nav:hover {
   background: #f7f7f7; }
 
@@ -662,7 +665,6 @@ code, kbd, pre, samp {
 code {
   border-radius: 2px;
   white-space: nowrap;
-  color: #616161;
   background: #FFF7DD;
   border: 1px solid #ffeeb8;
   padding: 0px 2px; }
@@ -681,13 +683,11 @@ code + .copy-to-clipboard {
 pre {
   padding: 1rem;
   margin: 2rem 0;
-  background: #1d1f21;
   border: 1px solid #272a2c;
   border-radius: 2px;
   line-height: 1.15; }
 
 pre code {
-  color: #237794;
   background: inherit;
   white-space: inherit;
   border: 0;
@@ -1027,8 +1027,7 @@ td {
 #body #breadcrumbs {
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
-  width: calc(100% - 150px); }
+  text-overflow: ellipsis; }
 
 #body #breadcrumbs .links {
   font-size: 0.8em; }
@@ -1046,7 +1045,7 @@ td {
   display: inline-block;
   position: relative;
   color: #5e5e5e;
-  background-color: #FFF7DD;
+  background-color: #f8efd1;
   text-align: center;
   cursor: pointer;
   border-radius: 0 2px 2px 0;
@@ -1078,13 +1077,12 @@ pre .copy-to-clipboard {
   position: absolute;
   right: 4px;
   top: 4px;
-  background-color: #4f545a;
+  background-color: #e4e4e4;
   color: #ccc;
-  border: 1px solid #272a2c;
   border-radius: 2px; }
 
 pre .copy-to-clipboard:hover {
-  background-color: #60666d;
+  background-color: #e4e4e4;
   color: #fff; }
 
 .parent-element {
@@ -1148,14 +1146,15 @@ pre .copy-to-clipboard:hover {
     margin-left: 0;
     margin-right: 0;
     padding-left: 1rem;
-    padding-right: 1rem; }
+    padding-right: 0rem; }
   #sidebar h5 i {
     color: rgba(204, 204, 204, 0.6);
     position: absolute;
     right: 0.6rem;
     top: 0.7rem;
     font-size: 80%; }
-  #sidebar .parent li, #sidebar .active li {
+  #sidebar .parent li,
+  #sidebar .active li {
     border-left: 1px solid gray; }
   #sidebar h5.parent a {
     background: #201b24;
@@ -1168,7 +1167,8 @@ pre .copy-to-clipboard:hover {
   #sidebar h5 + ul.topics {
     display: none;
     margin-top: 0; }
-  #sidebar h5.parent + ul.topics, #sidebar h5.active + ul.topics {
+  #sidebar h5.parent + ul.topics,
+  #sidebar h5.active + ul.topics {
     display: block; }
   #sidebar ul {
     list-style: none;
@@ -1181,13 +1181,7 @@ pre .copy-to-clipboard:hover {
     #sidebar ul.searched .search-match a:hover {
       color: #fff; }
     #sidebar ul.topics {
-      margin: 0 1rem; }
-    #sidebar ul.topics label {
-      margin-top: 10px;
-      /*margin-bottom: 5px;*/
-      font-family: 'Novacento Sans Wide', 'Helvetica', 'Tahoma', 'Geneva', 'Arial', sans-serif;
-      font-weight: 100;
-      color: white; }
+      margin: 0 0 0 1rem; }
     #sidebar ul.topics.searched ul {
       display: block; }
     #sidebar ul.topics ul {
@@ -1195,12 +1189,13 @@ pre .copy-to-clipboard:hover {
       padding-bottom: 1rem; }
     #sidebar ul.topics ul ul {
       padding-bottom: 0; }
-    #sidebar ul.topics li.parent > ul, #sidebar ul.topics li.alwaysopen > ul, #sidebar ul li.active > ul {
+    #sidebar ul.topics li.parent > ul, #sidebar ul.topics li.alwaysopen > ul,
+    #sidebar ul li.active > ul {
       display: block; }
-    #sidebar ul.topics > li > a {
-      /*line-height: 2rem;
-      font-size: 1.1rem*/ }
-    #sidebar ul.topics > li > a b {
+    #sidebar ul.topics > li > span > a {
+            /*line-height: 2rem;
+		    font-size: 1.1rem*/ }
+    #sidebar ul.topics > li > span > a b {
       opacity: 0.5;
       font-weight: normal; }
     #sidebar ul li .category-icon {
@@ -1220,17 +1215,15 @@ pre .copy-to-clipboard:hover {
     #sidebar ul.topics > li.parent, #sidebar ul.topics > li.active {
       background: #183f81;
       margin-left: -1rem;
-      margin-right: -1rem;
+      margin-right: 0rem;
       padding-left: 1rem;
-      padding-right: 1rem; }
-    #sidebar ul li.active > a {
+      padding-right: 0rem; }
+    #sidebar ul li.active > div > a {
       background: white;
       color: gray !important;
-      margin-left: -1rem;
-      margin-right: -1rem;
       padding-left: 1rem;
-      padding-right: 1rem; }
-    #sidebar ul li.active > a:hover {
+      padding-right: 0rem; }
+    #sidebar ul li.active > div > a:hover {
       color: #b5b5b5 !important;
       -webkit-transition: color 0.15s ease;
       -moz-transition: color 0.15s ease;
@@ -1238,52 +1231,50 @@ pre .copy-to-clipboard:hover {
       transition: color 0.15s ease; }
     #sidebar ul li {
       padding: 0; }
-    #sidebar ul li.visited + span {
+    #sidebar ul li.visited + div {
       margin-right: 16px; }
     #sidebar ul li a {
       display: block;
       padding: 2px 0; }
-    #sidebar ul li a span {
+    #sidebar ul li div a {
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
       display: block;
       width: calc(100% - 20px); }
-    #sidebar ul li > a {
+    #sidebar ul li > div > a {
       padding: 2px 0;
       position: relative; }
     #sidebar ul li li {
       padding-left: 1rem;
       text-indent: 0.2rem; }
-    #sidebar ul li.visited > a .read-icon {
-      display: block;
+    #sidebar ul li .read-icon {
+      display: none;
       font-size: xx-small;
+      color: gray;
       position: absolute;
       float: left;
-      top: 12px;
-      left: -10px;
-      color: gray; }
-    #sidebar ul li.visited.active > a .read-icon {
-      left: 7px; }
+      margin: 0;
+      margin-left: -17px;
+      margin-top: -18px; }
+    #sidebar ul li.visited > div > .read-icon {
+      display: block; }
+    #sidebar ul li.visited.active > div > .read-icon {
+      margin-left: 0px; }
     #sidebar ul li .category-icon {
       display: block;
       float: right;
       position: absolute;
-      right: 0px;
-      margin: 0px !important;
-      padding-left: 20px !important;
-      top: 9px; }
-    #sidebar ul li.active > a .category-icon {
+      right: 15px;
+      margin: 0px;
+      margin-top: -20px; }
+    #sidebar ul li.active > div .category-icon {
       right: 15px; }
-    #sidebar ul li .read-icon {
-      display: none;
-      float: right;
-      position: absolute;
-      right: 25px;
-      margin: 0 !important;
-      top: 9px; }
-  #sidebar.showVisitedLinks ul li a span {
-    width: calc(100% - 8px); }
+  #sidebar.showVisitedLinks ul li a {
+    width: 100%; }
+  #sidebar #shortcuts label {
+    display: inline;
+    font-weight: 100; }
   #sidebar #shortcuts h3 {
     font-family: 'Novacento Sans Wide', 'Helvetica', 'Tahoma', 'Geneva', 'Arial', sans-serif;
     color: #fff; }

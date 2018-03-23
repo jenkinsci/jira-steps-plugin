@@ -1,5 +1,5 @@
 jQuery(document).ready(function() {
-    jQuery('nav .category-icon').on('click', function() {
+    jQuery('.category-icon').on('click', function() {
         $( this ).toggleClass("fa-angle-down fa-angle-right") ;
         $( this ).parent().parent().children('ul').toggle() ;
         return false;
@@ -76,7 +76,7 @@ jQuery(document).ready(function() {
             items = jQuery('[data-nav-id]');
         items.removeClass('search-match');
         if (!value.length) {
-            $('ul.topics').removeClass('searched');
+            $('ul.menu').removeClass('searched');
             items.css('display', 'block');
             sessionStorage.removeItem('search-value');
             $("article").unhighlight({ element: 'mark' })

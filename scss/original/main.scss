@@ -525,6 +525,10 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
 
 // responsive
 
+#navigation label{
+    display: none;
+}
+
 #body .nav:hover {
     background: $main_shadow_color;
 }
@@ -691,7 +695,7 @@ code, kbd, pre, samp {
 code {
     border-radius: 2px;
     white-space: nowrap;
-    color: $main_code_inline_text_color;
+    // color: $main_code_inline_text_color;
     background: $main_code_inline_back_color;
     border: 1px solid $main_code_inline_border_color;
     padding: 0px 2px;
@@ -713,14 +717,13 @@ code + .copy-to-clipboard {
 pre {
     padding: 1rem;
     margin: 2rem 0;
-    background: $main_code_block_back_color;
+    // background: $main_code_block_back_color;
     border: 1px solid $main_code_block_border_color;
     border-radius: 2px;
     line-height: 1.15;
 }
 
 pre code {
-    color: #237794;
     background: inherit;
     white-space: inherit;
     border: 0;
@@ -1137,7 +1140,7 @@ td {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    width: calc(100% - 150px);
+    // width: calc(100% - 150px);
 }
 
 #body #breadcrumbs .links {
@@ -1163,7 +1166,7 @@ td {
     display: inline-block;
     position: relative;
     color: $main_other_text_color;
-    background-color: $main_code_inline_back_color;
+    background-color: $main_code_inline_back_hover_color;
     text-align: center;
     cursor: pointer;
     border-radius: 0 2px 2px 0;
@@ -1196,14 +1199,14 @@ pre .copy-to-clipboard {
     position: absolute;
     right: 4px;
     top: 4px;
-    background-color: lshift($main_code_block_back_color, $main_code_block_back_color, 15%, 15%);
+    background-color: lshift($main_code_block_back_color, $main_other_text_color, 20%, 20%);
     color: #ccc;
-    border: 1px solid $main_code_block_border_color;
+    // border: 1px solid $main_code_block_border_color;
     border-radius: 2px;
 }
 
 pre .copy-to-clipboard:hover {
-    background-color: lshift($main_code_block_back_color, $main_code_block_back_color, 20%, 20%);
+    background-color: lshift($main_code_block_back_color, $main_other_text_color, 20%, 20%);
     color: #fff;
 }
 

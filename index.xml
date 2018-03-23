@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>JIRA Pipline Steps on JIRA Jenkins Pipeline Steps</title>
+    <title>JIRA Pipline Steps on </title>
     <link>https://jenkinsci.github.io/jira-steps-plugin/</link>
-    <description>Recent content in JIRA Pipline Steps on JIRA Jenkins Pipeline Steps</description>
+    <description>Recent content in JIRA Pipline Steps on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 12 Nov 2017 00:00:00 +0000</lastBuildDate>
@@ -12,13 +12,24 @@
     
     
     <item>
+      <title>UploadAttachment</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_upload_attachment/</link>
+      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_upload_attachment/</guid>
+      <description>jiraUploadAttachment This step uploads a file from worksapce to issue.
+Input  idOrKey - Issue Id or Key. file - File name with/without path from workspace. Ex: test.txt or test/test.txt. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
+ Output  Each step generates generic output, please refer to this link for more information.</description>
+    </item>
+    
+    <item>
       <title>Authentication</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/authentication/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/authentication/</guid>
       <description>Authentication This plugin supports both Basic and OAuth, OAuth is preferred over the Basic authentication.
-Basic Authentication  Goto Manage Jenkins &amp;gt; Configure System &amp;gt; JIRA Steps &amp;gt; Add Site &amp;gt; Choose Basic.  Name = Jira Site Name URL = Jira Site URL User Name = Jira Account Username Password = Jira Account Password   OAuth Authentication  Follow the jira-rest-api-oauth-authentication guide to setup OAuth Authentication. Add site to Jenkins.</description>
+Basic Authentication  Goto Manage Jenkins &amp;gt; Configure System &amp;gt; JIRA Steps &amp;gt; Add Site &amp;gt; Choose Basic.  Name = Jira Site Name URL = Jira Site URL User Name = Jira Account Username Password = Jira Account Password   Please take note that above screenshot missing ReadTimeout(ms) OAuth Authentication  Follow the jira-rest-api-oauth-authentication guide to setup OAuth Authentication.</description>
     </item>
     
     <item>
@@ -137,6 +148,17 @@ Installing from UI.  Installing Plugin From Web UI Updating Plugin  Manual insta
     </item>
     
     <item>
+      <title>GetAttachmentInfo</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_get_attachment_info/</link>
+      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_get_attachment_info/</guid>
+      <description>jiraGetAttachmentInfo This step queries a particular attachment&amp;rsquo;s info on an issue.
+Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
+ Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response.</description>
+    </item>
+    
+    <item>
       <title>AddWatcher</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/watcher/jira_add_watcher/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
@@ -240,6 +262,17 @@ Input  issue - issue to be created. site - Optional, default: JIRA_SITE environm
     </item>
     
     <item>
+      <title>DownloadAttachment</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_download_attachment/</link>
+      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_download_attachment/</guid>
+      <description>jiraDownloadAttachment This step downloads the attachment of an issue to given location in workspace.
+Input  id - Attachment Id. file - Target location including file name. Ex: test.txt or test/test.txt override - Overrides an existing file. Defaults to false. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
+ Output  Each step generates generic output, please refer to this link for more information.</description>
+    </item>
+    
+    <item>
       <title>AddComment</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_add_comment/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
@@ -299,7 +332,7 @@ Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, defa
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/script/</guid>
       <description>Automate configuring via Jenkins Script Console The following Jenkins Script Console script will automatically configure the global settings of this plugin.
-import net.sf.json.JSONArray import net.sf.json.JSONObject import org.thoughtslive.jenkins.plugins.jira.Config import org.thoughtslive.jenkins.plugins.jira.Site //global user-defined configuration JSONArray sites = [ [ name: &#39;another&#39;, url: &#39;http://example.com&#39;, timeout: 10000, loginType: &#39;BASIC&#39;, userName: &#39;foo&#39;, password: &#39;some pass&#39; ], [ name: &#39;moar jira&#39;, url: &#39;http://example.com&#39;, timeout: 10000, loginType: &#39;OAUTH&#39;, consumerKey: &#39;my consumer key&#39;, privateKey: &#39;my private key&#39;, secret: &#39;super secret&#39;, token: &#39;my token&#39; ] ] as JSONArray //get global Jenkins configuration Config.</description>
+import net.sf.json.JSONArray import net.sf.json.JSONObject import org.thoughtslive.jenkins.plugins.jira.Config import org.thoughtslive.jenkins.plugins.jira.Site //global user-defined configuration JSONArray sites = [ [ name: &#39;another&#39;, url: &#39;http://example.com&#39;, timeout: 10000, readTimeout: 10000, loginType: &#39;BASIC&#39;, userName: &#39;foo&#39;, password: &#39;some pass&#39; ], [ name: &#39;moar jira&#39;, url: &#39;http://example.com&#39;, timeout: 10000, readTimeout: 10000, loginType: &#39;OAUTH&#39;, consumerKey: &#39;my consumer key&#39;, privateKey: &#39;my private key&#39;, secret: &#39;super secret&#39;, token: &#39;my token&#39; ] ] as JSONArray //get global Jenkins configuration Config.</description>
     </item>
     
     <item>
@@ -320,6 +353,17 @@ Input  issues - issues to be created. site - Optional, default: JIRA_SITE enviro
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/examples/release_project/</guid>
       <description>Releasing a project? For instance, if you are releasing more than one project and you want to create a release review jira issue, add Description, Fix version, comment on the issue with error message for a failure in the release process or close the issue, if release is successful.
  Create new Release review JIRA. Release your project. Create new fix version, just to tag a release review JIRA. Close issue if when releasing that project is successful.</description>
+    </item>
+    
+    <item>
+      <title>DeleteAttachment</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_delete_attachment/</link>
+      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_delete_attachment/</guid>
+      <description>jiraDeleteAttachment This step deletes the attachment from an issue.
+Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
+ Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response.</description>
     </item>
     
     <item>
@@ -493,8 +537,7 @@ Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/changelog/</guid>
-      <description>1.4.0 (Unreleased) 1.3.1  JENKINS-48104 Fix Documentation Links. JENKINS-48097 Delete deprecated jekyll documentation. JENKINS-48115 Get rid of isMetaStep()==true everywhere.  1.3.0  JENKINS-47948 Delete deprecated api classes with Object.  Note: EditVersion and EditComponent are updated to support all the JIRA Versions, which would break existing code. Please refer the appropriate steps guides for the new Syntax..
-  JENKINS-47949 Apply Google Style Guide. JENKINS-47954 Migrate documentation to hugo.</description>
+      <description>1.4.0 (Unreleased) 1.3.2 (Unreleased)  JENKINS-45764 Add issue attachment related steps.  jiraUploadAttachment jiraGetAttachmentInfo jiraDownloadAttachment jiraDeleteAttachment  JENKINS-50194 Build userId missing for a job being built by other Jobs. JENKINS-49314 Added readTimeout to Site configuration. JENKINS-50356 Upgrade hugo theme to latest.  1.3.1  JENKINS-48104 Fix Documentation Links. JENKINS-48097 Delete deprecated jekyll documentation. JENKINS-48115 Get rid of isMetaStep()==true everywhere.  1.3.0  JENKINS-47948 Delete deprecated api classes with Object.</description>
     </item>
     
     <item>
@@ -515,7 +558,7 @@ Issue reporting  Please browse our existing issues before logging new issues.</d
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/credits/</guid>
-      <description>Maintainers  Owner - Naresh Rayapati.  github contributors .ghContributors{ display:flex; flex-flow: wrap; align-content: flex-start } .ghContributors  div{ width: 50% ; display: inline-flex; margin-bottom: 5px; } .ghContributors  div label{ padding-left: 4px ; } .ghContributors  div span{ font-size: x-small; padding-left: 4px ; }   @nrayapati 88 commits   @abayer 1 commits   @jpgauthier 1 commits   @samrocketman 1 commits   @abeeskau 1 commits   @bhram999 1 commits   @merykozlowska 1 commits   Help us to make this project better by contributing.</description>
+      <description>Maintainers  Owner - Naresh Rayapati.  github contributors .ghContributors{ display:flex; flex-flow: wrap; align-content: flex-start } .ghContributors  div{ width: 50% ; display: inline-flex; margin-bottom: 5px; } .ghContributors  div label{ padding-left: 4px ; } .ghContributors  div span{ font-size: x-small; padding-left: 4px ; }   @nrayapati 91 commits   @abayer 1 commits   @jpgauthier 1 commits   @samrocketman 1 commits   @abeeskau 1 commits   @bhram999 1 commits   @merykozlowska 1 commits   Help us to make this project better by contributing.</description>
     </item>
     
     <item>
@@ -536,6 +579,15 @@ Google Analytics Google Analytics is a web analytics tool we use to help underst
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/_header/</guid>
       <description>Jenkins JIRA Pipeline Steps</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/_footer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/_footer/</guid>
+      <description>Copyright © 2017-2018 Naresh Rayapati.</description>
     </item>
     
   </channel>

@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/</loc>
+    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_upload_attachment/</loc>
+    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/authentication/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
@@ -73,6 +83,11 @@
   </url>
   
   <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_get_attachment_info/</loc>
+    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/watcher/jira_add_watcher/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
@@ -138,6 +153,11 @@
   </url>
   
   <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_download_attachment/</loc>
+    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_add_comment/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
@@ -185,6 +205,11 @@
   <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/getting-started/examples/release_project/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_delete_attachment/</loc>
+    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -328,6 +353,16 @@
   </url>
   
   <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/_footer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/attachment/</loc>
+    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/categories/</loc>
     <priority>0</priority>
   </url>
@@ -352,7 +387,7 @@
   
   <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/issue/</loc>
-    <lastmod>2017-11-12T00:00:00+00:00</lastmod>
+    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -388,13 +423,13 @@
   
   <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/steps/</loc>
-    <lastmod>2017-11-12T00:00:00+00:00</lastmod>
+    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/</loc>
-    <lastmod>2017-11-12T00:00:00+00:00</lastmod>
+    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

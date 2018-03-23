@@ -6,16 +6,33 @@
     font-weight: 200;
 }
 
-@font-face{
-    font-family:"Lato";
-    font-style:normal;
-    font-weight:400;
-    src:local("Lato Regular"),local("Lato-Regular"), url(../fonts/Lato-Regular.woff2) format("woff2"), url(../fonts/Lato-Regular.ttf) format("truetype");
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 400;
+    src: local('Roboto Regular'), local('Roboto-Regular'), url('../fonts/Roboto-Regular.ttf') format('truetype')
 }
 
-@font-face{
-    font-family:"Lato";
-    font-style:normal;
-    font-weight:700;
-    src:local("Lato Bold"),local("Lato-Bold"), url(../fonts/Lato-Bold.woff2) format("woff2"), url(../fonts/Lato-Bold.ttf) format("truetype");
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 500;
+    src: local('Roboto Medium'), local('Roboto-Medium'), url('../fonts/Roboto-Medium.ttf') format('truetype')
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Roboto Italic'), local('Roboto-Italic'), url('../fonts/Roboto-Italic.ttf') format('truetype')
+}
+
+@font-face {
+    font-family: 'RobotoMono';
+    font-weight: 400;
+    src: local('Roboto Mono Regular'), local('RobotoMono-Regular'), url('../fonts/RobotoMono-Regular.ttf') format('truetype')
+}
+
+@font-face {
+    font-family: 'RobotoMono';
+    font-weight: 500;
+    src: local('Roboto Mono Medium'), local('RobotoMono-Medium'), url('../fonts/RobotoMono-Medium.ttf') format('truetype')
 }
