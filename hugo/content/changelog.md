@@ -5,9 +5,9 @@ date = "2017-11-12"
 lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
-* #### **1.4.0** (Unreleased)
+* #### **1.4.1** (Unreleased)
 
-* #### **1.3.2** (Unreleased)
+* #### **1.4.0**
   * [JENKINS-45764](https://issues.jenkins-ci.org/browse/JENKINS-45764) Add issue attachment related steps.
       * jiraUploadAttachment
       * jiraGetAttachmentInfo
