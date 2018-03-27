@@ -537,7 +537,7 @@ Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/changelog/</guid>
-      <description>1.4.1 (Unreleased) 1.4.0  JENKINS-45764 Add issue attachment related steps.  jiraUploadAttachment jiraGetAttachmentInfo jiraDownloadAttachment jiraDeleteAttachment  JENKINS-50194 Build userId missing for a job being built by other Jobs. JENKINS-49314 Added readTimeout to Site configuration. JENKINS-50356 Upgrade hugo theme to latest.  1.3.1  JENKINS-48104 Fix Documentation Links. JENKINS-48097 Delete deprecated jekyll documentation. JENKINS-48115 Get rid of isMetaStep()==true everywhere.  1.3.0  JENKINS-47948 Delete deprecated api classes with Object.  Note: EditVersion and EditComponent are updated to support all the JIRA Versions, which would break existing code.</description>
+      <description>1.4.2 (Unreleased) 1.4.1  JENKINS-50417 download and upload attachments are not working on slaves.  1.4.0  JENKINS-45764 Add issue attachment related steps.  jiraUploadAttachment jiraGetAttachmentInfo jiraDownloadAttachment jiraDeleteAttachment  JENKINS-50194 Build userId missing for a job being built by other Jobs. JENKINS-49314 Added readTimeout to Site configuration. JENKINS-50356 Upgrade hugo theme to latest.  1.3.1  JENKINS-48104 Fix Documentation Links. JENKINS-48097 Delete deprecated jekyll documentation. JENKINS-48115 Get rid of isMetaStep()==true everywhere.</description>
     </item>
     
     <item>
