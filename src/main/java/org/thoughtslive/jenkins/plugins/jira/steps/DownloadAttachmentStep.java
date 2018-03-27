@@ -5,11 +5,8 @@ import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorRespon
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Util;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import java.io.OutputStream;
 import lombok.Getter;
 import okhttp3.ResponseBody;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
@@ -134,9 +131,11 @@ public class DownloadAttachmentStep extends BasicJiraStep {
             logger.println(
                 "JIRA: Site - " + siteName + " - Downloading " + attachmentLink + " file to: "
                     + path.getRemote() + ", overriding an existing file?: " + step.override);
-            Files.write(Paths.get(new File(path.getRemote()).getAbsolutePath()),
-                response.getData().bytes(), StandardOpenOption.CREATE,
-                StandardOpenOption.TRUNCATE_EXISTING);
+            try (OutputStream os = path.write()) {
+              os.write(response.getData().bytes());
+            } catch (Exception e) {
+              responseData = buildErrorResponse(e);
+            }
             responseData.setData(null);
           } else {
             final ResponseData.ResponseDataBuilder builder = ResponseData.builder();

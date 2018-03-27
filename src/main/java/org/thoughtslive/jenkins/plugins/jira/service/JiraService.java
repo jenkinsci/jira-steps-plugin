@@ -7,7 +7,6 @@ import static org.thoughtslive.jenkins.plugins.jira.util.Common.parseResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.google.common.collect.ImmutableMap;
-import java.io.File;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import okhttp3.ConnectionPool;
@@ -40,7 +39,8 @@ public class JiraService {
 
     OkHttpClient httpClient = new OkHttpClient.Builder()
         .connectTimeout(jiraSite.getTimeout(), TimeUnit.MILLISECONDS)
-        .readTimeout(jiraSite.getReadTimeout(), TimeUnit.MILLISECONDS).connectionPool(CONNECTION_POOL)
+        .readTimeout(jiraSite.getReadTimeout(), TimeUnit.MILLISECONDS)
+        .connectionPool(CONNECTION_POOL)
         .retryOnConnectionFailure(true).addInterceptor(new SigningInterceptor(jiraSite)).build();
 
     final ObjectMapper mapper = new ObjectMapper();
@@ -444,11 +444,13 @@ public class JiraService {
     }
   }
 
-  public ResponseData<Object> uploadAttachment(final String issueIdOrKey, final File file) {
+  public ResponseData<Object> uploadAttachment(final String issueIdOrKey, final String fileName,
+      final byte[] bytes) {
     try {
-      RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+      RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), bytes);
+
       MultipartBody.Part multipartBody = MultipartBody.Part
-          .createFormData("file", file.getName(), requestFile);
+          .createFormData("file", fileName, requestFile);
       return parseResponse(jiraEndPoints.uploadAttachment(issueIdOrKey, multipartBody).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);

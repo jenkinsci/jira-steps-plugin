@@ -123,7 +123,7 @@ public class Site extends AbstractDescribableImpl<Site> {
      * moved to Config so that we can also verify the name is valid.
      */
     public FormValidation doValidateBasic(@QueryParameter String name, @QueryParameter String url,
-        @QueryParameter String loginType, @QueryParameter String timeout, 
+        @QueryParameter String loginType, @QueryParameter String timeout,
         @QueryParameter String readTimeout,
         @QueryParameter String userName, @QueryParameter String password,
         @QueryParameter String consumerKey, @QueryParameter String privateKey,
@@ -156,7 +156,7 @@ public class Site extends AbstractDescribableImpl<Site> {
       } catch (NumberFormatException e) {
         return FormValidation.error("Timeout is not a number");
       }
-      
+
       int rt = 0;
       try {
         rt = Integer.parseInt(readTimeout);
@@ -232,7 +232,7 @@ public class Site extends AbstractDescribableImpl<Site> {
       } catch (NumberFormatException e) {
         return FormValidation.error("Timeout is not a number");
       }
-      
+
       int rt = 0;
       try {
         rt = Integer.parseInt(readTimeout);

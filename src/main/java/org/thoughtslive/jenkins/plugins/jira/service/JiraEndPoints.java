@@ -173,14 +173,14 @@ public interface JiraEndPoints {
 
   @Multipart
   @Headers("X-Atlassian-Token: no-check")
-  @POST("/rest/api/2/issue/{issueIdOrKey}/attachments")
+  @POST("rest/api/2/issue/{issueIdOrKey}/attachments")
   Call<Object> uploadAttachment(@Path("issueIdOrKey") String issueIdOrKey,
       @Part MultipartBody.Part file);
 
-  @GET("/rest/api/2/attachment/{attachmentId}")
+  @GET("rest/api/2/attachment/{attachmentId}")
   Call<Object> getAttachment(@Path("attachmentId") String attachmentId);
 
-  @DELETE("/rest/api/2/attachment/{attachmentId}")
+  @DELETE("rest/api/2/attachment/{attachmentId}")
   Call<Object> deleteAttachment(@Path("attachmentId") String attachmentId);
 
   @Streaming
