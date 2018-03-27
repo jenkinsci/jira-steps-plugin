@@ -5,8 +5,10 @@ date = "2017-11-12"
 lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
-* #### **1.4.1** (Unreleased)
+* #### **1.4.2** (Unreleased)
 
+* #### **1.4.1**
+  * [JENKINS-50417](https://issues.jenkins-ci.org/browse/JENKINS-50417) download and upload attachments are not working on slaves.
 * #### **1.4.0**
   * [JENKINS-45764](https://issues.jenkins-ci.org/browse/JENKINS-45764) Add issue attachment related steps.
       * jiraUploadAttachment

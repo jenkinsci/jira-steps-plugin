@@ -5,6 +5,7 @@ import hudson.EnvVars;
 import hudson.FilePath;
 import hudson.model.Run;
 import hudson.model.TaskListener;
+import org.apache.commons.io.IOUtils;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -69,7 +70,7 @@ public class UploadAttachmentStepTest {
 
         final ResponseData.ResponseDataBuilder<Object> builder = ResponseData.builder();
         // By setting successful to false we are not really writing file to disk currently.
-        when(jiraServiceMock.uploadAttachment(anyString(), any())).thenReturn(builder.successful(true).code(200).message("Success").build());
+        when(jiraServiceMock.uploadAttachment(anyString(), anyString(), any())).thenReturn(builder.successful(true).code(200).message("Success").build());
 
         when(contextMock.get(Run.class)).thenReturn(runMock);
         when(contextMock.get(TaskListener.class)).thenReturn(taskListenerMock);
@@ -106,7 +107,7 @@ public class UploadAttachmentStepTest {
         stepExecution.run();
 
         // Assert Test
-        verify(jiraServiceMock, times(1)).uploadAttachment("TEST-1", new File("src/test/resources/test.txt"));
+        verify(jiraServiceMock, times(1)).uploadAttachment("TEST-1", "src/test/resources/test.txt", IOUtils.toByteArray(new FilePath(new File("src/test/resources/test.txt")).read()));
         assertThat(step.isFailOnError()).isEqualTo(true);
     }
 }

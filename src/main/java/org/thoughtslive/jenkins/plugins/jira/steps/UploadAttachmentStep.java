@@ -5,9 +5,9 @@ import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorRespon
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Util;
-import java.io.File;
 import java.io.IOException;
 import lombok.Getter;
+import org.apache.commons.io.IOUtils;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -114,7 +114,8 @@ public class UploadAttachmentStep extends BasicJiraStep {
         logger.println(
             "JIRA: Site - " + siteName + " - Attaching file: " + path.getRemote() + " to " + step
                 .getIdOrKey());
-        responseData = jiraService.uploadAttachment(step.getIdOrKey(), new File(path.getRemote()));
+        byte[] bytes = IOUtils.toByteArray(path.read());
+        responseData = jiraService.uploadAttachment(step.getIdOrKey(), path.getRemote(), bytes);
       }
       return logResponse(responseData);
     }
