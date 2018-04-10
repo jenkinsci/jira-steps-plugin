@@ -186,4 +186,10 @@ public interface JiraEndPoints {
   @Streaming
   @GET
   Call<ResponseBody> downloadFileWithDynamicUrl(@Url String fileUrl);
+
+  // Dev Status
+  @GET("rest/dev-status/1.0/issue/detail")
+  Call<Object> getDevStatus(@Query("issueId") String issueId,
+                            @Query("applicationType") String applicationType,
+                            @Query("dataType") String dataType);
 }

@@ -480,4 +480,22 @@ public class JiraService {
       return buildErrorResponse(e);
     }
   }
+
+  // Development Status
+
+  /**
+   * Queries the issue for dev status by given id.
+   *
+   * @param issueId issue id.
+   * @return issue.
+   */
+  public ResponseData<Object> getDevStatus(final String issueId) {
+    try {
+      return parseResponse(jiraEndPoints.getDevStatus(issueId, "stash", "pullrequest").execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
+
 }
