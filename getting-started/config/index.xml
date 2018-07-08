@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Configuration on </title>
+    <link>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/</link>
+    <description>Recent content in Configuration on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Authentication</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/authentication/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/authentication/</guid>
+      <description>Authentication This plugin supports both Basic and OAuth, OAuth is preferred over the Basic authentication.
+Basic Authentication  Goto Manage Jenkins &amp;gt; Configure System &amp;gt; JIRA Steps &amp;gt; Add Site &amp;gt; Choose Basic.  Name = Jira Site Name URL = Jira Site URL User Name = Jira Account Username Password = Jira Account Password   Please take note that above screenshot missing ReadTimeout(ms) OAuth Authentication  Follow the jira-rest-api-oauth-authentication guide to setup OAuth Authentication.</description>
+    </item>
+    
+    <item>
+      <title>Common Config</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/common/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/common/</guid>
+      <description>Optional Params for all Steps.  site - Optional param which will override JIRA_SITE global variable. failOnError - is optional and by default it is true.  When set to true, then the step will abort the job as a failure when there is an error sending message. To make it false, it should always be provided as global environment variable JIRA_FAIL_ON_ERROR.
+ Global Environment Variables.  JIRA_SITE - Global variable to set default site for all JIRA steps.</description>
+    </item>
+    
+    <item>
+      <title>Jenkins Script</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/script/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/script/</guid>
+      <description>Automate configuring via Jenkins Script Console The following Jenkins Script Console script will automatically configure the global settings of this plugin.
+import net.sf.json.JSONArray import net.sf.json.JSONObject import org.thoughtslive.jenkins.plugins.jira.Config import org.thoughtslive.jenkins.plugins.jira.Site //global user-defined configuration JSONArray sites = [ [ name: &#39;another&#39;, url: &#39;http://example.com&#39;, timeout: 10000, readTimeout: 10000, loginType: &#39;BASIC&#39;, userName: &#39;foo&#39;, password: &#39;some pass&#39; ], [ name: &#39;moar jira&#39;, url: &#39;http://example.com&#39;, timeout: 10000, readTimeout: 10000, loginType: &#39;OAUTH&#39;, consumerKey: &#39;my consumer key&#39;, privateKey: &#39;my private key&#39;, secret: &#39;super secret&#39;, token: &#39;my token&#39; ] ] as JSONArray //get global Jenkins configuration Config.</description>
+    </item>
+    
+  </channel>
+</rss>

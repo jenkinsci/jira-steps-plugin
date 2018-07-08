@@ -466,7 +466,7 @@
 	"title": "Credits",
 	"tags": [],
 	"description": "contributors and packages used by jira-pipeline-steps",
-	"content": " Maintainers  Owner - Naresh Rayapati.  github contributors .ghContributors{ display:flex; flex-flow: wrap; align-content: flex-start } .ghContributors  div{ width: 50% ; display: inline-flex; margin-bottom: 5px; } .ghContributors  div label{ padding-left: 4px ; } .ghContributors  div span{ font-size: x-small; padding-left: 4px ; }   @nrayapati 93 commits   @abayer 1 commits   @jpgauthier 1 commits   @samrocketman 1 commits   @abeeskau 1 commits   @bhram999 1 commits   @merykozlowska 1 commits   Help us to make this project better by contributing.\nPackages and libraries Tooling  DocDock Hugo   Thanks for the kind folks at JetBrains for allowing us to use Intellij IDEA to develop this plugin!  "
+	"content": " Maintainers  Owner - Naresh Rayapati.  github contributors .ghContributors{ display:flex; flex-flow: wrap; align-content: flex-start } .ghContributors  div{ width: 50% ; display: inline-flex; margin-bottom: 5px; } .ghContributors  div label{ padding-left: 4px ; } .ghContributors  div span{ font-size: x-small; padding-left: 4px ; }   @nrayapati 97 commits   @abayer 1 commits   @jpgauthier 1 commits   @samrocketman 1 commits   @abeeskau 1 commits   @bhram999 1 commits   @merykozlowska 1 commits   Help us to make this project better by contributing.\nPackages and libraries Tooling  DocDock Hugo   Thanks for the kind folks at JetBrains for allowing us to use Intellij IDEA to develop this plugin!  "
 },
 {
 	"uri": "https://jenkinsci.github.io/jira-steps-plugin/",

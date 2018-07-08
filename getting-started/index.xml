@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Get started on </title>
+    <link>https://jenkinsci.github.io/jira-steps-plugin/getting-started/</link>
+    <description>Recent content in Get started on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 21 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jenkinsci.github.io/jira-steps-plugin/getting-started/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Install</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/getting-started/install/</link>
+      <pubDate>Sat, 21 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/install/</guid>
+      <description> Jenkins provides a couple of different methods for installing plugins
+Installing from UI.  Installing Plugin From Web UI Updating Plugin  Manual installation - For snapshots  Clone the repository. Run mvn package to build a deployable hpi bundle for Jenkins. jira-steps.hpi file can be found in jira-steps-plugin/target folder. For more information Advanced installation  This plugin REQUIRES JDK 1.8 to build.
+ </description>
+    </item>
+    
+  </channel>
+</rss>

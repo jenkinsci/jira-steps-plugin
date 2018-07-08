@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Watcher on </title>
+    <link>https://jenkinsci.github.io/jira-steps-plugin/steps/watcher/</link>
+    <description>Recent content in Watcher on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jenkinsci.github.io/jira-steps-plugin/steps/watcher/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GetIssueWatches</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/watcher/jira_get_issue_watches/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/watcher/jira_get_issue_watches/</guid>
+      <description>jiraGetIssueWatches This step queries all the issue watchers on a particular issue.
+Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
+ Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_watches step can be reused later in your script by doing response.</description>
+    </item>
+    
+    <item>
+      <title>AddWatcher</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/watcher/jira_add_watcher/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/watcher/jira_add_watcher/</guid>
+      <description>jiraAddWatcher This step adds a user as watcher to a particular issue.
+Input  idOrKey - Issue id or key. userName - username of the person who should be added as a watcher. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.</description>
+    </item>
+    
+  </channel>
+</rss>

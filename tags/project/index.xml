@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Project on </title>
+    <link>https://jenkinsci.github.io/jira-steps-plugin/tags/project/</link>
+    <description>Recent content in Project on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jenkinsci.github.io/jira-steps-plugin/tags/project/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GetProject</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project/</guid>
+      <description>jiraGetProject This queries project info from the provided JIRA site.
+Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
+ Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_project step can be reused later in your script by doing response.</description>
+    </item>
+    
+    <item>
+      <title>GetProjectComponents</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_components/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_components/</guid>
+      <description>jiraGetProjectComponents This step queries all components of a particular project.
+Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_project_components step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
+    </item>
+    
+    <item>
+      <title>GetProjectStatuses</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_statuses/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_statuses/</guid>
+      <description>jiraGetProjectStatuses This step queries all the statuses of a particular project.
+Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_project_statuses step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
+    </item>
+    
+    <item>
+      <title>GetProjectVersions</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_versions/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_versions/</guid>
+      <description>jiraGetProjectVersions This step queries all the versions of a particular project.
+Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_project_versions step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
+    </item>
+    
+    <item>
+      <title>GetProjects</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_projects/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_projects/</guid>
+      <description>jiraGetProjects This step queries all projects from the provided JIRA site.
+Input  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
+ Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_projects step can be reused later in your script by doing response.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Comment on </title>
+    <link>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/</link>
+    <description>Recent content in Comment on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jenkinsci.github.io/jira-steps-plugin/steps/comment/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GetComment</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_get_comment/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_get_comment/</guid>
+      <description>jiraGetComment This step queries a particular comment on an issue.
+Input  idOrKey - Issue id or key. commentId - commentId. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
+ Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_comment step can be reused later in your script by doing response.</description>
+    </item>
+    
+    <item>
+      <title>GetComments</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_get_comments/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_get_comments/</guid>
+      <description>jiraGetComments This step queries all comments on a particular issue.
+Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the api package.
+ Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_comments step can be reused later in your script by doing response.</description>
+    </item>
+    
+    <item>
+      <title>AddComment</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_add_comment/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_add_comment/</guid>
+      <description>jiraAddComment This step adds a comment on a particular issue.
+Input  idOrKey - Issue id or key. comment - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name.  It supports all the fields that any jira instance supports including custom fields.</description>
+    </item>
+    
+    <item>
+      <title>EditComment</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_edit_comment/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_edit_comment/</guid>
+      <description>jiraEditComment This step updates a particular comment on particular issue.
+Input  idOrKey - Issue id or key. commentId - comment id. comment - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA Api documentation depending on your JIRA version.</description>
+    </item>
+    
+  </channel>
+</rss>

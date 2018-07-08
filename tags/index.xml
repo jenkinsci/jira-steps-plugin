@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on </title>
+    <link>https://jenkinsci.github.io/jira-steps-plugin/tags/</link>
+    <description>Recent content in Tags on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 Feb 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jenkinsci.github.io/jira-steps-plugin/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Attachment</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/attachment/</link>
+      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/attachment/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Comment</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/comment/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/comment/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Component</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/component/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/component/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Get Started</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/get-started/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/get-started/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Issue</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/issue/</link>
+      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/issue/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Issuelink</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/issuelink/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/issuelink/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jql</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/jql/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/jql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Project</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/project/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Search</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/search/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/search/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Setup</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/setup/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/setup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Steps</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/steps/</link>
+      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/steps/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>User</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/user/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/user/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Version</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/version/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/version/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Watcher</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/watcher/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/watcher/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

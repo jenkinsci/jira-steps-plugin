@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Issue on </title>
+    <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/</link>
+    <description>Recent content in Issue on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jenkinsci.github.io/jira-steps-plugin/steps/issue/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GetFields</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_get_fields/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_get_fields/</guid>
+      <description>jiraGetFields This step queries all fields from the provided JIRA site.
+Input  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_fields step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
+    </item>
+    
+    <item>
+      <title>NewIssue</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_new_issue/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_new_issue/</guid>
+      <description>jiraNewIssue Creates new issue based on given input, which should have some minimal information on that object.
+Input  issue - issue to be created. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name.  It supports all the fields that any jira instance supports including custom fields.</description>
+    </item>
+    
+    <item>
+      <title>NewIssues</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_new_issues/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_new_issues/</guid>
+      <description>jiraNewIssues This step creates new issues in bulk in the provided JIRA site.
+Input  issues - issues to be created. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.</description>
+    </item>
+    
+    <item>
+      <title>AssignIssue</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_assign_issue/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_assign_issue/</guid>
+      <description>jiraAssignIssue This step assigns a particular issue to a user.
+Input  idOrKey - Issue id or key. userName - username of the person who should be added as a watcher. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.</description>
+    </item>
+    
+    <item>
+      <title>GetIssue</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_get_issue/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_get_issue/</guid>
+      <description>jiraGetIssue This step queries a particular issue from the provided JIRA site.
+Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
+ Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue step can be reused later in your script by doing response.</description>
+    </item>
+    
+    <item>
+      <title>EditIssue</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_edit_issue/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_edit_issue/</guid>
+      <description>jiraEditIssue Updates an existing issue based on given input, which should have some minimal information on that object.
+Input  idOrKey - issue id or key. issue - issue to be updated. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.</description>
+    </item>
+    
+    <item>
+      <title>GetIssueTransitions</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_get_issue_transitions/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_get_issue_transitions/</guid>
+      <description>jiraGetIssueTransitions This step queries all transitions of a particular issue.
+Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
+ Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_transitions step can be reused later in your script by doing response.</description>
+    </item>
+    
+    <item>
+      <title>NotifyIssue</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_notify_issue/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_notify_issue/</guid>
+      <description>jiraNotifyIssue This step notifies users (like watchers, assignee and so on..) of a particular issue.
+Input  idOrKey - Issue id or key. notify - more info about whom should we notify and so on. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.</description>
+    </item>
+    
+    <item>
+      <title>TransitionIssue</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_transition_issue/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_transition_issue/</guid>
+      <description>jiraTransitionIssue This step transitions a particular issue in the JIRA site.
+Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.</description>
+    </item>
+    
+  </channel>
+</rss>
