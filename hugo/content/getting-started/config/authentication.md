@@ -19,7 +19,7 @@ This plugin supports both Basic and OAuth, OAuth is preferred over the Basic aut
   * User Name = Jira Account Username
   * Password = Jira Account Password
 
-![Basic](https://raw.githubusercontent.com/ThoughtsLive/jira-steps/master/docs/images/jira_site_basic.png)
+![Basic](https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/hugo/static/images/jira_site_basic.png)
 
 {{% alert theme="info" %}} Please take note that above screenshot missing **ReadTimeout(ms)** {{% /alert %}}
 
@@ -35,6 +35,6 @@ This plugin supports both Basic and OAuth, OAuth is preferred over the Basic aut
   * Secret = secret from `config.properties`.
   * Token  = access_token from `config.properties`.
 
-![OAuth](https://raw.githubusercontent.com/ThoughtsLive/jira-steps/master/docs/images/jira_site_oauth.png)
+![OAuth](https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/hugo/static/images/jira_site_oauth.png)
 
 {{% alert theme="info" %}} Please take note that above screenshot missing **ReadTimeout(ms)** {{% /alert %}}

@@ -34,7 +34,7 @@ It supports all the fields that any jira instance supports including custom fiel
 `response.data` returns all the fields returned by JIRA API.
 {{% /notice %}}
 
-![Comment](https://raw.githubusercontent.com/ThoughtsLive/jira-steps/master/docs/images/jira_add_comment.png)
+![Comment](https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/hugo/static/images/jira_add_comment.png)
 
 #### Examples
 
