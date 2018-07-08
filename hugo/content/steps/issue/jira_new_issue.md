@@ -11,7 +11,7 @@ lastmodifierdisplayname = "Naresh Rayapati"
 
 Creates new issue based on given input, which should have some minimal information on that object.
 
-![New Issue](https://raw.githubusercontent.com/ThoughtsLive/jira-steps/master/docs/images/jira_new_issue.png)
+![New Issue](https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/hugo/static/images/jira_new_issue.png)
 
 #### Input
 
