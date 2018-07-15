@@ -537,7 +537,7 @@ Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/changelog/</guid>
-      <description>1.4.2 (Unreleased) 1.4.1  JENKINS-50417 download and upload attachments are not working on slaves.  1.4.0  JENKINS-45764 Add issue attachment related steps.  jiraUploadAttachment jiraGetAttachmentInfo jiraDownloadAttachment jiraDeleteAttachment  JENKINS-50194 Build userId missing for a job being built by other Jobs. JENKINS-49314 Added readTimeout to Site configuration. JENKINS-50356 Upgrade hugo theme to latest.  1.3.1  JENKINS-48104 Fix Documentation Links. JENKINS-48097 Delete deprecated jekyll documentation. JENKINS-48115 Get rid of isMetaStep()==true everywhere.</description>
+      <description>1.4.4 (Unreleased) 1.4.3  JENKINS-50764 Whitelist ResponseData method signatures in In-process script approval.  With 1.4.2 only getData was added to the whitelist but here added rest.   1.4.2  JENKINS-50764 Whitelist ResponseData getData signature in In-process script approval.  1.4.1  JENKINS-50417 download and upload attachments are not working on slaves.  1.4.0  JENKINS-45764 Add issue attachment related steps.  jiraUploadAttachment jiraGetAttachmentInfo jiraDownloadAttachment jiraDeleteAttachment  JENKINS-50194 Build userId missing for a job being built by other Jobs.</description>
     </item>
     
     <item>
@@ -558,7 +558,7 @@ Issue reporting  Please browse our existing issues before logging new issues.</d
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/credits/</guid>
-      <description>Maintainers  Owner - Naresh Rayapati.  github contributors .ghContributors{ display:flex; flex-flow: wrap; align-content: flex-start } .ghContributors  div{ width: 50% ; display: inline-flex; margin-bottom: 5px; } .ghContributors  div label{ padding-left: 4px ; } .ghContributors  div span{ font-size: x-small; padding-left: 4px ; }   @nrayapati 97 commits   @abayer 1 commits   @jpgauthier 1 commits   @samrocketman 1 commits   @abeeskau 1 commits   @bhram999 1 commits   @merykozlowska 1 commits   Help us to make this project better by contributing.</description>
+      <description>Maintainers  Owner - Naresh Rayapati.  github contributors .ghContributors{ display:flex; flex-flow: wrap; align-content: flex-start } .ghContributors  div{ width: 50% ; display: inline-flex; margin-bottom: 5px; } .ghContributors  div label{ padding-left: 4px ; } .ghContributors  div span{ font-size: x-small; padding-left: 4px ; }   @nrayapati 98 commits   @abayer 1 commits   @jpgauthier 1 commits   @samrocketman 1 commits   @abeeskau 1 commits   @bhram999 1 commits   @merykozlowska 1 commits   Help us to make this project better by contributing.</description>
     </item>
     
     <item>
