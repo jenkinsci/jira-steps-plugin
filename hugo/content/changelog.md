@@ -5,8 +5,11 @@ date = "2017-11-12"
 lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
-* #### **1.4.2** (Unreleased)
+* #### **1.4.3** (Unreleased)
 
+
+* #### **1.4.2**
+  * [JENKINS-50764](https://issues.jenkins-ci.org/browse/JENKINS-50764) Whitelist ResponseData getData signature in In-process script approval.
 * #### **1.4.1**
   * [JENKINS-50417](https://issues.jenkins-ci.org/browse/JENKINS-50417) download and upload attachments are not working on slaves.
 * #### **1.4.0**
