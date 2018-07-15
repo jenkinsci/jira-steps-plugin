@@ -5,9 +5,11 @@ date = "2017-11-12"
 lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
-* #### **1.4.3** (Unreleased)
+* #### **1.4.4** (Unreleased)
 
-
+* #### **1.4.3**
+  * [JENKINS-50764](https://issues.jenkins-ci.org/browse/JENKINS-50764) Whitelist ResponseData method signatures in In-process script approval.
+      * With 1.4.2 only getData was added to the whitelist but here added rest.
 * #### **1.4.2**
   * [JENKINS-50764](https://issues.jenkins-ci.org/browse/JENKINS-50764) Whitelist ResponseData getData signature in In-process script approval.
 * #### **1.4.1**
