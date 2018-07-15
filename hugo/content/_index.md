@@ -5,7 +5,7 @@ date = "2017-11-12"
 lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
-![JIRA Pipline Steps](https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/images/JiraSteps.png)
+![JIRA Pipline Steps](https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/hugo/static/images/jira_steps.png)
 
 ### [Jenkins Pipeline](https://jenkins.io/doc/book/pipeline/)
 
