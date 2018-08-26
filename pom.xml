@@ -115,6 +115,13 @@
       <groupId>oauth.signpost</groupId>
       <artifactId>signpost-core</artifactId>
       <version>${signpost.oauth.version}</version>
+      <exclusions>
+		<!-- Conflict with jenkins-test-harness -->
+        <exclusion>
+          <groupId>commons-codec</groupId>
+          <artifactId>commons-codec</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.google.oauth-client</groupId>
