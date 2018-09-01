@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?jelly escape-by-default='true'?>
 <j:jelly
-	xmlns:j="jelly:core"
-	xmlns:st="jelly:stapler"
-	xmlns:d="jelly:define"
-	xmlns:l="/lib/layout"
-	xmlns:t="/lib/hudson"
-	xmlns:f="/lib/form"
-	xmlns:i="jelly:fmt">
+  xmlns:f="/lib/form"
+  xmlns:j="jelly:core"
+>
   <f:entry field="idOrKey" title="Issue Id/Key">
-  	<f:textbox/>
+    <f:textbox/>
   </f:entry>
   <f:advanced>
-  	<f:entry field="site" title="Site Name">
-		<f:select/>
-  	</f:entry>
-  	<f:entry field="failOnError">
-  		<f:checkbox title="Fail On Error" default="true"/>
-  	</f:entry>
+    <f:entry field="site" title="Site Name">
+      <f:select/>
+    </f:entry>
+    <f:entry field="failOnError">
+      <f:checkbox default="true" title="Fail On Error"/>
+    </f:entry>
   </f:advanced>
   <f:block>
-     <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_get_comments/" target="_blank">jiraGetComments</a> for more information.</p>
-  </f:block>  
+    <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_get_comments/"
+      target="_blank">jiraGetComments
+    </a> for more information.
+    </p>
+  </f:block>
 </j:jelly>

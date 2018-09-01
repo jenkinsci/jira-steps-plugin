@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?jelly escape-by-default='true'?>
 <j:jelly
-	xmlns:j="jelly:core"
-	xmlns:st="jelly:stapler"
-	xmlns:d="jelly:define"
-	xmlns:l="/lib/layout"
-	xmlns:t="/lib/hudson"
-	xmlns:f="/lib/form"
-	xmlns:i="jelly:fmt">
+  xmlns:f="/lib/form"
+  xmlns:j="jelly:core"
+>
   <f:section title="JIRA Steps">
-    <f:entry title="${%JIRA sites}" description="List of JIRA sites">
-      <f:repeatableProperty field="sites" add="Add Site"/>
+    <f:entry description="List of JIRA sites" title="${%JIRA sites}">
+      <f:repeatableProperty add="Add Site" field="sites"/>
     </f:entry>
   </f:section>
 </j:jelly>

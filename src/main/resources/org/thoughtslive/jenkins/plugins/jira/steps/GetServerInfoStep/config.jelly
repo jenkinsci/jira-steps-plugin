@@ -2,11 +2,7 @@
 <?jelly escape-by-default='true'?>
 <j:jelly
   xmlns:f="/lib/form"
-  xmlns:j="jelly:core"
->
-  <f:entry field="id" title="Version Id">
-    <f:textbox/>
-  </f:entry>
+  xmlns:j="jelly:core">
   <f:advanced>
     <f:entry field="site" title="Site Name">
       <f:select/>
@@ -15,10 +11,4 @@
       <f:checkbox default="true" title="Fail On Error"/>
     </f:entry>
   </f:advanced>
-  <f:block>
-    <p>See <a href="https://jenkinsci.github.io/jira-steps-plugin/steps/version/jira_get_version/"
-      target="_blank">jiraGetVersion
-    </a> for more information.
-    </p>
-  </f:block>
 </j:jelly>

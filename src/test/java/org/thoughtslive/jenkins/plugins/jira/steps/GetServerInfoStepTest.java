@@ -1,20 +1,18 @@
 package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import hudson.AbortException;
 import hudson.EnvVars;
 import hudson.model.Run;
 import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Map;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,13 +28,13 @@ import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilde
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
 /**
- * Unit test cases for GetAttachmentInfoStep class.
+ * Unit test cases for GetServerInfoStep class.
  *
- * @author Naresh Rayapati
+ * @author Stuart Rowe
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({GetAttachmentInfoStep.class, Site.class})
-public class GetAttachmentInfoStepTest {
+@PrepareForTest({GetServerInfoStep.class, Site.class})
+public class GetServerInfoStepTest {
 
   @Mock
   TaskListener taskListenerMock;
@@ -53,7 +51,7 @@ public class GetAttachmentInfoStepTest {
   @Mock
   StepContext contextMock;
 
-  private GetAttachmentInfoStep.Execution stepExecution;
+  private GetServerInfoStep.Execution stepExecution;
 
   @Before
   public void setup() throws IOException, InterruptedException {
@@ -70,37 +68,24 @@ public class GetAttachmentInfoStepTest {
     when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
     doNothing().when(printStreamMock).println();
 
-    final ResponseDataBuilder<Object> builder = ResponseData.builder();
-    when(jiraServiceMock.getAttachment(anyString()))
+    final ResponseDataBuilder<Map<String, Object>> builder = ResponseData.builder();
+    when(jiraServiceMock.getServerInfo())
         .thenReturn(builder.successful(true).code(200).message("Success").build());
-
     when(contextMock.get(Run.class)).thenReturn(runMock);
     when(contextMock.get(TaskListener.class)).thenReturn(taskListenerMock);
     when(contextMock.get(EnvVars.class)).thenReturn(envVarsMock);
   }
 
   @Test
-  public void testWithEmptyIdThrowsAbortException() throws Exception {
-    final GetAttachmentInfoStep step = new GetAttachmentInfoStep("");
-    stepExecution = new GetAttachmentInfoStep.Execution(step, contextMock);
-
-    // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-      stepExecution.run();
-    }).withMessage("id is empty or null.").withStackTraceContaining("AbortException")
-        .withNoCause();
-  }
-
-  @Test
-  public void testSuccessfulGetAttachment() throws Exception {
-    final GetAttachmentInfoStep step = new GetAttachmentInfoStep("1000");
-    stepExecution = new GetAttachmentInfoStep.Execution(step, contextMock);
+  public void testSuccessfulGetServerInfo() throws Exception {
+    final GetServerInfoStep step = new GetServerInfoStep();
+    stepExecution = new GetServerInfoStep.Execution(step, contextMock);
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).getAttachment("1000");
+    verify(jiraServiceMock, times(1)).getServerInfo();
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }
