@@ -6,7 +6,8 @@ lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
 * #### **1.4.4** (Unreleased)
-
+  * [JENKINS-53044](https://issues.jenkins-ci.org/browse/JENKINS-53044) Add step to retrieve jira server info.
+      * Thank you [Stuart Rowe](https://github.com/stuartrowe) for the initial pull request. 
 * #### **1.4.3**
   * [JENKINS-50764](https://issues.jenkins-ci.org/browse/JENKINS-50764) Whitelist ResponseData method signatures in In-process script approval.
       * With 1.4.2 only getData was added to the whitelist but here added rest.
