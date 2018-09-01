@@ -57,7 +57,7 @@ public class GetServerInfoStep extends BasicJiraStep {
     @Override
     protected ResponseData<Map<String, Object>> run() throws Exception {
 
-      ResponseData<Map<String, Object>> response =  verifyInput();
+      ResponseData<Map<String, Object>> response = verifyInput();
 
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Get Server Info");

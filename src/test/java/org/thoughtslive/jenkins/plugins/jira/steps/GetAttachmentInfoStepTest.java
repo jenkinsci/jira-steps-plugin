@@ -83,7 +83,6 @@ public class GetAttachmentInfoStepTest {
   public void testWithEmptyIdThrowsAbortException() throws Exception {
     final GetAttachmentInfoStep step = new GetAttachmentInfoStep("");
     stepExecution = new GetAttachmentInfoStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -94,9 +93,8 @@ public class GetAttachmentInfoStepTest {
 
   @Test
   public void testSuccessfulGetAttachment() throws Exception {
-    final GetAttachmentInfoStep step = new GetAttachmentInfoStep( "1000");
+    final GetAttachmentInfoStep step = new GetAttachmentInfoStep("1000");
     stepExecution = new GetAttachmentInfoStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

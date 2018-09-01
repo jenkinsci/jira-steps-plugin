@@ -68,7 +68,7 @@ public class GetServerInfoStepTest {
     when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
     doNothing().when(printStreamMock).println();
 
-    final ResponseDataBuilder<Map<String,Object>> builder = ResponseData.builder();
+    final ResponseDataBuilder<Map<String, Object>> builder = ResponseData.builder();
     when(jiraServiceMock.getServerInfo())
         .thenReturn(builder.successful(true).code(200).message("Success").build());
     when(contextMock.get(Run.class)).thenReturn(runMock);
