@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Info on </title>
+    <link>https://jenkinsci.github.io/jira-steps-plugin/tags/info/</link>
+    <description>Recent content in Info on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jenkinsci.github.io/jira-steps-plugin/tags/info/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Server Info</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/admin/jira_server_info/</link>
+      <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/admin/jira_server_info/</guid>
+      <description>jiraGetServerInfo This step retrives the server info.
+Input  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_jql_search step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
+    </item>
+    
+  </channel>
+</rss>

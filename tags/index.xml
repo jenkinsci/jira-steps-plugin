@@ -48,6 +48,15 @@
     </item>
     
     <item>
+      <title>Info</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/info/</link>
+      <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/info/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Issue</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/tags/issue/</link>
       <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
@@ -89,6 +98,15 @@
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/search/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Server</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/server/</link>
+      <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/server/</guid>
       <description></description>
     </item>
     

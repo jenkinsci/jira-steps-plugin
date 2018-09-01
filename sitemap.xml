@@ -3,22 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/</loc>
-    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_upload_attachment/</loc>
     <lastmod>2018-02-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/authentication/</loc>
-    <lastmod>2017-11-12T00:00:00+00:00</lastmod>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/admin/</loc>
+    <lastmod>2018-01-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/</loc>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/admin/jira_server_info/</loc>
+    <lastmod>2018-01-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/authentication/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -83,6 +83,11 @@
   </url>
   
   <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/</loc>
+    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_get_attachment_info/</loc>
     <lastmod>2018-02-14T00:00:00+00:00</lastmod>
   </url>
@@ -104,11 +109,6 @@
   
   <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/common/</loc>
-    <lastmod>2017-11-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/component/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -163,6 +163,11 @@
   </url>
   
   <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/</loc>
+    <lastmod>2017-11-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/component/jira_edit_component/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
@@ -184,11 +189,6 @@
   
   <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelink/</loc>
-    <lastmod>2017-11-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -218,6 +218,11 @@
   </url>
   
   <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/component/</loc>
+    <lastmod>2017-11-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_edit_comment/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
@@ -243,12 +248,12 @@
   </url>
   
   <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/</loc>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_versions/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project_versions/</loc>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -258,22 +263,17 @@
   </url>
   
   <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/project/</loc>
-    <lastmod>2017-11-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_edit_issue/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_link_issues/</loc>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/search/</loc>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_link_issues/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -288,7 +288,7 @@
   </url>
   
   <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/user/</loc>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/project/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -303,7 +303,7 @@
   </url>
   
   <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/version/</loc>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/search/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -314,6 +314,16 @@
   
   <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_transition_issue/</loc>
+    <lastmod>2017-11-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/user/</loc>
+    <lastmod>2017-11-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/version/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -386,6 +396,12 @@
   </url>
   
   <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/info/</loc>
+    <lastmod>2018-01-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/issue/</loc>
     <lastmod>2018-02-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -412,6 +428,12 @@
   <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/search/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/server/</loc>
+    <lastmod>2018-01-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

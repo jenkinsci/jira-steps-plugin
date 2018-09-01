@@ -23,6 +23,16 @@ Input  idOrKey - Issue Id or Key. file - File name with/without path from worksp
     </item>
     
     <item>
+      <title>Server Info</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/steps/admin/jira_server_info/</link>
+      <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/admin/jira_server_info/</guid>
+      <description>jiraGetServerInfo This step retrives the server info.
+Input  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_jql_search step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
+    </item>
+    
+    <item>
       <title>Authentication</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/authentication/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
@@ -537,7 +547,7 @@ Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/changelog/</guid>
-      <description>1.4.4 (Unreleased) 1.4.3  JENKINS-50764 Whitelist ResponseData method signatures in In-process script approval.  With 1.4.2 only getData was added to the whitelist but here added rest.   1.4.2  JENKINS-50764 Whitelist ResponseData getData signature in In-process script approval.  1.4.1  JENKINS-50417 download and upload attachments are not working on slaves.  1.4.0  JENKINS-45764 Add issue attachment related steps.  jiraUploadAttachment jiraGetAttachmentInfo jiraDownloadAttachment jiraDeleteAttachment  JENKINS-50194 Build userId missing for a job being built by other Jobs.</description>
+      <description>1.4.5 (Unreleased) 1.4.4  JENKINS-53044 Add step to retrieve jira server info.  Thank you Stuart Rowe for the initial pull request.   1.4.3  JENKINS-50764 Whitelist ResponseData method signatures in In-process script approval.  With 1.4.2 only getData was added to the whitelist but here added rest.   1.4.2  JENKINS-50764 Whitelist ResponseData getData signature in In-process script approval.  1.4.1  JENKINS-50417 download and upload attachments are not working on slaves.</description>
     </item>
     
     <item>
@@ -558,7 +568,7 @@ Issue reporting  Please browse our existing issues before logging new issues.</d
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/credits/</guid>
-      <description>Maintainers  Owner - Naresh Rayapati.  github contributors .ghContributors{ display:flex; flex-flow: wrap; align-content: flex-start } .ghContributors  div{ width: 50% ; display: inline-flex; margin-bottom: 5px; } .ghContributors  div label{ padding-left: 4px ; } .ghContributors  div span{ font-size: x-small; padding-left: 4px ; }   @nrayapati 98 commits   @abayer 1 commits   @jpgauthier 1 commits   @samrocketman 1 commits   @abeeskau 1 commits   @bhram999 1 commits   @merykozlowska 1 commits   Help us to make this project better by contributing.</description>
+      <description>Maintainers  Owner - Naresh Rayapati.  github contributors .ghContributors{ display:flex; flex-flow: wrap; align-content: flex-start } .ghContributors  div{ width: 50% ; display: inline-flex; margin-bottom: 5px; } .ghContributors  div label{ padding-left: 4px ; } .ghContributors  div span{ font-size: x-small; padding-left: 4px ; }   @nrayapati 103 commits   @abayer 1 commits   @jpgauthier 1 commits   @samrocketman 1 commits   @abeeskau 1 commits   @bhram999 1 commits   @merykozlowska 1 commits   Help us to make this project better by contributing.</description>
     </item>
     
     <item>

@@ -158,6 +158,21 @@
             <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
       </div>
         <ul>
+    <li data-nav-id="/jira-steps-plugin/steps/admin/" class="dd-item haschildren
+        ">
+      <div>
+      <a href="/jira-steps-plugin/steps/admin/">Admin</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </div>
+        <ul>
+      <li data-nav-id="/jira-steps-plugin/steps/admin/jira_server_info/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/steps/admin/jira_server_info/">
+            Server Info
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+        </ul>
+    </li>
     <li data-nav-id="/jira-steps-plugin/steps/attachment/" class="dd-item haschildren
         ">
       <div>
@@ -572,6 +587,9 @@
   
     <option value="/jira-steps-plugin/steps/" >
    Pipeline Steps</option> 
+    <option value="/jira-steps-plugin/steps/admin/" >
+  - 
+   Admin</option>
     <option value="/jira-steps-plugin/steps/attachment/" >
   - 
    Attachment</option>
@@ -675,6 +693,63 @@ Input  idOrKey - Issue Id or Key. file - File name with/without path from worksp
 
    <article class="post steps">
     <header class="post-header">
+        <h2 class="post-title"><a href="/jira-steps-plugin/steps/admin/jira_server_info/">Server Info</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>jiraGetServerInfo This step retrives the server info.
+Input  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_jql_search step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/admin/jira_server_info/">&raquo;</a></p>
+    </section>
+    <footer class=" footline" >
+         
+        
+            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 08/01/2018
+        
+
+        
+          
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/server/">server</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/info/">info</a>
+            
+        
+
+    </footer>
+</article>
+
+   <article class="post steps">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/jira-steps-plugin/steps/attachment/jira_download_attachment/">DownloadAttachment</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>jiraDownloadAttachment This step downloads the attachment of an issue to given location in workspace.
+Input  id - Attachment Id. file - Target location including file name. Ex: test.txt or test/test.txt override - Overrides an existing file. Defaults to false. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
+ Output  Each step generates generic output, please refer to this link for more information. <a class="read-more" href="/jira-steps-plugin/steps/attachment/jira_download_attachment/">&raquo;</a></p>
+    </section>
+    <footer class=" footline" >
+         
+        
+            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 14/02/2018
+        
+
+        
+          
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/attachment/">attachment</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
+            
+        
+
+    </footer>
+</article>
+
+   <article class="post steps">
+    <header class="post-header">
         <h2 class="post-title"><a href="/jira-steps-plugin/steps/comment/jira_add_comment/">AddComment</a></h2>
     </header>
     <section class="post-excerpt">
@@ -695,6 +770,34 @@ Input  idOrKey - Issue id or key. comment - comment, supports jira wiki formatti
                 <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/comment/">comment</a>
             
                 <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
+            
+        
+
+    </footer>
+</article>
+
+   <article class="post steps">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/">DeleteRemoteIssueLink</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>jiraDeleteRemoteIssueLink This step deletes a particular remote link of an issue.
+Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/">&raquo;</a></p>
+    </section>
+    <footer class=" footline" >
+         
+        
+            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
+        
+
+        
+          
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issuelink/">issuelink</a>
             
         
 
@@ -834,87 +937,6 @@ Input  id - componentId. site - Optional, default: JIRA_SITE environment variabl
                 <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
             
                 <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/component/">component</a>
-            
-        
-
-    </footer>
-</article>
-
-   <article class="post steps">
-    <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issue/jira_get_fields/">GetFields</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>jiraGetFields This step queries all fields from the provided JIRA site.
-Input  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_fields step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_get_fields/">&raquo;</a></p>
-    </section>
-    <footer class=" footline" >
-         
-        
-            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
-        
-
-        
-          
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
-            
-        
-
-    </footer>
-</article>
-
-   <article class="post steps">
-    <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issuelink/jira_get_issuelink/">GetIssueLink</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>jiraGetIssueLink This step queries issue links from the provided JIRA site.
-Input  id - issue link&rsquo;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issuelink step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_get_issuelink/">&raquo;</a></p>
-    </section>
-    <footer class=" footline" >
-         
-        
-            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
-        
-
-        
-          
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issuelink/">issuelink</a>
-            
-        
-
-    </footer>
-</article>
-
-   <article class="post steps">
-    <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/steps/watcher/jira_get_issue_watches/">GetIssueWatches</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>jiraGetIssueWatches This step queries all the issue watchers on a particular issue.
-Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
- Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_watches step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/watcher/jira_get_issue_watches/">&raquo;</a></p>
-    </section>
-    <footer class=" footline" >
-         
-        
-            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
-        
-
-        
-          
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/watcher/">watcher</a>
             
         
 
