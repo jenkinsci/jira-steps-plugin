@@ -5,7 +5,9 @@ date = "2017-11-12"
 lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
-* #### **1.4.4** (Unreleased)
+* #### **1.4.5** (Unreleased)
+
+* #### **1.4.4**
   * [JENKINS-53044](https://issues.jenkins-ci.org/browse/JENKINS-53044) Add step to retrieve jira server info.
       * Thank you [Stuart Rowe](https://github.com/stuartrowe) for the initial pull request. 
 * #### **1.4.3**

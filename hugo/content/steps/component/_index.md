@@ -1,7 +1,7 @@
 +++
 title = "Component"
 description = ""
-weight = 2
+weight = 4
 date = "2017-11-12"
 lastmodifierdisplayname = "Naresh Rayapati"
 +++
