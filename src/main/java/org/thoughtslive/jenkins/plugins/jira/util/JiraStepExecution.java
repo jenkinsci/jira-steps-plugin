@@ -15,8 +15,11 @@ import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
+
+import org.jenkinsci.plugins.workflow.cps.EnvActionImpl;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.SynchronousNonBlockingStepExecution;
+import org.jenkinsci.plugins.workflow.support.actions.EnvironmentAction;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
@@ -107,6 +110,16 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
       return buildErrorResponse(new RuntimeException(errorMessage));
     }
 
+    if (site.getUrl() != null) {
+      try {
+        EnvActionImpl environmentAction = EnvActionImpl.forRun(run);
+        if (environmentAction != null) {
+          environmentAction.setProperty("JIRA_URL", site.getUrl().toString());
+        }
+      } catch (Exception ex) {
+        log(logger, "Exception while setting JIRA_URL environment variable: " + ex);
+      }
+    }
     buildUserId = prepareBuildUserId(run.getCauses());
     buildUrl = envVars.get("BUILD_URL");
 

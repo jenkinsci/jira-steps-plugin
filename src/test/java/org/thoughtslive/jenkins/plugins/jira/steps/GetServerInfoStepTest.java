@@ -12,8 +12,12 @@ import hudson.model.Run;
 import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.URL;
 import java.util.Map;
+
+import org.jenkinsci.plugins.workflow.cps.EnvActionImpl;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
+import org.jenkinsci.plugins.workflow.support.actions.EnvironmentAction;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,6 +54,8 @@ public class GetServerInfoStepTest {
   Site siteMock;
   @Mock
   StepContext contextMock;
+  @Mock
+  EnvActionImpl envActionMock;
 
   private GetServerInfoStep.Execution stepExecution;
 
@@ -62,9 +68,11 @@ public class GetServerInfoStepTest {
 
     PowerMockito.mockStatic(Site.class);
     Mockito.when(Site.get(any())).thenReturn(siteMock);
+    when(siteMock.getUrl()).thenReturn(new URL("http://jira/instance"));
     when(siteMock.getService()).thenReturn(jiraServiceMock);
 
     when(runMock.getCauses()).thenReturn(null);
+    when(runMock.getAction(EnvActionImpl.class)).thenReturn(envActionMock);
     when(taskListenerMock.getLogger()).thenReturn(printStreamMock);
     doNothing().when(printStreamMock).println();
 
@@ -85,6 +93,8 @@ public class GetServerInfoStepTest {
     stepExecution.run();
 
     // Assert Test
+    verify(runMock).getAction(EnvActionImpl.class);
+    verify(envActionMock).setProperty("JIRA_URL", "http://jira/instance");
     verify(jiraServiceMock, times(1)).getServerInfo();
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
