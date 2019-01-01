@@ -21,7 +21,7 @@
     <workflow.step.api.version>2.3</workflow.step.api.version>
     <!-- Be careful of upgrading this to later versions, cause pipeline plugins depend on this version. -->
     <jackson2.version>2.4.0</jackson2.version>
-    <retrofit2.version>2.1.0</retrofit2.version>
+    <retrofit2.version>2.5.0</retrofit2.version>
     <lombok.version>1.16.12</lombok.version>
     <signpost.oauth.version>1.2.1.2</signpost.oauth.version>
     <google.oauth.version>1.22.0</google.oauth.version>
