@@ -87,14 +87,9 @@ public class AssignIssueStep extends BasicJiraStep {
 
       if (response == null) {
         final String idOrKey = Util.fixEmpty(step.getIdOrKey());
-        final String userName = Util.fixEmpty(step.getUserName());
 
         if (idOrKey == null) {
           errorMessage = "idOrKey is empty or null.";
-        }
-
-        if (userName == null) {
-          errorMessage = "userName is empty or null.";
         }
 
         if (errorMessage != null) {
