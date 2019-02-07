@@ -3,6 +3,7 @@ package org.thoughtslive.jenkins.plugins.jira.service;
 import java.util.Map;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
+import org.thoughtslive.jenkins.plugins.jira.model.AssigneeParameter;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -55,7 +56,7 @@ public interface JiraEndPoints {
   Call<Object> createIssues(@Body Object issues);
 
   @PUT("rest/api/2/issue/{issueIdOrKey}/assignee")
-  Call<Void> assignIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Object user);
+  Call<Void> assignIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body AssigneeParameter user);
 
   @GET("rest/api/2/issue/{issueIdOrKey}/comment")
   Call<Object> getComments(@Path("issueIdOrKey") String issueIdOrKey);

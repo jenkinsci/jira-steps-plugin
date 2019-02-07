@@ -18,6 +18,7 @@ import okhttp3.ResponseBody;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
+import org.thoughtslive.jenkins.plugins.jira.model.AssigneeParameter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
@@ -155,7 +156,7 @@ public class JiraService {
     try {
       return parseResponse(
           jiraEndPoints
-              .assignIssue(issueIdorKey, ImmutableMap.builder().put("name", userName).build())
+              .assignIssue(issueIdorKey, new AssigneeParameter(userName))
               .execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
