@@ -19,17 +19,4 @@ public class CommentParameter {
 
     }
 
-    public class Visibility {
-
-        @Getter
-        private final String type = "role";
-        @Getter
-        private final String value;
-
-        public Visibility(String value) {
-            this.value = value;
-        }
-
-    }
-
 }
