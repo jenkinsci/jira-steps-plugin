@@ -31,11 +31,15 @@ public class EditCommentStep extends BasicJiraStep {
   @Getter
   private final String comment;
 
+  @Getter
+  private final String roleVisibility;
+
   @DataBoundConstructor
-  public EditCommentStep(final String idOrKey, final String commentId, final String comment) {
+  public EditCommentStep(final String idOrKey, final String commentId, final String comment, final String roleVisibility) {
     this.idOrKey = idOrKey;
     this.commentId = commentId;
     this.comment = comment;
+    this.roleVisibility = roleVisibility;
   }
 
   @Override
@@ -78,7 +82,7 @@ public class EditCommentStep extends BasicJiraStep {
         logger.println("JIRA: Site - " + siteName + " - Updating comment: " + step.getComment()
             + " on issue: " + step.getIdOrKey());
         response =
-            jiraService.updateComment(step.getIdOrKey(), step.getCommentId(), step.getComment());
+            jiraService.updateComment(step.getIdOrKey(), step.getCommentId(), step.getComment(), step.getRoleVisibility());
       }
 
       return logResponse(response);

@@ -71,6 +71,8 @@ public class AddCommentStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Object> builder = ResponseData.builder();
+    when(jiraServiceMock.addComment(anyString(), anyString(), anyString()))
+        .thenReturn(builder.successful(true).code(200).message("Success").build());
     when(jiraServiceMock.addComment(anyString(), anyString()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
@@ -82,7 +84,7 @@ public class AddCommentStepTest {
 
   @Test
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
-    final AddCommentStep step = new AddCommentStep("", "test comment");
+    final AddCommentStep step = new AddCommentStep("", "test comment", null);
     stepExecution = new AddCommentStep.Execution(step, contextMock);
 
     // Execute and assert Test.
@@ -94,7 +96,7 @@ public class AddCommentStepTest {
 
   @Test
   public void testWithEmptyCommentThrowsAbortException() throws Exception {
-    final AddCommentStep step = new AddCommentStep("TEST-1", "");
+    final AddCommentStep step = new AddCommentStep("TEST-1", "", null);
     stepExecution = new AddCommentStep.Execution(step, contextMock);
 
     // Execute and assert Test.
@@ -106,7 +108,7 @@ public class AddCommentStepTest {
 
   @Test
   public void testSuccessfulAddComment() throws Exception {
-    final AddCommentStep step = new AddCommentStep("TEST-1", "test comment");
+    final AddCommentStep step = new AddCommentStep("TEST-1", "test comment", null);
     stepExecution = new AddCommentStep.Execution(step, contextMock);
 
     // Execute Test.
@@ -114,7 +116,21 @@ public class AddCommentStepTest {
 
     // Assert Test
     verify(jiraServiceMock, times(1)).addComment("TEST-1",
-        "test comment\n{panel}Automatically created by: [~anonymous] from [Build URL|http://localhost:8080/jira-testing/job/01]{panel}");
+        "test comment\n{panel}Automatically created by: [~anonymous] from [Build URL|http://localhost:8080/jira-testing/job/01]{panel}", null);
+    assertThat(step.isFailOnError()).isEqualTo(true);
+  }
+
+  @Test
+  public void testSuccessfulAddCommentWithRole() throws Exception {
+    final AddCommentStep step = new AddCommentStep("TEST-1", "test comment", "worker");
+    stepExecution = new AddCommentStep.Execution(step, contextMock);
+
+    // Execute Test.
+    stepExecution.run();
+
+    // Assert Test
+    verify(jiraServiceMock, times(1)).addComment("TEST-1",
+        "test comment\n{panel}Automatically created by: [~anonymous] from [Build URL|http://localhost:8080/jira-testing/job/01]{panel}", "worker");
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

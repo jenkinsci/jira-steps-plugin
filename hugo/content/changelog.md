@@ -6,6 +6,7 @@ lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
 * #### **1.4.5** (Unreleased)
+  * Allow to set a role visibility when creating or editing comments.
 
 * #### **1.4.4**
   * [JENKINS-53044](https://issues.jenkins-ci.org/browse/JENKINS-53044) Add step to retrieve jira server info.

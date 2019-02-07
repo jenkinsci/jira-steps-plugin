@@ -28,10 +28,14 @@ public class AddCommentStep extends BasicJiraStep {
   @Getter
   private final String comment;
 
+  @Getter
+  private final String roleVisibility;
+  
   @DataBoundConstructor
-  public AddCommentStep(final String idOrKey, final String comment) {
+  public AddCommentStep(final String idOrKey, final String comment, final String roleVisibility) {
     this.idOrKey = idOrKey;
     this.comment = comment;
+    this.roleVisibility = roleVisibility;
   }
 
   @Override
@@ -75,7 +79,7 @@ public class AddCommentStep extends BasicJiraStep {
             + " on issue: " + step.getIdOrKey());
         final String comment =
             step.isAuditLog() ? addPanelMeta(step.getComment()) : step.getComment();
-        response = jiraService.addComment(step.getIdOrKey(), comment);
+        response = jiraService.addComment(step.getIdOrKey(), comment, step.getRoleVisibility());
       }
       return logResponse(response);
     }

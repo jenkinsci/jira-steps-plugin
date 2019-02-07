@@ -71,6 +71,8 @@ public class EditCommentStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Object> builder = ResponseData.builder();
+    when(jiraServiceMock.updateComment(anyString(), anyString(), anyString(), anyString()))
+        .thenReturn(builder.successful(true).code(200).message("Success").build());
     when(jiraServiceMock.updateComment(anyString(), anyString(), anyString()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
@@ -81,7 +83,7 @@ public class EditCommentStepTest {
 
   @Test
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
-    final EditCommentStep step = new EditCommentStep("", "1000", "test comment");
+    final EditCommentStep step = new EditCommentStep("", "1000", "test comment", null);
     stepExecution = new EditCommentStep.Execution(step, contextMock);
     ;
 
@@ -94,7 +96,7 @@ public class EditCommentStepTest {
 
   @Test
   public void testSuccessfulEditComment() throws Exception {
-    final EditCommentStep step = new EditCommentStep("TEST-1", "1000", "test comment");
+    final EditCommentStep step = new EditCommentStep("TEST-1", "1000", "test comment", null);
     stepExecution = new EditCommentStep.Execution(step, contextMock);
     ;
 
@@ -102,7 +104,21 @@ public class EditCommentStepTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).updateComment("TEST-1", "1000", "test comment");
+    verify(jiraServiceMock, times(1)).updateComment("TEST-1", "1000", "test comment", null);
+    assertThat(step.isFailOnError()).isEqualTo(true);
+  }
+
+  @Test
+  public void testSuccessfulEditCommentWithRoleVisibility() throws Exception {
+    final EditCommentStep step = new EditCommentStep("TEST-1", "1000", "test comment", "worker");
+    stepExecution = new EditCommentStep.Execution(step, contextMock);
+    ;
+
+    // Execute Test.
+    stepExecution.run();
+
+    // Assert Test
+    verify(jiraServiceMock, times(1)).updateComment("TEST-1", "1000", "test comment", "worker");
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

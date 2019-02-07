@@ -18,6 +18,7 @@ import okhttp3.ResponseBody;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
+import org.thoughtslive.jenkins.plugins.jira.model.CommentParameter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
@@ -187,6 +188,15 @@ public class JiraService {
     }
   }
 
+  public ResponseData<Object> addComment(final String issueIdorKey, final String comment, final String roleVisibility) {
+    try {
+      return parseResponse(jiraEndPoints
+          .addComment(issueIdorKey, new CommentParameter(comment, roleVisibility)).execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
   public ResponseData<Object> updateComment(final String issueIdorKey, final String commentId,
       final String comment) {
     try {
@@ -194,6 +204,18 @@ public class JiraService {
           jiraEndPoints
               .updateComment(issueIdorKey, commentId,
                   ImmutableMap.builder().put("body", comment).build())
+              .execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
+  public ResponseData<Object> updateComment(final String issueIdorKey, final String commentId,
+  final String comment, final String roleVisibility) {
+    try {
+      return parseResponse(
+          jiraEndPoints
+              .updateComment(issueIdorKey, commentId, new CommentParameter(comment, roleVisibility))
               .execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
