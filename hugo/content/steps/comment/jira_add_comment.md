@@ -4,7 +4,7 @@ description = "More about jiraAddComment step."
 tags = ["steps", "comment", "issue"]
 weight = 3
 date = "2017-11-12"
-lastmodifierdisplayname = "Naresh Rayapati"
+lastmodifierdisplayname = "Benedikt Hr"
 +++
 
 ### jiraAddComment
@@ -14,10 +14,11 @@ This step adds a comment on a particular issue.
 #### Input
 
 * **idOrKey** - Issue id or key.
-* **comment** - comment, supports jira wiki formatting.
+* **input** - comment, supports jira wiki formatting.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
-* **auditLog** - Optional. default: `true`. Append a panel to the comment with the build url and build user name.
+* _Deprecated:_ **comment** - comment, supports jira wiki formatting.
+* _Deprecated:_ **auditLog** - Optional. default: `true`. Append a panel to the comment with the build url and build user name.
 
 {{% notice note %}}
 It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.
@@ -43,7 +44,8 @@ It supports all the fields that any jira instance supports including custom fiel
     ```groovy
     node {
       stage('JIRA') {
-        jiraAddComment idOrKey: 'TEST-1', comment: 'test comment'
+        def comment = [ body: 'test comment' ]
+        jiraAddComment idOrKey: 'TEST-1', input: comment
       }
     }
     ```
@@ -53,12 +55,31 @@ It supports all the fields that any jira instance supports including custom fiel
     node {
       stage('JIRA') {
         withEnv(['JIRA_SITE=LOCAL']) {
-          jiraAddComment idOrKey: 'TEST-1', comment: 'test comment'
+          def comment = [ body: 'test comment' ]
+          jiraAddComment idOrKey: 'TEST-1', input: comment
         }
       }
     }
     ```
 * Without environment variables.
+
+    ```groovy
+    def comment = [ body: 'test comment' ]
+    jiraAddComment site: 'LOCAL', idOrKey: 'TEST-1', input: comment
+    ```
+* With limited visibility.
+
+    ```groovy
+    def comment = [ 
+      body: 'test comment',
+      visibility: [ 
+        type: 'role', 
+        value: 'Developer'
+      ]
+    ]
+    jiraAddComment site: 'LOCAL', idOrKey: 'TEST-1', input: comment
+    ```
+* Deprecated
 
     ```groovy
     jiraAddComment site: 'LOCAL', idOrKey: 'TEST-1', comment: 'test comment'

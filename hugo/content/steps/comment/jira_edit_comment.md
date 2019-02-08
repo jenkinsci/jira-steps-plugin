@@ -4,7 +4,7 @@ description = "More about jiraEditComment step."
 tags = ["steps", "comment", "issue"]
 weight = 4
 date = "2017-11-12"
-lastmodifierdisplayname = "Naresh Rayapati"
+lastmodifierdisplayname = "Benedikt Hr"
 +++
 
 ### jiraEditComment
@@ -15,9 +15,10 @@ This step updates a particular comment on particular issue.
 
 * **idOrKey** - Issue id or key.
 * **commentId** - comment id.
-* **comment** - comment, supports jira wiki formatting.
+* **input** - comment, supports jira wiki formatting.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+* _Deprecated:_ **comment** - comment, supports jira wiki formatting.
 
 {{% notice note %}}
 It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA Api documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.
@@ -41,7 +42,8 @@ It supports all the fields that any jira instance supports including custom fiel
     ```groovy
     node {
       stage('JIRA') {
-        jiraEditComment idOrKey: 'TEST-1', commentId: '1000', comment: 'test comment'
+        def comment = [ body: 'test comment' ]
+        jiraEditComment idOrKey: 'TEST-1', commentId: '1000', input: comment
       }
     }
     ```
@@ -51,12 +53,31 @@ It supports all the fields that any jira instance supports including custom fiel
     node {
       stage('JIRA') {
         withEnv(['JIRA_SITE=LOCAL']) {
-          jiraEditComment idOrKey: 'TEST-1', commentId: '1000', comment: 'test comment'
+          def comment = [ body: 'test comment' ]
+          jiraEditComment idOrKey: 'TEST-1', commentId: '1000', input: comment
         }
       }
     }
     ```
 * Without environment variables.
+
+    ```groovy
+      def comment = [ body: 'test comment' ]
+      jiraEditComment site: 'LOCAL', idOrKey: 'TEST-1', commentId: '1000', input: comment
+    ```
+* With limited visibility.
+
+    ```groovy
+      def comment = [ 
+        body: 'test comment',
+        visibility: [ 
+          type: 'role', 
+          value: 'Developer'
+        ]
+      ]
+      jiraEditComment site: 'LOCAL', idOrKey: 'TEST-1', commentId: '1000', input: comment
+    ```
+* Deprecated.
 
     ```groovy
       jiraEditComment site: 'LOCAL', idOrKey: 'TEST-1', commentId: '1000', comment: 'test comment'

@@ -6,9 +6,11 @@ import hudson.Extension;
 import hudson.Util;
 import java.io.IOException;
 import lombok.Getter;
+import com.google.common.collect.ImmutableMap;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
+import org.kohsuke.stapler.DataBoundSetter;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
@@ -25,17 +27,23 @@ public class AddCommentStep extends BasicJiraStep {
   @Getter
   private final String idOrKey;
 
+  @Deprecated
   @Getter
   private final String comment;
 
   @Getter
-  private final String roleVisibility;
+  private Object input;
   
+  @Deprecated
   @DataBoundConstructor
-  public AddCommentStep(final String idOrKey, final String comment, final String roleVisibility) {
+  public AddCommentStep(final String idOrKey, final String comment) {
     this.idOrKey = idOrKey;
     this.comment = comment;
-    this.roleVisibility = roleVisibility;
+  }
+
+  @DataBoundSetter
+  public void setInput(Object input) {
+    this.input = input;
   }
 
   @Override
@@ -75,11 +83,17 @@ public class AddCommentStep extends BasicJiraStep {
       ResponseData<Object> response = verifyInput();
 
       if (response == null) {
-        logger.println("JIRA: Site - " + siteName + " - Add new comment: " + step.getComment()
-            + " on issue: " + step.getIdOrKey());
-        final String comment =
-            step.isAuditLog() ? addPanelMeta(step.getComment()) : step.getComment();
-        response = jiraService.addComment(step.getIdOrKey(), comment, step.getRoleVisibility());
+        if (step.getComment() != null) {
+          logger.println("JIRA: Site - " + siteName + " - Add new comment (deprecated): " + step.getComment()
+              + " on issue: " + step.getIdOrKey());
+          final String comment =
+              step.isAuditLog() ? addPanelMeta(step.getComment()) : step.getComment();
+          response = jiraService.addComment(step.getIdOrKey(), ImmutableMap.builder().put("body", comment).build());
+        } else {
+          logger.println("JIRA: Site - " + siteName + " - Add new comment: " + step.getInput()
+              + " on issue: " + step.getIdOrKey());
+          response = jiraService.addComment(step.getIdOrKey(), step.getInput());
+        }
       }
       return logResponse(response);
     }
@@ -92,14 +106,21 @@ public class AddCommentStep extends BasicJiraStep {
 
       if (response == null) {
         final String idOrKey = Util.fixEmpty(step.getIdOrKey());
-        final String comment = Util.fixEmpty(step.getComment());
+
+        if (step.getComment() != null && step.getInput() != null) {
+          errorMessage = "Use comment or either input.";
+        }
+
+        if (step.getComment() == null && step.getInput() == null) {
+          errorMessage = "You need to set at least comment or input.";
+        }
 
         if (idOrKey == null) {
           errorMessage = "idOrKey is empty or null.";
         }
 
-        if (comment == null) {
-          errorMessage = "comment is empty or null.";
+        if (step.getComment() != null && step.getComment().isEmpty()) {
+          errorMessage = "comment is empty.";
         }
 
         if (errorMessage != null) {

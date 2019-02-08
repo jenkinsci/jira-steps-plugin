@@ -15,6 +15,7 @@ import hudson.model.Run;
 import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
+import com.google.common.collect.ImmutableMap;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -71,7 +72,7 @@ public class EditCommentStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Object> builder = ResponseData.builder();
-    when(jiraServiceMock.updateComment(anyString(), anyString(), anyString(), anyString()))
+    when(jiraServiceMock.updateComment(anyString(), anyString(), any()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
     when(jiraServiceMock.updateComment(anyString(), anyString(), anyString()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
@@ -82,8 +83,8 @@ public class EditCommentStepTest {
   }
 
   @Test
-  public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
-    final EditCommentStep step = new EditCommentStep("", "1000", "test comment", null);
+  public void testDeprecatedWithEmptyIdOrKeyThrowsAbortException() throws Exception {
+    final EditCommentStep step = new EditCommentStep("", "1000", "test comment");
     stepExecution = new EditCommentStep.Execution(step, contextMock);
     ;
 
@@ -95,8 +96,8 @@ public class EditCommentStepTest {
   }
 
   @Test
-  public void testSuccessfulEditComment() throws Exception {
-    final EditCommentStep step = new EditCommentStep("TEST-1", "1000", "test comment", null);
+  public void testDeprecatedSuccessfulEditComment() throws Exception {
+    final EditCommentStep step = new EditCommentStep("TEST-1", "1000", "test comment");
     stepExecution = new EditCommentStep.Execution(step, contextMock);
     ;
 
@@ -104,13 +105,20 @@ public class EditCommentStepTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).updateComment("TEST-1", "1000", "test comment", null);
+    verify(jiraServiceMock, times(1)).updateComment("TEST-1", "1000", ImmutableMap.builder().put("body", "test comment").build());
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 
   @Test
   public void testSuccessfulEditCommentWithRoleVisibility() throws Exception {
-    final EditCommentStep step = new EditCommentStep("TEST-1", "1000", "test comment", "worker");
+    final Object requestInput = ImmutableMap.builder()
+    .put("body", "test comment")
+    .put("visibility", ImmutableMap.builder()
+      .put("type", "role")
+      .put("value", "Developer").build())
+    .build();
+    final EditCommentStep step = new EditCommentStep("TEST-1", "1000", null);
+    step.setInput(requestInput);
     stepExecution = new EditCommentStep.Execution(step, contextMock);
     ;
 
@@ -118,7 +126,13 @@ public class EditCommentStepTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).updateComment("TEST-1", "1000", "test comment", "worker");
+    Object object = ImmutableMap.builder()
+    .put("body", "test comment")
+    .put("visibility", ImmutableMap.builder()
+      .put("type", "role")
+      .put("value", "Developer").build())
+    .build();
+    verify(jiraServiceMock, times(1)).updateComment("TEST-1", "1000", object);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

@@ -15,6 +15,7 @@ import hudson.model.Run;
 import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
+import com.google.common.collect.ImmutableMap;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -71,7 +72,7 @@ public class AddCommentStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Object> builder = ResponseData.builder();
-    when(jiraServiceMock.addComment(anyString(), anyString(), anyString()))
+    when(jiraServiceMock.addComment(anyString(), any()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
     when(jiraServiceMock.addComment(anyString(), anyString()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
@@ -83,8 +84,8 @@ public class AddCommentStepTest {
   }
 
   @Test
-  public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
-    final AddCommentStep step = new AddCommentStep("", "test comment", null);
+  public void testDeprecatedWithEmptyIdOrKeyThrowsAbortException() throws Exception {
+    final AddCommentStep step = new AddCommentStep("", "test comment");
     stepExecution = new AddCommentStep.Execution(step, contextMock);
 
     // Execute and assert Test.
@@ -95,42 +96,53 @@ public class AddCommentStepTest {
   }
 
   @Test
-  public void testWithEmptyCommentThrowsAbortException() throws Exception {
-    final AddCommentStep step = new AddCommentStep("TEST-1", "", null);
+  public void testDeprecatedWithEmptyCommentThrowsAbortException() throws Exception {
+    final AddCommentStep step = new AddCommentStep("TEST-1", "");
     stepExecution = new AddCommentStep.Execution(step, contextMock);
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
       stepExecution.run();
-    }).withMessage("comment is empty or null.").withStackTraceContaining("AbortException")
+    }).withMessage("comment is empty.").withStackTraceContaining("AbortException")
         .withNoCause();
   }
 
   @Test
-  public void testSuccessfulAddComment() throws Exception {
-    final AddCommentStep step = new AddCommentStep("TEST-1", "test comment", null);
+  public void testDeprecatedSuccessfulAddComment() throws Exception {
+    final AddCommentStep step = new AddCommentStep("TEST-1", "test comment");
     stepExecution = new AddCommentStep.Execution(step, contextMock);
 
     // Execute Test.
     stepExecution.run();
-
     // Assert Test
-    verify(jiraServiceMock, times(1)).addComment("TEST-1",
-        "test comment\n{panel}Automatically created by: [~anonymous] from [Build URL|http://localhost:8080/jira-testing/job/01]{panel}", null);
+    String comment = "test comment\n{panel}Automatically created by: [~anonymous] from [Build URL|http://localhost:8080/jira-testing/job/01]{panel}";
+    verify(jiraServiceMock, times(1)).addComment("TEST-1", ImmutableMap.builder().put("body", comment).build());
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 
   @Test
-  public void testSuccessfulAddCommentWithRole() throws Exception {
-    final AddCommentStep step = new AddCommentStep("TEST-1", "test comment", "worker");
+  public void testSuccessfulAddCommentWithInput() throws Exception {
+    final Object requestInput = ImmutableMap.builder()
+    .put("body", "test comment")
+    .put("visibility", ImmutableMap.builder()
+      .put("type", "role")
+      .put("value", "Developer").build())
+    .build();
+    final AddCommentStep step = new AddCommentStep("TEST-1", null);
+    step.setInput(requestInput);
+    
     stepExecution = new AddCommentStep.Execution(step, contextMock);
 
     // Execute Test.
     stepExecution.run();
-
-    // Assert Test
-    verify(jiraServiceMock, times(1)).addComment("TEST-1",
-        "test comment\n{panel}Automatically created by: [~anonymous] from [Build URL|http://localhost:8080/jira-testing/job/01]{panel}", "worker");
+    // Assert Test  
+    Object object = ImmutableMap.builder()
+      .put("body", "test comment")
+      .put("visibility", ImmutableMap.builder()
+        .put("type", "role")
+        .put("value", "Developer").build())
+      .build();
+    verify(jiraServiceMock, times(1)).addComment("TEST-1", object);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }
