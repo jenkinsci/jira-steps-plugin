@@ -4,7 +4,7 @@ description = "More about jiraAssignIssue step."
 tags = ["steps", "issue"]
 weight = 4
 date = "2017-11-12"
-lastmodifierdisplayname = "Naresh Rayapati"
+lastmodifierdisplayname = "Benedikt Hr"
 +++
 
 ### jiraAssignIssue
@@ -59,4 +59,9 @@ It supports all the fields that any jira instance supports including custom fiel
 
     ```groovy
     jiraAssignIssue site: 'LOCAL', idOrKey: 'TEST-1', userName: 'Jenkins'
+    ```
+* A null name will remove the assignee.
+
+    ```groovy
+    jiraAssignIssue site: 'LOCAL', idOrKey: 'TEST-1', userName: null
     ```
