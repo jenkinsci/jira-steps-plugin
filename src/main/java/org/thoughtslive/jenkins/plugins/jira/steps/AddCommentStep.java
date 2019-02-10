@@ -14,6 +14,7 @@ import org.kohsuke.stapler.DataBoundSetter;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
+import org.thoughtslive.jenkins.plugins.jira.api.InputBuilder;
 
 /**
  * Step to create a new JIRA comment.
@@ -32,6 +33,7 @@ public class AddCommentStep extends BasicJiraStep {
   private final String comment;
 
   @Getter
+  @DataBoundSetter
   private Object input;
   
   @Deprecated
@@ -39,11 +41,6 @@ public class AddCommentStep extends BasicJiraStep {
   public AddCommentStep(final String idOrKey, final String comment) {
     this.idOrKey = idOrKey;
     this.comment = comment;
-  }
-
-  @DataBoundSetter
-  public void setInput(Object input) {
-    this.input = input;
   }
 
   @Override
@@ -92,6 +89,12 @@ public class AddCommentStep extends BasicJiraStep {
         } else {
           logger.println("JIRA: Site - " + siteName + " - Add new comment: " + step.getInput()
               + " on issue: " + step.getIdOrKey());
+          final String message = InputBuilder.getField(step.getInput(), "body") != null 
+              ? InputBuilder.getField(step.getInput(), "body").toString()
+              : "";
+          final String comment =
+              step.isAuditLog() ? addPanelMeta(message) : message;
+          InputBuilder.setField(step.getInput(), "body", comment);
           response = jiraService.addComment(step.getIdOrKey(), step.getInput());
         }
       }
@@ -108,7 +111,7 @@ public class AddCommentStep extends BasicJiraStep {
         final String idOrKey = Util.fixEmpty(step.getIdOrKey());
 
         if (step.getComment() != null && step.getInput() != null) {
-          errorMessage = "Use comment or either input.";
+          errorMessage = "Use either comment or input.";
         }
 
         if (step.getComment() == null && step.getInput() == null) {
@@ -121,6 +124,12 @@ public class AddCommentStep extends BasicJiraStep {
 
         if (step.getComment() != null && step.getComment().isEmpty()) {
           errorMessage = "comment is empty.";
+        }
+
+        if (step.getInput() != null 
+          && (InputBuilder.getField(step.getInput(), "body") == null 
+            || InputBuilder.getField(step.getInput(), "body").toString().isEmpty())) {
+          errorMessage = "input body is empty or null.";
         }
 
         if (errorMessage != null) {

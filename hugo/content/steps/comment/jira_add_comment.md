@@ -17,8 +17,8 @@ This step adds a comment on a particular issue.
 * **input** - comment, supports jira wiki formatting.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
+* **auditLog** - Optional. default: `true`. Append a panel to the comment with the build url and build user name.
 * _Deprecated:_ **comment** - comment, supports jira wiki formatting.
-* _Deprecated:_ **auditLog** - Optional. default: `true`. Append a panel to the comment with the build url and build user name.
 
 {{% notice note %}}
 It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.

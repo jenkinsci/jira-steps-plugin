@@ -108,31 +108,4 @@ public class EditCommentStepTest {
     verify(jiraServiceMock, times(1)).updateComment("TEST-1", "1000", ImmutableMap.builder().put("body", "test comment").build());
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
-
-  @Test
-  public void testSuccessfulEditCommentWithRoleVisibility() throws Exception {
-    final Object requestInput = ImmutableMap.builder()
-    .put("body", "test comment")
-    .put("visibility", ImmutableMap.builder()
-      .put("type", "role")
-      .put("value", "Developer").build())
-    .build();
-    final EditCommentStep step = new EditCommentStep("TEST-1", "1000", null);
-    step.setInput(requestInput);
-    stepExecution = new EditCommentStep.Execution(step, contextMock);
-    ;
-
-    // Execute Test.
-    stepExecution.run();
-
-    // Assert Test
-    Object object = ImmutableMap.builder()
-    .put("body", "test comment")
-    .put("visibility", ImmutableMap.builder()
-      .put("type", "role")
-      .put("value", "Developer").build())
-    .build();
-    verify(jiraServiceMock, times(1)).updateComment("TEST-1", "1000", object);
-    assertThat(step.isFailOnError()).isEqualTo(true);
-  }
 }

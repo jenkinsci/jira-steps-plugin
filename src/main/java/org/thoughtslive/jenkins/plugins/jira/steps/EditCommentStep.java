@@ -14,6 +14,7 @@ import org.kohsuke.stapler.DataBoundSetter;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
+import org.thoughtslive.jenkins.plugins.jira.api.InputBuilder;
 
 /**
  * Step to update JIRA issue comment.
@@ -35,6 +36,7 @@ public class EditCommentStep extends BasicJiraStep {
   private final String comment;
 
   @Getter
+  @DataBoundSetter
   private Object input;
 
   @Deprecated
@@ -43,11 +45,6 @@ public class EditCommentStep extends BasicJiraStep {
     this.idOrKey = idOrKey;
     this.commentId = commentId;
     this.comment = comment;
-  }
-
-  @DataBoundSetter
-  public void setInput(Object input) {
-    this.input = input;
   }
 
   @Override
@@ -112,7 +109,7 @@ public class EditCommentStep extends BasicJiraStep {
         final String commentId = Util.fixEmpty(step.getCommentId());
 
         if (step.getComment() != null && step.getInput() != null) {
-          errorMessage = "Use comment or either input.";
+          errorMessage = "Use either comment or input.";
         }
 
         if (step.getComment() == null && step.getInput() == null) {
@@ -129,6 +126,12 @@ public class EditCommentStep extends BasicJiraStep {
 
         if (step.getComment() != null && step.getComment().isEmpty()) {
           errorMessage = "comment is empty.";
+        }
+
+        if (step.getInput() != null 
+          && (InputBuilder.getField(step.getInput(), "body") == null 
+            || InputBuilder.getField(step.getInput(), "body").toString().isEmpty())) {
+          errorMessage = "input body is empty or null.";
         }
 
         if (errorMessage != null) {

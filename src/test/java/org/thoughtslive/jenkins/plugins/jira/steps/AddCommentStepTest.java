@@ -119,30 +119,4 @@ public class AddCommentStepTest {
     verify(jiraServiceMock, times(1)).addComment("TEST-1", ImmutableMap.builder().put("body", comment).build());
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
-
-  @Test
-  public void testSuccessfulAddCommentWithInput() throws Exception {
-    final Object requestInput = ImmutableMap.builder()
-    .put("body", "test comment")
-    .put("visibility", ImmutableMap.builder()
-      .put("type", "role")
-      .put("value", "Developer").build())
-    .build();
-    final AddCommentStep step = new AddCommentStep("TEST-1", null);
-    step.setInput(requestInput);
-    
-    stepExecution = new AddCommentStep.Execution(step, contextMock);
-
-    // Execute Test.
-    stepExecution.run();
-    // Assert Test  
-    Object object = ImmutableMap.builder()
-      .put("body", "test comment")
-      .put("visibility", ImmutableMap.builder()
-        .put("type", "role")
-        .put("value", "Developer").build())
-      .build();
-    verify(jiraServiceMock, times(1)).addComment("TEST-1", object);
-    assertThat(step.isFailOnError()).isEqualTo(true);
-  }
 }
