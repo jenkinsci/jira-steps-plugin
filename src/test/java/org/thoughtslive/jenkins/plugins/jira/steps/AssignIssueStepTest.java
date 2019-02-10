@@ -101,8 +101,22 @@ public class AssignIssueStepTest {
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
       stepExecution.run();
-    }).withMessage("userName is empty or null.").withStackTraceContaining("AbortException")
+    }).withMessage("userName is empty.").withStackTraceContaining("AbortException")
         .withNoCause();
+  }
+
+  @Test
+  public void testSuccessfulUnassignIssue() throws Exception {
+    final AssignIssueStep step = new AssignIssueStep("TEST-1", null);
+    stepExecution = new AssignIssueStep.Execution(step, contextMock);
+    ;
+
+    // Execute Test.
+    stepExecution.run();
+
+    // Assert Test
+    verify(jiraServiceMock, times(1)).assignIssue("TEST-1", null);
+    assertThat(step.isFailOnError()).isEqualTo(true);
   }
 
   @Test

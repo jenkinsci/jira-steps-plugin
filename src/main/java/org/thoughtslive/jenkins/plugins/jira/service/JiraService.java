@@ -15,6 +15,7 @@ import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import com.google.common.collect.Maps;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
@@ -153,9 +154,11 @@ public class JiraService {
 
   public ResponseData<Void> assignIssue(final String issueIdorKey, final String userName) {
     try {
+      Map input = Maps.newHashMap();
+      input.put("name", userName);
       return parseResponse(
           jiraEndPoints
-              .assignIssue(issueIdorKey, ImmutableMap.builder().put("name", userName).build())
+              .assignIssue(issueIdorKey, input)
               .execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
