@@ -181,23 +181,20 @@ public class JiraService {
     }
   }
 
-  public ResponseData<Object> addComment(final String issueIdorKey, final String comment) {
+  public ResponseData<Object> addComment(final String issueIdorKey, final Object input) {
     try {
       return parseResponse(jiraEndPoints
-          .addComment(issueIdorKey, ImmutableMap.builder().put("body", comment).build()).execute());
+          .addComment(issueIdorKey, input).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
   }
 
   public ResponseData<Object> updateComment(final String issueIdorKey, final String commentId,
-      final String comment) {
+      final Object input) {
     try {
       return parseResponse(
-          jiraEndPoints
-              .updateComment(issueIdorKey, commentId,
-                  ImmutableMap.builder().put("body", comment).build())
-              .execute());
+          jiraEndPoints.updateComment(issueIdorKey, commentId, input).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
