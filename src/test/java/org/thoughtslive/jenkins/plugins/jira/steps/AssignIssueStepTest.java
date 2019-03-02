@@ -83,7 +83,6 @@ public class AssignIssueStepTest {
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final AssignIssueStep step = new AssignIssueStep("", "testUser");
     stepExecution = new AssignIssueStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -96,7 +95,6 @@ public class AssignIssueStepTest {
   public void testWithEmptyCommentThrowsAbortException() throws Exception {
     final AssignIssueStep step = new AssignIssueStep("TEST-1", "");
     stepExecution = new AssignIssueStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -109,7 +107,6 @@ public class AssignIssueStepTest {
   public void testSuccessfulUnassignIssue() throws Exception {
     final AssignIssueStep step = new AssignIssueStep("TEST-1", null);
     stepExecution = new AssignIssueStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();
@@ -123,7 +120,6 @@ public class AssignIssueStepTest {
   public void testSuccessfulAssignIssue() throws Exception {
     final AssignIssueStep step = new AssignIssueStep("TEST-1", "testUser");
     stepExecution = new AssignIssueStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

@@ -2,19 +2,19 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
 
+import com.google.common.collect.ImmutableMap;
 import hudson.Extension;
 import hudson.Util;
 import java.io.IOException;
 import lombok.Getter;
-import com.google.common.collect.ImmutableMap;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
+import org.thoughtslive.jenkins.plugins.jira.api.InputBuilder;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
-import org.thoughtslive.jenkins.plugins.jira.api.InputBuilder;
 
 /**
  * Step to create a new JIRA comment.
@@ -35,7 +35,7 @@ public class AddCommentStep extends BasicJiraStep {
   @Getter
   @DataBoundSetter
   private Object input;
-  
+
   @Deprecated
   @DataBoundConstructor
   public AddCommentStep(final String idOrKey, final String comment) {
@@ -81,16 +81,18 @@ public class AddCommentStep extends BasicJiraStep {
 
       if (response == null) {
         if (step.getComment() != null) {
-          logger.println("JIRA: Site - " + siteName + " - Add new comment (deprecated): " + step.getComment()
-              + " on issue: " + step.getIdOrKey());
+          logger.println(
+              "JIRA: Site - " + siteName + " - Add new comment (deprecated): " + step.getComment()
+                  + " on issue: " + step.getIdOrKey());
           final String comment =
               step.isAuditLog() ? addPanelMeta(step.getComment()) : step.getComment();
-          response = jiraService.addComment(step.getIdOrKey(), ImmutableMap.builder().put("body", comment).build());
+          response = jiraService
+              .addComment(step.getIdOrKey(), ImmutableMap.builder().put("body", comment).build());
         } else {
           logger.println("JIRA: Site - " + siteName + " - Add new comment: " + step.getInput()
               + " on issue: " + step.getIdOrKey());
-          final String message = InputBuilder.getField(step.getInput(), "body") != null 
-              ? InputBuilder.getField(step.getInput(), "body").toString()
+          final String message = InputBuilder.getField(step.getInput(), "body") != null
+              ? InputBuilder.getField(step.getInput(), "body")
               : "";
           final String comment =
               step.isAuditLog() ? addPanelMeta(message) : message;
@@ -126,9 +128,9 @@ public class AddCommentStep extends BasicJiraStep {
           errorMessage = "comment is empty.";
         }
 
-        if (step.getInput() != null 
-          && (InputBuilder.getField(step.getInput(), "body") == null 
-            || InputBuilder.getField(step.getInput(), "body").toString().isEmpty())) {
+        if (step.getInput() != null
+            && (InputBuilder.getField(step.getInput(), "body") == null
+            || InputBuilder.getField(step.getInput(), "body").isEmpty())) {
           errorMessage = "input body is empty or null.";
         }
 

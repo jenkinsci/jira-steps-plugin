@@ -85,7 +85,6 @@ public class NewVersionStepTest {
             .put("description", "hello").build());
     final NewVersionStep step = new NewVersionStep(version);
     stepExecution = new NewVersionStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

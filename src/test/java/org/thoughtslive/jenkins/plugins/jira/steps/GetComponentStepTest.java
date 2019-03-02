@@ -83,7 +83,6 @@ public class GetComponentStepTest {
   public void testWithZeroComponentIdThrowsAbortException() throws Exception {
     final GetComponentStep step = new GetComponentStep("");
     stepExecution = new GetComponentStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -95,7 +94,6 @@ public class GetComponentStepTest {
   public void testWithNegativeComponentIdThrowsAbortException() throws Exception {
     final GetComponentStep step = new GetComponentStep(null);
     stepExecution = new GetComponentStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -107,7 +105,6 @@ public class GetComponentStepTest {
   public void testSuccessfulGetComponent() throws Exception {
     final GetComponentStep step = new GetComponentStep("1000");
     stepExecution = new GetComponentStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

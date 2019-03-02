@@ -84,7 +84,6 @@ public class AddWatcherStepTest {
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final AddWatcherStep step = new AddWatcherStep("", "testUser");
     stepExecution = new AddWatcherStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -97,7 +96,6 @@ public class AddWatcherStepTest {
   public void testWithEmptyCommentThrowsAbortException() throws Exception {
     final AddWatcherStep step = new AddWatcherStep("TEST-1", "");
     stepExecution = new AddWatcherStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -110,7 +108,6 @@ public class AddWatcherStepTest {
   public void testSuccessfulAddWatcher() throws Exception {
     final AddWatcherStep step = new AddWatcherStep("TEST-1", "testUser");
     stepExecution = new AddWatcherStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

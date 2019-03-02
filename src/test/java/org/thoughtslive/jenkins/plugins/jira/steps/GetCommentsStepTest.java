@@ -83,7 +83,6 @@ public class GetCommentsStepTest {
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final GetCommentsStep step = new GetCommentsStep("");
     stepExecution = new GetCommentsStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -96,7 +95,6 @@ public class GetCommentsStepTest {
   public void testSuccessfulGetComments() throws Exception {
     final GetCommentsStep step = new GetCommentsStep("TEST-1");
     stepExecution = new GetCommentsStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

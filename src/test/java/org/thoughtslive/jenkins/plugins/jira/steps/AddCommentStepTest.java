@@ -9,13 +9,13 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.google.common.collect.ImmutableMap;
 import hudson.AbortException;
 import hudson.EnvVars;
 import hudson.model.Run;
 import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
-import com.google.common.collect.ImmutableMap;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -116,7 +116,8 @@ public class AddCommentStepTest {
     stepExecution.run();
     // Assert Test
     String comment = "test comment\n{panel}Automatically created by: [~anonymous] from [Build URL|http://localhost:8080/jira-testing/job/01]{panel}";
-    verify(jiraServiceMock, times(1)).addComment("TEST-1", ImmutableMap.builder().put("body", comment).build());
+    verify(jiraServiceMock, times(1))
+        .addComment("TEST-1", ImmutableMap.builder().put("body", comment).build());
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

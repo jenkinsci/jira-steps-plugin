@@ -9,13 +9,13 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.google.common.collect.ImmutableMap;
 import hudson.AbortException;
 import hudson.EnvVars;
 import hudson.model.Run;
 import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
-import com.google.common.collect.ImmutableMap;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -86,7 +86,6 @@ public class EditCommentStepTest {
   public void testDeprecatedWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final EditCommentStep step = new EditCommentStep("", "1000", "test comment");
     stepExecution = new EditCommentStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -99,13 +98,13 @@ public class EditCommentStepTest {
   public void testDeprecatedSuccessfulEditComment() throws Exception {
     final EditCommentStep step = new EditCommentStep("TEST-1", "1000", "test comment");
     stepExecution = new EditCommentStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).updateComment("TEST-1", "1000", ImmutableMap.builder().put("body", "test comment").build());
+    verify(jiraServiceMock, times(1)).updateComment("TEST-1", "1000",
+        ImmutableMap.builder().put("body", "test comment").build());
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

@@ -80,7 +80,6 @@ public class GetFieldsStepTest {
   public void testSuccessfulGetFieldsStep() throws Exception {
     final GetFieldsStep step = new GetFieldsStep();
     stepExecution = new GetFieldsStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

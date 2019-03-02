@@ -86,7 +86,6 @@ public class NotifyIssueStepTest {
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final NotifyIssueStep step = new NotifyIssueStep("", notify);
     stepExecution = new NotifyIssueStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -99,7 +98,6 @@ public class NotifyIssueStepTest {
   public void testSuccessfulNotifyIssue() throws Exception {
     final NotifyIssueStep step = new NotifyIssueStep("TEST-1", notify);
     stepExecution = new NotifyIssueStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

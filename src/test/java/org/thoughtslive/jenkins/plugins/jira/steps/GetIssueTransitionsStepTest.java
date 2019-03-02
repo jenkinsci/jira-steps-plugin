@@ -83,7 +83,6 @@ public class GetIssueTransitionsStepTest {
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final GetIssueTransitionsStep step = new GetIssueTransitionsStep("");
     stepExecution = new GetIssueTransitionsStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -96,7 +95,6 @@ public class GetIssueTransitionsStepTest {
   public void testSuccessfulGetIssueTransitionsStep() throws Exception {
     final GetIssueTransitionsStep step = new GetIssueTransitionsStep("TEST-1");
     stepExecution = new GetIssueTransitionsStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

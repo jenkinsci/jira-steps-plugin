@@ -83,7 +83,6 @@ public class GetVersionStepTest {
   public void testWithZeroIdThrowsAbortException() throws Exception {
     final GetVersionStep step = new GetVersionStep("");
     stepExecution = new GetVersionStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -95,7 +94,6 @@ public class GetVersionStepTest {
   public void testWithNegativeIdThrowsAbortException() throws Exception {
     final GetVersionStep step = new GetVersionStep(null);
     stepExecution = new GetVersionStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -107,7 +105,6 @@ public class GetVersionStepTest {
   public void testSuccessfulGetVersionStep() throws Exception {
     final GetVersionStep step = new GetVersionStep("1000");
     stepExecution = new GetVersionStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

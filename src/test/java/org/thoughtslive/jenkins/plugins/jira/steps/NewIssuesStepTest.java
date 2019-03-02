@@ -103,7 +103,6 @@ public class NewIssuesStepTest {
   public void testSuccessfulNewIssues() throws Exception {
     final NewIssuesStep step = new NewIssuesStep(issuesInput);
     stepExecution = new NewIssuesStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

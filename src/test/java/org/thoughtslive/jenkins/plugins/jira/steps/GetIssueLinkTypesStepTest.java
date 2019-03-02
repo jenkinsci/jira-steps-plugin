@@ -80,7 +80,6 @@ public class GetIssueLinkTypesStepTest {
   public void testSuccessfulGetIssueLinkTypesStep() throws Exception {
     final GetIssueLinkTypesStep step = new GetIssueLinkTypesStep();
     stepExecution = new GetIssueLinkTypesStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

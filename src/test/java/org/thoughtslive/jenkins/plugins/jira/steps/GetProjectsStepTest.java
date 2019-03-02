@@ -80,7 +80,6 @@ public class GetProjectsStepTest {
   public void testSuccessfulGetProjectsStep() throws Exception {
     final GetProjectsStep step = new GetProjectsStep();
     stepExecution = new GetProjectsStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

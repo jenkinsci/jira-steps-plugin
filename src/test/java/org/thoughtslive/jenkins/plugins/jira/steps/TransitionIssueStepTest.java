@@ -86,7 +86,6 @@ public class TransitionIssueStepTest {
         .build());
     final TransitionIssueStep step = new TransitionIssueStep("TEST-1", input);
     stepExecution = new TransitionIssueStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();
