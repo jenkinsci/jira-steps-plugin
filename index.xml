@@ -289,7 +289,7 @@ Input  id - Attachment Id. file - Target location including file name. Ex: test.
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_add_comment/</guid>
       <description>jiraAddComment This step adds a comment on a particular issue.
-Input  idOrKey - Issue id or key. comment - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name.  It supports all the fields that any jira instance supports including custom fields.</description>
+Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name. Deprecated: comment - comment, supports jira wiki formatting.  It supports all the fields that any jira instance supports including custom fields.</description>
     </item>
     
     <item>
@@ -393,7 +393,7 @@ Input  idOrKey - Issue id or key. userName - username of the person who should b
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_edit_comment/</guid>
       <description>jiraEditComment This step updates a particular comment on particular issue.
-Input  idOrKey - Issue id or key. commentId - comment id. comment - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA Api documentation depending on your JIRA version.</description>
+Input  idOrKey - Issue id or key. commentId - comment id. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. Deprecated: comment - comment, supports jira wiki formatting.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA Api documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -547,7 +547,7 @@ Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/changelog/</guid>
-      <description>1.4.5 (Unreleased) 1.4.4  JENKINS-53044 Add step to retrieve jira server info.  Thank you Stuart Rowe for the initial pull request.   1.4.3  JENKINS-50764 Whitelist ResponseData method signatures in In-process script approval.  With 1.4.2 only getData was added to the whitelist but here added rest.   1.4.2  JENKINS-50764 Whitelist ResponseData getData signature in In-process script approval.  1.4.1  JENKINS-50417 download and upload attachments are not working on slaves.</description>
+      <description>1.4.6 (Unreleased) 1.4.5  JENKINS-49394 Make add/edit comment step more generic to set a visibility. JENKINS-56074 Use &amp;lsquo;null&amp;rsquo; as assignee to set an issue to unassigned.  1.4.4  JENKINS-53044 Add step to retrieve jira server info.  Thank you Stuart Rowe for the initial pull request.   1.4.3  JENKINS-50764 Whitelist ResponseData method signatures in In-process script approval.  With 1.4.2 only getData was added to the whitelist but here added rest.</description>
     </item>
     
     <item>
@@ -568,7 +568,7 @@ Issue reporting  Please browse our existing issues before logging new issues.</d
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/credits/</guid>
-      <description>Maintainers  Owner - Naresh Rayapati.  github contributors .ghContributors{ display:flex; flex-flow: wrap; align-content: flex-start } .ghContributors  div{ width: 50% ; display: inline-flex; margin-bottom: 5px; } .ghContributors  div label{ padding-left: 4px ; } .ghContributors  div span{ font-size: x-small; padding-left: 4px ; }   @nrayapati 103 commits   @abayer 1 commits   @jpgauthier 1 commits   @samrocketman 1 commits   @abeeskau 1 commits   @bhram999 1 commits   @merykozlowska 1 commits   Help us to make this project better by contributing.</description>
+      <description>Maintainers  Owner - Naresh Rayapati.  github contributors .ghContributors{ display:flex; flex-flow: wrap; align-content: flex-start } .ghContributors  div{ width: 50% ; display: inline-flex; margin-bottom: 5px; } .ghContributors  div label{ padding-left: 4px ; } .ghContributors  div span{ font-size: x-small; padding-left: 4px ; }   @nrayapati 106 commits   @benjidea 2 commits   @abayer 1 commits   @jpgauthier 1 commits   @samrocketman 1 commits   @abeeskau 1 commits   @bhram999 1 commits   @merykozlowska 1 commits   Help us to make this project better by contributing.</description>
     </item>
     
     <item>

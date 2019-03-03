@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.42.1" />
+<meta name="generator" content="Hugo 0.49" />
 <title>EditComment :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -252,6 +252,34 @@
       <a href="/jira-steps-plugin/steps/component/">Component</a><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
       </div>
         <ul>
+      <li data-nav-id="/jira-steps-plugin/steps/component/jira_get_component/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/steps/component/jira_get_component/">
+            GetComponent
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/steps/component/jira_new_component/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/steps/component/jira_new_component/">
+            NewComponent
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/steps/component/jira_edit_component/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/steps/component/jira_edit_component/">
+            EditComponent
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/steps/component/jira_get_component_issue_count/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/steps/component/jira_get_component_issue_count/">
+            GetComponentIssueCount
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
         </ul>
     </li>
     <li data-nav-id="/jira-steps-plugin/steps/issue/" class="dd-item haschildren
@@ -636,9 +664,10 @@
 <ul>
 <li><strong>idOrKey</strong> - Issue id or key.</li>
 <li><strong>commentId</strong> - comment id.</li>
-<li><strong>comment</strong> - comment, supports jira wiki formatting.</li>
+<li><strong>input</strong> - comment, supports jira wiki formatting.</li>
 <li><strong>site</strong> - Optional, default: <code>JIRA_SITE</code> environment variable.</li>
 <li><strong>failOnError</strong> - Optional. default: <code>true</code>.</li>
+<li><em>Deprecated:</em> <strong>comment</strong> - comment, supports jira wiki formatting.</li>
 </ul>
 
 <div class="notices note" ><p>It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the <a href="https://docs.atlassian.com/jira/REST/">JIRA Api documentation</a> depending on your JIRA version.</p>
@@ -665,7 +694,8 @@
 
 <pre><code class="language-groovy">node {
   stage('JIRA') {
-    jiraEditComment idOrKey: 'TEST-1', commentId: '1000', comment: 'test comment'
+    def comment = [ body: 'test comment' ]
+    jiraEditComment idOrKey: 'TEST-1', commentId: '1000', input: comment
   }
 }
 </code></pre></li>
@@ -675,13 +705,32 @@
 <pre><code class="language-groovy">node {
   stage('JIRA') {
     withEnv(['JIRA_SITE=LOCAL']) {
-      jiraEditComment idOrKey: 'TEST-1', commentId: '1000', comment: 'test comment'
+      def comment = [ body: 'test comment' ]
+      jiraEditComment idOrKey: 'TEST-1', commentId: '1000', input: comment
     }
   }
 }
 </code></pre></li>
 
 <li><p>Without environment variables.</p>
+
+<pre><code class="language-groovy">  def comment = [ body: 'test comment' ]
+  jiraEditComment site: 'LOCAL', idOrKey: 'TEST-1', commentId: '1000', input: comment
+</code></pre></li>
+
+<li><p>With limited visibility.</p>
+
+<pre><code class="language-groovy">  def comment = [ 
+    body: 'test comment',
+    visibility: [ 
+      type: 'role', 
+      value: 'Developer'
+    ]
+  ]
+  jiraEditComment site: 'LOCAL', idOrKey: 'TEST-1', commentId: '1000', input: comment
+</code></pre></li>
+
+<li><p>Deprecated.</p>
 
 <pre><code class="language-groovy">  jiraEditComment site: 'LOCAL', idOrKey: 'TEST-1', commentId: '1000', comment: 'test comment'
 </code></pre></li>
@@ -716,7 +765,7 @@
 
     
     <div class="author">
-        <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>
+        <i class='fa fa-user'></i> <a href="mailto:">Benedikt Hr</a>
     </div>
     
 

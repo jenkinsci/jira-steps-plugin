@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.42.1" />
+<meta name="generator" content="Hugo 0.49" />
 <title>AddComment :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -663,10 +663,11 @@
 
 <ul>
 <li><strong>idOrKey</strong> - Issue id or key.</li>
-<li><strong>comment</strong> - comment, supports jira wiki formatting.</li>
+<li><strong>input</strong> - comment, supports jira wiki formatting.</li>
 <li><strong>site</strong> - Optional, default: <code>JIRA_SITE</code> environment variable.</li>
 <li><strong>failOnError</strong> - Optional. default: <code>true</code>.</li>
 <li><strong>auditLog</strong> - Optional. default: <code>true</code>. Append a panel to the comment with the build url and build user name.</li>
+<li><em>Deprecated:</em> <strong>comment</strong> - comment, supports jira wiki formatting.</li>
 </ul>
 
 <div class="notices note" ><p>It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the <a href="https://docs.atlassian.com/jira/REST/">JIRA API documentation</a> depending on your JIRA version.</p>
@@ -695,7 +696,8 @@
 
 <pre><code class="language-groovy">node {
   stage('JIRA') {
-    jiraAddComment idOrKey: 'TEST-1', comment: 'test comment'
+    def comment = [ body: 'test comment' ]
+    jiraAddComment idOrKey: 'TEST-1', input: comment
   }
 }
 </code></pre></li>
@@ -705,13 +707,32 @@
 <pre><code class="language-groovy">node {
   stage('JIRA') {
     withEnv(['JIRA_SITE=LOCAL']) {
-      jiraAddComment idOrKey: 'TEST-1', comment: 'test comment'
+      def comment = [ body: 'test comment' ]
+      jiraAddComment idOrKey: 'TEST-1', input: comment
     }
   }
 }
 </code></pre></li>
 
 <li><p>Without environment variables.</p>
+
+<pre><code class="language-groovy">def comment = [ body: 'test comment' ]
+jiraAddComment site: 'LOCAL', idOrKey: 'TEST-1', input: comment
+</code></pre></li>
+
+<li><p>With limited visibility.</p>
+
+<pre><code class="language-groovy">def comment = [ 
+  body: 'test comment',
+  visibility: [ 
+    type: 'role', 
+    value: 'Developer'
+  ]
+]
+jiraAddComment site: 'LOCAL', idOrKey: 'TEST-1', input: comment
+</code></pre></li>
+
+<li><p>Deprecated</p>
 
 <pre><code class="language-groovy">jiraAddComment site: 'LOCAL', idOrKey: 'TEST-1', comment: 'test comment'
 </code></pre></li>
@@ -746,7 +767,7 @@
 
     
     <div class="author">
-        <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>
+        <i class='fa fa-user'></i> <a href="mailto:">Benedikt Hr</a>
     </div>
     
 

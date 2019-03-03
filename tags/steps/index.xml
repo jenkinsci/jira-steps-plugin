@@ -50,7 +50,7 @@ Input  id - Attachment Id. file - Target location including file name. Ex: test.
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_add_comment/</guid>
       <description>jiraAddComment This step adds a comment on a particular issue.
-Input  idOrKey - Issue id or key. comment - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name.  It supports all the fields that any jira instance supports including custom fields.</description>
+Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name. Deprecated: comment - comment, supports jira wiki formatting.  It supports all the fields that any jira instance supports including custom fields.</description>
     </item>
     
     <item>
@@ -207,7 +207,7 @@ Input  id - issue link&amp;rsquo;s id. site - Optional, default: JIRA_SITE envir
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_edit_comment/</guid>
       <description>jiraEditComment This step updates a particular comment on particular issue.
-Input  idOrKey - Issue id or key. commentId - comment id. comment - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA Api documentation depending on your JIRA version.</description>
+Input  idOrKey - Issue id or key. commentId - comment id. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. Deprecated: comment - comment, supports jira wiki formatting.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA Api documentation depending on your JIRA version.</description>
     </item>
     
     <item>
