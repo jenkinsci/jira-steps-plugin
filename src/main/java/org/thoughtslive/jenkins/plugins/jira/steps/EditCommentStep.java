@@ -2,19 +2,19 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorResponse;
 
+import com.google.common.collect.ImmutableMap;
 import hudson.Extension;
 import hudson.Util;
 import java.io.IOException;
 import lombok.Getter;
-import com.google.common.collect.ImmutableMap;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
+import org.thoughtslive.jenkins.plugins.jira.api.InputBuilder;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
-import org.thoughtslive.jenkins.plugins.jira.api.InputBuilder;
 
 /**
  * Step to update JIRA issue comment.
@@ -85,14 +85,16 @@ public class EditCommentStep extends BasicJiraStep {
 
       if (response == null) {
         if (step.getComment() != null) {
-          logger.println("JIRA: Site - " + siteName + " - Updating comment (deprecated): " + step.getComment()
-              + " on issue: " + step.getIdOrKey());
-          response = jiraService.updateComment(step.getIdOrKey(), step.getCommentId(), 
-            ImmutableMap.builder().put("body", step.getComment()).build());
+          logger.println(
+              "JIRA: Site - " + siteName + " - Updating comment (deprecated): " + step.getComment()
+                  + " on issue: " + step.getIdOrKey());
+          response = jiraService.updateComment(step.getIdOrKey(), step.getCommentId(),
+              ImmutableMap.builder().put("body", step.getComment()).build());
         } else {
           logger.println("JIRA: Site - " + siteName + " - Updating comment: " + step.getInput()
               + " on issue: " + step.getIdOrKey());
-          response = jiraService.updateComment(step.getIdOrKey(), step.getCommentId(), step.getInput());
+          response = jiraService
+              .updateComment(step.getIdOrKey(), step.getCommentId(), step.getInput());
         }
       }
 
@@ -128,9 +130,9 @@ public class EditCommentStep extends BasicJiraStep {
           errorMessage = "comment is empty.";
         }
 
-        if (step.getInput() != null 
-          && (InputBuilder.getField(step.getInput(), "body") == null 
-            || InputBuilder.getField(step.getInput(), "body").toString().isEmpty())) {
+        if (step.getInput() != null
+            && (InputBuilder.getField(step.getInput(), "body") == null
+            || InputBuilder.getField(step.getInput(), "body").isEmpty())) {
           errorMessage = "input body is empty or null.";
         }
 

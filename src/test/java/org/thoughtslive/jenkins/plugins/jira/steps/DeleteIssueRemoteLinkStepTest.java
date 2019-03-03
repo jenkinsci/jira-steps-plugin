@@ -83,7 +83,6 @@ public class DeleteIssueRemoteLinkStepTest {
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final DeleteIssueRemoteLinkStep step = new DeleteIssueRemoteLinkStep("", "10000");
     stepExecution = new DeleteIssueRemoteLinkStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -96,7 +95,6 @@ public class DeleteIssueRemoteLinkStepTest {
   public void testWithEmptyLinkIdThrowsAbortException() throws Exception {
     final DeleteIssueRemoteLinkStep step = new DeleteIssueRemoteLinkStep("TEST-27", "");
     stepExecution = new DeleteIssueRemoteLinkStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -109,7 +107,6 @@ public class DeleteIssueRemoteLinkStepTest {
   public void testSuccessfulDeleteIssueRemoteLinksStep() throws Exception {
     final DeleteIssueRemoteLinkStep step = new DeleteIssueRemoteLinkStep("TEST-27", "1000");
     stepExecution = new DeleteIssueRemoteLinkStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

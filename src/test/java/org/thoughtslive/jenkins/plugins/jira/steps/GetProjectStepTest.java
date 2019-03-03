@@ -83,7 +83,6 @@ public class GetProjectStepTest {
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final GetProjectStep step = new GetProjectStep("");
     stepExecution = new GetProjectStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -96,7 +95,6 @@ public class GetProjectStepTest {
   public void testSuccessfulGetProject() throws Exception {
     final GetProjectStep step = new GetProjectStep("TEST");
     stepExecution = new GetProjectStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

@@ -85,7 +85,6 @@ public class NewComponentStepTest {
             .put("project", "TEST").build());
     final NewComponentStep step = new NewComponentStep(component);
     stepExecution = new NewComponentStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

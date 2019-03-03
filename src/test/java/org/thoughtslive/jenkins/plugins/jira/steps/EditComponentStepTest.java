@@ -86,7 +86,6 @@ public class EditComponentStepTest {
             .put("project", "TEST").build());
     final EditComponentStep step = new EditComponentStep("100", component);
     stepExecution = new EditComponentStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

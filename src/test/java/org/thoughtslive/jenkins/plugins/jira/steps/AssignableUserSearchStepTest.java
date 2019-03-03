@@ -85,7 +85,6 @@ public class AssignableUserSearchStepTest {
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final AssignableUserSearchStep step = new AssignableUserSearchStep("", "");
     stepExecution = new AssignableUserSearchStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -99,7 +98,6 @@ public class AssignableUserSearchStepTest {
   public void testSuccessfulJqlSearch() throws Exception {
     final AssignableUserSearchStep step = new AssignableUserSearchStep("TEST", "TEST-1");
     stepExecution = new AssignableUserSearchStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

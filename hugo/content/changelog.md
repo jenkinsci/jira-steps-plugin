@@ -5,9 +5,11 @@ date = "2017-11-12"
 lastmodifierdisplayname = "Benedikt Hr"
 +++
 
-* #### **1.4.5** (Unreleased)
+* #### **1.4.6** (Unreleased)
+
+* #### **1.4.5**
   * [JENKINS-49394](https://issues.jenkins-ci.org/browse/JENKINS-49394) Make add/edit comment step more generic to set a visibility.
-  * Use 'null' as assignee to set an issue to unassigned.
+  * [JENKINS-56074](https://issues.jenkins-ci.org/browse/JENKINS-56074) Use 'null' as assignee to set an issue to unassigned.
 
 * #### **1.4.4**
   * [JENKINS-53044](https://issues.jenkins-ci.org/browse/JENKINS-53044) Add step to retrieve jira server info.

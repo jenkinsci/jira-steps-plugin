@@ -83,7 +83,6 @@ public class DeleteAttachmentStepTest {
   public void testWithEmptyIdThrowsAbortException() throws Exception {
     final DeleteAttachmentStep step = new DeleteAttachmentStep("");
     stepExecution = new DeleteAttachmentStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -95,7 +94,6 @@ public class DeleteAttachmentStepTest {
   public void testWithNullIdThrowsAbortException() throws Exception {
     final DeleteAttachmentStep step = new DeleteAttachmentStep(null);
     stepExecution = new DeleteAttachmentStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -107,7 +105,6 @@ public class DeleteAttachmentStepTest {
   public void testSuccessfulDeleteAttachmentStep() throws Exception {
     final DeleteAttachmentStep step = new DeleteAttachmentStep("1000");
     stepExecution = new DeleteAttachmentStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

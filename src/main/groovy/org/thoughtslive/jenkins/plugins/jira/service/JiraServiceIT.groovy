@@ -1,20 +1,20 @@
 package org.thoughtslive.jenkins.plugins.jira.service
 
-import org.thoughtslive.jenkins.plugins.jira.Site;
+import org.thoughtslive.jenkins.plugins.jira.Site
 
 
 // This is just a utility class for local testing, nothing to do with any other changes.
 class JiraServiceIT {
 
     static main(args) {
-        final Site config = new Site("JIRA2", new URL("http://192.168.1.181:8080/"), "BASIC", 10000);
+        final Site config = new Site("JIRA2", new URL("http://192.168.1.181:8080/"), "BASIC", 10000)
         config.setUserName('jenkins')
-        config.setPassword('jenkins$123');
-        def service = new JiraService(config);
+        config.setPassword('jenkins$123')
+        def service = new JiraService(config)
 
-        println service.addComment('TEST-27', 'Testing From Groovy Class').code;
+        println service.addComment('TEST-27', 'Testing From Groovy Class').code
 
-        println service.addIssueWatcher('TEST-27', 'naresh').code;
+        println service.addIssueWatcher('TEST-27', 'naresh').code
 
         println service.getIssue("TEST-27").code
 

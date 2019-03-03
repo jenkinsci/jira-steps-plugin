@@ -87,7 +87,6 @@ public class EditVersionStepTest {
             .put("project", "TEST").build());
     final EditVersionStep step = new EditVersionStep("10000", version);
     stepExecution = new EditVersionStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

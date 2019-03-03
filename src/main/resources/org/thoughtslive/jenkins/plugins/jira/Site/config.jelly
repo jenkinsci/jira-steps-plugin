@@ -30,7 +30,8 @@
           <f:validateButton inline="true"
             method="validateBasic"
             progress="Checking..."
-            title="${%Test Connection}" with="name,url,loginType,timeout,readTimeout,userName,password,consumerKey,privateKey,secret,token"/>
+            title="${%Test Connection}"
+            with="name,url,loginType,timeout,readTimeout,userName,password,consumerKey,privateKey,secret,token"/>
         </f:entry>
       </f:nested>
     </f:radioBlock>
@@ -53,7 +54,8 @@
           <f:validateButton inline="true"
             method="validateOAuth"
             progress="Checking..."
-            title="${%Test Connection}" with="name,url,loginType,timeout,readTimeout,userName,password,consumerKey,privateKey,secret,token"/>
+            title="${%Test Connection}"
+            with="name,url,loginType,timeout,readTimeout,userName,password,consumerKey,privateKey,secret,token"/>
         </f:entry>
       </f:nested>
     </f:radioBlock>

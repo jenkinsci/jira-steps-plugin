@@ -84,7 +84,6 @@ public class JqlSearchStepTest {
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final JqlSearchStep step = new JqlSearchStep("");
     stepExecution = new JqlSearchStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -97,7 +96,6 @@ public class JqlSearchStepTest {
   public void testSuccessfulJqlSearch() throws Exception {
     final JqlSearchStep step = new JqlSearchStep("TEST-1");
     stepExecution = new JqlSearchStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

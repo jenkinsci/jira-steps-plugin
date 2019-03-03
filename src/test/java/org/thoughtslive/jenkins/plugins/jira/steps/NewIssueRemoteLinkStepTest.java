@@ -83,7 +83,6 @@ public class NewIssueRemoteLinkStepTest {
   public void testWithZeroIdThrowsAbortException() throws Exception {
     final NewIssueRemoteLinkStep step = new NewIssueRemoteLinkStep("", "");
     stepExecution = new NewIssueRemoteLinkStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -96,7 +95,6 @@ public class NewIssueRemoteLinkStepTest {
   public void testSuccessfulNewIssueRemoteLinksStep() throws Exception {
     final NewIssueRemoteLinkStep step = new NewIssueRemoteLinkStep("TEST-27", "");
     stepExecution = new NewIssueRemoteLinkStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

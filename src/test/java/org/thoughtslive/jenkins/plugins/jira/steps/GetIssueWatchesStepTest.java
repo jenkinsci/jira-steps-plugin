@@ -83,7 +83,6 @@ public class GetIssueWatchesStepTest {
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final GetIssueWatchesStep step = new GetIssueWatchesStep("");
     stepExecution = new GetIssueWatchesStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -96,7 +95,6 @@ public class GetIssueWatchesStepTest {
   public void testSuccessfulGetIssueWatchesStep() throws Exception {
     final GetIssueWatchesStep step = new GetIssueWatchesStep("TEST-1");
     stepExecution = new GetIssueWatchesStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

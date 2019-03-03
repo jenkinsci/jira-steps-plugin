@@ -83,7 +83,6 @@ public class LinkIssuesStepTest {
   public void testWithEmptyTypeThrowsAbortException() throws Exception {
     final LinkIssuesStep step = new LinkIssuesStep("", "TEST-1", "TEST-2");
     stepExecution = new LinkIssuesStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -96,7 +95,6 @@ public class LinkIssuesStepTest {
   public void testWithEmptyInwardKeyThrowsAbortException() throws Exception {
     final LinkIssuesStep step = new LinkIssuesStep("Relates", "", "TEST-2");
     stepExecution = new LinkIssuesStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -109,7 +107,6 @@ public class LinkIssuesStepTest {
   public void testWithEmptyOutwardKeyThrowsAbortException() throws Exception {
     final LinkIssuesStep step = new LinkIssuesStep("Relates", "TEST-1", "");
     stepExecution = new LinkIssuesStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -122,7 +119,6 @@ public class LinkIssuesStepTest {
   public void testSuccessfulLinkIssuesStep() throws Exception {
     final LinkIssuesStep step = new LinkIssuesStep("Relates", "TEST-1", "TEST-2");
     stepExecution = new LinkIssuesStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

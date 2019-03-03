@@ -83,7 +83,6 @@ public class GetCommentStepTest {
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
     final GetCommentStep step = new GetCommentStep("", "1000");
     stepExecution = new GetCommentStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -96,7 +95,6 @@ public class GetCommentStepTest {
   public void testWithZeroComponentIdThrowsAbortException() throws Exception {
     final GetCommentStep step = new GetCommentStep("TEST-1", "");
     stepExecution = new GetCommentStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -109,7 +107,6 @@ public class GetCommentStepTest {
   public void testSuccessfulGetComment() throws Exception {
     final GetCommentStep step = new GetCommentStep("TEST-1", "1000");
     stepExecution = new GetCommentStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();

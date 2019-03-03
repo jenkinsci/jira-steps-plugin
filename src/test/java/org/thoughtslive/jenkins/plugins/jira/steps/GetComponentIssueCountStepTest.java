@@ -83,7 +83,6 @@ public class GetComponentIssueCountStepTest {
   public void testWithZeroComponentIdThrowsAbortException() throws Exception {
     final GetComponentIssueCountStep step = new GetComponentIssueCountStep("");
     stepExecution = new GetComponentIssueCountStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -95,7 +94,6 @@ public class GetComponentIssueCountStepTest {
   public void testWithNegativeComponentIdThrowsAbortException() throws Exception {
     final GetComponentIssueCountStep step = new GetComponentIssueCountStep(null);
     stepExecution = new GetComponentIssueCountStep.Execution(step, contextMock);
-    ;
 
     // Execute and assert Test.
     assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
@@ -107,7 +105,6 @@ public class GetComponentIssueCountStepTest {
   public void testSuccessfulGetComponentIssueCountStep() throws Exception {
     final GetComponentIssueCountStep step = new GetComponentIssueCountStep("1000");
     stepExecution = new GetComponentIssueCountStep.Execution(step, contextMock);
-    ;
 
     // Execute Test.
     stepExecution.run();
