@@ -80,8 +80,8 @@ public class Config extends AbstractDescribableImpl<Config> {
       return sites.toArray(new Site[0]);
     }
 
-    public void setSites(Site site) {
-      sites.add(site);
+    public void setSites(Site[] newSites) {
+      sites.replaceBy(newSites);
     }
 
     @Override
