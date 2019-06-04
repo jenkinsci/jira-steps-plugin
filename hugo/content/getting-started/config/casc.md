@@ -13,7 +13,7 @@ The following snippet will automatically configure the global settings of this p
 
 ```yaml
 unclassified:
-  config:
+  jiraStepsConfig:
     sites:
     - name: 'another'
       url: 'http://example.com'

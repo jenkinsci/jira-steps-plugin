@@ -14,7 +14,7 @@ The following [Jenkins Script Console script](https://wiki.jenkins.io/display/JE
 ```groovy
 import net.sf.json.JSONArray
 import net.sf.json.JSONObject
-import org.thoughtslive.jenkins.plugins.jira.Config
+import org.thoughtslive.jenkins.plugins.jira.JiraStepsConfig
 import org.thoughtslive.jenkins.plugins.jira.Site
 
 //global user-defined configuration
@@ -42,7 +42,7 @@ JSONArray sitesConf = [
 ] as JSONArray
 
 //get global Jenkins configuration
-Config.ConfigDescriptorImpl config = Jenkins.instance.getExtensionList(Config.ConfigDescriptorImpl.class)[0]
+JiraStepsConfig.ConfigDescriptorImpl config = Jenkins.instance.getExtensionList(JiraStepsConfig.ConfigDescriptorImpl.class)[0]
 
 ArrayList<Site> sites = new ArrayList<Site>()
 
