@@ -1,11 +1,13 @@
 +++
 title = "Change Log"
 description = "Change Log."
-date = "2017-11-12"
-lastmodifierdisplayname = "Benedikt Hr"
+date = "2019-06-23"
+lastmodifierdisplayname = "daper"
 +++
 
-* #### **1.4.6** (Unreleased)
+* #### **1.5.0**
+  * [JENKINS-57182](https://issues.jenkins-ci.org/browse/JENKINS-57182) When configuring a Jira steps site in casc yaml file. If the Jenkins service is restarted, the site is duplicated in Jenkins config.
+      * <span style="color:red">Breaking changes: the java class *Config* has been renamed to *JiraStepsConfig*. Review the documentation to adapt your scripts.</span>
 
 * #### **1.4.5**
   * [JENKINS-49394](https://issues.jenkins-ci.org/browse/JENKINS-49394) Make add/edit comment step more generic to set a visibility.
