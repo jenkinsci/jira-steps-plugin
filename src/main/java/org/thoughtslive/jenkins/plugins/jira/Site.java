@@ -66,7 +66,7 @@ public class Site extends AbstractDescribableImpl<Site> {
   }
 
   public static Site get(final String siteName) {
-    Site[] sites = Config.DESCRIPTOR.getSites();
+    Site[] sites = JiraStepsConfig.DESCRIPTOR.getSites();
     for (Site site : sites) {
       if (site.getName().equalsIgnoreCase(siteName)) {
         return site;
@@ -120,7 +120,7 @@ public class Site extends AbstractDescribableImpl<Site> {
 
     /**
      * Checks if the details required for the basic login is valid. TODO: This validation can be
-     * moved to Config so that we can also verify the name is valid.
+     * moved to JiraStepsConfig so that we can also verify the name is valid.
      */
     public FormValidation doValidateBasic(@QueryParameter String name, @QueryParameter String url,
         @QueryParameter String loginType, @QueryParameter String timeout,

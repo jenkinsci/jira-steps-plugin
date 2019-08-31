@@ -14,11 +14,11 @@ The following [Jenkins Script Console script](https://wiki.jenkins.io/display/JE
 ```groovy
 import net.sf.json.JSONArray
 import net.sf.json.JSONObject
-import org.thoughtslive.jenkins.plugins.jira.Config
+import org.thoughtslive.jenkins.plugins.jira.JiraStepsConfig
 import org.thoughtslive.jenkins.plugins.jira.Site
 
 //global user-defined configuration
-JSONArray sites = [
+JSONArray sitesConf = [
   [
     name: 'another',
     url: 'http://example.com',
@@ -42,13 +42,12 @@ JSONArray sites = [
 ] as JSONArray
 
 //get global Jenkins configuration
-Config.ConfigDescriptorImpl config = Jenkins.instance.getExtensionList(Config.ConfigDescriptorImpl.class)[0]
+JiraStepsConfig.ConfigDescriptorImpl config = Jenkins.instance.getExtensionList(JiraStepsConfig.ConfigDescriptorImpl.class)[0]
 
-//delete all existing sites
-config.@sites.clear()
+ArrayList<Site> sites = new ArrayList<Site>()
 
 //configure new sites from the above JSONArray
-sites.each { s ->
+sitesConf.each { s ->
   String loginType = s.optString('loginType', '').toUpperCase()
   if(loginType in ['BASIC', 'OAUTH']) {
     Site site = new Site(s.optString('name',''), new URL(s.optString('url', '')), s.optString('loginType', ''), s.optInt('timeout', 10000))
@@ -63,10 +62,13 @@ sites.each { s ->
       site.setToken(s.optString('token', ''))
       site.setReadTimeout(s.optInt('readTimeout', 10000))
     }
-    //setSites does not make sense as a name because you can only set one site instead of a list :-/
-    config.setSites(site)
+
+    sites.add(site)
   }
 }
+
+//set our defined sites
+config.setSites(sites.toArray(new Site[0]))
 
 //persist configuration to disk as XML
 config.save()

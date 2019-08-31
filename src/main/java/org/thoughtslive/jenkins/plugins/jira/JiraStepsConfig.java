@@ -23,14 +23,14 @@ import org.kohsuke.stapler.StaplerRequest;
  * @author Naresh Rayapati
  */
 @SuppressFBWarnings
-public class Config extends AbstractDescribableImpl<Config> {
+public class JiraStepsConfig extends AbstractDescribableImpl<JiraStepsConfig> {
 
   @Extension
   public static final ConfigDescriptorImpl DESCRIPTOR = new ConfigDescriptorImpl();
   public final String siteName;
 
   @DataBoundConstructor
-  public Config(String siteName) {
+  public JiraStepsConfig(String siteName) {
     if (siteName == null) {
       Site[] sites = DESCRIPTOR.getSites();
       if (sites.length > 0) {
@@ -60,34 +60,34 @@ public class Config extends AbstractDescribableImpl<Config> {
     return DESCRIPTOR;
   }
 
-  public static final class ConfigDescriptorImpl extends Descriptor<Config>
+  public static final class ConfigDescriptorImpl extends Descriptor<JiraStepsConfig>
       implements Serializable {
 
     private static final long serialVersionUID = 6174559183832237318L;
     private final CopyOnWriteList<Site> sites = new CopyOnWriteList<Site>();
 
     public ConfigDescriptorImpl() {
-      super(Config.class);
+      super(JiraStepsConfig.class);
       load();
     }
 
     @Override
     public String getDisplayName() {
-      return "JIRA Steps: Config";
+      return "JIRA Steps: JiraStepsConfig";
     }
 
     public Site[] getSites() {
       return sites.toArray(new Site[0]);
     }
 
-    public void setSites(Site site) {
-      sites.add(site);
+    public void setSites(Site[] newSites) {
+      sites.replaceBy(newSites);
     }
 
     @Override
-    public Config newInstance(@Nonnull final StaplerRequest req, final JSONObject formData)
+    public JiraStepsConfig newInstance(@Nonnull final StaplerRequest req, final JSONObject formData)
         throws FormException {
-      Config jiraConfig = req.bindJSON(Config.class, formData);
+      JiraStepsConfig jiraConfig = req.bindJSON(JiraStepsConfig.class, formData);
       if (jiraConfig.siteName == null) {
         jiraConfig = null;
       }

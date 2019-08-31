@@ -7,7 +7,7 @@ import hudson.model.TaskListener;
 import hudson.util.ListBoxModel;
 import java.util.Set;
 import org.jenkinsci.plugins.workflow.steps.StepDescriptor;
-import org.thoughtslive.jenkins.plugins.jira.Config;
+import org.thoughtslive.jenkins.plugins.jira.JiraStepsConfig;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 
 /**
@@ -25,7 +25,7 @@ public abstract class JiraStepDescriptorImpl extends StepDescriptor {
   public ListBoxModel doFillSiteItems() {
     ListBoxModel list = new ListBoxModel();
     list.add("Please select", "");
-    for (Site site : Config.DESCRIPTOR.getSites()) {
+    for (Site site : JiraStepsConfig.DESCRIPTOR.getSites()) {
       list.add(site.getName());
     }
     return list;
