@@ -8,6 +8,7 @@ lastmodifierdisplayname = "daper"
 * #### **1.5.0** (Unreleased)
   * [JENKINS-57182](https://issues.jenkins-ci.org/browse/JENKINS-57182) When configuring a Jira steps site in casc yaml file. If the Jenkins service is restarted, the site is duplicated in Jenkins config.
       * <span style="color:red">Breaking changes: the java class *Config* has been renamed to *JiraStepsConfig*. Review the documentation to adapt your scripts.</span>
+  * [JENKINS-58793](https://issues.jenkins-ci.org/browse/JENKINS-58793) Add "fields" parameter to api/2/search endpoint for jiraJqlSearch.
 
 * #### **1.4.5**
   * [JENKINS-49394](https://issues.jenkins-ci.org/browse/JENKINS-49394) Make add/edit comment step more generic to set a visibility.
