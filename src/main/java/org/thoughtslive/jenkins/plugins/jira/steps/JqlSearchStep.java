@@ -25,12 +25,18 @@ public class JqlSearchStep extends BasicJiraStep {
 
   @Getter
   private final String jql;
+
   @Getter
   @DataBoundSetter
   private int startAt = 0;
+
   @Getter
   @DataBoundSetter
   private int maxResults = 1000;
+
+  @Getter
+  @DataBoundSetter
+  private String fields;
 
   @DataBoundConstructor
   public JqlSearchStep(final String jql) {
@@ -76,7 +82,8 @@ public class JqlSearchStep extends BasicJiraStep {
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Search JQL: " + step.getJql() + " startAt: "
             + step.getStartAt() + " maxResults: " + step.getMaxResults());
-        response = jiraService.searchIssues(step.getJql(), step.getStartAt(), step.getMaxResults());
+        response = jiraService
+            .searchIssues(step.getJql(), step.getStartAt(), step.getMaxResults(), step.getFields());
       }
 
       return logResponse(response);

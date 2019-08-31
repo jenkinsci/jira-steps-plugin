@@ -250,11 +250,11 @@ public class JiraService {
   }
 
   public ResponseData<Object> searchIssues(final String jql, final int startAt,
-      final int maxResults) {
+      final int maxResults, final String fields) {
     try {
       return parseResponse(jiraEndPoints.searchIssues(
           ImmutableMap.builder().put("jql", jql).put("startAt", startAt)
-              .put("maxResults", maxResults).build()).execute());
+              .put("maxResults", maxResults).put("fields", fields).build()).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }

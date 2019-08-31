@@ -1,6 +1,5 @@
 package org.thoughtslive.jenkins.plugins.jira.steps;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
@@ -72,7 +71,7 @@ public class JqlSearchStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Object> builder = ResponseData.builder();
-    when(jiraServiceMock.searchIssues(anyString(), anyInt(), anyInt()))
+    when(jiraServiceMock.searchIssues(anyString(), anyInt(), anyInt(), anyString()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);
@@ -101,7 +100,7 @@ public class JqlSearchStepTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).searchIssues("TEST-1", 0, 1000);
+    verify(jiraServiceMock, times(1)).searchIssues("TEST-1", 0, 1000, null);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }
