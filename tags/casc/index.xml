@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>casc on </title>
+    <link>https://jenkinsci.github.io/jira-steps-plugin/tags/casc/</link>
+    <description>Recent content in casc on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jenkinsci.github.io/jira-steps-plugin/tags/casc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Configuration as Code Plugin</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/casc/</link>
+      <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/casc/</guid>
+      <description> Automate configuring via Configuration as Code Plugin The following snippet will automatically configure the global settings of this plugin.
+unclassified: jiraStepsConfig: sites: - name: &#39;another&#39; url: &#39;http://example.com&#39; timeout: 10000 readTimeout: 10000 loginType: &#39;BASIC&#39; userName: &#39;foo&#39; password: &#39;some pass&#39; - name: &#39;moar jira&#39; url: &#39;http://example.com&#39; timeout: 10000 readTimeout: 10000 loginType: &#39;OAUTH&#39; consumerKey: &#39;my consumer key&#39; privateKey: &#39;my private key&#39; secret: &#39;super secret&#39; token: &#39;my token&#39;  </description>
+    </item>
+    
+  </channel>
+</rss>

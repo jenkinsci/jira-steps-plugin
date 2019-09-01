@@ -18,8 +18,7 @@
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/install/</guid>
       <description> Jenkins provides a couple of different methods for installing plugins
-Installing from UI.  Installing Plugin From Web UI Updating Plugin  Manual installation - For snapshots  Clone the repository. Run mvn package to build a deployable hpi bundle for Jenkins. jira-steps.hpi file can be found in jira-steps-plugin/target folder. For more information Advanced installation  This plugin REQUIRES JDK 1.8 to build.
- </description>
+Installing from UI.  Installing Plugin From Web UI Updating Plugin  Manual installation - For snapshots  Clone the repository. Run mvn package to build a deployable hpi bundle for Jenkins. jira-steps.hpi file can be found in jira-steps-plugin/target folder. For more information Advanced installation  This plugin **`REQUIRES JDK 1.8`** to build.  </description>
     </item>
     
   </channel>

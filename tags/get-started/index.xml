@@ -6,7 +6,7 @@
     <description>Recent content in Get Started on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jenkinsci.github.io/jira-steps-plugin/tags/get-started/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,7 +18,7 @@
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/authentication/</guid>
       <description>Authentication This plugin supports both Basic and OAuth, OAuth is preferred over the Basic authentication.
-Basic Authentication  Goto Manage Jenkins &amp;gt; Configure System &amp;gt; JIRA Steps &amp;gt; Add Site &amp;gt; Choose Basic.  Name = Jira Site Name URL = Jira Site URL User Name = Jira Account Username Password = Jira Account Password   Please take note that above screenshot missing ReadTimeout(ms) OAuth Authentication  Follow the jira-rest-api-oauth-authentication guide to setup OAuth Authentication.</description>
+Basic Authentication  Goto Manage Jenkins &amp;gt; Configure System &amp;gt; JIRA Steps &amp;gt; Add Site &amp;gt; Choose Basic.  Name = Jira Site Name URL = Jira Site URL User Name = Jira Account Username Password = Jira Account Password   Please take note that above screenshot missing **ReadTimeout(ms)**  OAuth Authentication  Follow the jira-rest-api-oauth-authentication guide to setup OAuth Authentication.</description>
     </item>
     
     <item>
@@ -37,8 +37,7 @@ Basic Authentication  Goto Manage Jenkins &amp;gt; Configure System &amp;gt; JIR
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/install/</guid>
       <description> Jenkins provides a couple of different methods for installing plugins
-Installing from UI.  Installing Plugin From Web UI Updating Plugin  Manual installation - For snapshots  Clone the repository. Run mvn package to build a deployable hpi bundle for Jenkins. jira-steps.hpi file can be found in jira-steps-plugin/target folder. For more information Advanced installation  This plugin REQUIRES JDK 1.8 to build.
- </description>
+Installing from UI.  Installing Plugin From Web UI Updating Plugin  Manual installation - For snapshots  Clone the repository. Run mvn package to build a deployable hpi bundle for Jenkins. jira-steps.hpi file can be found in jira-steps-plugin/target folder. For more information Advanced installation  This plugin **`REQUIRES JDK 1.8`** to build.  </description>
     </item>
     
     <item>
@@ -56,8 +55,7 @@ Installing from UI.  Installing Plugin From Web UI Updating Plugin  Manual insta
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/common/</guid>
-      <description>Optional Params for all Steps.  site - Optional param which will override JIRA_SITE global variable. failOnError - is optional and by default it is true.  When set to true, then the step will abort the job as a failure when there is an error sending message. To make it false, it should always be provided as global environment variable JIRA_FAIL_ON_ERROR.
- Global Environment Variables.  JIRA_SITE - Global variable to set default site for all JIRA steps.</description>
+      <description>Optional Params for all Steps.  site - Optional param which will override JIRA_SITE global variable. failOnError - is optional and by default it is true.  When set to true, then the step will abort the job as a failure when there is an error sending message. To make it false, it should always be provided as global environment variable `JIRA_FAIL_ON_ERROR`.  Global Environment Variables.  JIRA_SITE - Global variable to set default site for all JIRA steps.</description>
     </item>
     
     <item>
@@ -67,7 +65,7 @@ Installing from UI.  Installing Plugin From Web UI Updating Plugin  Manual insta
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/script/</guid>
       <description>Automate configuring via Jenkins Script Console The following Jenkins Script Console script will automatically configure the global settings of this plugin.
-import net.sf.json.JSONArray import net.sf.json.JSONObject import org.thoughtslive.jenkins.plugins.jira.Config import org.thoughtslive.jenkins.plugins.jira.Site //global user-defined configuration JSONArray sites = [ [ name: &#39;another&#39;, url: &#39;http://example.com&#39;, timeout: 10000, readTimeout: 10000, loginType: &#39;BASIC&#39;, userName: &#39;foo&#39;, password: &#39;some pass&#39; ], [ name: &#39;moar jira&#39;, url: &#39;http://example.com&#39;, timeout: 10000, readTimeout: 10000, loginType: &#39;OAUTH&#39;, consumerKey: &#39;my consumer key&#39;, privateKey: &#39;my private key&#39;, secret: &#39;super secret&#39;, token: &#39;my token&#39; ] ] as JSONArray //get global Jenkins configuration Config.</description>
+import net.sf.json.JSONArray import net.sf.json.JSONObject import org.thoughtslive.jenkins.plugins.jira.JiraStepsConfig import org.thoughtslive.jenkins.plugins.jira.Site //global user-defined configuration JSONArray sitesConf = [ [ name: &#39;another&#39;, url: &#39;http://example.com&#39;, timeout: 10000, readTimeout: 10000, loginType: &#39;BASIC&#39;, userName: &#39;foo&#39;, password: &#39;some pass&#39; ], [ name: &#39;moar jira&#39;, url: &#39;http://example.com&#39;, timeout: 10000, readTimeout: 10000, loginType: &#39;OAUTH&#39;, consumerKey: &#39;my consumer key&#39;, privateKey: &#39;my private key&#39;, secret: &#39;super secret&#39;, token: &#39;my token&#39; ] ] as JSONArray //get global Jenkins configuration JiraStepsConfig.</description>
     </item>
     
     <item>
@@ -78,6 +76,16 @@ import net.sf.json.JSONArray import net.sf.json.JSONObject import org.thoughtsli
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/examples/release_project/</guid>
       <description>Releasing a project? For instance, if you are releasing more than one project and you want to create a release review jira issue, add Description, Fix version, comment on the issue with error message for a failure in the release process or close the issue, if release is successful.
  Create new Release review JIRA. Release your project. Create new fix version, just to tag a release review JIRA. Close issue if when releasing that project is successful.</description>
+    </item>
+    
+    <item>
+      <title>Configuration as Code Plugin</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/casc/</link>
+      <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/casc/</guid>
+      <description> Automate configuring via Configuration as Code Plugin The following snippet will automatically configure the global settings of this plugin.
+unclassified: jiraStepsConfig: sites: - name: &#39;another&#39; url: &#39;http://example.com&#39; timeout: 10000 readTimeout: 10000 loginType: &#39;BASIC&#39; userName: &#39;foo&#39; password: &#39;some pass&#39; - name: &#39;moar jira&#39; url: &#39;http://example.com&#39; timeout: 10000 readTimeout: 10000 loginType: &#39;OAUTH&#39; consumerKey: &#39;my consumer key&#39; privateKey: &#39;my private key&#39; secret: &#39;super secret&#39; token: &#39;my token&#39;  </description>
     </item>
     
   </channel>

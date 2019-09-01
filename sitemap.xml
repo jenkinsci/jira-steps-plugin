@@ -208,6 +208,11 @@
   </url>
   
   <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/casc/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_delete_attachment/</loc>
     <lastmod>2018-02-14T00:00:00+00:00</lastmod>
   </url>
@@ -333,8 +338,57 @@
   </url>
   
   <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/changelog/</loc>
-    <lastmod>2017-11-12T00:00:00+00:00</lastmod>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/get-started/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/setup/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/casc/</loc>
+    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/attachment/</loc>
+    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/issue/</loc>
+    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/steps/</loc>
+    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/info/</loc>
+    <lastmod>2018-01-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/server/</loc>
+    <lastmod>2018-01-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -358,26 +412,6 @@
   </url>
   
   <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/_header/</loc>
-    <lastmod>2017-11-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/_footer/</loc>
-  </url>
-  
-  <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/attachment/</loc>
-    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/comment/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -390,21 +424,8 @@
   </url>
   
   <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/get-started/</loc>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/_header/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/info/</loc>
-    <lastmod>2018-01-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/issue/</loc>
-    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -432,30 +453,6 @@
   </url>
   
   <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/server/</loc>
-    <lastmod>2018-01-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/setup/</loc>
-    <lastmod>2017-11-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/steps/</loc>
-    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/</loc>
-    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/user/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -471,6 +468,20 @@
     <loc>https://jenkinsci.github.io/jira-steps-plugin/tags/watcher/</loc>
     <lastmod>2017-11-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/_footer/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jenkinsci.github.io/jira-steps-plugin/changelog/</loc>
   </url>
   
 </urlset>

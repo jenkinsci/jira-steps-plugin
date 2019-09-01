@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.49" />
+<meta name="generator" content="Hugo 0.55.6" />
 <title>GetComment :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -115,6 +115,13 @@
         <div>
           <a href="/jira-steps-plugin/getting-started/config/script/">
             Jenkins Script
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/getting-started/config/casc/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/getting-started/config/casc/">
+            Configuration as Code Plugin
           </a><i class="fa fa-circle-thin read-icon"></i>
         </div>
     </li>
@@ -668,9 +675,9 @@
 <li><strong>failOnError</strong> - Optional. default: <code>true</code>.</li>
 </ul>
 
-<div class="notices note" ><p>For more information about input, please refer to the model objects in the <a href="https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api">API</a> package.</p>
+<div class="notices note" >
+For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.
 </div>
-
 
 <h4 id="output">Output</h4>
 
@@ -681,9 +688,9 @@
 <li>All the available fields for a JIRA response can be found in <a href="https://docs.atlassian.com/jira/REST/">JIRA API documentation</a> depending on your JIRA version.</li>
 </ul>
 
-<div class="notices note" ><p><code>response.data</code> returns all the fields returned by JIRA API.</p>
+<div class="notices note" >
+`response.data` returns all the fields returned by JIRA API.
 </div>
-
 
 <h4 id="examples">Examples</h4>
 
@@ -696,9 +703,11 @@
     echo comment.data.toString()
   }
 }
-</code></pre></li>
+</code></pre>
 
-<li><p><code>withEnv</code> to override the default site (or if there is not global site)</p>
+<ul>
+<li><code>withEnv</code> to override the default site (or if there is not global site)</li>
+</ul>
 
 <pre><code class="language-groovy">node {
   stage('JIRA') {
@@ -767,7 +776,7 @@ echo comment.data.toString()
 
 
   
-    <p><center> Copyright © 2017-2018 Naresh Rayapati. </center></p>
+    <center> Copyright © 2017-2018 Naresh Rayapati. </center>
 
   
 

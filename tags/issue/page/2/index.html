@@ -5,8 +5,8 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.49" />
-<title>Issue :: </title>
+<meta name="generator" content="Hugo 0.55.6" />
+<title>issue :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
 <link href="/jira-steps-plugin/css/nucleus.css" rel="stylesheet">
@@ -115,6 +115,13 @@
         <div>
           <a href="/jira-steps-plugin/getting-started/config/script/">
             Jenkins Script
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/getting-started/config/casc/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/getting-started/config/casc/">
+            Configuration as Code Plugin
           </a><i class="fa fa-circle-thin read-icon"></i>
         </div>
     </li>
@@ -643,7 +650,7 @@
       </div>
     
 
-    <h1>Issue</h1>
+    <h1>issue</h1>
     
     
     
@@ -663,89 +670,6 @@
 
 </div>
 
-
-   <article class="post steps">
-    <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issue/jira_new_issue/">NewIssue</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>jiraNewIssue Creates new issue based on given input, which should have some minimal information on that object.
-Input  issue - issue to be created. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name.  It supports all the fields that any jira instance supports including custom fields. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_new_issue/">&raquo;</a></p>
-    </section>
-    <footer class=" footline" >
-         
-        
-            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
-        
-
-        
-          
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
-            
-        
-
-    </footer>
-</article>
-
-   <article class="post steps">
-    <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/steps/attachment/jira_download_attachment/">DownloadAttachment</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>jiraDownloadAttachment This step downloads the attachment of an issue to given location in workspace.
-Input  id - Attachment Id. file - Target location including file name. Ex: test.txt or test/test.txt override - Overrides an existing file. Defaults to false. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
- Output  Each step generates generic output, please refer to this link for more information. <a class="read-more" href="/jira-steps-plugin/steps/attachment/jira_download_attachment/">&raquo;</a></p>
-    </section>
-    <footer class=" footline" >
-         
-        
-            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 14/02/2018
-        
-
-        
-          
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/attachment/">attachment</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
-            
-        
-
-    </footer>
-</article>
-
-   <article class="post steps">
-    <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/steps/comment/jira_add_comment/">AddComment</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>jiraAddComment This step adds a comment on a particular issue.
-Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name. Deprecated: comment - comment, supports jira wiki formatting.  It supports all the fields that any jira instance supports including custom fields. <a class="read-more" href="/jira-steps-plugin/steps/comment/jira_add_comment/">&raquo;</a></p>
-    </section>
-    <footer class=" footline" >
-         
-        
-            <i class='fa fa-user'></i> <a href="mailto:">Benedikt Hr</a>  <i class='fa fa-calendar'></i> 12/11/2017
-        
-
-        
-          
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/comment/">comment</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
-            
-        
-
-    </footer>
-</article>
 
    <article class="post steps">
     <header class="post-header">
@@ -781,7 +705,7 @@ Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, defa
     </header>
     <section class="post-excerpt">
         <p>jiraNewIssues This step creates new issues in bulk in the provided JIRA site.
-Input  issues - issues to be created. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_new_issues/">&raquo;</a></p>
+Input  issues - issues to be created. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_new_issues/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -807,8 +731,7 @@ Input  issues - issues to be created. site - Optional, default: JIRA_SITE enviro
     </header>
     <section class="post-excerpt">
         <p>jiraDeleteAttachment This step deletes the attachment from an issue.
-Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
- Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/attachment/jira_delete_attachment/">&raquo;</a></p>
+Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/attachment/jira_delete_attachment/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -836,7 +759,7 @@ Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment varia
     </header>
     <section class="post-excerpt">
         <p>jiraAssignIssue This step assigns a particular issue to a user.
-Input  idOrKey - Issue id or key. userName - username of the person who should be added as a watcher. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_assign_issue/">&raquo;</a></p>
+Input  idOrKey - Issue id or key. userName - username of the person who should be added as a watcher. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_assign_issue/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -862,7 +785,7 @@ Input  idOrKey - Issue id or key. userName - username of the person who should b
     </header>
     <section class="post-excerpt">
         <p>jiraEditComment This step updates a particular comment on particular issue.
-Input  idOrKey - Issue id or key. commentId - comment id. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. Deprecated: comment - comment, supports jira wiki formatting.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA Api documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/comment/jira_edit_comment/">&raquo;</a></p>
+Input  idOrKey - Issue id or key. commentId - comment id. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. Deprecated: comment - comment, supports jira wiki formatting.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA Api documentation](https://docs. <a class="read-more" href="/jira-steps-plugin/steps/comment/jira_edit_comment/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -886,11 +809,11 @@ Input  idOrKey - Issue id or key. commentId - comment id. input - comment, suppo
 
    <article class="post steps">
     <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issue/jira_edit_issue/">EditIssue</a></h2>
+        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issue/jira_get_issue/">GetIssue</a></h2>
     </header>
     <section class="post-excerpt">
-        <p>jiraEditIssue Updates an existing issue based on given input, which should have some minimal information on that object.
-Input  idOrKey - issue id or key. issue - issue to be updated. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_edit_issue/">&raquo;</a></p>
+        <p>jiraGetIssue This step queries a particular issue from the provided JIRA site.
+Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_get_issue/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -912,12 +835,11 @@ Input  idOrKey - issue id or key. issue - issue to be updated. site - Optional, 
 
    <article class="post steps">
     <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issue/jira_get_issue/">GetIssue</a></h2>
+        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelinks/">GetRemoteIssueLinks</a></h2>
     </header>
     <section class="post-excerpt">
-        <p>jiraGetIssue This step queries a particular issue from the provided JIRA site.
-Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
- Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_get_issue/">&raquo;</a></p>
+        <p>jiraGetRemoteIssueLinks This step queries all the remote links of a particular issue.
+Input  idOrKey - issue id or key. globalId - global application id (Optional). site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_remote_issuelinks step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelinks/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -931,6 +853,91 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
                 <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
             
                 <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issuelink/">issuelink</a>
+            
+        
+
+    </footer>
+</article>
+
+   <article class="post steps">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issuelink/jira_new_remote_issuelink/">NewRemoteIssueLink</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>jiraNewRemoteIssueLink This step creates a new remote link to a particular issue.
+Input  idOrKey - issue id or key. remoteLink - remote link. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_new_remote_issuelink/">&raquo;</a></p>
+    </section>
+    <footer class=" footline" >
+         
+        
+            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
+        
+
+        
+          
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issuelink/">issuelink</a>
+            
+        
+
+    </footer>
+</article>
+
+   <article class="post steps">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issue/jira_edit_issue/">EditIssue</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>jiraEditIssue Updates an existing issue based on given input, which should have some minimal information on that object.
+Input  idOrKey - issue id or key. issue - issue to be updated. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_edit_issue/">&raquo;</a></p>
+    </section>
+    <footer class=" footline" >
+         
+        
+            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
+        
+
+        
+          
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
+            
+        
+
+    </footer>
+</article>
+
+   <article class="post steps">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issuelink/jira_link_issues/">LinkIssues</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>jiraLinkIssues This step links two issues in the provided JIRA site.
+Hint: Try getIssueLinkTypes to know the type.
+Input  type - type of the link. (Ex: Relates, Blocks, Cloners, Duplicate) inwardKey - inward issue key. outwardKey - outward issue key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_link_issues/">&raquo;</a></p>
+    </section>
+    <footer class=" footline" >
+         
+        
+            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
+        
+
+        
+          
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issuelink/">issuelink</a>
             
         
 
@@ -973,7 +980,7 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
 
   
     <div class="date">
-        <i class='fa fa-calendar'></i> Last update on 12/11/2017
+        <i class='fa fa-calendar'></i> Last update on 14/02/2018
     </div>
     
 
@@ -988,7 +995,7 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
 
 
   
-    <p><center> Copyright © 2017-2018 Naresh Rayapati. </center></p>
+    <center> Copyright © 2017-2018 Naresh Rayapati. </center>
 
   
 

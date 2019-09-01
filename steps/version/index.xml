@@ -18,7 +18,7 @@
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/version/jira_new_version/</guid>
       <description>jiraNewVersion Creates new version based on given input, which should have some minimal information on that object.
-Input  version - version to be created. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append the build url and build user name to the description.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.</description>
+Input  version - version to be created. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append the build url and build user name to the description.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.</description>
     </item>
     
     <item>
@@ -28,8 +28,7 @@ Input  version - version to be created. site - Optional, default: JIRA_SITE envi
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/version/jira_get_version/</guid>
       <description>jiraGetVersion This step queries the project version from the provided JIRA site.
-Input  id - version id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
- Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_version step can be reused later in your script by doing response.</description>
+Input  id - version id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_version step can be reused later in your script by doing response.</description>
     </item>
     
     <item>

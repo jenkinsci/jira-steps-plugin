@@ -5,8 +5,8 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.49" />
-<title>Watcher :: </title>
+<meta name="generator" content="Hugo 0.55.6" />
+<title>watcher :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
 <link href="/jira-steps-plugin/css/nucleus.css" rel="stylesheet">
@@ -115,6 +115,13 @@
         <div>
           <a href="/jira-steps-plugin/getting-started/config/script/">
             Jenkins Script
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/getting-started/config/casc/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/getting-started/config/casc/">
+            Configuration as Code Plugin
           </a><i class="fa fa-circle-thin read-icon"></i>
         </div>
     </li>
@@ -643,7 +650,7 @@
       </div>
     
 
-    <h1>Watcher</h1>
+    <h1>watcher</h1>
     
     
     
@@ -662,11 +669,11 @@
 
    <article class="post steps">
     <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/steps/watcher/jira_add_watcher/">AddWatcher</a></h2>
+        <h2 class="post-title"><a href="/jira-steps-plugin/steps/watcher/jira_get_issue_watches/">GetIssueWatches</a></h2>
     </header>
     <section class="post-excerpt">
-        <p>jiraAddWatcher This step adds a user as watcher to a particular issue.
-Input  idOrKey - Issue id or key. userName - username of the person who should be added as a watcher. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/watcher/jira_add_watcher/">&raquo;</a></p>
+        <p>jiraGetIssueWatches This step queries all the issue watchers on a particular issue.
+Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_watches step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/watcher/jira_get_issue_watches/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -688,12 +695,11 @@ Input  idOrKey - Issue id or key. userName - username of the person who should b
 
    <article class="post steps">
     <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/steps/watcher/jira_get_issue_watches/">GetIssueWatches</a></h2>
+        <h2 class="post-title"><a href="/jira-steps-plugin/steps/watcher/jira_add_watcher/">AddWatcher</a></h2>
     </header>
     <section class="post-excerpt">
-        <p>jiraGetIssueWatches This step queries all the issue watchers on a particular issue.
-Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
- Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_watches step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/watcher/jira_get_issue_watches/">&raquo;</a></p>
+        <p>jiraAddWatcher This step adds a user as watcher to a particular issue.
+Input  idOrKey - Issue id or key. userName - username of the person who should be added as a watcher. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs. <a class="read-more" href="/jira-steps-plugin/steps/watcher/jira_add_watcher/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -759,7 +765,7 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
 
 
   
-    <p><center> Copyright © 2017-2018 Naresh Rayapati. </center></p>
+    <center> Copyright © 2017-2018 Naresh Rayapati. </center>
 
   
 

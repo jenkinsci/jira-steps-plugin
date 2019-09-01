@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Jql on </title>
+    <title>jql on </title>
     <link>https://jenkinsci.github.io/jira-steps-plugin/tags/jql/</link>
-    <description>Recent content in Jql on </description>
+    <description>Recent content in jql on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 12 Nov 2017 00:00:00 +0000</lastBuildDate>
@@ -18,8 +18,7 @@
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/search/jira_jql_search/</guid>
       <description>jiraJqlSearch This step searches issues from the provided JIRA site by Jql.
-Input  jql - jql as a string. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version.
- Output  Each step generates generic output, please refer to this link for more information.</description>
+Input  jql - jql as a string. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.  Output  Each step generates generic output, please refer to this link for more information.</description>
     </item>
     
   </channel>

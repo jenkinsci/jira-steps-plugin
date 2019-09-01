@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.49" />
+<meta name="generator" content="Hugo 0.55.6" />
 <title>Setup :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -115,6 +115,13 @@
         <div>
           <a href="/jira-steps-plugin/getting-started/config/script/">
             Jenkins Script
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/getting-started/config/casc/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/getting-started/config/casc/">
+            Configuration as Code Plugin
           </a><i class="fa fa-circle-thin read-icon"></i>
         </div>
     </li>
@@ -666,7 +673,7 @@
     </header>
     <section class="post-excerpt">
         <p>Authentication This plugin supports both Basic and OAuth, OAuth is preferred over the Basic authentication.
-Basic Authentication  Goto Manage Jenkins &gt; Configure System &gt; JIRA Steps &gt; Add Site &gt; Choose Basic.  Name = Jira Site Name URL = Jira Site URL User Name = Jira Account Username Password = Jira Account Password   Please take note that above screenshot missing ReadTimeout(ms) OAuth Authentication  Follow the jira-rest-api-oauth-authentication guide to setup OAuth Authentication. <a class="read-more" href="/jira-steps-plugin/getting-started/config/authentication/">&raquo;</a></p>
+Basic Authentication  Goto Manage Jenkins &gt; Configure System &gt; JIRA Steps &gt; Add Site &gt; Choose Basic.  Name = Jira Site Name URL = Jira Site URL User Name = Jira Account Username Password = Jira Account Password   Please take note that above screenshot missing **ReadTimeout(ms)**  OAuth Authentication  Follow the jira-rest-api-oauth-authentication guide to setup OAuth Authentication. <a class="read-more" href="/jira-steps-plugin/getting-started/config/authentication/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -717,8 +724,7 @@ Basic Authentication  Goto Manage Jenkins &gt; Configure System &gt; JIRA Steps 
     </header>
     <section class="post-excerpt">
         <p> Jenkins provides a couple of different methods for installing plugins
-Installing from UI.  Installing Plugin From Web UI Updating Plugin  Manual installation - For snapshots  Clone the repository. Run mvn package to build a deployable hpi bundle for Jenkins. jira-steps.hpi file can be found in jira-steps-plugin/target folder. For more information Advanced installation  This plugin REQUIRES JDK 1.8 to build.
-  <a class="read-more" href="/jira-steps-plugin/getting-started/install/">&raquo;</a></p>
+Installing from UI.  Installing Plugin From Web UI Updating Plugin  Manual installation - For snapshots  Clone the repository. Run mvn package to build a deployable hpi bundle for Jenkins. jira-steps.hpi file can be found in jira-steps-plugin/target folder. For more information Advanced installation  This plugin **`REQUIRES JDK 1.8`** to build.   <a class="read-more" href="/jira-steps-plugin/getting-started/install/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -768,8 +774,7 @@ Installing from UI.  Installing Plugin From Web UI Updating Plugin  Manual insta
         <h2 class="post-title"><a href="/jira-steps-plugin/getting-started/config/common/">Common Config</a></h2>
     </header>
     <section class="post-excerpt">
-        <p>Optional Params for all Steps.  site - Optional param which will override JIRA_SITE global variable. failOnError - is optional and by default it is true.  When set to true, then the step will abort the job as a failure when there is an error sending message. To make it false, it should always be provided as global environment variable JIRA_FAIL_ON_ERROR.
- Global Environment Variables.  JIRA_SITE - Global variable to set default site for all JIRA steps. <a class="read-more" href="/jira-steps-plugin/getting-started/config/common/">&raquo;</a></p>
+        <p>Optional Params for all Steps.  site - Optional param which will override JIRA_SITE global variable. failOnError - is optional and by default it is true.  When set to true, then the step will abort the job as a failure when there is an error sending message. To make it false, it should always be provided as global environment variable `JIRA_FAIL_ON_ERROR`.  Global Environment Variables.  JIRA_SITE - Global variable to set default site for all JIRA steps. <a class="read-more" href="/jira-steps-plugin/getting-started/config/common/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -795,7 +800,7 @@ Installing from UI.  Installing Plugin From Web UI Updating Plugin  Manual insta
     </header>
     <section class="post-excerpt">
         <p>Automate configuring via Jenkins Script Console The following Jenkins Script Console script will automatically configure the global settings of this plugin.
-import net.sf.json.JSONArray import net.sf.json.JSONObject import org.thoughtslive.jenkins.plugins.jira.Config import org.thoughtslive.jenkins.plugins.jira.Site //global user-defined configuration JSONArray sites = [ [ name: 'another', url: 'http://example.com', timeout: 10000, readTimeout: 10000, loginType: 'BASIC', userName: 'foo', password: 'some pass' ], [ name: 'moar jira', url: 'http://example.com', timeout: 10000, readTimeout: 10000, loginType: 'OAUTH', consumerKey: 'my consumer key', privateKey: 'my private key', secret: 'super secret', token: 'my token' ] ] as JSONArray //get global Jenkins configuration Config. <a class="read-more" href="/jira-steps-plugin/getting-started/config/script/">&raquo;</a></p>
+import net.sf.json.JSONArray import net.sf.json.JSONObject import org.thoughtslive.jenkins.plugins.jira.JiraStepsConfig import org.thoughtslive.jenkins.plugins.jira.Site //global user-defined configuration JSONArray sitesConf = [ [ name: 'another', url: 'http://example.com', timeout: 10000, readTimeout: 10000, loginType: 'BASIC', userName: 'foo', password: 'some pass' ], [ name: 'moar jira', url: 'http://example.com', timeout: 10000, readTimeout: 10000, loginType: 'OAUTH', consumerKey: 'my consumer key', privateKey: 'my private key', secret: 'super secret', token: 'my token' ] ] as JSONArray //get global Jenkins configuration JiraStepsConfig. <a class="read-more" href="/jira-steps-plugin/getting-started/config/script/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -841,6 +846,34 @@ import net.sf.json.JSONArray import net.sf.json.JSONObject import org.thoughtsli
     </footer>
 </article>
 
+   <article class="post getting-started">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/jira-steps-plugin/getting-started/config/casc/">Configuration as Code Plugin</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p> Automate configuring via Configuration as Code Plugin The following snippet will automatically configure the global settings of this plugin.
+unclassified: jiraStepsConfig: sites: - name: 'another' url: 'http://example.com' timeout: 10000 readTimeout: 10000 loginType: 'BASIC' userName: 'foo' password: 'some pass' - name: 'moar jira' url: 'http://example.com' timeout: 10000 readTimeout: 10000 loginType: 'OAUTH' consumerKey: 'my consumer key' privateKey: 'my private key' secret: 'super secret' token: 'my token'   <a class="read-more" href="/jira-steps-plugin/getting-started/config/casc/">&raquo;</a></p>
+    </section>
+    <footer class=" footline" >
+         
+        
+            <i class='fa fa-user'></i> <a href="mailto:">daper</a>  <i class='fa fa-calendar'></i> 05/06/2019
+        
+
+        
+          
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/setup/">Setup</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/get-started/">Get Started</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/casc/">casc</a>
+            
+        
+
+    </footer>
+</article>
+
 
 <div style="margin-bottom:2rem"></div>
 
@@ -872,7 +905,7 @@ import net.sf.json.JSONArray import net.sf.json.JSONObject import org.thoughtsli
 
   
     <div class="date">
-        <i class='fa fa-calendar'></i> Last update on 12/11/2017
+        <i class='fa fa-calendar'></i> Last update on 05/06/2019
     </div>
     
 
@@ -887,7 +920,7 @@ import net.sf.json.JSONArray import net.sf.json.JSONObject import org.thoughtsli
 
 
   
-    <p><center> Copyright © 2017-2018 Naresh Rayapati. </center></p>
+    <center> Copyright © 2017-2018 Naresh Rayapati. </center>
 
   
 

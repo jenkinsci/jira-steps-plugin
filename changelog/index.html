@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.49" />
+<meta name="generator" content="Hugo 0.55.6" />
 <title>Change Log :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -115,6 +115,13 @@
         <div>
           <a href="/jira-steps-plugin/getting-started/config/script/">
             Jenkins Script
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/getting-started/config/casc/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/getting-started/config/casc/">
+            Configuration as Code Plugin
           </a><i class="fa fa-circle-thin read-icon"></i>
         </div>
     </li>
@@ -650,7 +657,18 @@
     
 
 <ul>
-<li><h4 id="1-4-6-unreleased"><strong>1.4.6</strong> (Unreleased)</h4></li>
+<li><h4 id="1-5-1-unreleased"><strong>1.5.1</strong> (Unreleased)</h4></li>
+
+<li><h4 id="1-5-0"><strong>1.5.0</strong></h4>
+
+<ul>
+<li><a href="https://issues.jenkins-ci.org/browse/JENKINS-57182">JENKINS-57182</a> When configuring a Jira steps site in casc yaml file. If the Jenkins service is restarted, the site is duplicated in Jenkins config.
+
+<ul>
+<li><span style="color:red">Breaking changes: the java class <em>Config</em> has been renamed to <em>JiraStepsConfig</em>. Review the documentation to adapt your scripts.</span></li>
+</ul></li>
+<li><a href="https://issues.jenkins-ci.org/browse/JENKINS-58793">JENKINS-58793</a> Add &ldquo;fields&rdquo; parameter to api/2/search endpoint for jiraJqlSearch.</li>
+</ul></li>
 
 <li><h4 id="1-4-5"><strong>1.4.5</strong></h4>
 
@@ -935,15 +953,11 @@
 
     
     <div class="author">
-        <i class='fa fa-user'></i> <a href="mailto:">Benedikt Hr</a>
+        <i class='fa fa-user'></i> <a href="mailto:">daper</a>
     </div>
     
 
   
-    <div class="date">
-        <i class='fa fa-calendar'></i> Last update on 12/11/2017
-    </div>
-    
 
     <div class="github-link">
       <a href="https://github.com/jenkinsci/jira-steps-plugin/edit/master/hugo/content/changelog.md" target="blank"><i class="fa fa-code-fork"></i>
@@ -956,7 +970,7 @@
 
 
   
-    <p><center> Copyright © 2017-2018 Naresh Rayapati. </center></p>
+    <center> Copyright © 2017-2018 Naresh Rayapati. </center>
 
   
 

@@ -5,8 +5,8 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.49" />
-<title>Attachment :: </title>
+<meta name="generator" content="Hugo 0.55.6" />
+<title>attachment :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
 <link href="/jira-steps-plugin/css/nucleus.css" rel="stylesheet">
@@ -115,6 +115,13 @@
         <div>
           <a href="/jira-steps-plugin/getting-started/config/script/">
             Jenkins Script
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/getting-started/config/casc/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/getting-started/config/casc/">
+            Configuration as Code Plugin
           </a><i class="fa fa-circle-thin read-icon"></i>
         </div>
     </li>
@@ -643,7 +650,7 @@
       </div>
     
 
-    <h1>Attachment</h1>
+    <h1>attachment</h1>
     
     
     
@@ -662,41 +669,11 @@
 
    <article class="post steps">
     <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/steps/attachment/jira_delete_attachment/">DeleteAttachment</a></h2>
+        <h2 class="post-title"><a href="/jira-steps-plugin/steps/attachment/jira_upload_attachment/">UploadAttachment</a></h2>
     </header>
     <section class="post-excerpt">
-        <p>jiraDeleteAttachment This step deletes the attachment from an issue.
-Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
- Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/attachment/jira_delete_attachment/">&raquo;</a></p>
-    </section>
-    <footer class=" footline" >
-         
-        
-            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 14/02/2018
-        
-
-        
-          
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/attachment/">attachment</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
-            
-        
-
-    </footer>
-</article>
-
-   <article class="post steps">
-    <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/steps/attachment/jira_download_attachment/">DownloadAttachment</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>jiraDownloadAttachment This step downloads the attachment of an issue to given location in workspace.
-Input  id - Attachment Id. file - Target location including file name. Ex: test.txt or test/test.txt override - Overrides an existing file. Defaults to false. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
- Output  Each step generates generic output, please refer to this link for more information. <a class="read-more" href="/jira-steps-plugin/steps/attachment/jira_download_attachment/">&raquo;</a></p>
+        <p>jiraUploadAttachment This step uploads a file from worksapce to issue.
+Input  idOrKey - Issue Id or Key. file - File name with/without path from workspace. Ex: test.txt or test/test.txt. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. <a class="read-more" href="/jira-steps-plugin/steps/attachment/jira_upload_attachment/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -724,8 +701,7 @@ Input  id - Attachment Id. file - Target location including file name. Ex: test.
     </header>
     <section class="post-excerpt">
         <p>jiraGetAttachmentInfo This step queries a particular attachment&rsquo;s info on an issue.
-Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
- Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/attachment/jira_get_attachment_info/">&raquo;</a></p>
+Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/attachment/jira_get_attachment_info/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -749,12 +725,39 @@ Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment varia
 
    <article class="post steps">
     <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/steps/attachment/jira_upload_attachment/">UploadAttachment</a></h2>
+        <h2 class="post-title"><a href="/jira-steps-plugin/steps/attachment/jira_download_attachment/">DownloadAttachment</a></h2>
     </header>
     <section class="post-excerpt">
-        <p>jiraUploadAttachment This step uploads a file from worksapce to issue.
-Input  idOrKey - Issue Id or Key. file - File name with/without path from workspace. Ex: test.txt or test/test.txt. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
- Output  Each step generates generic output, please refer to this link for more information. <a class="read-more" href="/jira-steps-plugin/steps/attachment/jira_upload_attachment/">&raquo;</a></p>
+        <p>jiraDownloadAttachment This step downloads the attachment of an issue to given location in workspace.
+Input  id - Attachment Id. file - Target location including file name. Ex: test.txt or test/test.txt override - Overrides an existing file. Defaults to false. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. <a class="read-more" href="/jira-steps-plugin/steps/attachment/jira_download_attachment/">&raquo;</a></p>
+    </section>
+    <footer class=" footline" >
+         
+        
+            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 14/02/2018
+        
+
+        
+          
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/attachment/">attachment</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
+            
+        
+
+    </footer>
+</article>
+
+   <article class="post steps">
+    <header class="post-header">
+        <h2 class="post-title"><a href="/jira-steps-plugin/steps/attachment/jira_delete_attachment/">DeleteAttachment</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>jiraDeleteAttachment This step deletes the attachment from an issue.
+Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/attachment/jira_delete_attachment/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -822,7 +825,7 @@ Input  idOrKey - Issue Id or Key. file - File name with/without path from worksp
 
 
   
-    <p><center> Copyright © 2017-2018 Naresh Rayapati. </center></p>
+    <center> Copyright © 2017-2018 Naresh Rayapati. </center>
 
   
 

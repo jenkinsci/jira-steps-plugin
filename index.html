@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.49" />
+<meta name="generator" content="Hugo 0.55.6" />
 <title>JIRA Pipline Steps :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -115,6 +115,13 @@
         <div>
           <a href="/jira-steps-plugin/getting-started/config/script/">
             Jenkins Script
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/getting-started/config/casc/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/getting-started/config/casc/">
+            Configuration as Code Plugin
           </a><i class="fa fa-circle-thin read-icon"></i>
         </div>
     </li>
@@ -674,35 +681,39 @@
                        issuetype: [name: 'Task']]]
 def newIssue = jiraNewIssue issue: issue, site: 'YOURJIRASITE'
 echo newIssue.data.key
-</code></pre></li>
+</code></pre>
 
-<li><p>Comment on a JIRA?, say just to monitor the status of Jenkins job and here we go.</p>
-
-<pre><code class="language-groovy">try {
-    error &quot;Exception&quot;
+<ul>
+<li>Comment on a JIRA?, say just to monitor the status of Jenkins job and here we go.
+<code>groovy
+try {
+error &quot;Exception&quot;
 } catch(error) {
-  def comment = &quot;${BUILD_URL} FAILED - ${ERROR}&quot;
-  jiraAddComment idOrKey: 'GENERIC-999', comment: comment, site: 'YOURJIRASITE'
-  currentBuild.result = 'FAILURE'
+def comment = &quot;${BUILD_URL} FAILED - ${ERROR}&quot;
+jiraAddComment idOrKey: 'GENERIC-999', comment: comment, site: 'YOURJIRASITE'
+currentBuild.result = 'FAILURE'
 }
-</code></pre></li>
+</code></li>
+</ul></li>
 
 <li><p>May be just close the JIRA? cause we just released a project and it is release review JIRA.</p>
 
 <pre><code class="language-groovy">def transitionInput = [ transition: [ name: 'Close'] ]
 jiraTransitionIssue idOrKey: 'RELEASE-999', input: transitionInput, site: 'YOURJIRASITE'
-</code></pre></li>
+</code></pre>
 
-<li><p>There are quite a few steps that this plugin supports currently, and will keep adding more.</p></li>
+<ul>
+<li>There are quite a few steps that this plugin supports currently, and will keep adding more.</li>
 </ul>
 
 <p>Some of the common usage scenarios with multiple steps were available <a href="getting-started/examples">here</a></p>
 
 <p>Get started by <a href="getting-started/install">installing</a> this plugin and also refer to the <a href="changelog">Change Log</a> for more information.</p>
 
-<div class="notices note" ><p>The documentation is always up to date with latest version (or master). If you are on old version please refer to the code.</p>
-</div>
-
+<div class="notices note" >
+The documentation is always up to date with latest version (or master). If you are on old version please refer to the code.
+</div></li>
+</ul>
 
 
 
@@ -745,7 +756,7 @@ jiraTransitionIssue idOrKey: 'RELEASE-999', input: transitionInput, site: 'YOURJ
 
 
   
-    <p><center> Copyright © 2017-2018 Naresh Rayapati. </center></p>
+    <center> Copyright © 2017-2018 Naresh Rayapati. </center>
 
   
 

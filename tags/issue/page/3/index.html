@@ -5,8 +5,8 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.49" />
-<title>Issue :: </title>
+<meta name="generator" content="Hugo 0.55.6" />
+<title>issue :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
 <link href="/jira-steps-plugin/css/nucleus.css" rel="stylesheet">
@@ -115,6 +115,13 @@
         <div>
           <a href="/jira-steps-plugin/getting-started/config/script/">
             Jenkins Script
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/getting-started/config/casc/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/getting-started/config/casc/">
+            Configuration as Code Plugin
           </a><i class="fa fa-circle-thin read-icon"></i>
         </div>
     </li>
@@ -643,7 +650,7 @@
       </div>
     
 
-    <h1>Issue</h1>
+    <h1>issue</h1>
     
     
     
@@ -664,12 +671,39 @@
 
    <article class="post steps">
     <header class="post-header">
+        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issuelink/jira_delete_issuelink/">DeleteIssueLink</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>jiraDeleteIssueLink This step deletes an issue link.
+Input  id - issue link&rsquo;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.  Output  Each step generates generic output, please refer to this link for more information. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_delete_issuelink/">&raquo;</a></p>
+    </section>
+    <footer class=" footline" >
+         
+        
+            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
+        
+
+        
+          
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issuelink/">issuelink</a>
+            
+        
+
+    </footer>
+</article>
+
+   <article class="post steps">
+    <header class="post-header">
         <h2 class="post-title"><a href="/jira-steps-plugin/steps/issue/jira_get_issue_transitions/">GetIssueTransitions</a></h2>
     </header>
     <section class="post-excerpt">
         <p>jiraGetIssueTransitions This step queries all transitions of a particular issue.
-Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the API package.
- Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_transitions step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_get_issue_transitions/">&raquo;</a></p>
+Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_transitions step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_get_issue_transitions/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -691,68 +725,11 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
 
    <article class="post steps">
     <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelinks/">GetRemoteIssueLinks</a></h2>
+        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/">DeleteRemoteIssueLink</a></h2>
     </header>
     <section class="post-excerpt">
-        <p>jiraGetRemoteIssueLinks This step queries all the remote links of a particular issue.
-Input  idOrKey - issue id or key. globalId - global application id (Optional). site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_remote_issuelinks step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelinks/">&raquo;</a></p>
-    </section>
-    <footer class=" footline" >
-         
-        
-            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
-        
-
-        
-          
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issuelink/">issuelink</a>
-            
-        
-
-    </footer>
-</article>
-
-   <article class="post steps">
-    <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issuelink/jira_link_issues/">LinkIssues</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>jiraLinkIssues This step links two issues in the provided JIRA site.
-Hint: Try getIssueLinkTypes to know the type.
-Input  type - type of the link. (Ex: Relates, Blocks, Cloners, Duplicate) inwardKey - inward issue key. outwardKey - outward issue key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_link_issues/">&raquo;</a></p>
-    </section>
-    <footer class=" footline" >
-         
-        
-            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
-        
-
-        
-          
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
-            
-                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issuelink/">issuelink</a>
-            
-        
-
-    </footer>
-</article>
-
-   <article class="post steps">
-    <header class="post-header">
-        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issuelink/jira_new_remote_issuelink/">NewRemoteIssueLink</a></h2>
-    </header>
-    <section class="post-excerpt">
-        <p>jiraNewRemoteIssueLink This step creates a new remote link to a particular issue.
-Input  idOrKey - issue id or key. remoteLink - remote link. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_new_remote_issuelink/">&raquo;</a></p>
+        <p>jiraDeleteRemoteIssueLink This step deletes a particular remote link of an issue.
+Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -780,7 +757,7 @@ Input  idOrKey - issue id or key. remoteLink - remote link. site - Optional, def
     </header>
     <section class="post-excerpt">
         <p>jiraNotifyIssue This step notifies users (like watchers, assignee and so on..) of a particular issue.
-Input  idOrKey - Issue id or key. notify - more info about whom should we notify and so on. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_notify_issue/">&raquo;</a></p>
+Input  idOrKey - Issue id or key. notify - more info about whom should we notify and so on. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_notify_issue/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -802,11 +779,39 @@ Input  idOrKey - Issue id or key. notify - more info about whom should we notify
 
    <article class="post steps">
     <header class="post-header">
+        <h2 class="post-title"><a href="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelinks/">DeleteRemoteIssueLinks</a></h2>
+    </header>
+    <section class="post-excerpt">
+        <p>jiraDeleteRemoteIssueLinks This step deletes all remote links of an issue.
+Input  idOrKey - issue id or key. globalId - global application id (Optional). site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelinks/">&raquo;</a></p>
+    </section>
+    <footer class=" footline" >
+         
+        
+            <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>  <i class='fa fa-calendar'></i> 12/11/2017
+        
+
+        
+          
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/steps/">steps</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issue/">issue</a>
+            
+                <a class="label label-default" href="https://jenkinsci.github.io/jira-steps-plugin/tags/issuelink/">issuelink</a>
+            
+        
+
+    </footer>
+</article>
+
+   <article class="post steps">
+    <header class="post-header">
         <h2 class="post-title"><a href="/jira-steps-plugin/steps/issue/jira_transition_issue/">TransitionIssue</a></h2>
     </header>
     <section class="post-excerpt">
         <p>jiraTransitionIssue This step transitions a particular issue in the JIRA site.
-Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_transition_issue/">&raquo;</a></p>
+Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_transition_issue/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -860,7 +865,7 @@ Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting
 
   
     <div class="date">
-        <i class='fa fa-calendar'></i> Last update on 12/11/2017
+        <i class='fa fa-calendar'></i> Last update on 14/02/2018
     </div>
     
 
@@ -875,7 +880,7 @@ Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting
 
 
   
-    <p><center> Copyright © 2017-2018 Naresh Rayapati. </center></p>
+    <center> Copyright © 2017-2018 Naresh Rayapati. </center>
 
   
 
