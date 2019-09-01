@@ -1,11 +1,14 @@
 +++
 title = "Change Log"
 description = "Change Log."
-date = "2019-06-23"
+date = "2019-09-31"
 lastmodifierdisplayname = "daper"
 +++
 
-* #### **1.5.0** (Unreleased)
+* #### **1.5.1**
+
+
+* #### **1.5.0**
   * [JENKINS-57182](https://issues.jenkins-ci.org/browse/JENKINS-57182) When configuring a Jira steps site in casc yaml file. If the Jenkins service is restarted, the site is duplicated in Jenkins config.
       * <span style="color:red">Breaking changes: the java class *Config* has been renamed to *JiraStepsConfig*. Review the documentation to adapt your scripts.</span>
   * [JENKINS-58793](https://issues.jenkins-ci.org/browse/JENKINS-58793) Add "fields" parameter to api/2/search endpoint for jiraJqlSearch.
