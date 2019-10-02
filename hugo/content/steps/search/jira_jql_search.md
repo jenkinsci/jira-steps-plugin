@@ -14,6 +14,8 @@ This step searches issues from the provided JIRA site by Jql.
 #### Input
 
 * **jql** - jql as a string.
+* **fields** - Optional. the list of fields to return for each issue. default: null (in this case the parameter is 
+not sent and all navigable fields are returned)
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
 
