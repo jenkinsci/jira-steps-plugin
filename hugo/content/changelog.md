@@ -2,11 +2,14 @@
 title = "Change Log"
 description = "Change Log."
 date = "2019-09-31"
-lastmodifierdisplayname = "daper"
+lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
-* #### **1.5.1** (Unreleased)
+* #### **1.5.2** (Unreleased)
 
+
+* #### **1.5.1**
+  * [JENKINS-59280](https://issues.jenkins-ci.org/browse/JENKINS-59280) jiraJqlSearch Error Message: null value after upgrade.
 
 * #### **1.5.0**
   * [JENKINS-57182](https://issues.jenkins-ci.org/browse/JENKINS-57182) When configuring a Jira steps site in casc yaml file. If the Jenkins service is restarted, the site is duplicated in Jenkins config.
@@ -19,7 +22,7 @@ lastmodifierdisplayname = "daper"
 
 * #### **1.4.4**
   * [JENKINS-53044](https://issues.jenkins-ci.org/browse/JENKINS-53044) Add step to retrieve jira server info.
-      * Thank you [Stuart Rowe](https://github.com/stuartrowe) for the initial pull request. 
+      * Thank you [Stuart Rowe](https://github.com/stuartrowe) for the initial pull request.
 * #### **1.4.3**
   * [JENKINS-50764](https://issues.jenkins-ci.org/browse/JENKINS-50764) Whitelist ResponseData method signatures in In-process script approval.
       * With 1.4.2 only getData was added to the whitelist but here added rest.
@@ -43,7 +46,7 @@ lastmodifierdisplayname = "daper"
   * [JENKINS-48115](https://issues.jenkins-ci.org/browse/JENKINS-48115) Get rid of isMetaStep()==true everywhere.
 * #### **1.3.0**
   * [JENKINS-47948](https://issues.jenkins-ci.org/browse/JENKINS-47948) Delete deprecated api classes with Object.
-      * <span style="color:red">Note: EditVersion and EditComponent are updated to support all the JIRA Versions, which would break existing code. Please refer the appropriate steps guides for the new Syntax.</span>.  
+      * <span style="color:red">Note: EditVersion and EditComponent are updated to support all the JIRA Versions, which would break existing code. Please refer the appropriate steps guides for the new Syntax.</span>.
   * [JENKINS-47949](https://issues.jenkins-ci.org/browse/JENKINS-47949) Apply Google Style Guide.
   * [JENKINS-47954](https://issues.jenkins-ci.org/browse/JENKINS-47954) Migrate documentation to hugo.
   * <span style="color:red"> Please upgrade to 1.3.1, as I was reported some problems with declarative pipelines, see JENKINS-48115 for more details. </span>.

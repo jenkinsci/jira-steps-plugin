@@ -7,7 +7,7 @@
     <version>2.21</version>
   </parent>
   <artifactId>jira-steps</artifactId>
-  <version>1.5.1-SNAPSHOT</version>
+  <version>1.5.2-SNAPSHOT</version>
   <packaging>hpi</packaging>
   <name>JIRA Pipeline Steps</name>
   <description>JIRA Pipeline Steps</description>
