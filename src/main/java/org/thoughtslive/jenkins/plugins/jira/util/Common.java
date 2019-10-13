@@ -113,6 +113,11 @@ public class Common {
     return throwable;
   }
 
+  /**
+   * Returns logger that logs to jenkins web console
+   *
+   * @return an instance of {@link Logger}
+   */
   public static Logger getLogger() {
       Logger consoleLogger = LogManager.getLogManager().getLogger("hudson.WebAppMain");
       consoleLogger.addHandler(new ConsoleHandler());
