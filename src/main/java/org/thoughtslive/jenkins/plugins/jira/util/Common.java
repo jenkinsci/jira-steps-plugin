@@ -6,6 +6,9 @@ import java.io.PrintStream;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import retrofit2.Response;
+import java.util.logging.Logger;
+import java.util.logging.LogManager;
+import java.util.logging.ConsoleHandler;
 
 /**
  * Common utility functions.
@@ -108,5 +111,11 @@ public class Common {
       return getRootCause(throwable.getCause());
     }
     return throwable;
+  }
+
+  public static Logger getLogger() {
+      Logger consoleLogger = LogManager.getLogManager().getLogger("hudson.WebAppMain");
+      consoleLogger.addHandler(new ConsoleHandler());
+      return consoleLogger;
   }
 }
