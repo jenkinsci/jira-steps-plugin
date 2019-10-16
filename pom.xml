@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>2.21</version>
+    <version>3.50</version>
   </parent>
   <artifactId>jira-steps</artifactId>
   <version>1.5.2-SNAPSHOT</version>
@@ -16,20 +16,15 @@
   <properties>
     <java.level>8</java.level>
     <jenkins.version>2.7.3</jenkins.version>
-    <jenkins-test-harness.version>2.15</jenkins-test-harness.version>
     <pipeline.version>2.5</pipeline.version>
-    <workflow.step.api.version>2.3</workflow.step.api.version>
     <!-- Be careful of upgrading this to later versions, cause pipeline plugins depend on this version. -->
-    <jackson2.version>2.4.0</jackson2.version>
-    <retrofit2.version>2.5.0</retrofit2.version>
-    <lombok.version>1.16.12</lombok.version>
+    <jackson2.version>2.9.10</jackson2.version>
+    <retrofit2.version>2.6.2</retrofit2.version>
+    <lombok.version>1.18.10</lombok.version>
     <signpost.oauth.version>1.2.1.2</signpost.oauth.version>
-    <google.oauth.version>1.22.0</google.oauth.version>
-    <wiremock.version>2.3.1</wiremock.version>
-    <mockito.version>1.10.19</mockito.version>
-    <powermock.version>1.6.3</powermock.version>
-    <assertj-core.version>3.6.1</assertj-core.version>
-    <assertj-assertions-generator-maven-plugin.version>2.0.0</assertj-assertions-generator-maven-plugin.version>
+    <google.oauth.version>1.29.0</google.oauth.version>
+    <assertj-core.version>3.13.2</assertj-core.version>
+    <assertj-assertions-generator-maven-plugin.version>2.2.0</assertj-assertions-generator-maven-plugin.version>
   </properties>
   <organization>
     <name>ThoughtsLive</name>
@@ -38,7 +33,7 @@
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
@@ -55,7 +50,7 @@
   <scm>
     <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
-    <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
+    <url>https//github.com/jenkinsci/${project.artifactId}-plugin</url>
     <tag>HEAD</tag>
   </scm>
 
@@ -142,14 +137,12 @@
     <!-- Test Dependencies -->
     <dependency>
       <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <version>${mockito.version}</version>
+      <artifactId>mockito-core</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.powermock</groupId>
       <artifactId>powermock-module-junit4</artifactId>
-      <version>${powermock.version}</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -160,8 +153,7 @@
     </dependency>
     <dependency>
       <groupId>org.powermock</groupId>
-      <artifactId>powermock-api-mockito</artifactId>
-      <version>${powermock.version}</version>
+      <artifactId>powermock-api-mockito2</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -171,8 +163,8 @@
     </dependency>
     <dependency>
       <groupId>com.github.tomakehurst</groupId>
-      <artifactId>wiremock</artifactId>
-      <version>${wiremock.version}</version>
+      <artifactId>wiremock-standalone</artifactId>
+      <version>2.25.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -185,6 +177,17 @@
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-all</artifactId>
       <version>2.4.11</version>
+    </dependency>
+    <!-- Upper Bound deps -->
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>scm-api</artifactId>
+      <version>1.3</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.8</version>
     </dependency>
   </dependencies>
   <build>
