@@ -16,6 +16,7 @@ import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
@@ -38,11 +39,17 @@ public class JiraService {
 
     final ConnectionPool CONNECTION_POOL = new ConnectionPool(5, 60, TimeUnit.SECONDS);
 
+    HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+    loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
     OkHttpClient httpClient = new OkHttpClient.Builder()
         .connectTimeout(jiraSite.getTimeout(), TimeUnit.MILLISECONDS)
         .readTimeout(jiraSite.getReadTimeout(), TimeUnit.MILLISECONDS)
         .connectionPool(CONNECTION_POOL)
-        .retryOnConnectionFailure(true).addInterceptor(new SigningInterceptor(jiraSite)).build();
+        .retryOnConnectionFailure(true)
+        .addInterceptor(new SigningInterceptor(jiraSite))
+        .addInterceptor(loggingInterceptor)
+        .build();
 
     final ObjectMapper mapper = new ObjectMapper();
     mapper.registerModule(new JodaModule());
