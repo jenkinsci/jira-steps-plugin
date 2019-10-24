@@ -891,7 +891,7 @@ Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environm
     </header>
     <section class="post-excerpt">
         <p>jiraJqlSearch This step searches issues from the provided JIRA site by Jql.
-Input  jql - jql as a string. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.  Output  Each step generates generic output, please refer to this link for more information. <a class="read-more" href="/jira-steps-plugin/steps/search/jira_jql_search/">&raquo;</a></p>
+Input  jql - jql as a string. fields - Optional. the list of fields to return for each issue. default: null (in this case the parameter is not sent and all navigable fields are returned) site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. <a class="read-more" href="/jira-steps-plugin/steps/search/jira_jql_search/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          

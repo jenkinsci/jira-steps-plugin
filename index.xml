@@ -117,7 +117,7 @@ Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environm
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/search/jira_jql_search/</guid>
       <description>jiraJqlSearch This step searches issues from the provided JIRA site by Jql.
-Input  jql - jql as a string. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.  Output  Each step generates generic output, please refer to this link for more information.</description>
+Input  jql - jql as a string. fields - Optional. the list of fields to return for each issue. default: null (in this case the parameter is not sent and all navigable fields are returned) site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields.</description>
     </item>
     
     <item>
@@ -551,11 +551,11 @@ Issue reporting  Please browse our existing issues before logging new issues.</d
       <guid>https://jenkinsci.github.io/jira-steps-plugin/credits/</guid>
       <description>Maintainers  Owner - Naresh Rayapati.  github contributors .ghContributors{ display:flex; flex-flow: wrap; align-content: flex-start }
 .ghContributors &amp;gt; div{ width: 50% ; display: inline-flex; margin-bottom: 5px; } .ghContributors &amp;gt; div label{ padding-left: 4px ; } .ghContributors &amp;gt; div span{ font-size: x-small; padding-left: 4px ; }
-  @nrayapati 107 commits 
+  @nrayapati 110 commits 
  @benjidea 2 commits 
  @abayer 1 commits 
  @jpgauthier 1 commits 
- @samrocketman 1 commits</description>
+ @res0nance 1 commits</description>
     </item>
     
     <item>
@@ -593,7 +593,7 @@ Google Analytics Google Analytics is a web analytics tool we use to help underst
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/changelog/</guid>
-      <description>1.5.1 (Unreleased) 1.5.0  JENKINS-57182 When configuring a Jira steps site in casc yaml file. If the Jenkins service is restarted, the site is duplicated in Jenkins config.  Breaking changes: the java class Config has been renamed to JiraStepsConfig. Review the documentation to adapt your scripts.  JENKINS-58793 Add &amp;ldquo;fields&amp;rdquo; parameter to api/2/search endpoint for jiraJqlSearch.  1.4.5  JENKINS-49394 Make add/edit comment step more generic to set a visibility.</description>
+      <description>1.5.2 (Unreleased) 1.5.1  JENKINS-59280 jiraJqlSearch Error Message: null value after upgrade.  1.5.0  JENKINS-57182 When configuring a Jira steps site in casc yaml file. If the Jenkins service is restarted, the site is duplicated in Jenkins config.  Breaking changes: the java class Config has been renamed to JiraStepsConfig. Review the documentation to adapt your scripts.  JENKINS-58793 Add &amp;ldquo;fields&amp;rdquo; parameter to api/2/search endpoint for jiraJqlSearch.  1.</description>
     </item>
     
   </channel>
