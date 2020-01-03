@@ -37,7 +37,7 @@ node {
 
       def newVersion = jiraNewVersion version: [ name: "new-fix-version-"+ randomUUID() as String,
                                                  description: 'desc',
-                                                 project: 'TESTPRO'],
+                                                 project: 'TESTPRO']
 
       def updateIssue = [ fields: [ fixVersions: [ newVersion.data]]]                                              
       def response = jiraEditIssue idOrKey: issueKey, issue: updateIssue
