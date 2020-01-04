@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.62.1" />
 <title>JIRA Pipline Steps :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -658,62 +658,44 @@
 <a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fa fa-bars"></i> navigation</a>
 </span>
  
-
-
-<p><img src="https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/hugo/static/images/jira_steps.png" alt="JIRA Pipline Steps" /></p>
-
-<h3 id="jenkins-pipeline-https-jenkins-io-doc-book-pipeline"><a href="https://jenkins.io/doc/book/pipeline/">Jenkins Pipeline</a></h3>
-
-<p>Jenkins 2 brings Pipeline as code, a new setup experience and other UI improvements, let you define delivery pipelines using concise Groovy scripts which deal elegantly with jobs involving persistence and asynchrony. Introduces a domain-specific language (DSL) that helps Jenkins users to model their software delivery pipelines as code, which can be checked in and version-controlled along with the rest of their project&rsquo;s source code.</p>
-
-<h3 id="jira-https-www-atlassian-com-software-jira"><a href="https://www.atlassian.com/software/jira">JIRA</a></h3>
-
+<p><img src="https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/hugo/static/images/jira_steps.png" alt="JIRA Pipline Steps"></p>
+<h3 id="jenkins-pipelinehttpsjenkinsiodocbookpipeline"><a href="https://jenkins.io/doc/book/pipeline/">Jenkins Pipeline</a></h3>
+<p>Jenkins 2 brings Pipeline as code, a new setup experience and other UI improvements, let you define delivery pipelines using concise Groovy scripts which deal elegantly with jobs involving persistence and asynchrony. Introduces a domain-specific language (DSL) that helps Jenkins users to model their software delivery pipelines as code, which can be checked in and version-controlled along with the rest of their project's source code.</p>
+<h3 id="jirahttpswwwatlassiancomsoftwarejira"><a href="https://www.atlassian.com/software/jira">JIRA</a></h3>
 <p>JIRA is an application that can be used to track all issues for a project. JIRA makes the life cycle of issues transparent and allows for a lot of collaboration. In JIRA you can organize issues, assign work and follow team activity through a workflow. You can do this through UI (Desktop or with new mobile interface). One of the benefits of JIRA is that you can also consume the rest api to automate this workflow. This plugin is wrapper on top of this API to provide more generic steps for Jenkins pipeline developers.</p>
-
 <p>Few examples for a quick reference:</p>
-
 <ul>
-<li><p>Create a JIRA?, see the following, isn&rsquo;t so simple? :).</p>
-
-<pre><code class="language-groovy">def issue = [fields: [ project: [key: 'TESTPRO'],
-                       summary: 'New JIRA Created from Jenkins.',
-                       description: 'New JIRA Created from Jenkins.',
-                       issuetype: [name: 'Task']]]
-def newIssue = jiraNewIssue issue: issue, site: 'YOURJIRASITE'
-echo newIssue.data.key
-</code></pre>
-
-<ul>
-<li>Comment on a JIRA?, say just to monitor the status of Jenkins job and here we go.
-<code>groovy
-try {
-error &quot;Exception&quot;
-} catch(error) {
-def comment = &quot;${BUILD_URL} FAILED - ${ERROR}&quot;
-jiraAddComment idOrKey: 'GENERIC-999', comment: comment, site: 'YOURJIRASITE'
-currentBuild.result = 'FAILURE'
-}
-</code></li>
-</ul></li>
-
-<li><p>May be just close the JIRA? cause we just released a project and it is release review JIRA.</p>
-
-<pre><code class="language-groovy">def transitionInput = [ transition: [ name: 'Close'] ]
-jiraTransitionIssue idOrKey: 'RELEASE-999', input: transitionInput, site: 'YOURJIRASITE'
-</code></pre>
-
-<ul>
-<li>There are quite a few steps that this plugin supports currently, and will keep adding more.</li>
+<li>
+<p>Create a JIRA?, see the following, isn't so simple? :).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">  <span style="color:#66d9ef">def</span> issue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>fields: <span style="color:#f92672">[</span> project: <span style="color:#f92672">[</span>key: <span style="color:#e6db74">&#39;TESTPRO&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">,</span>
+                         summary: <span style="color:#e6db74">&#39;New JIRA Created from Jenkins.&#39;</span><span style="color:#f92672">,</span>
+                         description: <span style="color:#e6db74">&#39;New JIRA Created from Jenkins.&#39;</span><span style="color:#f92672">,</span>
+                         issuetype: <span style="color:#f92672">[</span>name: <span style="color:#e6db74">&#39;Task&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>
+  <span style="color:#66d9ef">def</span> newIssue <span style="color:#f92672">=</span> jiraNewIssue issue: issue<span style="color:#f92672">,</span> site: <span style="color:#e6db74">&#39;YOURJIRASITE&#39;</span>
+  echo newIssue<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">key</span>
+</code></pre></div></li>
+<li>
+<p>Comment on a JIRA?, say just to monitor the status of Jenkins job and here we go.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">  <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+      error <span style="color:#e6db74">&#34;Exception&#34;</span>
+  <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span><span style="color:#f92672">(</span>error<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">def</span> comment <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;${BUILD_URL} FAILED - ${ERROR}&#34;</span>
+    jiraAddComment idOrKey: <span style="color:#e6db74">&#39;GENERIC-999&#39;</span><span style="color:#f92672">,</span> comment: comment<span style="color:#f92672">,</span> site: <span style="color:#e6db74">&#39;YOURJIRASITE&#39;</span>
+    currentBuild<span style="color:#f92672">.</span><span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;FAILURE&#39;</span>
+  <span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p>May be just close the JIRA? cause we just released a project and it is release review JIRA.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">  <span style="color:#66d9ef">def</span> transitionInput <span style="color:#f92672">=</span> <span style="color:#f92672">[</span> transition: <span style="color:#f92672">[</span> name: <span style="color:#e6db74">&#39;Close&#39;</span><span style="color:#f92672">]</span> <span style="color:#f92672">]</span>
+  jiraTransitionIssue idOrKey: <span style="color:#e6db74">&#39;RELEASE-999&#39;</span><span style="color:#f92672">,</span> input: transitionInput<span style="color:#f92672">,</span> site: <span style="color:#e6db74">&#39;YOURJIRASITE&#39;</span>
+</code></pre></div></li>
+<li>
+<p>There are quite a few steps that this plugin supports currently, and will keep adding more.</p>
+</li>
 </ul>
-
 <p>Some of the common usage scenarios with multiple steps were available <a href="getting-started/examples">here</a></p>
-
 <p>Get started by <a href="getting-started/install">installing</a> this plugin and also refer to the <a href="changelog">Change Log</a> for more information.</p>
-
-<div class="notices note" >
-The documentation is always up to date with latest version (or master). If you are on old version please refer to the code.
-</div></li>
-</ul>
+<!-- raw HTML omitted -->
 
 
 
@@ -746,7 +728,7 @@ The documentation is always up to date with latest version (or master). If you a
     
 
     <div class="github-link">
-      <a href="https://github.com/jenkinsci/jira-steps-plugin/edit/master/hugo/content/_index.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/jenkinsci/jira-steps-plugin/edit/master/hugo/content//_index.md" target="blank"><i class="fa fa-code-fork"></i>
         Edit page</a>
     </div>
   </div>

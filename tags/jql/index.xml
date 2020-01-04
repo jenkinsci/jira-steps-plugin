@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>jql on </title>
@@ -18,7 +18,7 @@
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/search/jira_jql_search/</guid>
       <description>jiraJqlSearch This step searches issues from the provided JIRA site by Jql.
-Input  jql - jql as a string. fields - Optional. the list of fields to return for each issue. default: null (in this case the parameter is not sent and all navigable fields are returned) site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields.</description>
+Input  jql - jql as a string. fields - Optional. the list of fields to return for each issue. default: null (in this case the parameter is not sent and all navigable fields are returned) site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information.</description>
     </item>
     
   </channel>

@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.62.1" />
 <title>LinkIssues :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -366,69 +366,6 @@
             <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
       </div>
         <ul>
-      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_get_issuelink/" class="dd-item">
-        <div>
-          <a href="/jira-steps-plugin/steps/issuelink/jira_get_issuelink/">
-            GetIssueLink
-          </a><i class="fa fa-circle-thin read-icon"></i>
-        </div>
-    </li>
-      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_get_issue_link_types/" class="dd-item">
-        <div>
-          <a href="/jira-steps-plugin/steps/issuelink/jira_get_issue_link_types/">
-            GetIssueLinkTypes
-          </a><i class="fa fa-circle-thin read-icon"></i>
-        </div>
-    </li>
-      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelink/" class="dd-item">
-        <div>
-          <a href="/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelink/">
-            GetRemoteIssueLink
-          </a><i class="fa fa-circle-thin read-icon"></i>
-        </div>
-    </li>
-      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelinks/" class="dd-item">
-        <div>
-          <a href="/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelinks/">
-            GetRemoteIssueLinks
-          </a><i class="fa fa-circle-thin read-icon"></i>
-        </div>
-    </li>
-      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_new_remote_issuelink/" class="dd-item">
-        <div>
-          <a href="/jira-steps-plugin/steps/issuelink/jira_new_remote_issuelink/">
-            NewRemoteIssueLink
-          </a><i class="fa fa-circle-thin read-icon"></i>
-        </div>
-    </li>
-      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_link_issues/" class="dd-item active">
-        <div>
-          <a href="/jira-steps-plugin/steps/issuelink/jira_link_issues/">
-            LinkIssues
-          </a><i class="fa fa-circle-thin read-icon"></i>
-        </div>
-    </li>
-      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_delete_issuelink/" class="dd-item">
-        <div>
-          <a href="/jira-steps-plugin/steps/issuelink/jira_delete_issuelink/">
-            DeleteIssueLink
-          </a><i class="fa fa-circle-thin read-icon"></i>
-        </div>
-    </li>
-      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/" class="dd-item">
-        <div>
-          <a href="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/">
-            DeleteRemoteIssueLink
-          </a><i class="fa fa-circle-thin read-icon"></i>
-        </div>
-    </li>
-      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelinks/" class="dd-item">
-        <div>
-          <a href="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelinks/">
-            DeleteRemoteIssueLinks
-          </a><i class="fa fa-circle-thin read-icon"></i>
-        </div>
-    </li>
         </ul>
     </li>
     <li data-nav-id="/jira-steps-plugin/steps/project/" class="dd-item haschildren
@@ -665,16 +602,10 @@
     
     
     
-    
-
-<h3 id="jiralinkissues">jiraLinkIssues</h3>
-
+    <h3 id="jiralinkissues">jiraLinkIssues</h3>
 <p>This step links two issues in the provided JIRA site.</p>
-
 <p>Hint: Try getIssueLinkTypes to know the type.</p>
-
 <h4 id="input">Input</h4>
-
 <ul>
 <li><strong>type</strong> - type of the link. (Ex: Relates, Blocks, Cloners, Duplicate)</li>
 <li><strong>inwardKey</strong> - inward issue key.</li>
@@ -682,53 +613,39 @@
 <li><strong>site</strong> - Optional, default: <code>JIRA_SITE</code> environment variable.</li>
 <li><strong>failOnError</strong> - Optional. default: <code>true</code>.</li>
 </ul>
-
-<div class="notices note" >
-It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.
-</div>
-
+<!-- raw HTML omitted -->
 <h4 id="output">Output</h4>
-
 <ul>
 <li>Each step generates generic output, please refer to this <a href="/jira-steps-plugin/getting-started/config/common/">link</a> for more information.</li>
 <li>The api response of this jira_link_issues step can be reused later in your script by doing <code>response.data.required_field_name</code>.</li>
 <li>You can see some example scenarios <a href="/jira-steps-plugin/getting-started/examples/">here</a></li>
 <li>All the available fields for a jira response can be found in <a href="https://docs.atlassian.com/jira/REST/">JIRA API documentation</a> depending on your JIRA version.</li>
 </ul>
-
-<div class="notices note" >
-`response.data` returns all the fields returned by JIRA API.
-</div>
-
+<!-- raw HTML omitted -->
 <h4 id="examples">Examples</h4>
-
 <ul>
-<li><p>With default <a href="/jira-steps-plugin/getting-started/config/common/#global-environment-variables">site</a> from global variables.</p>
-
-<pre><code class="language-groovy">node {
-  stage('JIRA') {
-    jiraLinkIssues type: 'Relates', inwardKey: 'TEST-1', outwardKey: 'TEST-2'
-  }
-}
-</code></pre>
-
-<ul>
-<li><code>withEnv</code> to override the default site (or if there is not global site)</li>
-</ul>
-
-<pre><code class="language-groovy">node {
-  stage('JIRA') {
-    withEnv(['JIRA_SITE=LOCAL']) {
-      jiraLinkIssues type: 'Relates', inwardKey: 'TEST-1', outwardKey: 'TEST-2'
-    }
-  }
-}
-</code></pre></li>
-
-<li><p>Without environment variables.</p>
-
-<pre><code class="language-groovy">jiraLinkIssues type: 'Relates', inwardKey: 'TEST-1', outwardKey: 'TEST-2', site: 'LOCAL'
-</code></pre></li>
+<li>
+<p>With default <a href="/jira-steps-plugin/getting-started/config/common/#global-environment-variables">site</a> from global variables.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">node <span style="color:#f92672">{</span>
+  stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;JIRA&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    jiraLinkIssues type: <span style="color:#e6db74">&#39;Relates&#39;</span><span style="color:#f92672">,</span> inwardKey: <span style="color:#e6db74">&#39;TEST-1&#39;</span><span style="color:#f92672">,</span> outwardKey: <span style="color:#e6db74">&#39;TEST-2&#39;</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p><code>withEnv</code> to override the default site (or if there is not global site)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">node <span style="color:#f92672">{</span>
+  stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;JIRA&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    withEnv<span style="color:#f92672">(</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;JIRA_SITE=LOCAL&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      jiraLinkIssues type: <span style="color:#e6db74">&#39;Relates&#39;</span><span style="color:#f92672">,</span> inwardKey: <span style="color:#e6db74">&#39;TEST-1&#39;</span><span style="color:#f92672">,</span> outwardKey: <span style="color:#e6db74">&#39;TEST-2&#39;</span>
+    <span style="color:#f92672">}</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p>Without environment variables.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">jiraLinkIssues type: <span style="color:#e6db74">&#39;Relates&#39;</span><span style="color:#f92672">,</span> inwardKey: <span style="color:#e6db74">&#39;TEST-1&#39;</span><span style="color:#f92672">,</span> outwardKey: <span style="color:#e6db74">&#39;TEST-2&#39;</span><span style="color:#f92672">,</span> site: <span style="color:#e6db74">&#39;LOCAL&#39;</span>
+</code></pre></div></li>
 </ul>
 
 

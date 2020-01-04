@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Examples on </title>
@@ -17,7 +17,7 @@
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/examples/new_fix_version/</guid>
-      <description> Add new fix version to existing issue.  JQL Search. Create new version. Edit an issue.  node { stage(&#39;JIRA&#39;) { def searchResults = jiraJqlSearch jql: &amp;quot;project = TEST AND issuekey = &#39;TEST-1&#39;&amp;quot; def issues = searchResults.data.issues for (i = 0; i &amp;lt;issues.size(); i++) { def fixVersion = jiraNewVersion version: [name: &amp;quot;new-fix-version-1.0&amp;quot;, project: &amp;quot;TEST&amp;quot;] def testIssue = [fields: [fixVersions: [fixVersion.data]]] response = jiraEditIssue idOrKey: issues[i].key, issue: testIssue } } }  </description>
+      <description>Add new fix version to existing issue.  JQL Search. Create new version. Edit an issue.  node { stage(&amp;#39;JIRA&amp;#39;) { def searchResults = jiraJqlSearch jql: &amp;#34;project = TEST AND issuekey = &amp;#39;TEST-1&amp;#39;&amp;#34; def issues = searchResults.data.issues for (i = 0; i &amp;lt;issues.size(); i++) { def fixVersion = jiraNewVersion version: [name: &amp;#34;new-fix-version-1.0&amp;#34;, project: &amp;#34;TEST&amp;#34;] def testIssue = [fields: [fixVersions: [fixVersion.data]]] response = jiraEditIssue idOrKey: issues[i].key, issue: testIssue } } } </description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/examples/append_fix_version/</guid>
-      <description>Append new fix version to existing issue.  JQL Search. Create new version. Edit an issue.  node { stage(&#39;JIRA&#39;) { def searchResults = jiraJqlSearch jql: &amp;quot;project = TEST AND issuekey = &#39;TEST-1&#39;&amp;quot; def issues = searchResults.data.issues for (i = 0; i &amp;lt;issues.size(); i++) { def result = jiraGetIssue idOrKey: issues[i].key def newVersion = jiraNewVersion version: [name: &amp;quot;new-fix-version-1.1&amp;quot;, project: &amp;quot;TEST&amp;quot;] def fixVersions = result.data.fields.fixVersions &amp;lt;&amp;lt; newVersion.data def testIssue = [fields: [fixVersions: fixVersions]] response = jiraEditIssue idOrKey: issues[i].</description>
+      <description>Append new fix version to existing issue.  JQL Search. Create new version. Edit an issue.  node { stage(&amp;#39;JIRA&amp;#39;) { def searchResults = jiraJqlSearch jql: &amp;#34;project = TEST AND issuekey = &amp;#39;TEST-1&amp;#39;&amp;#34; def issues = searchResults.data.issues for (i = 0; i &amp;lt;issues.size(); i++) { def result = jiraGetIssue idOrKey: issues[i].key def newVersion = jiraNewVersion version: [name: &amp;#34;new-fix-version-1.1&amp;#34;, project: &amp;#34;TEST&amp;#34;] def fixVersions = result.data.fields.fixVersions &amp;lt;&amp;lt; newVersion.data def testIssue = [fields: [fixVersions: fixVersions]] response = jiraEditIssue idOrKey: issues[i].</description>
     </item>
     
     <item>

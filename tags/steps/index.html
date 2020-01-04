@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.62.1" />
 <title>steps :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -675,7 +675,7 @@
     </header>
     <section class="post-excerpt">
         <p>jiraUploadAttachment This step uploads a file from worksapce to issue.
-Input  idOrKey - Issue Id or Key. file - File name with/without path from workspace. Ex: test.txt or test/test.txt. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. <a class="read-more" href="/jira-steps-plugin/steps/attachment/jira_upload_attachment/">&raquo;</a></p>
+Input  idOrKey - Issue Id or Key. file - File name with/without path from workspace. Ex: test.txt or test/test.txt. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/attachment/jira_upload_attachment/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -731,7 +731,7 @@ Input  site - Optional, default: JIRA_SITE environment variable. failOnError - O
     </header>
     <section class="post-excerpt">
         <p>jiraGetComment This step queries a particular comment on an issue.
-Input  idOrKey - Issue id or key. commentId - commentId. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_comment step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/comment/jira_get_comment/">&raquo;</a></p>
+Input  idOrKey - Issue id or key. commentId - commentId. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_comment step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a JIRA response can be found in JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/comment/jira_get_comment/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -759,7 +759,7 @@ Input  idOrKey - Issue id or key. commentId - commentId. site - Optional, defaul
     </header>
     <section class="post-excerpt">
         <p>jiraGetComponent This step queries a particular component from the provided JIRA site.
-Input  id - componentId. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_component step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/component/jira_get_component/">&raquo;</a></p>
+Input  id - componentId. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_component step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/component/jira_get_component/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -811,7 +811,7 @@ Input  site - Optional, default: JIRA_SITE environment variable. failOnError - O
     </header>
     <section class="post-excerpt">
         <p>jiraGetIssueLink This step queries issue links from the provided JIRA site.
-Input  id - issue link&rsquo;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issuelink step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_get_issuelink/">&raquo;</a></p>
+Input  id - issue link's id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issuelink step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_get_issuelink/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -839,7 +839,7 @@ Input  id - issue link&rsquo;s id. site - Optional, default: JIRA_SITE environme
     </header>
     <section class="post-excerpt">
         <p>jiraGetIssueWatches This step queries all the issue watchers on a particular issue.
-Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_watches step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/watcher/jira_get_issue_watches/">&raquo;</a></p>
+Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_watches step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/watcher/jira_get_issue_watches/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -865,7 +865,7 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
     </header>
     <section class="post-excerpt">
         <p>jiraGetProject This queries project info from the provided JIRA site.
-Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_project step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/project/jira_get_project/">&raquo;</a></p>
+Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_project step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/project/jira_get_project/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -891,7 +891,7 @@ Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environm
     </header>
     <section class="post-excerpt">
         <p>jiraJqlSearch This step searches issues from the provided JIRA site by Jql.
-Input  jql - jql as a string. fields - Optional. the list of fields to return for each issue. default: null (in this case the parameter is not sent and all navigable fields are returned) site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. <a class="read-more" href="/jira-steps-plugin/steps/search/jira_jql_search/">&raquo;</a></p>
+Input  jql - jql as a string. fields - Optional. the list of fields to return for each issue. default: null (in this case the parameter is not sent and all navigable fields are returned) site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. <a class="read-more" href="/jira-steps-plugin/steps/search/jira_jql_search/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -919,7 +919,7 @@ Input  jql - jql as a string. fields - Optional. the list of fields to return fo
     </header>
     <section class="post-excerpt">
         <p>jiraNewVersion Creates new version based on given input, which should have some minimal information on that object.
-Input  version - version to be created. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append the build url and build user name to the description.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs. <a class="read-more" href="/jira-steps-plugin/steps/version/jira_new_version/">&raquo;</a></p>
+Input  version - version to be created. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append the build url and build user name to the description.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_new_version step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/version/jira_new_version/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          

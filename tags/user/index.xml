@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>user on </title>
@@ -18,7 +18,7 @@
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/user/jira_user_search/</guid>
       <description>jiraUserSearch This step searches users by name, username or email address form the JIRA SITE.
-Input  queryStr - name, username or email address. (partial string are allowed) site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.</description>
+Input  queryStr - name, username or email address. (partial string are allowed) site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_user_search step can be reused later in your script by doing response.</description>
     </item>
     
     <item>
@@ -28,7 +28,7 @@ Input  queryStr - name, username or email address. (partial string are allowed) 
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/user/jira_assignable_user_search/</guid>
       <description>jiraAssignableUserSearch This step searches for a user by name, username or email address and assigns them to given project and/or issueKey.
-Input  queryStr - name, username or email address. (partial string are allowed) project - project key. Either project or issueKey is mandatory. issueKey - issue key. Either project or issueKey is mandatory. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields.</description>
+Input  queryStr - name, username or email address. (partial string are allowed) project - project key. Either project or issueKey is mandatory. issueKey - issue key. Either project or issueKey is mandatory. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information.</description>
     </item>
     
   </channel>

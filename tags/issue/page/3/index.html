@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.62.1" />
 <title>issue :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -675,7 +675,7 @@
     </header>
     <section class="post-excerpt">
         <p>jiraDeleteIssueLink This step deletes an issue link.
-Input  id - issue link&rsquo;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.  Output  Each step generates generic output, please refer to this link for more information. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_delete_issuelink/">&raquo;</a></p>
+Input  id - issue link's id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_delete_issue step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_delete_issuelink/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -703,7 +703,7 @@ Input  id - issue link&rsquo;s id. site - Optional, default: JIRA_SITE environme
     </header>
     <section class="post-excerpt">
         <p>jiraGetIssueTransitions This step queries all transitions of a particular issue.
-Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_transitions step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_get_issue_transitions/">&raquo;</a></p>
+Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_transitions step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_get_issue_transitions/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -729,7 +729,7 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
     </header>
     <section class="post-excerpt">
         <p>jiraDeleteRemoteIssueLink This step deletes a particular remote link of an issue.
-Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/">&raquo;</a></p>
+Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_delete_remote_issue_link step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA Api documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -757,7 +757,7 @@ Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, defa
     </header>
     <section class="post-excerpt">
         <p>jiraNotifyIssue This step notifies users (like watchers, assignee and so on..) of a particular issue.
-Input  idOrKey - Issue id or key. notify - more info about whom should we notify and so on. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_notify_issue/">&raquo;</a></p>
+Input  idOrKey - Issue id or key. notify - more info about whom should we notify and so on. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_notify_issue step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_notify_issue/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -783,7 +783,7 @@ Input  idOrKey - Issue id or key. notify - more info about whom should we notify
     </header>
     <section class="post-excerpt">
         <p>jiraDeleteRemoteIssueLinks This step deletes all remote links of an issue.
-Input  idOrKey - issue id or key. globalId - global application id (Optional). site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelinks/">&raquo;</a></p>
+Input  idOrKey - issue id or key. globalId - global application id (Optional). site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_delete_remote_issue_links step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelinks/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          
@@ -811,7 +811,7 @@ Input  idOrKey - issue id or key. globalId - global application id (Optional). s
     </header>
     <section class="post-excerpt">
         <p>jiraTransitionIssue This step transitions a particular issue in the JIRA site.
-Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_transition_issue/">&raquo;</a></p>
+Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_transition_issue step can be reused later in your script by doing response. <a class="read-more" href="/jira-steps-plugin/steps/issue/jira_transition_issue/">&raquo;</a></p>
     </section>
     <footer class=" footline" >
          

@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.62.1" />
 <title>Append Fix Version :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -659,32 +659,27 @@
     
     
     
-    
-
-<h2 id="append-new-fix-version-to-existing-issue">Append new fix version to existing issue.</h2>
-
+    <h2 id="append-new-fix-version-to-existing-issue">Append new fix version to existing issue.</h2>
 <ul>
 <li>JQL Search.</li>
 <li>Create new version.</li>
 <li>Edit an issue.</li>
 </ul>
-
-<pre><code class="language-groovy">node {
-  stage('JIRA') {
-    def searchResults = jiraJqlSearch jql: &quot;project = TEST AND issuekey = 'TEST-1'&quot;
-    def issues = searchResults.data.issues
-    for (i = 0; i &lt;issues.size(); i++) {
-      def result = jiraGetIssue idOrKey: issues[i].key
-      def newVersion = jiraNewVersion version: [name: &quot;new-fix-version-1.1&quot;,
-                                                project: &quot;TEST&quot;]
-      def fixVersions = result.data.fields.fixVersions &lt;&lt; newVersion.data
-      def testIssue = [fields: [fixVersions: fixVersions]]
-      response = jiraEditIssue idOrKey: issues[i].key, issue: testIssue
-    }
-  }
-}
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">node <span style="color:#f92672">{</span>
+  stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;JIRA&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">def</span> searchResults <span style="color:#f92672">=</span> jiraJqlSearch jql: <span style="color:#e6db74">&#34;project = TEST AND issuekey = &#39;TEST-1&#39;&#34;</span>
+    <span style="color:#66d9ef">def</span> issues <span style="color:#f92672">=</span> searchResults<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">issues</span>
+    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span>issues<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span> i<span style="color:#f92672">+</span><span style="color:#f92672">+</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">def</span> result <span style="color:#f92672">=</span> jiraGetIssue idOrKey: issues<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span><span style="color:#f92672">.</span><span style="color:#a6e22e">key</span>
+      <span style="color:#66d9ef">def</span> newVersion <span style="color:#f92672">=</span> jiraNewVersion version: <span style="color:#f92672">[</span>name: <span style="color:#e6db74">&#34;new-fix-version-1.1&#34;</span><span style="color:#f92672">,</span>
+                                                project: <span style="color:#e6db74">&#34;TEST&#34;</span><span style="color:#f92672">]</span>
+      <span style="color:#66d9ef">def</span> fixVersions <span style="color:#f92672">=</span> result<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">fields</span><span style="color:#f92672">.</span><span style="color:#a6e22e">fixVersions</span> <span style="color:#f92672">&lt;</span><span style="color:#f92672">&lt;</span> newVersion<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span>
+      <span style="color:#66d9ef">def</span> testIssue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>fields: <span style="color:#f92672">[</span>fixVersions: fixVersions<span style="color:#f92672">]</span><span style="color:#f92672">]</span>
+      response <span style="color:#f92672">=</span> jiraEditIssue idOrKey: issues<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span><span style="color:#f92672">.</span><span style="color:#a6e22e">key</span><span style="color:#f92672">,</span> issue: testIssue
+    <span style="color:#f92672">}</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div>
 
     
     

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>issue on </title>
@@ -18,7 +18,7 @@
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_upload_attachment/</guid>
       <description>jiraUploadAttachment This step uploads a file from worksapce to issue.
-Input  idOrKey - Issue Id or Key. file - File name with/without path from workspace. Ex: test.txt or test/test.txt. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information.</description>
+Input  idOrKey - Issue Id or Key. file - File name with/without path from workspace. Ex: test.txt or test/test.txt. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response.</description>
     </item>
     
     <item>
@@ -28,7 +28,7 @@ Input  idOrKey - Issue Id or Key. file - File name with/without path from worksp
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_get_comment/</guid>
       <description>jiraGetComment This step queries a particular comment on an issue.
-Input  idOrKey - Issue id or key. commentId - commentId. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_comment step can be reused later in your script by doing response.</description>
+Input  idOrKey - Issue id or key. commentId - commentId. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_comment step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a JIRA response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -48,7 +48,7 @@ Input  site - Optional, default: JIRA_SITE environment variable. failOnError - O
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_issuelink/</guid>
       <description>jiraGetIssueLink This step queries issue links from the provided JIRA site.
-Input  id - issue link&amp;rsquo;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issuelink step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
+Input  id - issue link&#39;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issuelink step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -57,8 +57,8 @@ Input  id - issue link&amp;rsquo;s id. site - Optional, default: JIRA_SITE envir
       <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_get_attachment_info/</guid>
-      <description>jiraGetAttachmentInfo This step queries a particular attachment&amp;rsquo;s info on an issue.
-Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response.</description>
+      <description>jiraGetAttachmentInfo This step queries a particular attachment&#39;s info on an issue.
+Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a JIRA response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -68,7 +68,7 @@ Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment varia
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_get_comments/</guid>
       <description>jiraGetComments This step queries all comments on a particular issue.
-Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [api](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_comments step can be reused later in your script by doing response.</description>
+Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_comments step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -78,7 +78,7 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_issue_link_types/</guid>
       <description>jiraGetIssueLinkTypes This step queries all issue links types from the provided JIRA site.
-Input  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.  Output  Each step generates generic output, please refer to this link for more information.</description>
+Input  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_link_types step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -88,7 +88,7 @@ Input  site - Optional, default: JIRA_SITE environment variable. failOnError - O
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_new_issue/</guid>
       <description>jiraNewIssue Creates new issue based on given input, which should have some minimal information on that object.
-Input  issue - issue to be created. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name.  It supports all the fields that any jira instance supports including custom fields.</description>
+Input  issue - issue to be created. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name.  Output  Each step generates generic output, please refer to this link for more information.</description>
     </item>
     
     <item>
@@ -98,7 +98,7 @@ Input  issue - issue to be created. site - Optional, default: JIRA_SITE environm
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_download_attachment/</guid>
       <description>jiraDownloadAttachment This step downloads the attachment of an issue to given location in workspace.
-Input  id - Attachment Id. file - Target location including file name. Ex: test.txt or test/test.txt override - Overrides an existing file. Defaults to false. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information.</description>
+Input  id - Attachment Id. file - Target location including file name. Ex: test.txt or test/test.txt override - Overrides an existing file. Defaults to false. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response.</description>
     </item>
     
     <item>
@@ -108,7 +108,7 @@ Input  id - Attachment Id. file - Target location including file name. Ex: test.
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_add_comment/</guid>
       <description>jiraAddComment This step adds a comment on a particular issue.
-Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name. Deprecated: comment - comment, supports jira wiki formatting.  It supports all the fields that any jira instance supports including custom fields.</description>
+Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name. Deprecated: comment - comment, supports jira wiki formatting.  Output  Each step generates generic output, please refer to this link for more information.</description>
     </item>
     
     <item>
@@ -128,7 +128,7 @@ Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, defa
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_new_issues/</guid>
       <description>jiraNewIssues This step creates new issues in bulk in the provided JIRA site.
-Input  issues - issues to be created. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.</description>
+Input  issues - issues to be created. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. auditLog - Optional. default: true. Append a panel to the comment with the build url and build user name.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_new_issues step can be reused later in your script by doing response.</description>
     </item>
     
     <item>
@@ -138,7 +138,7 @@ Input  issues - issues to be created. site - Optional, default: JIRA_SITE enviro
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_delete_attachment/</guid>
       <description>jiraDeleteAttachment This step deletes the attachment from an issue.
-Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response.</description>
+Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a JIRA response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -148,7 +148,7 @@ Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment varia
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_assign_issue/</guid>
       <description>jiraAssignIssue This step assigns a particular issue to a user.
-Input  idOrKey - Issue id or key. userName - username of the person who should be added as a watcher. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.</description>
+Input  idOrKey - Issue id or key. userName - username of the person who should be added as a watcher. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_assign_issue step can be reused later in your script by doing response.</description>
     </item>
     
     <item>
@@ -158,7 +158,7 @@ Input  idOrKey - Issue id or key. userName - username of the person who should b
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/comment/jira_edit_comment/</guid>
       <description>jiraEditComment This step updates a particular comment on particular issue.
-Input  idOrKey - Issue id or key. commentId - comment id. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. Deprecated: comment - comment, supports jira wiki formatting.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA Api documentation](https://docs.</description>
+Input  idOrKey - Issue id or key. commentId - comment id. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true. Deprecated: comment - comment, supports jira wiki formatting.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_edit_comment step can be reused later in your script by doing response.</description>
     </item>
     
     <item>
@@ -168,7 +168,7 @@ Input  idOrKey - Issue id or key. commentId - comment id. input - comment, suppo
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_get_issue/</guid>
       <description>jiraGetIssue This step queries a particular issue from the provided JIRA site.
-Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue step can be reused later in your script by doing response.</description>
+Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -188,7 +188,7 @@ Input  idOrKey - issue id or key. globalId - global application id (Optional). s
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_new_remote_issuelink/</guid>
       <description>jiraNewRemoteIssueLink This step creates a new remote link to a particular issue.
-Input  idOrKey - issue id or key. remoteLink - remote link. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.</description>
+Input  idOrKey - issue id or key. remoteLink - remote link. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_new_remote_issuelinks step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -198,7 +198,7 @@ Input  idOrKey - issue id or key. remoteLink - remote link. site - Optional, def
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_edit_issue/</guid>
       <description>jiraEditIssue Updates an existing issue based on given input, which should have some minimal information on that object.
-Input  idOrKey - issue id or key. issue - issue to be updated. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.</description>
+Input  idOrKey - issue id or key. issue - issue to be updated. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_edit_issue step can be reused later in your script by doing response.</description>
     </item>
     
     <item>
@@ -209,7 +209,7 @@ Input  idOrKey - issue id or key. issue - issue to be updated. site - Optional, 
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_link_issues/</guid>
       <description>jiraLinkIssues This step links two issues in the provided JIRA site.
 Hint: Try getIssueLinkTypes to know the type.
-Input  type - type of the link. (Ex: Relates, Blocks, Cloners, Duplicate) inwardKey - inward issue key. outwardKey - outward issue key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.</description>
+Input  type - type of the link. (Ex: Relates, Blocks, Cloners, Duplicate) inwardKey - inward issue key. outwardKey - outward issue key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_link_issues step can be reused later in your script by doing response.</description>
     </item>
     
     <item>
@@ -219,7 +219,7 @@ Input  type - type of the link. (Ex: Relates, Blocks, Cloners, Duplicate) inward
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_issuelink/</guid>
       <description>jiraDeleteIssueLink This step deletes an issue link.
-Input  id - issue link&amp;rsquo;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.  Output  Each step generates generic output, please refer to this link for more information.</description>
+Input  id - issue link&#39;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_delete_issue step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -229,7 +229,7 @@ Input  id - issue link&amp;rsquo;s id. site - Optional, default: JIRA_SITE envir
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_get_issue_transitions/</guid>
       <description>jiraGetIssueTransitions This step queries all transitions of a particular issue.
-Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_transitions step can be reused later in your script by doing response.</description>
+Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_transitions step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -239,7 +239,7 @@ Input  idOrKey - Issue id or key. site - Optional, default: JIRA_SITE environmen
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/</guid>
       <description>jiraDeleteRemoteIssueLink This step deletes a particular remote link of an issue.
-Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.</description>
+Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_delete_remote_issue_link step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA Api documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -249,7 +249,7 @@ Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, defa
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_notify_issue/</guid>
       <description>jiraNotifyIssue This step notifies users (like watchers, assignee and so on..) of a particular issue.
-Input  idOrKey - Issue id or key. notify - more info about whom should we notify and so on. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.</description>
+Input  idOrKey - Issue id or key. notify - more info about whom should we notify and so on. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_notify_issue step can be reused later in your script by doing response.</description>
     </item>
     
     <item>
@@ -259,7 +259,7 @@ Input  idOrKey - Issue id or key. notify - more info about whom should we notify
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelinks/</guid>
       <description>jiraDeleteRemoteIssueLinks This step deletes all remote links of an issue.
-Input  idOrKey - issue id or key. globalId - global application id (Optional). site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.</description>
+Input  idOrKey - issue id or key. globalId - global application id (Optional). site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_delete_remote_issue_links step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -269,7 +269,7 @@ Input  idOrKey - issue id or key. globalId - global application id (Optional). s
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_transition_issue/</guid>
       <description>jiraTransitionIssue This step transitions a particular issue in the JIRA site.
-Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.</description>
+Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_transition_issue step can be reused later in your script by doing response.</description>
     </item>
     
   </channel>

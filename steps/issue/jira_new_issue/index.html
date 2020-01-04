@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.62.1" />
 <title>NewIssue :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -665,97 +665,77 @@
     
     
     
-    
-
-<h3 id="jiranewissue">jiraNewIssue</h3>
-
+    <h3 id="jiranewissue">jiraNewIssue</h3>
 <p>Creates new issue based on given input, which should have some minimal information on that object.</p>
-
-<p><img src="https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/hugo/static/images/jira_new_issue.png" alt="New Issue" /></p>
-
+<p><img src="https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/hugo/static/images/jira_new_issue.png" alt="New Issue"></p>
 <h4 id="input">Input</h4>
-
 <ul>
 <li><strong>issue</strong> - issue to be created.</li>
 <li><strong>site</strong> - Optional, default: <code>JIRA_SITE</code> environment variable.</li>
 <li><strong>failOnError</strong> - Optional. default: <code>true</code>.</li>
 <li><strong>auditLog</strong> - Optional. default: <code>true</code>. Append a panel to the comment with the build url and build user name.</li>
 </ul>
-
-<div class="notices note" >
-It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.
-</div>
-
+<!-- raw HTML omitted -->
 <h4 id="output">Output</h4>
-
 <ul>
 <li>Each step generates generic output, please refer to this <a href="/jira-steps-plugin/getting-started/config/common/">link</a> for more information.</li>
 <li>The api response of this jira_new_issue step can be reused later in your script by doing <code>response.data.required_field_name</code>.</li>
 <li>You can see some example scenarios <a href="/jira-steps-plugin/getting-started/examples/">here</a></li>
 <li>All the available fields for a jira response can be found in <a href="https://docs.atlassian.com/jira/REST/">JIRA API documentation</a> depending on your JIRA version.</li>
 </ul>
-
-<div class="notices note" >
-`response.data` returns all the fields returned by JIRA API.
-</div>
-
+<!-- raw HTML omitted -->
 <h4 id="examples">Examples</h4>
-
 <ul>
-<li><p>With default <a href="/jira-steps-plugin/getting-started/config/common/#global-environment-variables">site</a> from global variables.</p>
+<li>
+<p>With default <a href="/jira-steps-plugin/getting-started/config/common/#global-environment-variables">site</a> from global variables.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">node <span style="color:#f92672">{</span>
+  stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;JIRA&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#960050;background-color:#1e0010">#</span> Look at IssueInput <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">for</span> more information<span style="color:#f92672">.</span>
+    <span style="color:#66d9ef">def</span> testIssue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>fields: <span style="color:#f92672">[</span> <span style="color:#75715e">// id or key must present for project.
+</span><span style="color:#75715e"></span>                               project: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;10000&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">,</span>
+                               summary: <span style="color:#e6db74">&#39;New JIRA Created from Jenkins.&#39;</span><span style="color:#f92672">,</span>
+                               description: <span style="color:#e6db74">&#39;New JIRA Created from Jenkins.&#39;</span><span style="color:#f92672">,</span>
+                               customfield_1000: <span style="color:#e6db74">&#39;customValue&#39;</span><span style="color:#f92672">,</span>
+                               <span style="color:#75715e">// id or name must present for issueType.
+</span><span style="color:#75715e"></span>                               issuetype: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;3&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>
 
-<pre><code class="language-groovy">node {
-  stage('JIRA') {
-    # Look at IssueInput class for more information.
-    def testIssue = [fields: [ // id or key must present for project.
-                               project: [id: '10000'],
-                               summary: 'New JIRA Created from Jenkins.',
-                               description: 'New JIRA Created from Jenkins.',
-                               customfield_1000: 'customValue',
-                               // id or name must present for issueType.
-                               issuetype: [id: '3']]]
+    response <span style="color:#f92672">=</span> jiraNewIssue issue: testIssue
 
-    response = jiraNewIssue issue: testIssue
+    echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">successful</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+    echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p><code>withEnv</code> to override the default site (or if there is not global site)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">node <span style="color:#f92672">{</span>
+  stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;JIRA&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    withEnv<span style="color:#f92672">(</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;JIRA_SITE=LOCAL&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">def</span> testIssue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>fields: <span style="color:#f92672">[</span> project: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;10000&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">,</span>
+                                 summary: <span style="color:#e6db74">&#39;New JIRA Created from Jenkins.&#39;</span><span style="color:#f92672">,</span>
+                                 description: <span style="color:#e6db74">&#39;New JIRA Created from Jenkins.&#39;</span><span style="color:#f92672">,</span>
+                                 issuetype: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;3&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>
 
-    echo response.successful.toString()
-    echo response.data.toString()
-  }
-}
-</code></pre>
+      response <span style="color:#f92672">=</span> jiraNewIssue issue: testIssue
 
-<ul>
-<li><code>withEnv</code> to override the default site (or if there is not global site)</li>
-</ul>
+      echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">successful</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+      echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+    <span style="color:#f92672">}</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p>Without environment variables.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#66d9ef">def</span> testIssue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>fields: <span style="color:#f92672">[</span> project: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;10000&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">,</span>
+                           summary: <span style="color:#e6db74">&#39;New JIRA Created from Jenkins.&#39;</span><span style="color:#f92672">,</span>
+                           description: <span style="color:#e6db74">&#39;New JIRA Created from Jenkins.&#39;</span><span style="color:#f92672">,</span>
+                           issuetype: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;3&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>
 
-<pre><code class="language-groovy">node {
-  stage('JIRA') {
-    withEnv(['JIRA_SITE=LOCAL']) {
-      def testIssue = [fields: [ project: [id: '10000'],
-                                 summary: 'New JIRA Created from Jenkins.',
-                                 description: 'New JIRA Created from Jenkins.',
-                                 issuetype: [id: '3']]]
+response <span style="color:#f92672">=</span> jiraNewIssue issue: testIssue<span style="color:#f92672">,</span> site: <span style="color:#e6db74">&#39;LOCAL&#39;</span>
 
-      response = jiraNewIssue issue: testIssue
-
-      echo response.successful.toString()
-      echo response.data.toString()
-    }
-  }
-}
-</code></pre></li>
-
-<li><p>Without environment variables.</p>
-
-<pre><code class="language-groovy">def testIssue = [fields: [ project: [id: '10000'],
-                           summary: 'New JIRA Created from Jenkins.',
-                           description: 'New JIRA Created from Jenkins.',
-                           issuetype: [id: '3']]]
-
-response = jiraNewIssue issue: testIssue, site: 'LOCAL'
-
-echo response.successful.toString()
-echo response.data.toString()
-</code></pre></li>
+echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">successful</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+</code></pre></div></li>
 </ul>
 
 

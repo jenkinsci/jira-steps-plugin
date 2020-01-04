@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.62.1" />
 <title>Authentication :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -660,38 +660,26 @@
     
     
     
-    
-
-<h2 id="authentication">Authentication</h2>
-
+    <h2 id="authentication">Authentication</h2>
 <p>This plugin supports both Basic and OAuth, OAuth is preferred over the Basic authentication.</p>
-
 <h3 id="basic-authentication">Basic Authentication</h3>
-
 <ul>
 <li>Goto <strong>Manage Jenkins &gt; Configure System &gt; JIRA Steps &gt; Add Site &gt; Choose Basic</strong>.
-
 <ul>
 <li>Name = Jira Site Name</li>
 <li>URL = Jira Site URL</li>
 <li>User Name = Jira Account Username</li>
 <li>Password = Jira Account Password</li>
-</ul></li>
 </ul>
-
-<p><img src="https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/hugo/static/images/jira_site_basic.png" alt="Basic" /></p>
-
-<div class="alert 
-alert-info"
- 
-role="alert"> Please take note that above screenshot missing **ReadTimeout(ms)** </div>
-
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/hugo/static/images/jira_site_basic.png" alt="Basic"></p>
+<!-- raw HTML omitted -->
+<p>role=&quot;alert&quot;&gt; Please take note that above screenshot missing <strong>ReadTimeout(ms)</strong> <!-- raw HTML omitted --></p>
 <h3 id="oauth-authentication">OAuth Authentication</h3>
-
 <ul>
 <li>Follow the <a href="https://developer.atlassian.com/cloud/jira/platform/jira-rest-api-oauth-authentication/">jira-rest-api-oauth-authentication guide</a> to setup OAuth Authentication.</li>
 <li>Add site to Jenkins.
-
 <ul>
 <li>Goto <strong>Manage Jenkins &gt; Configure System &gt; JIRA Steps &gt; Add Site &gt; Choose OAuth</strong>.</li>
 <li>Name = Jira Site Name</li>
@@ -700,15 +688,12 @@ role="alert"> Please take note that above screenshot missing **ReadTimeout(ms)**
 <li>Private Key = private_key from <code>config.properties</code>.</li>
 <li>Secret = secret from <code>config.properties</code>.</li>
 <li>Token  = access_token from <code>config.properties</code>.</li>
-</ul></li>
 </ul>
-
-<p><img src="https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/hugo/static/images/jira_site_oauth.png" alt="OAuth" /></p>
-
-<div class="alert 
-alert-info"
- 
-role="alert"> Please take note that above screenshot missing **ReadTimeout(ms)** </div>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/hugo/static/images/jira_site_oauth.png" alt="OAuth"></p>
+<!-- raw HTML omitted -->
+<p>role=&quot;alert&quot;&gt; Please take note that above screenshot missing <strong>ReadTimeout(ms)</strong> <!-- raw HTML omitted --></p>
 
 
     

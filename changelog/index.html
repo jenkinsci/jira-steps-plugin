@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.62.1" />
 <title>Change Log :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -654,162 +654,160 @@
     
     
     
-    
-
-<ul>
-<li><h4 id="1-5-2-unreleased"><strong>1.5.2</strong> (Unreleased)</h4></li>
-
-<li><h4 id="1-5-1"><strong>1.5.1</strong></h4>
-
+    <ul>
+<li>
+<h4 id="152-unreleased"><strong>1.5.2</strong> (Unreleased)</h4>
+</li>
+<li>
+<h4 id="151"><strong>1.5.1</strong></h4>
 <ul>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-59280">JENKINS-59280</a> jiraJqlSearch Error Message: null value after upgrade.</li>
-</ul></li>
-
-<li><h4 id="1-5-0"><strong>1.5.0</strong></h4>
-
+</ul>
+</li>
+<li>
+<h4 id="150"><strong>1.5.0</strong></h4>
 <ul>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-57182">JENKINS-57182</a> When configuring a Jira steps site in casc yaml file. If the Jenkins service is restarted, the site is duplicated in Jenkins config.
-
 <ul>
-<li><span style="color:red">Breaking changes: the java class <em>Config</em> has been renamed to <em>JiraStepsConfig</em>. Review the documentation to adapt your scripts.</span></li>
-</ul></li>
+<li><!-- raw HTML omitted -->Breaking changes: the java class <em>Config</em> has been renamed to <em>JiraStepsConfig</em>. Review the documentation to adapt your scripts.<!-- raw HTML omitted --></li>
+</ul>
+</li>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-58793">JENKINS-58793</a> Add &ldquo;fields&rdquo; parameter to api/2/search endpoint for jiraJqlSearch.</li>
-</ul></li>
-
-<li><h4 id="1-4-5"><strong>1.4.5</strong></h4>
-
+</ul>
+</li>
+<li>
+<h4 id="145"><strong>1.4.5</strong></h4>
 <ul>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-49394">JENKINS-49394</a> Make add/edit comment step more generic to set a visibility.</li>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-56074">JENKINS-56074</a> Use &lsquo;null&rsquo; as assignee to set an issue to unassigned.</li>
-</ul></li>
-
-<li><h4 id="1-4-4"><strong>1.4.4</strong></h4>
-
+</ul>
+</li>
+<li>
+<h4 id="144"><strong>1.4.4</strong></h4>
 <ul>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-53044">JENKINS-53044</a> Add step to retrieve jira server info.
-
 <ul>
 <li>Thank you <a href="https://github.com/stuartrowe">Stuart Rowe</a> for the initial pull request.</li>
-</ul></li>
-</ul></li>
-
-<li><h4 id="1-4-3"><strong>1.4.3</strong></h4>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="143"><strong>1.4.3</strong></h4>
 <ul>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-50764">JENKINS-50764</a> Whitelist ResponseData method signatures in In-process script approval.
-
 <ul>
 <li>With 1.4.2 only getData was added to the whitelist but here added rest.</li>
-</ul></li>
-</ul></li>
-
-<li><h4 id="1-4-2"><strong>1.4.2</strong></h4>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="142"><strong>1.4.2</strong></h4>
 <ul>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-50764">JENKINS-50764</a> Whitelist ResponseData getData signature in In-process script approval.</li>
-</ul></li>
-
-<li><h4 id="1-4-1"><strong>1.4.1</strong></h4>
-
+</ul>
+</li>
+<li>
+<h4 id="141"><strong>1.4.1</strong></h4>
 <ul>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-50417">JENKINS-50417</a> download and upload attachments are not working on slaves.</li>
-</ul></li>
-
-<li><h4 id="1-4-0"><strong>1.4.0</strong></h4>
-
+</ul>
+</li>
+<li>
+<h4 id="140"><strong>1.4.0</strong></h4>
 <ul>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-45764">JENKINS-45764</a> Add issue attachment related steps.
-
 <ul>
 <li>jiraUploadAttachment</li>
 <li>jiraGetAttachmentInfo</li>
 <li>jiraDownloadAttachment</li>
 <li>jiraDeleteAttachment</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-50194">JENKINS-50194</a> Build userId missing for a job being built by other Jobs.</li>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-49314">JENKINS-49314</a> Added readTimeout to Site configuration.</li>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-50356">JENKINS-50356</a> Upgrade hugo theme to latest.</li>
-</ul></li>
-
-<li><h4 id="1-3-1"><strong>1.3.1</strong></h4>
-
+</ul>
+</li>
+<li>
+<h4 id="131"><strong>1.3.1</strong></h4>
 <ul>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-48104">JENKINS-48104</a> Fix Documentation Links.</li>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-48097">JENKINS-48097</a> Delete deprecated jekyll documentation.</li>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-48115">JENKINS-48115</a> Get rid of isMetaStep()==true everywhere.</li>
-</ul></li>
-
-<li><h4 id="1-3-0"><strong>1.3.0</strong></h4>
-
+</ul>
+</li>
+<li>
+<h4 id="130"><strong>1.3.0</strong></h4>
 <ul>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-47948">JENKINS-47948</a> Delete deprecated api classes with Object.
-
 <ul>
-<li><span style="color:red">Note: EditVersion and EditComponent are updated to support all the JIRA Versions, which would break existing code. Please refer the appropriate steps guides for the new Syntax.</span>.</li>
-</ul></li>
+<li><!-- raw HTML omitted -->Note: EditVersion and EditComponent are updated to support all the JIRA Versions, which would break existing code. Please refer the appropriate steps guides for the new Syntax.<!-- raw HTML omitted -->.</li>
+</ul>
+</li>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-47949">JENKINS-47949</a> Apply Google Style Guide.</li>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-47954">JENKINS-47954</a> Migrate documentation to hugo.</li>
-<li><span style="color:red"> Please upgrade to 1.3.1, as I was reported some problems with declarative pipelines, see JENKINS-48115 for more details. </span>.</li>
-</ul></li>
-
-<li><h4 id="1-2-5"><strong>1.2.5</strong></h4>
-
+<li><!-- raw HTML omitted --> Please upgrade to 1.3.1, as I was reported some problems with declarative pipelines, see JENKINS-48115 for more details. <!-- raw HTML omitted -->.</li>
+</ul>
+</li>
+<li>
+<h4 id="125"><strong>1.2.5</strong></h4>
 <ul>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-47914">JENKINS-47914</a> Use Jenkins user id instead of user name as buildUser.</li>
-</ul></li>
-
-<li><h4 id="1-2-4"><strong>1.2.4</strong></h4>
-
+</ul>
+</li>
+<li>
+<h4 id="124"><strong>1.2.4</strong></h4>
 <ul>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-47668">JENKINS-47668</a> jiraNewComponent/jiraEditComponent ends with an error.
-
 <ul>
-<li><span style="color:red">Note: Component related steps (new/edit) would break as we have corrected a filed name (userType -&gt; assigneeType)</span>.</li>
-</ul></li>
-</ul></li>
-
-<li><h4 id="1-2-3"><strong>1.2.3</strong></h4>
-
+<li><!-- raw HTML omitted -->Note: Component related steps (new/edit) would break as we have corrected a filed name (userType -&gt; assigneeType)<!-- raw HTML omitted -->.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="123"><strong>1.2.3</strong></h4>
 <ul>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-44817">JENKINS-44817</a> NewIssueStep is not null safe when there is no description.</li>
-</ul></li>
-
-<li><h4 id="1-2-2"><strong>1.2.2</strong></h4>
-
+</ul>
+</li>
+<li>
+<h4 id="122"><strong>1.2.2</strong></h4>
 <ul>
 <li><a href="https://github.com/jenkinsci/jira-steps-plugin/pull/40">#42</a> Enhanced NewIssues step to support custom fields.</li>
-</ul></li>
-
-<li><h4 id="1-2-1"><strong>1.2.1</strong></h4>
-
+</ul>
+</li>
+<li>
+<h4 id="121"><strong>1.2.1</strong></h4>
 <ul>
-<li><a href="https://github.com/jenkinsci/jira-steps-plugin/pull/40">#40</a> Relaxed few step&rsquo;s input validation.</li>
-</ul></li>
-
-<li><h4 id="1-2-0"><strong>1.2.0</strong></h4>
-
+<li><a href="https://github.com/jenkinsci/jira-steps-plugin/pull/40">#40</a> Relaxed few step's input validation.</li>
+</ul>
+</li>
+<li>
+<h4 id="120"><strong>1.2.0</strong></h4>
 <ul>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-44254">JENKINS-44254</a> Ability to retrieve and update custom fields.
-
 <ul>
 <li>All Steps: No restrictions on what(fields) can be sent to JIRA and retrieve from JIRA. Every field can either be int or string.</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-44460">JENKINS-44460</a> No DataBoundConstructor on joda.time.DateTime.</li>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-44400">JENKINS-44400</a> Add more steps related to Projects.
-
 <ul>
 <li>jiraGetProjectVersions.</li>
 <li>jiraGetProjectComponents.</li>
 <li>jiraGetProjectStatuses.</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-44253">JENKINS-44253</a> Add few user related steps.
-
 <ul>
 <li>jiraUserSearch.</li>
 <li>jiraAssignableUserSearch.</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-44399">JENKINS-44399</a> Add steps related to IssueLinks.
-
 <ul>
 <li>jiraGetIssueLink.</li>
 <li>jiraDeleteIssueLink.</li>
@@ -818,127 +816,135 @@
 <li>jiraNewRemoteIssueLink.</li>
 <li>jiraDeleteRemoteIssueLink.</li>
 <li>jiraDeleteRemoteIssueLinks.</li>
-</ul></li>
-</ul></li>
-
-<li><h4 id="1-1-0"><strong>1.1.0</strong></h4>
-
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="110"><strong>1.1.0</strong></h4>
 <ul>
-<li><span style="color:red">Upgrading to this version will break few existing steps, please read the following notes for more information.</span>.</li>
-<li>Multiple Fixes: <a href="https://github.com/jenkinsci/jira-steps-plugin/issues/29">#29</a> Make <code>id</code> type consistent across and other minor fixes.</li>
+<li><!-- raw HTML omitted -->Upgrading to this version will break few existing steps, please read the following notes for more information.<!-- raw HTML omitted -->.</li>
+<li>Multiple Fixes: <a href="https://github.com/jenkinsci/jira-steps-plugin/issues/29">#29</a> Make <code>id</code> type consistent across and other minor fixes.
+<ul>
 <li>Made <code>id</code> type consistent (to <code>String</code>) across all the objects. (Non Passive change, existing code need to be changed to use Strings, this is applicable for mostly all the steps).</li>
 <li>Changes to <code>jiraNewIssue</code> and <code>jiraNewIssues</code>.
-
 <ul>
 <li>Allow issue type look up by name (<code>fields-&gt;issuetype-&gt;name</code>).</li>
 <li>Allow project look up by key (<code>fields-&gt;project-&gt;key</code>).</li>
-</ul></li>
+</ul>
+</li>
 <li><code>@ToString</code> is duplicate in all api objects (<code>@Data</code> should take care of it already.)</li>
 <li><code>Array</code> type can be just either <code>List</code> or <code>Set</code>. Changed across all objects. No need of as String[] anymore. Ex: <code>['a','b'] as String[]</code> is now just <code>['a', 'b']</code>. (Non Passive change).</li>
 <li><code>fields</code> variable is in the wrong position for <code>Transitions</code>.</li>
 <li>Updated documentation accordingly.</li>
+</ul>
+</li>
 <li><a href="https://github.com/jenkinsci/jira-steps-plugin/issues/28">#28</a> ISSUE-28 Enable more fields while creating/updating issues.</li>
 <li>Added Terms and Conditions - Google Analytics.</li>
 <li><a href="https://issues.jenkins-ci.org/browse/JENKINS-44252">JENKINS-44252</a> - Make auditLog optional.</li>
-</ul></li>
-
-<li><h4 id="1-0-3"><strong>1.0.3</strong></h4>
-
+</ul>
+</li>
+<li>
+<h4 id="103"><strong>1.0.3</strong></h4>
 <ul>
 <li>Fix: <a href="https://github.com/jenkinsci/jira-steps-plugin/issues/15">#15</a> - Serialization error while querying component using getComponent.</li>
 <li>Enhancement: <a href="https://github.com/jenkinsci/jira-steps-plugin/issues/17">#17</a> - Expose access to the parent node for issue.</li>
-</ul></li>
-
-<li><h4 id="1-0-2"><strong>1.0.2</strong></h4>
-
+</ul>
+</li>
+<li>
+<h4 id="102"><strong>1.0.2</strong></h4>
 <ul>
 <li>Documentation update. No functional change.</li>
-</ul></li>
-
-<li><h4 id="1-0-1"><strong>1.0.1</strong></h4>
-
+</ul>
+</li>
+<li>
+<h4 id="101"><strong>1.0.1</strong></h4>
 <ul>
 <li>Fix: <a href="https://github.com/jenkinsci/jira-steps-plugin/issues/3">#3</a> - Error editing issue with existing fix version.</li>
 <li>More documentation.</li>
-</ul></li>
-
-<li><h4 id="1-0-0"><strong>1.0.0</strong></h4>
-
+</ul>
+</li>
+<li>
+<h4 id="100"><strong>1.0.0</strong></h4>
 <ul>
 <li>Initial release.</li>
 <li>Manual tested with JIRA API Version <a href="https://docs.atlassian.com/jira/REST/6.4.13/">6.4.13</a>.</li>
-<li>Steps to Support</li>
+<li>Steps to Support
+<ul>
 <li>Component
-
 <ul>
 <li>jiraGetComponent</li>
 <li>jiraNewComponent</li>
 <li>jiraEditComponent</li>
 <li>jiraGetComponentIssueCount</li>
-</ul></li>
+</ul>
+</li>
 <li>Issue
-
 <ul>
 <li>jiraGetIssue</li>
 <li>jiraNewIssue</li>
 <li>jiraNewIssues</li>
 <li>jiraEditIssue</li>
 <li>jiraAssignIssue</li>
-</ul></li>
+</ul>
+</li>
 <li>Comments
-
 <ul>
 <li>jiraGetComments</li>
 <li>jiraAddComment</li>
 <li>jiraEditComment</li>
 <li>jiraGetComment</li>
-</ul></li>
+</ul>
+</li>
 <li>Email
-
 <ul>
 <li>jiraNotifyIssue</li>
-</ul></li>
+</ul>
+</li>
 <li>Transitions
-
 <ul>
 <li>jiraGetTransitions</li>
 <li>jiraTransitionIssue</li>
-</ul></li>
+</ul>
+</li>
 <li>Watchers
-
 <ul>
 <li>jiraGetWatches</li>
 <li>jiraAddWatcher</li>
-</ul></li>
+</ul>
+</li>
 <li>Project
-
 <ul>
 <li>jiraGetProjects</li>
 <li>jiraGetProject</li>
-</ul></li>
+</ul>
+</li>
 <li>Versions
-
 <ul>
 <li>jiraGetVersion</li>
 <li>jiraNewVersion</li>
 <li>jiraEditVersion</li>
-</ul></li>
+</ul>
+</li>
 <li>IssueLinks
-
 <ul>
 <li>jiraLinkIssues</li>
-</ul></li>
+</ul>
+</li>
 <li>IssueLinkTypes
-
 <ul>
 <li>jiraGetIssueLinkTypes</li>
-</ul></li>
+</ul>
+</li>
 <li>Search
-
 <ul>
 <li>jiraJqlSearch</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
 
@@ -966,7 +972,7 @@
   
 
     <div class="github-link">
-      <a href="https://github.com/jenkinsci/jira-steps-plugin/edit/master/hugo/content/changelog.md" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/jenkinsci/jira-steps-plugin/edit/master/hugo/content//changelog.md" target="blank"><i class="fa fa-code-fork"></i>
         Edit page</a>
     </div>
   </div>

@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.62.1" />
 <title>Common Config :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -660,56 +660,51 @@
     
     
     
-    
-
-<h2 id="optional-params-for-all-steps">Optional Params for all Steps.</h2>
-
+    <h2 id="optional-params-for-all-steps">Optional Params for all Steps.</h2>
 <ul>
 <li><code>site</code> - Optional param which will override <code>JIRA_SITE</code> global variable.</li>
 <li><code>failOnError</code> - is optional and by default it is <code>true</code>.</li>
 </ul>
-
-<div class="notices note" >
-When set to true, then the step will abort the job as a failure when there is an error sending message. To make it false, it should always be provided as global environment variable `JIRA_FAIL_ON_ERROR`.
-</div>
-
+<!-- raw HTML omitted -->
 <h2 id="global-environment-variables">Global Environment Variables.</h2>
-
 <ul>
 <li><code>JIRA_SITE</code> - Global variable to set default site for all JIRA steps.</li>
-<li><code>JIRA_FAIL_ON_ERROR</code> - By default all steps <code>fail</code> the job when there is an error, by setting this to <code>false</code> all steps won&rsquo;t fail the job.</li>
+<li><code>JIRA_FAIL_ON_ERROR</code> - By default all steps <code>fail</code> the job when there is an error, by setting this to <code>false</code> all steps won't fail the job.</li>
 </ul>
-
-<h2 id="common-response-error-handling">Common Response &amp; Error Handling.</h2>
-
+<h2 id="common-response--error-handling">Common Response &amp; Error Handling.</h2>
 <p>Every step returns a common response, which will have more information about the request like <code>successful</code>, <code>error</code>, <code>data</code> and <code>code</code>. Always try catch if we want to handle abort exception or can set <code>failOrError</code> to <code>false</code> to ignore all the error.</p>
-
 <ul>
-<li><code>successful</code> - Returns <code>true</code> or <code>false</code>. Status of the step.</li>
-<li><code>code</code> - HTTP code, response code returned from JIRA. or <code>-1</code> if there is any internal server error.</li>
-<li><code>data</code> - Corresponding object being returned from JIRA when request was successful. For instance <code>jiraGetProject</code> returns <code>Project</code> and <code>jiraGetVersion</code> returns <code>FixVersion</code>.</li>
-<li><code>error</code> - Error message when the actual request to JIRA failed.</li>
+<li>
+<p><code>successful</code> - Returns <code>true</code> or <code>false</code>. Status of the step.</p>
+</li>
+<li>
+<p><code>code</code> - HTTP code, response code returned from JIRA. or <code>-1</code> if there is any internal server error.</p>
+</li>
+<li>
+<p><code>data</code> - Corresponding object being returned from JIRA when request was successful. For instance <code>jiraGetProject</code> returns <code>Project</code> and <code>jiraGetVersion</code> returns <code>FixVersion</code>.</p>
+</li>
+<li>
+<p><code>error</code> - Error message when the actual request to JIRA failed.</p>
+<p>Usually, if the error is</p>
+<ul>
+<li>From JIRA, <code>code</code> will be <code>400</code>.</li>
+<li>Caused by the plugin it will be <code>-1</code>.</li>
 </ul>
-
-<p>Usually, if the error is
-     * From JIRA, <code>code</code> will be <code>400</code>.
-     * Caused by the plugin it will be <code>-1</code>.</p>
-
+</li>
+</ul>
 <p>Example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">  <span style="color:#66d9ef">def</span> response <span style="color:#f92672">=</span> jiraGetComponent id: <span style="color:#ae81ff">10000</span>
+  echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">successful</span>
+  echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">code</span>
+  echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">error</span>
+  echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
 
-<pre><code class="language-groovy">  def response = jiraGetComponent id: 10000
-  echo response.successful
-  echo response.code
-  echo response.error
-  echo response.data.toString()
-
-  try {
-    jiraGetComponent id: 10000
-  } catch (error) {
+  <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+    jiraGetComponent id: <span style="color:#ae81ff">10000</span>
+  <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>error<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
     echo error
-  }
-</code></pre>
-
+  <span style="color:#f92672">}</span>
+</code></pre></div>
 
     
     

@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.62.1" />
 <title>AddComment :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -660,14 +660,9 @@
     
     
     
-    
-
-<h3 id="jiraaddcomment">jiraAddComment</h3>
-
+    <h3 id="jiraaddcomment">jiraAddComment</h3>
 <p>This step adds a comment on a particular issue.</p>
-
 <h4 id="input">Input</h4>
-
 <ul>
 <li><strong>idOrKey</strong> - Issue id or key.</li>
 <li><strong>input</strong> - comment, supports jira wiki formatting.</li>
@@ -676,77 +671,58 @@
 <li><strong>auditLog</strong> - Optional. default: <code>true</code>. Append a panel to the comment with the build url and build user name.</li>
 <li><em>Deprecated:</em> <strong>comment</strong> - comment, supports jira wiki formatting.</li>
 </ul>
-
-<div class="notices note" >
-It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.
-</div>
-
+<!-- raw HTML omitted -->
 <h4 id="output">Output</h4>
-
 <ul>
 <li>Each step generates generic output, please refer to this <a href="/jira-steps-plugin/getting-started/config/common/">link</a> for more information.</li>
 <li>The api response of this jira_add_comment step can be reused later in your script by doing <code>response.data.required_field_name</code>.</li>
 <li>You can see some example scenarios <a href="/jira-steps-plugin/getting-started/examples/">here</a></li>
 <li>All the available fields for a jira response can be found in <a href="https://docs.atlassian.com/jira/REST/">JIRA API documentation</a> depending on your JIRA version.</li>
 </ul>
-
-<div class="notices note" >
-`response.data` returns all the fields returned by JIRA API.
-</div>
-
-<p><img src="https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/hugo/static/images/jira_add_comment.png" alt="Comment" /></p>
-
+<!-- raw HTML omitted -->
+<p><img src="https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/hugo/static/images/jira_add_comment.png" alt="Comment"></p>
 <h4 id="examples">Examples</h4>
-
 <ul>
-<li><p>With default <a href="/jira-steps-plugin/getting-started/config/common/#global-environment-variables">site</a> from global variables.</p>
-
-<pre><code class="language-groovy">node {
-  stage('JIRA') {
-    def comment = [ body: 'test comment' ]
-    jiraAddComment idOrKey: 'TEST-1', input: comment
-  }
-}
-</code></pre>
-
-<ul>
-<li><code>withEnv</code> to override the default site (or if there is not global site)</li>
-</ul>
-
-<pre><code class="language-groovy">node {
-  stage('JIRA') {
-    withEnv(['JIRA_SITE=LOCAL']) {
-      def comment = [ body: 'test comment' ]
-      jiraAddComment idOrKey: 'TEST-1', input: comment
-    }
-  }
-}
-</code></pre></li>
-
-<li><p>Without environment variables.</p>
-
-<pre><code class="language-groovy">def comment = [ body: 'test comment' ]
-jiraAddComment site: 'LOCAL', idOrKey: 'TEST-1', input: comment
-</code></pre>
-
-<ul>
-<li>With limited visibility.</li>
-</ul>
-
-<pre><code class="language-groovy">def comment = [ 
-  body: 'test comment',
-  visibility: [ 
-    type: 'role', 
-    value: 'Developer'
-  ]
-]
-jiraAddComment site: 'LOCAL', idOrKey: 'TEST-1', input: comment
-</code></pre></li>
-
-<li><p>Deprecated</p>
-
-<pre><code class="language-groovy">jiraAddComment site: 'LOCAL', idOrKey: 'TEST-1', comment: 'test comment'
-</code></pre></li>
+<li>
+<p>With default <a href="/jira-steps-plugin/getting-started/config/common/#global-environment-variables">site</a> from global variables.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">node <span style="color:#f92672">{</span>
+  stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;JIRA&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">def</span> comment <span style="color:#f92672">=</span> <span style="color:#f92672">[</span> body: <span style="color:#e6db74">&#39;test comment&#39;</span> <span style="color:#f92672">]</span>
+    jiraAddComment idOrKey: <span style="color:#e6db74">&#39;TEST-1&#39;</span><span style="color:#f92672">,</span> input: comment
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p><code>withEnv</code> to override the default site (or if there is not global site)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">node <span style="color:#f92672">{</span>
+  stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;JIRA&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    withEnv<span style="color:#f92672">(</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;JIRA_SITE=LOCAL&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">def</span> comment <span style="color:#f92672">=</span> <span style="color:#f92672">[</span> body: <span style="color:#e6db74">&#39;test comment&#39;</span> <span style="color:#f92672">]</span>
+      jiraAddComment idOrKey: <span style="color:#e6db74">&#39;TEST-1&#39;</span><span style="color:#f92672">,</span> input: comment
+    <span style="color:#f92672">}</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p>Without environment variables.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#66d9ef">def</span> comment <span style="color:#f92672">=</span> <span style="color:#f92672">[</span> body: <span style="color:#e6db74">&#39;test comment&#39;</span> <span style="color:#f92672">]</span>
+jiraAddComment site: <span style="color:#e6db74">&#39;LOCAL&#39;</span><span style="color:#f92672">,</span> idOrKey: <span style="color:#e6db74">&#39;TEST-1&#39;</span><span style="color:#f92672">,</span> input: comment
+</code></pre></div></li>
+<li>
+<p>With limited visibility.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#66d9ef">def</span> comment <span style="color:#f92672">=</span> <span style="color:#f92672">[</span> 
+  body: <span style="color:#e6db74">&#39;test comment&#39;</span><span style="color:#f92672">,</span>
+  visibility: <span style="color:#f92672">[</span> 
+    type: <span style="color:#e6db74">&#39;role&#39;</span><span style="color:#f92672">,</span> 
+    value: <span style="color:#e6db74">&#39;Developer&#39;</span>
+  <span style="color:#f92672">]</span>
+<span style="color:#f92672">]</span>
+jiraAddComment site: <span style="color:#e6db74">&#39;LOCAL&#39;</span><span style="color:#f92672">,</span> idOrKey: <span style="color:#e6db74">&#39;TEST-1&#39;</span><span style="color:#f92672">,</span> input: comment
+</code></pre></div></li>
+<li>
+<p>Deprecated</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">jiraAddComment site: <span style="color:#e6db74">&#39;LOCAL&#39;</span><span style="color:#f92672">,</span> idOrKey: <span style="color:#e6db74">&#39;TEST-1&#39;</span><span style="color:#f92672">,</span> comment: <span style="color:#e6db74">&#39;test comment&#39;</span>
+</code></pre></div></li>
 </ul>
 
 

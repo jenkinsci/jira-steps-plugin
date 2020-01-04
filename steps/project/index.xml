@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Project on </title>
@@ -18,7 +18,7 @@
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_project/</guid>
       <description>jiraGetProject This queries project info from the provided JIRA site.
-Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_project step can be reused later in your script by doing response.</description>
+Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_project step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -28,7 +28,7 @@ Input  idOrKey - project id or key. site - Optional, default: JIRA_SITE environm
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/project/jira_get_projects/</guid>
       <description>jiraGetProjects This step queries all projects from the provided JIRA site.
-Input  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  For more information about input, please refer to the model objects in the [API](https://github.com/jenkinsci/jira-steps-plugin/tree/master/src/main/java/org/thoughtslive/jenkins/plugins/jira/api) package.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_projects step can be reused later in your script by doing response.</description>
+Input  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_projects step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>

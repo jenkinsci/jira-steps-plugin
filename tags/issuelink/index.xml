@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>issuelink on </title>
@@ -18,7 +18,7 @@
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_issuelink/</guid>
       <description>jiraGetIssueLink This step queries issue links from the provided JIRA site.
-Input  id - issue link&amp;rsquo;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issuelink step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
+Input  id - issue link&#39;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issuelink step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -28,7 +28,7 @@ Input  id - issue link&amp;rsquo;s id. site - Optional, default: JIRA_SITE envir
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_issue_link_types/</guid>
       <description>jiraGetIssueLinkTypes This step queries all issue links types from the provided JIRA site.
-Input  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.  Output  Each step generates generic output, please refer to this link for more information.</description>
+Input  site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issue_link_types step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -58,7 +58,7 @@ Input  idOrKey - issue id or key. globalId - global application id (Optional). s
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_new_remote_issuelink/</guid>
       <description>jiraNewRemoteIssueLink This step creates a new remote link to a particular issue.
-Input  idOrKey - issue id or key. remoteLink - remote link. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.</description>
+Input  idOrKey - issue id or key. remoteLink - remote link. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_new_remote_issuelinks step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -69,7 +69,7 @@ Input  idOrKey - issue id or key. remoteLink - remote link. site - Optional, def
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_link_issues/</guid>
       <description>jiraLinkIssues This step links two issues in the provided JIRA site.
 Hint: Try getIssueLinkTypes to know the type.
-Input  type - type of the link. (Ex: Relates, Blocks, Cloners, Duplicate) inwardKey - inward issue key. outwardKey - outward issue key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.</description>
+Input  type - type of the link. (Ex: Relates, Blocks, Cloners, Duplicate) inwardKey - inward issue key. outwardKey - outward issue key. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_link_issues step can be reused later in your script by doing response.</description>
     </item>
     
     <item>
@@ -79,7 +79,7 @@ Input  type - type of the link. (Ex: Relates, Blocks, Cloners, Duplicate) inward
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_issuelink/</guid>
       <description>jiraDeleteIssueLink This step deletes an issue link.
-Input  id - issue link&amp;rsquo;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.  Output  Each step generates generic output, please refer to this link for more information.</description>
+Input  id - issue link&#39;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_delete_issue step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -89,7 +89,7 @@ Input  id - issue link&amp;rsquo;s id. site - Optional, default: JIRA_SITE envir
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/</guid>
       <description>jiraDeleteRemoteIssueLink This step deletes a particular remote link of an issue.
-Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.</description>
+Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_delete_remote_issue_link step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA Api documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -99,7 +99,7 @@ Input  idOrKey - issue id or key. linkId - remote link id. site - Optional, defa
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelinks/</guid>
       <description>jiraDeleteRemoteIssueLinks This step deletes all remote links of an issue.
-Input  idOrKey - issue id or key. globalId - global application id (Optional). site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  It supports all the fields that any jira instance supports including custom fields. For more information about all available input fields, please refer to the [JIRA API documentation](https://docs.atlassian.com/jira/REST/) depending on your JIRA version.</description>
+Input  idOrKey - issue id or key. globalId - global application id (Optional). site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_delete_remote_issue_links step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
   </channel>

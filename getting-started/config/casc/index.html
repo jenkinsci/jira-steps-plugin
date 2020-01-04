@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.55.6" />
+<meta name="generator" content="Hugo 0.62.1" />
 <title>Configuration as Code Plugin :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -660,33 +660,28 @@
     
     
     
-    
-
-<h2 id="automate-configuring-via-configuration-as-code-plugin">Automate configuring via Configuration as Code Plugin</h2>
-
+    <h2 id="automate-configuring-via-configuration-as-code-plugin">Automate configuring via Configuration as Code Plugin</h2>
 <p>The following snippet will automatically configure the global settings of this plugin.</p>
-
-<pre><code class="language-yaml">unclassified:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">unclassified:
   jiraStepsConfig:
     sites:
-    - name: 'another'
-      url: 'http://example.com'
-      timeout: 10000
-      readTimeout: 10000
-      loginType: 'BASIC'
-      userName: 'foo'
-      password: 'some pass'
-    - name: 'moar jira'
-      url: 'http://example.com'
-      timeout: 10000
-      readTimeout: 10000
-      loginType: 'OAUTH'
-      consumerKey: 'my consumer key'
-      privateKey: 'my private key'
-      secret: 'super secret'
-      token: 'my token'
-</code></pre>
-
+    - name: <span style="color:#e6db74">&#39;another&#39;</span>
+      url: <span style="color:#e6db74">&#39;http://example.com&#39;</span>
+      timeout: <span style="color:#ae81ff">10000</span>
+      readTimeout: <span style="color:#ae81ff">10000</span>
+      loginType: <span style="color:#e6db74">&#39;BASIC&#39;</span>
+      userName: <span style="color:#e6db74">&#39;foo&#39;</span>
+      password: <span style="color:#e6db74">&#39;some pass&#39;</span>
+    - name: <span style="color:#e6db74">&#39;moar jira&#39;</span>
+      url: <span style="color:#e6db74">&#39;http://example.com&#39;</span>
+      timeout: <span style="color:#ae81ff">10000</span>
+      readTimeout: <span style="color:#ae81ff">10000</span>
+      loginType: <span style="color:#e6db74">&#39;OAUTH&#39;</span>
+      consumerKey: <span style="color:#e6db74">&#39;my consumer key&#39;</span>
+      privateKey: <span style="color:#e6db74">&#39;my private key&#39;</span>
+      secret: <span style="color:#e6db74">&#39;super secret&#39;</span>
+      token: <span style="color:#e6db74">&#39;my token&#39;</span>
+</code></pre></div>
 
     
     
