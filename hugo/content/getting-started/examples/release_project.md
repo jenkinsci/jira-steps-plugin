@@ -22,7 +22,7 @@ import static java.util.UUID.randomUUID
 
 node {
   stage('Releasing A Project') {
-    def issueKey;
+    def issueKey
     try {
       def issue = [fields: [ project: [key: 'TESTPRO'],
                              summary: 'Release x.y.z Review',
@@ -42,7 +42,7 @@ node {
       def updateIssue = [ fields: [ fixVersions: [ newVersion.data]]]                                              
       def response = jiraEditIssue idOrKey: issueKey, issue: updateIssue
 
-      def transitionInput = [transition: [name: 'Close']]
+      def transitionInput = [transition: [id: 31]]
       jiraTransitionIssue idOrKey: issueKey, input: transitionInput
       jiraAddComment idOrKey: issueKey, comment: "RELEASING SUCCESSFUL"
     } catch(error) {
