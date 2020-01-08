@@ -3,8 +3,8 @@ title = "EditIssue"
 description = "More about jiraEditIssue step."
 tags = ["steps", "issue"]
 weight = 6
-date = "2017-11-12"
-lastmodifierdisplayname = "Naresh Rayapati"
+date = "2020-1-8"
+lastmodifierdisplayname = "Arjun Gopisetty"
 +++
 
 ### jiraEditIssue
@@ -15,6 +15,7 @@ Updates an existing issue based on given input, which should have some minimal i
 
 * **idOrKey** - issue id or key.
 * **issue** - issue to be updated.
+* **notifyUsers** - Optional. default: `true`. Indicates whether a notification email about the issue update is sent to all watchers. 
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
 

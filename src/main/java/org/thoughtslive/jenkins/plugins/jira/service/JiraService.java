@@ -144,9 +144,10 @@ public class JiraService {
     }
   }
 
-  public ResponseData<Object> updateIssue(final String issueIdOrKey, final Object issue) {
+  public ResponseData<Object> updateIssue(final String issueIdOrKey, final Object issue,
+      final Boolean notifyUsers) {
     try {
-      return parseResponse(jiraEndPoints.updateIssue(issueIdOrKey, issue).execute());
+      return parseResponse(jiraEndPoints.updateIssue(issueIdOrKey, issue, notifyUsers).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
@@ -253,9 +254,9 @@ public class JiraService {
       final int maxResults, final String fields) {
     try {
       ImmutableMap.Builder<Object, Object> paramsMap = ImmutableMap.builder()
-              .put("jql", jql)
-              .put("startAt", startAt)
-              .put("maxResults", maxResults);
+          .put("jql", jql)
+          .put("startAt", startAt)
+          .put("maxResults", maxResults);
 
       if (fields != null) {
         paramsMap.put("fields", fields);

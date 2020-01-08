@@ -9,6 +9,7 @@ import lombok.Getter;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
 import org.kohsuke.stapler.DataBoundConstructor;
+import org.kohsuke.stapler.DataBoundSetter;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepDescriptorImpl;
 import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
@@ -27,6 +28,10 @@ public class EditIssueStep extends BasicJiraStep {
 
   @Getter
   private final Object issue;
+
+  @Getter
+  @DataBoundSetter
+  private Boolean notifyUsers = true;
 
   @DataBoundConstructor
   public EditIssueStep(final String idOrKey, final Object issue) {
@@ -72,7 +77,8 @@ public class EditIssueStep extends BasicJiraStep {
 
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Updating issue: " + step.getIdOrKey());
-        response = jiraService.updateIssue(step.getIdOrKey(), step.getIssue());
+        response = jiraService
+            .updateIssue(step.getIdOrKey(), step.getIssue(), step.getNotifyUsers());
       }
 
       return logResponse(response);
@@ -93,7 +99,6 @@ public class EditIssueStep extends BasicJiraStep {
 
         if (issue == null) {
           errorMessage = "issue is null.";
-          return buildErrorResponse(new RuntimeException(errorMessage));
         }
 
         if (errorMessage != null) {

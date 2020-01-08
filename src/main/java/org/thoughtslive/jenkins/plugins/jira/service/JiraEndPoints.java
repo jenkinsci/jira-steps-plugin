@@ -49,7 +49,8 @@ public interface JiraEndPoints {
   Call<Object> createIssue(@Body Object issue);
 
   @PUT("rest/api/2/issue/{issueIdOrKey}")
-  Call<Object> updateIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Object issue);
+  Call<Object> updateIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Object issue,
+      @Query("notifyUsers") boolean notifyUsers);
 
   @POST("rest/api/2/issue/bulk")
   Call<Object> createIssues(@Body Object issues);
