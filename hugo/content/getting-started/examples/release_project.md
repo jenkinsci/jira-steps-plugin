@@ -9,7 +9,7 @@ lastmodifierdisplayname = "Naresh Rayapati"
 
 ## Releasing a project?
 
-For instance, if you are releasing more than one project and you want to create a `release review jira issue`, add Description, Fix version, comment on the issue with error message for a failure in the release process or close the issue, if release is successful.
+For instance, if you are releasing more than one project and you want to create a `release review jira issue`, add Description, Fix version, comment on the issue with error message for a failure in the release process or close the issue, if release is successful. JIRA transitions for any given ticket can be found via this endpoint: `/rest/api/2/issue/${issueIdOrKey}/transitions`.
 
 * Create new Release review JIRA.
 * Release your project.
