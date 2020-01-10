@@ -40,6 +40,7 @@ Few examples for a quick reference:
 
 * May be just close the JIRA? cause we just released a project and it is release review JIRA.
   ```groovy
+    // Transition issue ID can differ based on the JIRA instance
     def transitionInput = [ transition: [ id: 31] ]
     jiraTransitionIssue idOrKey: 'RELEASE-999', input: transitionInput, site: 'YOURJIRASITE'
   ```

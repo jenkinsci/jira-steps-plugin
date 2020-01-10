@@ -42,6 +42,7 @@ node {
       def updateIssue = [ fields: [ fixVersions: [ newVersion.data]]]                                              
       def response = jiraEditIssue idOrKey: issueKey, issue: updateIssue
 
+      // Transition issue ID can differ based on the JIRA instance
       def transitionInput = [transition: [id: 31]]
       jiraTransitionIssue idOrKey: issueKey, input: transitionInput
       jiraAddComment idOrKey: issueKey, comment: "RELEASING SUCCESSFUL"
