@@ -40,9 +40,11 @@ Few examples for a quick reference:
 
 * May be just close the JIRA? cause we just released a project and it is release review JIRA.
   ```groovy
-    def transitionInput = [ transition: [ name: 'Close'] ]
+    // Transition issue ID can differ based on the JIRA instance
+    def transitionInput = [ transition: [ id: 31] ]
     jiraTransitionIssue idOrKey: 'RELEASE-999', input: transitionInput, site: 'YOURJIRASITE'
   ```
+* JIRA transitions for any given ticket can be found via this endpoint: `/rest/api/2/issue/${issueIdOrKey}/transitions`
 
 * There are quite a few steps that this plugin supports currently, and will keep adding more.
 
