@@ -660,7 +660,7 @@
     
     
     <h2 id="releasing-a-project">Releasing a project?</h2>
-<p>For instance, if you are releasing more than one project and you want to create a <code>release review jira issue</code>, add Description, Fix version, comment on the issue with error message for a failure in the release process or close the issue, if release is successful.</p>
+<p>For instance, if you are releasing more than one project and you want to create a <code>release review jira issue</code>, add Description, Fix version, comment on the issue with error message for a failure in the release process or close the issue, if release is successful. JIRA transitions for any given ticket can be found via this endpoint: <code>/rest/api/2/issue/${issueIdOrKey}/transitions</code>.</p>
 <ul>
 <li>Create new Release review JIRA.</li>
 <li>Release your project.</li>
@@ -672,7 +672,7 @@
 
 node <span style="color:#f92672">{</span>
   stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Releasing A Project&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">def</span> issueKey<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">def</span> issueKey
     <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
       <span style="color:#66d9ef">def</span> issue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>fields: <span style="color:#f92672">[</span> project: <span style="color:#f92672">[</span>key: <span style="color:#e6db74">&#39;TESTPRO&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">,</span>
                              summary: <span style="color:#e6db74">&#39;Release x.y.z Review&#39;</span><span style="color:#f92672">,</span>
@@ -692,7 +692,8 @@ node <span style="color:#f92672">{</span>
       <span style="color:#66d9ef">def</span> updateIssue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span> fields: <span style="color:#f92672">[</span> fixVersions: <span style="color:#f92672">[</span> newVersion<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>                                              
       <span style="color:#66d9ef">def</span> response <span style="color:#f92672">=</span> jiraEditIssue idOrKey: issueKey<span style="color:#f92672">,</span> issue: updateIssue
 
-      <span style="color:#66d9ef">def</span> transitionInput <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>transition: <span style="color:#f92672">[</span>name: <span style="color:#e6db74">&#39;Close&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>
+      <span style="color:#75715e">// Transition issue ID can differ based on the JIRA instance
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">def</span> transitionInput <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>transition: <span style="color:#f92672">[</span>id: <span style="color:#ae81ff">31</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>
       jiraTransitionIssue idOrKey: issueKey<span style="color:#f92672">,</span> input: transitionInput
       jiraAddComment idOrKey: issueKey<span style="color:#f92672">,</span> comment: <span style="color:#e6db74">&#34;RELEASING SUCCESSFUL&#34;</span>
     <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span><span style="color:#f92672">(</span>error<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>

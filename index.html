@@ -686,9 +686,13 @@
 </code></pre></div></li>
 <li>
 <p>May be just close the JIRA? cause we just released a project and it is release review JIRA.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">  <span style="color:#66d9ef">def</span> transitionInput <span style="color:#f92672">=</span> <span style="color:#f92672">[</span> transition: <span style="color:#f92672">[</span> name: <span style="color:#e6db74">&#39;Close&#39;</span><span style="color:#f92672">]</span> <span style="color:#f92672">]</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">  <span style="color:#75715e">// Transition issue ID can differ based on the JIRA instance
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">def</span> transitionInput <span style="color:#f92672">=</span> <span style="color:#f92672">[</span> transition: <span style="color:#f92672">[</span> id: <span style="color:#ae81ff">31</span><span style="color:#f92672">]</span> <span style="color:#f92672">]</span>
   jiraTransitionIssue idOrKey: <span style="color:#e6db74">&#39;RELEASE-999&#39;</span><span style="color:#f92672">,</span> input: transitionInput<span style="color:#f92672">,</span> site: <span style="color:#e6db74">&#39;YOURJIRASITE&#39;</span>
 </code></pre></div></li>
+<li>
+<p>JIRA transitions for any given ticket can be found via this endpoint: <code>/rest/api/2/issue/${issueIdOrKey}/transitions</code></p>
+</li>
 <li>
 <p>There are quite a few steps that this plugin supports currently, and will keep adding more.</p>
 </li>
