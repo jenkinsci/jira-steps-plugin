@@ -14,6 +14,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
@@ -50,7 +51,7 @@ public interface JiraEndPoints {
 
   @PUT("rest/api/2/issue/{issueIdOrKey}")
   Call<Object> updateIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Object issue,
-      @Query("notifyUsers") boolean notifyUsers);
+      @QueryMap Map<String, String> queryMap);
 
   @POST("rest/api/2/issue/bulk")
   Call<Object> createIssues(@Body Object issues);

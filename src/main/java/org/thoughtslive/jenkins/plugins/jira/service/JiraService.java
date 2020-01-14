@@ -145,9 +145,9 @@ public class JiraService {
   }
 
   public ResponseData<Object> updateIssue(final String issueIdOrKey, final Object issue,
-      final Boolean notifyUsers) {
+      final Map<String, String> queryParams) {
     try {
-      return parseResponse(jiraEndPoints.updateIssue(issueIdOrKey, issue, notifyUsers).execute());
+      return parseResponse(jiraEndPoints.updateIssue(issueIdOrKey, issue, queryParams).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }

@@ -29,10 +29,6 @@ public class EditIssueStep extends BasicJiraStep {
   @Getter
   private final Object issue;
 
-  @Getter
-  @DataBoundSetter
-  private Boolean notifyUsers = true;
-
   @DataBoundConstructor
   public EditIssueStep(final String idOrKey, final Object issue) {
     this.idOrKey = idOrKey;
@@ -78,7 +74,7 @@ public class EditIssueStep extends BasicJiraStep {
       if (response == null) {
         logger.println("JIRA: Site - " + siteName + " - Updating issue: " + step.getIdOrKey());
         response = jiraService
-            .updateIssue(step.getIdOrKey(), step.getIssue(), step.getNotifyUsers());
+            .updateIssue(step.getIdOrKey(), step.getIssue(), step.getQueryParams());
       }
 
       return logResponse(response);

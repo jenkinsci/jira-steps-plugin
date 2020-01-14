@@ -3,6 +3,8 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 import hudson.Extension;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.Getter;
 import org.jenkinsci.plugins.scriptsecurity.sandbox.whitelists.ProxyWhitelist;
 import org.jenkinsci.plugins.scriptsecurity.sandbox.whitelists.StaticWhitelist;
@@ -29,6 +31,10 @@ public abstract class BasicJiraStep extends Step implements Serializable {
   @Getter
   @DataBoundSetter
   private boolean auditLog = true;
+
+  @Getter
+  @DataBoundSetter
+  private Map<String, String> queryParams = new HashMap<>();
 
   @Extension
   public static class JiraWhitelist extends ProxyWhitelist {
