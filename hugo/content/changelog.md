@@ -6,7 +6,7 @@ lastmodifierdisplayname = "Arjun Gopisetty"
 +++
 
 * #### **1.5.2** (Unreleased)
-* [JENKINS-59741](https://issues.jenkins-ci.org/browse/JENKINS-59741) Add notifyUsers flag to EditIssueStep.
+* [JENKINS-59741](https://issues.jenkins-ci.org/browse/JENKINS-59741) Add QueryMap to BasicJiraStep and usage to jiraEditIssue.
 
 * #### **1.5.1**
   * [JENKINS-59280](https://issues.jenkins-ci.org/browse/JENKINS-59280) jiraJqlSearch Error Message: null value after upgrade.
