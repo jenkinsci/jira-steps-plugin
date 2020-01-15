@@ -49,8 +49,9 @@ It supports all the fields that any jira instance supports including custom fiel
                                    customfield_1000: 'customValue',
                                    // id or name must present for issuetype.
                                    issuetype: [id: '3']]]
+        def queryParams = [notifyUsers: false]
 
-        response = jiraEditIssue idOrKey: 'TEST-01', issue: testIssue
+        response = jiraEditIssue idOrKey: 'TEST-01', queryParams: queryParams, issue: testIssue
 
         echo response.successful.toString()
         echo response.data.toString()
