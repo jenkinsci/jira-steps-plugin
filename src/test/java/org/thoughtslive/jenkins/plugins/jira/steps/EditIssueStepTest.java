@@ -3,6 +3,7 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
@@ -17,6 +18,7 @@ import hudson.model.Run;
 import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.HashMap;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -77,7 +79,7 @@ public class EditIssueStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Object> builder = ResponseData.builder();
-    when(jiraServiceMock.updateIssue(anyString(), any()))
+    when(jiraServiceMock.updateIssue(anyString(), any(), any()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);
@@ -106,7 +108,7 @@ public class EditIssueStepTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).updateIssue("TEST-1", issue);
+    verify(jiraServiceMock, times(1)).updateIssue("TEST-1", issue, new HashMap<>());
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }
