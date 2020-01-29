@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.62.1" />
+<meta name="generator" content="Hugo 0.63.2" />
 <title>EditIssue :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -671,6 +671,7 @@
 <ul>
 <li><strong>idOrKey</strong> - issue id or key.</li>
 <li><strong>issue</strong> - issue to be updated.</li>
+<li><strong>queryParams</strong> - Optional. Map of query parameters.</li>
 <li><strong>site</strong> - Optional, default: <code>JIRA_SITE</code> environment variable.</li>
 <li><strong>failOnError</strong> - Optional. default: <code>true</code>.</li>
 </ul>
@@ -697,8 +698,9 @@
                                customfield_1000: <span style="color:#e6db74">&#39;customValue&#39;</span><span style="color:#f92672">,</span>
                                <span style="color:#75715e">// id or name must present for issuetype.
 </span><span style="color:#75715e"></span>                               issuetype: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;3&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>
+    <span style="color:#66d9ef">def</span> queryParams <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>notifyUsers: <span style="color:#66d9ef">false</span><span style="color:#f92672">]</span>
 
-    response <span style="color:#f92672">=</span> jiraEditIssue idOrKey: <span style="color:#e6db74">&#39;TEST-01&#39;</span><span style="color:#f92672">,</span> issue: testIssue
+    response <span style="color:#f92672">=</span> jiraEditIssue idOrKey: <span style="color:#e6db74">&#39;TEST-01&#39;</span><span style="color:#f92672">,</span> queryParams: queryParams<span style="color:#f92672">,</span> issue: testIssue
 
     echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">successful</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
     echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
@@ -766,13 +768,13 @@ echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">dat
 
     
     <div class="author">
-        <i class='fa fa-user'></i> <a href="mailto:">Naresh Rayapati</a>
+        <i class='fa fa-user'></i> <a href="mailto:">Arjun Gopisetty</a>
     </div>
     
 
   
     <div class="date">
-        <i class='fa fa-calendar'></i> Last update on 12/11/2017
+        <i class='fa fa-calendar'></i> Last update on 08/01/2020
     </div>
     
 
@@ -787,8 +789,7 @@ echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">dat
 
 
   
-    <center> Copyright © 2017-2018 Naresh Rayapati. </center>
-
+    
   
 
 

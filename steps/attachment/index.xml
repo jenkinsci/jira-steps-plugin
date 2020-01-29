@@ -27,7 +27,7 @@ Input  idOrKey - Issue Id or Key. file - File name with/without path from worksp
       <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_get_attachment_info/</guid>
-      <description>jiraGetAttachmentInfo This step queries a particular attachment&#39;s info on an issue.
+      <description>jiraGetAttachmentInfo This step queries a particular attachment&amp;rsquo;s info on an issue.
 Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a JIRA response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     

@@ -87,7 +87,7 @@ Input  site - Optional, default: JIRA_SITE environment variable. failOnError - O
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_get_issuelink/</guid>
       <description>jiraGetIssueLink This step queries issue links from the provided JIRA site.
-Input  id - issue link&#39;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issuelink step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
+Input  id - issue link&amp;rsquo;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_issuelink step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -156,7 +156,7 @@ Installing from UI.  Installing Plugin From Web UI Updating Plugin  Manual insta
       <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/attachment/jira_get_attachment_info/</guid>
-      <description>jiraGetAttachmentInfo This step queries a particular attachment&#39;s info on an issue.
+      <description>jiraGetAttachmentInfo This step queries a particular attachment&amp;rsquo;s info on an issue.
 Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a JIRA response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
@@ -195,7 +195,7 @@ Input  queryStr - name, username or email address. (partial string are allowed) 
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/common/</guid>
-      <description>Optional Params for all Steps.  site - Optional param which will override JIRA_SITE global variable. failOnError - is optional and by default it is true.  Global Environment Variables.  JIRA_SITE - Global variable to set default site for all JIRA steps. JIRA_FAIL_ON_ERROR - By default all steps fail the job when there is an error, by setting this to false all steps won&#39;t fail the job.  Common Response &amp;amp; Error Handling.</description>
+      <description>Optional Params for all Steps.  site - Optional param which will override JIRA_SITE global variable. failOnError - is optional and by default it is true.  Global Environment Variables.  JIRA_SITE - Global variable to set default site for all JIRA steps. JIRA_FAIL_ON_ERROR - By default all steps fail the job when there is an error, by setting this to false all steps won&amp;rsquo;t fail the job.  Common Response &amp;amp; Error Handling.</description>
     </item>
     
     <item>
@@ -396,7 +396,7 @@ Input  idOrKey - Issue id or key. commentId - comment id. input - comment, suppo
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/component/jira_get_component_issue_count/</guid>
-      <description>jiraGetComponentIssueCount This step queries a particular component&#39;s issue-count.
+      <description>jiraGetComponentIssueCount This step queries a particular component&amp;rsquo;s issue-count.
 Input  id - componentId. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_component_issue_count step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
@@ -453,11 +453,11 @@ Input  idOrKey - issue id or key. remoteLink - remote link. site - Optional, def
     <item>
       <title>EditIssue</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_edit_issue/</link>
-      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_edit_issue/</guid>
       <description>jiraEditIssue Updates an existing issue based on given input, which should have some minimal information on that object.
-Input  idOrKey - issue id or key. issue - issue to be updated. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_edit_issue step can be reused later in your script by doing response.</description>
+Input  idOrKey - issue id or key. issue - issue to be updated. queryParams - Optional. Map of query parameters. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_edit_issue step can be reused later in your script by doing response.</description>
     </item>
     
     <item>
@@ -478,7 +478,7 @@ Input  type - type of the link. (Ex: Relates, Blocks, Cloners, Duplicate) inward
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_issuelink/</guid>
       <description>jiraDeleteIssueLink This step deletes an issue link.
-Input  id - issue link&#39;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_delete_issue step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
+Input  id - issue link&amp;rsquo;s id. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_delete_issue step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     
     <item>
@@ -532,12 +532,22 @@ Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting
     </item>
     
     <item>
+      <title>Change Log</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/changelog/</link>
+      <pubDate>Wed, 08 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/changelog/</guid>
+      <description>1.5.3 (Unreleased)   1.5.2   JENKINS-59741 Add QueryMap to BasicJiraStep and usage to jiraEditIssue.
+  1.5.1  JENKINS-59280 jiraJqlSearch Error Message: null value after upgrade.    1.5.0  JENKINS-57182 When configuring a Jira steps site in casc yaml file. If the Jenkins service is restarted, the site is duplicated in Jenkins config.  Breaking changes: the java class Config has been renamed to JiraStepsConfig.</description>
+    </item>
+    
+    <item>
       <title>Contributing</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/contributing/</link>
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/contributing/</guid>
-      <description>Help us to make this project better by contributing. Whether it&#39;s new features, bug fixes, or simply improving documentation, your contributions are welcome. Please start with logging a JIRA and submit a pull request.
+      <description>Help us to make this project better by contributing. Whether it&amp;rsquo;s new features, bug fixes, or simply improving documentation, your contributions are welcome. Please start with logging a JIRA and submit a pull request.
 Before you contribute, please review these guidelines to help ensure a smooth process for everyone. Thanks :).
 Copyright JIRA Steps plugins is licensed under Apache License, Version 2.0
 Issue reporting  Please browse our existing issues before logging new issues.</description>
@@ -579,16 +589,7 @@ Google Analytics Google Analytics is a web analytics tool we use to help underst
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/_footer/</guid>
-      <description> Copyright © 2017-2018 Naresh Rayapati.  </description>
-    </item>
-    
-    <item>
-      <title>Change Log</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/changelog/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/changelog/</guid>
-      <description>1.5.2 (Unreleased)   1.5.1  JENKINS-59280 jiraJqlSearch Error Message: null value after upgrade.    1.5.0  JENKINS-57182 When configuring a Jira steps site in casc yaml file. If the Jenkins service is restarted, the site is duplicated in Jenkins config.  Breaking changes: the java class Config has been renamed to JiraStepsConfig. Review the documentation to adapt your scripts.   JENKINS-58793 Add &amp;ldquo;fields&amp;rdquo; parameter to api/2/search endpoint for jiraJqlSearch.</description>
+      <description></description>
     </item>
     
   </channel>

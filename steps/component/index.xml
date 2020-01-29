@@ -47,7 +47,7 @@ Input  id - component id. (Note: Applicable only from version 1.3.0) component -
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/component/jira_get_component_issue_count/</guid>
-      <description>jiraGetComponentIssueCount This step queries a particular component&#39;s issue-count.
+      <description>jiraGetComponentIssueCount This step queries a particular component&amp;rsquo;s issue-count.
 Input  id - componentId. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_get_component_issue_count step can be reused later in your script by doing response.data.required_field_name. You can see some example scenarios here All the available fields for a jira response can be found in JIRA API documentation depending on your JIRA version.</description>
     </item>
     

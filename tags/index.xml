@@ -6,10 +6,28 @@
     <description>Recent content in Tags on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://jenkinsci.github.io/jira-steps-plugin/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>issue</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/issue/</link>
+      <pubDate>Wed, 08 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/issue/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>steps</title>
+      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/steps/</link>
+      <pubDate>Wed, 08 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/steps/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>casc</title>
@@ -44,24 +62,6 @@
       <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/attachment/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>issue</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/issue/</link>
-      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/issue/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>steps</title>
-      <link>https://jenkinsci.github.io/jira-steps-plugin/tags/steps/</link>
-      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://jenkinsci.github.io/jira-steps-plugin/tags/steps/</guid>
       <description></description>
     </item>
     

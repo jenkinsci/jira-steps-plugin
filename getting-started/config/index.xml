@@ -27,7 +27,7 @@ Basic Authentication  Goto Manage Jenkins &amp;gt; Configure System &amp;gt; JIR
       <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/getting-started/config/common/</guid>
-      <description>Optional Params for all Steps.  site - Optional param which will override JIRA_SITE global variable. failOnError - is optional and by default it is true.  Global Environment Variables.  JIRA_SITE - Global variable to set default site for all JIRA steps. JIRA_FAIL_ON_ERROR - By default all steps fail the job when there is an error, by setting this to false all steps won&#39;t fail the job.  Common Response &amp;amp; Error Handling.</description>
+      <description>Optional Params for all Steps.  site - Optional param which will override JIRA_SITE global variable. failOnError - is optional and by default it is true.  Global Environment Variables.  JIRA_SITE - Global variable to set default site for all JIRA steps. JIRA_FAIL_ON_ERROR - By default all steps fail the job when there is an error, by setting this to false all steps won&amp;rsquo;t fail the job.  Common Response &amp;amp; Error Handling.</description>
     </item>
     
     <item>
