@@ -5,7 +5,10 @@ date = "2020-01-08"
 lastmodifierdisplayname = "Arjun Gopisetty"
 +++
 
-* #### **1.5.2** (Unreleased)
+* #### **1.5.3** (Unreleased)
+
+
+* #### **1.5.2**
 * [JENKINS-59741](https://issues.jenkins-ci.org/browse/JENKINS-59741) Add QueryMap to BasicJiraStep and usage to jiraEditIssue.
 
 * #### **1.5.1**
