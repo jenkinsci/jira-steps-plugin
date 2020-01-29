@@ -8,14 +8,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import okhttp3.ConnectionPool;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
+
+import hudson.ProxyConfiguration;
+import jenkins.model.Jenkins;
+import okhttp3.*;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
@@ -38,11 +40,28 @@ public class JiraService {
 
     final ConnectionPool CONNECTION_POOL = new ConnectionPool(5, 60, TimeUnit.SECONDS);
 
-    OkHttpClient httpClient = new OkHttpClient.Builder()
-        .connectTimeout(jiraSite.getTimeout(), TimeUnit.MILLISECONDS)
-        .readTimeout(jiraSite.getReadTimeout(), TimeUnit.MILLISECONDS)
-        .connectionPool(CONNECTION_POOL)
-        .retryOnConnectionFailure(true).addInterceptor(new SigningInterceptor(jiraSite)).build();
+    OkHttpClient.Builder OkHttpClientBuilder = new OkHttpClient.Builder()
+            .connectTimeout(jiraSite.getTimeout(), TimeUnit.MILLISECONDS)
+            .readTimeout(jiraSite.getReadTimeout(), TimeUnit.MILLISECONDS)
+            .connectionPool(CONNECTION_POOL)
+            .retryOnConnectionFailure(true).addInterceptor(new SigningInterceptor(jiraSite));
+
+    ProxyConfiguration proxyConfiguration = Jenkins.getInstance().proxy;
+    if (proxyConfiguration != null) {
+      InetSocketAddress proxyAddr = new InetSocketAddress(proxyConfiguration.name, proxyConfiguration.port);
+      Proxy proxy = new Proxy(Proxy.Type.HTTP, proxyAddr);
+      Authenticator proxyAuthenticator = new Authenticator() {
+        @Override public Request authenticate(Route route, Response response) throws IOException {
+          String credential = Credentials.basic(proxyConfiguration.getUserName(), proxyConfiguration.getPassword());
+          return response.request().newBuilder()
+                  .header("Proxy-Authorization", credential)
+                  .build();
+        }
+      };
+      OkHttpClientBuilder.proxy(proxy)
+              .proxyAuthenticator(proxyAuthenticator);
+    }
+    OkHttpClient httpClient = OkHttpClientBuilder.build();
 
     final ObjectMapper mapper = new ObjectMapper();
     mapper.registerModule(new JodaModule());
