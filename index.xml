@@ -537,8 +537,7 @@ Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting
       <pubDate>Wed, 08 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/changelog/</guid>
-      <description>1.5.3 (Unreleased)   1.5.2   JENKINS-59741 Add QueryMap to BasicJiraStep and usage to jiraEditIssue.
-  1.5.1  JENKINS-59280 jiraJqlSearch Error Message: null value after upgrade.    1.5.0  JENKINS-57182 When configuring a Jira steps site in casc yaml file. If the Jenkins service is restarted, the site is duplicated in Jenkins config.  Breaking changes: the java class Config has been renamed to JiraStepsConfig.</description>
+      <description>1.5.4 (Unreleased)   1.5.3  JENKINS-59760 &amp;ldquo;Fields&amp;rdquo; parameter does not work with jiraJqlSearch.    1.5.2  JENKINS-59741 Add QueryMap to BasicJiraStep and usage to jiraEditIssue.    1.5.1  JENKINS-59280 jiraJqlSearch Error Message: null value after upgrade.    1.5.0  JENKINS-57182 When configuring a Jira steps site in casc yaml file. If the Jenkins service is restarted, the site is duplicated in Jenkins config.</description>
     </item>
     
     <item>
