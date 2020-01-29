@@ -36,7 +36,7 @@ public class JqlSearchStep extends BasicJiraStep {
 
   @Getter
   @DataBoundSetter
-  private String fields;
+  private Object fields;
 
   @DataBoundConstructor
   public JqlSearchStep(final String jql) {
