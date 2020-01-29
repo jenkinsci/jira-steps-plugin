@@ -251,7 +251,7 @@ public class JiraService {
   }
 
   public ResponseData<Object> searchIssues(final String jql, final int startAt,
-      final int maxResults, final String fields) {
+      final int maxResults, final Object fields) {
     try {
       ImmutableMap.Builder<Object, Object> paramsMap = ImmutableMap.builder()
           .put("jql", jql)
