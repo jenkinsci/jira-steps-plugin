@@ -40,7 +40,7 @@ public class JiraService {
 
     final ConnectionPool CONNECTION_POOL = new ConnectionPool(5, 60, TimeUnit.SECONDS);
 
-    OkHttpClient.Builder OkHttpClientBuilder = new OkHttpClient.Builder()
+    OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder()
             .connectTimeout(jiraSite.getTimeout(), TimeUnit.MILLISECONDS)
             .readTimeout(jiraSite.getReadTimeout(), TimeUnit.MILLISECONDS)
             .connectionPool(CONNECTION_POOL)
@@ -58,10 +58,10 @@ public class JiraService {
                   .build();
         }
       };
-      OkHttpClientBuilder.proxy(proxy)
+      okHttpClientBuilder.proxy(proxy)
               .proxyAuthenticator(proxyAuthenticator);
     }
-    OkHttpClient httpClient = OkHttpClientBuilder.build();
+    OkHttpClient httpClient = okHttpClientBuilder.build();
 
     final ObjectMapper mapper = new ObjectMapper();
     mapper.registerModule(new JodaModule());
