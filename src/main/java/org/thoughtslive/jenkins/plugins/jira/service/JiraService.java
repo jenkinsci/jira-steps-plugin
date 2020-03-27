@@ -175,7 +175,7 @@ public class JiraService {
   public ResponseData<Void> assignIssue(final String issueIdorKey, final String userName) {
     try {
       Map input = Maps.newHashMap();
-      input.put("name", userName);
+      input.put("accountId", userName);
       return parseResponse(
           jiraEndPoints
               .assignIssue(issueIdorKey, input)
