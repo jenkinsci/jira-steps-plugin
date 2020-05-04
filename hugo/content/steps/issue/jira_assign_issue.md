@@ -15,6 +15,7 @@ This step assigns a particular issue to a user.
 
 * **idOrKey** - Issue id or key.
 * **userName** - username of the person who should be added as a watcher.
+* **accountId** - accountId of the person who should be added as a watcher. Only applicable for GDPR instances.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
 
@@ -60,7 +61,7 @@ It supports all the fields that any jira instance supports including custom fiel
     ```groovy
     jiraAssignIssue site: 'LOCAL', idOrKey: 'TEST-1', userName: 'Jenkins'
     ```
-* A null name will remove the assignee.
+* Aa empty userName/accountId will remove the assignee.
 
     ```groovy
     jiraAssignIssue site: 'LOCAL', idOrKey: 'TEST-1', userName: null

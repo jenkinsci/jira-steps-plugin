@@ -28,10 +28,14 @@ public class AssignIssueStep extends BasicJiraStep {
   @Getter
   private final String userName;
 
+  @Getter
+  private final String accountId;
+
   @DataBoundConstructor
-  public AssignIssueStep(final String idOrKey, final String userName) {
+  public AssignIssueStep(final String idOrKey, final String userName, final String accountId) {
     this.idOrKey = idOrKey;
     this.userName = userName;
+    this.accountId = accountId;
   }
 
   @Override
@@ -72,9 +76,10 @@ public class AssignIssueStep extends BasicJiraStep {
       ResponseData<Void> response = verifyInput();
 
       if (response == null) {
+        final String userName = Util.fixEmpty(step.getUserName()) == null ? Util.fixEmpty(step.getAccountId()) : Util.fixEmpty(step.getUserName());
         logger.println("JIRA: Site - " + siteName + " - Assigning issue: " + step.getIdOrKey()
-            + " to: " + step.getUserName());
-        response = jiraService.assignIssue(step.getIdOrKey(), step.getUserName());
+            + " to: " + userName);
+        response = jiraService.assignIssue(step.getIdOrKey(), userName);
       }
 
       return logResponse(response);
@@ -90,10 +95,6 @@ public class AssignIssueStep extends BasicJiraStep {
 
         if (idOrKey == null) {
           errorMessage = "idOrKey is empty or null.";
-        }
-
-        if (step.getUserName() != null && step.getUserName().isEmpty()) {
-          errorMessage = "userName is empty.";
         }
 
         if (errorMessage != null) {
