@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.63.2" />
+<meta name="generator" content="Hugo 0.69.2" />
 <title>JIRA Pipline Steps :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -667,10 +667,10 @@
 <ul>
 <li>
 <p>Create a JIRA?, see the following, isn&rsquo;t so simple? :).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">  <span style="color:#66d9ef">def</span> issue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>fields: <span style="color:#f92672">[</span> project: <span style="color:#f92672">[</span>key: <span style="color:#e6db74">&#39;TESTPRO&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">,</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">  <span style="color:#66d9ef">def</span> issue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>fields: <span style="color:#f92672">[</span> project: <span style="color:#f92672">[</span>key: <span style="color:#e6db74">&#39;TESTPRO&#39;</span><span style="color:#f92672">],</span>
                          summary: <span style="color:#e6db74">&#39;New JIRA Created from Jenkins.&#39;</span><span style="color:#f92672">,</span>
                          description: <span style="color:#e6db74">&#39;New JIRA Created from Jenkins.&#39;</span><span style="color:#f92672">,</span>
-                         issuetype: <span style="color:#f92672">[</span>name: <span style="color:#e6db74">&#39;Task&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>
+                         issuetype: <span style="color:#f92672">[</span>name: <span style="color:#e6db74">&#39;Task&#39;</span><span style="color:#f92672">]]]</span>
   <span style="color:#66d9ef">def</span> newIssue <span style="color:#f92672">=</span> jiraNewIssue issue: issue<span style="color:#f92672">,</span> site: <span style="color:#e6db74">&#39;YOURJIRASITE&#39;</span>
   echo newIssue<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">key</span>
 </code></pre></div></li>
@@ -742,7 +742,8 @@
 
 
   
-    
+    <!-- raw HTML omitted -->
+
   
 
 

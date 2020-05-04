@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.63.2" />
+<meta name="generator" content="Hugo 0.69.2" />
 <title>LinkIssues :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -366,6 +366,69 @@
             <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
       </div>
         <ul>
+      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_get_issuelink/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/steps/issuelink/jira_get_issuelink/">
+            GetIssueLink
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_get_issue_link_types/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/steps/issuelink/jira_get_issue_link_types/">
+            GetIssueLinkTypes
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelink/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelink/">
+            GetRemoteIssueLink
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelinks/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/steps/issuelink/jira_get_remote_issuelinks/">
+            GetRemoteIssueLinks
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_new_remote_issuelink/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/steps/issuelink/jira_new_remote_issuelink/">
+            NewRemoteIssueLink
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_link_issues/" class="dd-item active">
+        <div>
+          <a href="/jira-steps-plugin/steps/issuelink/jira_link_issues/">
+            LinkIssues
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_delete_issuelink/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/steps/issuelink/jira_delete_issuelink/">
+            DeleteIssueLink
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/">
+            DeleteRemoteIssueLink
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
+      <li data-nav-id="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelinks/" class="dd-item">
+        <div>
+          <a href="/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelinks/">
+            DeleteRemoteIssueLinks
+          </a><i class="fa fa-circle-thin read-icon"></i>
+        </div>
+    </li>
         </ul>
     </li>
     <li data-nav-id="/jira-steps-plugin/steps/project/" class="dd-item haschildren
@@ -625,7 +688,7 @@
 <h4 id="examples">Examples</h4>
 <ul>
 <li>
-<p>With default <a href="/jira-steps-plugin/getting-started/config/common/#global-environment-variables">site</a> from global variables.</p>
+<p>With default <a href="/jira-steps-plugin/getting-started/config/common/">site</a> from global variables.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">node <span style="color:#f92672">{</span>
   stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;JIRA&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
     jiraLinkIssues type: <span style="color:#e6db74">&#39;Relates&#39;</span><span style="color:#f92672">,</span> inwardKey: <span style="color:#e6db74">&#39;TEST-1&#39;</span><span style="color:#f92672">,</span> outwardKey: <span style="color:#e6db74">&#39;TEST-2&#39;</span>
@@ -636,7 +699,7 @@
 <p><code>withEnv</code> to override the default site (or if there is not global site)</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">node <span style="color:#f92672">{</span>
   stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;JIRA&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    withEnv<span style="color:#f92672">(</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;JIRA_SITE=LOCAL&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    withEnv<span style="color:#f92672">([</span><span style="color:#e6db74">&#39;JIRA_SITE=LOCAL&#39;</span><span style="color:#f92672">])</span> <span style="color:#f92672">{</span>
       jiraLinkIssues type: <span style="color:#e6db74">&#39;Relates&#39;</span><span style="color:#f92672">,</span> inwardKey: <span style="color:#e6db74">&#39;TEST-1&#39;</span><span style="color:#f92672">,</span> outwardKey: <span style="color:#e6db74">&#39;TEST-2&#39;</span>
     <span style="color:#f92672">}</span>
   <span style="color:#f92672">}</span>
@@ -698,7 +761,8 @@
 
 
   
-    
+    <!-- raw HTML omitted -->
+
   
 
 

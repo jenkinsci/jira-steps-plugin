@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.63.2" />
+<meta name="generator" content="Hugo 0.69.2" />
 <title>Releasing a Project? :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -674,26 +674,26 @@ node <span style="color:#f92672">{</span>
   stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Releasing A Project&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">def</span> issueKey
     <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-      <span style="color:#66d9ef">def</span> issue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>fields: <span style="color:#f92672">[</span> project: <span style="color:#f92672">[</span>key: <span style="color:#e6db74">&#39;TESTPRO&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">,</span>
+      <span style="color:#66d9ef">def</span> issue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>fields: <span style="color:#f92672">[</span> project: <span style="color:#f92672">[</span>key: <span style="color:#e6db74">&#39;TESTPRO&#39;</span><span style="color:#f92672">],</span>
                              summary: <span style="color:#e6db74">&#39;Release x.y.z Review&#39;</span><span style="color:#f92672">,</span>
                              description: <span style="color:#e6db74">&#39;Review changes for release x.y.z &#39;</span><span style="color:#f92672">,</span>
-                             issuetype: <span style="color:#f92672">[</span>name: <span style="color:#e6db74">&#39;Task&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>
+                             issuetype: <span style="color:#f92672">[</span>name: <span style="color:#e6db74">&#39;Task&#39;</span><span style="color:#f92672">]]]</span>
       <span style="color:#66d9ef">def</span> newIssue <span style="color:#f92672">=</span> jiraNewIssue issue: issue
       issueKey <span style="color:#f92672">=</span> newIssue<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">key</span>
 
-      <span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
-      <span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
-      <span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span>
+      <span style="color:#f92672">...</span>
+      <span style="color:#f92672">...</span>
+      <span style="color:#f92672">...</span>
 
-      <span style="color:#66d9ef">def</span> newVersion <span style="color:#f92672">=</span> jiraNewVersion version: <span style="color:#f92672">[</span> name: <span style="color:#e6db74">&#34;new-fix-version-&#34;</span><span style="color:#f92672">+</span> randomUUID<span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#66d9ef">as</span> String<span style="color:#f92672">,</span>
+      <span style="color:#66d9ef">def</span> newVersion <span style="color:#f92672">=</span> jiraNewVersion version: <span style="color:#f92672">[</span> name: <span style="color:#e6db74">&#34;new-fix-version-&#34;</span><span style="color:#f92672">+</span> randomUUID<span style="color:#f92672">()</span> <span style="color:#66d9ef">as</span> String<span style="color:#f92672">,</span>
                                                  description: <span style="color:#e6db74">&#39;desc&#39;</span><span style="color:#f92672">,</span>
                                                  project: <span style="color:#e6db74">&#39;TESTPRO&#39;</span><span style="color:#f92672">]</span>
 
-      <span style="color:#66d9ef">def</span> updateIssue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span> fields: <span style="color:#f92672">[</span> fixVersions: <span style="color:#f92672">[</span> newVersion<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>                                              
+      <span style="color:#66d9ef">def</span> updateIssue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span> fields: <span style="color:#f92672">[</span> fixVersions: <span style="color:#f92672">[</span> newVersion<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">]]]</span>                                              
       <span style="color:#66d9ef">def</span> response <span style="color:#f92672">=</span> jiraEditIssue idOrKey: issueKey<span style="color:#f92672">,</span> issue: updateIssue
 
       <span style="color:#75715e">// Transition issue ID can differ based on the JIRA instance
-</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">def</span> transitionInput <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>transition: <span style="color:#f92672">[</span>id: <span style="color:#ae81ff">31</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">def</span> transitionInput <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>transition: <span style="color:#f92672">[</span>id: <span style="color:#ae81ff">31</span><span style="color:#f92672">]]</span>
       jiraTransitionIssue idOrKey: issueKey<span style="color:#f92672">,</span> input: transitionInput
       jiraAddComment idOrKey: issueKey<span style="color:#f92672">,</span> comment: <span style="color:#e6db74">&#34;RELEASING SUCCESSFUL&#34;</span>
     <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span><span style="color:#f92672">(</span>error<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
@@ -751,7 +751,8 @@ node <span style="color:#f92672">{</span>
 
 
   
-    
+    <!-- raw HTML omitted -->
+
   
 
 

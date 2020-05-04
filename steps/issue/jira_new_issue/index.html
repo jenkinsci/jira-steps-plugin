@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.63.2" />
+<meta name="generator" content="Hugo 0.69.2" />
 <title>NewIssue :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -687,22 +687,22 @@
 <h4 id="examples">Examples</h4>
 <ul>
 <li>
-<p>With default <a href="/jira-steps-plugin/getting-started/config/common/#global-environment-variables">site</a> from global variables.</p>
+<p>With default <a href="/jira-steps-plugin/getting-started/config/common/">site</a> from global variables.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">node <span style="color:#f92672">{</span>
   stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;JIRA&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
     <span style="color:#960050;background-color:#1e0010">#</span> Look at IssueInput <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">for</span> more information<span style="color:#f92672">.</span>
     <span style="color:#66d9ef">def</span> testIssue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>fields: <span style="color:#f92672">[</span> <span style="color:#75715e">// id or key must present for project.
-</span><span style="color:#75715e"></span>                               project: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;10000&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">,</span>
+</span><span style="color:#75715e"></span>                               project: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;10000&#39;</span><span style="color:#f92672">],</span>
                                summary: <span style="color:#e6db74">&#39;New JIRA Created from Jenkins.&#39;</span><span style="color:#f92672">,</span>
                                description: <span style="color:#e6db74">&#39;New JIRA Created from Jenkins.&#39;</span><span style="color:#f92672">,</span>
                                customfield_1000: <span style="color:#e6db74">&#39;customValue&#39;</span><span style="color:#f92672">,</span>
                                <span style="color:#75715e">// id or name must present for issueType.
-</span><span style="color:#75715e"></span>                               issuetype: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;3&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>
+</span><span style="color:#75715e"></span>                               issuetype: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;3&#39;</span><span style="color:#f92672">]]]</span>
 
     response <span style="color:#f92672">=</span> jiraNewIssue issue: testIssue
 
-    echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">successful</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
-    echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+    echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">successful</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span>
+    echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span>
   <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div></li>
@@ -710,31 +710,31 @@
 <p><code>withEnv</code> to override the default site (or if there is not global site)</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">node <span style="color:#f92672">{</span>
   stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;JIRA&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    withEnv<span style="color:#f92672">(</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;JIRA_SITE=LOCAL&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-      <span style="color:#66d9ef">def</span> testIssue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>fields: <span style="color:#f92672">[</span> project: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;10000&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">,</span>
+    withEnv<span style="color:#f92672">([</span><span style="color:#e6db74">&#39;JIRA_SITE=LOCAL&#39;</span><span style="color:#f92672">])</span> <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">def</span> testIssue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>fields: <span style="color:#f92672">[</span> project: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;10000&#39;</span><span style="color:#f92672">],</span>
                                  summary: <span style="color:#e6db74">&#39;New JIRA Created from Jenkins.&#39;</span><span style="color:#f92672">,</span>
                                  description: <span style="color:#e6db74">&#39;New JIRA Created from Jenkins.&#39;</span><span style="color:#f92672">,</span>
-                                 issuetype: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;3&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>
+                                 issuetype: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;3&#39;</span><span style="color:#f92672">]]]</span>
 
       response <span style="color:#f92672">=</span> jiraNewIssue issue: testIssue
 
-      echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">successful</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
-      echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+      echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">successful</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span>
+      echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span>
     <span style="color:#f92672">}</span>
   <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div></li>
 <li>
 <p>Without environment variables.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#66d9ef">def</span> testIssue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>fields: <span style="color:#f92672">[</span> project: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;10000&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">,</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#66d9ef">def</span> testIssue <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>fields: <span style="color:#f92672">[</span> project: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;10000&#39;</span><span style="color:#f92672">],</span>
                            summary: <span style="color:#e6db74">&#39;New JIRA Created from Jenkins.&#39;</span><span style="color:#f92672">,</span>
                            description: <span style="color:#e6db74">&#39;New JIRA Created from Jenkins.&#39;</span><span style="color:#f92672">,</span>
-                           issuetype: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;3&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>
+                           issuetype: <span style="color:#f92672">[</span>id: <span style="color:#e6db74">&#39;3&#39;</span><span style="color:#f92672">]]]</span>
 
 response <span style="color:#f92672">=</span> jiraNewIssue issue: testIssue<span style="color:#f92672">,</span> site: <span style="color:#e6db74">&#39;LOCAL&#39;</span>
 
-echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">successful</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
-echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">successful</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span>
+echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span>
 </code></pre></div></li>
 </ul>
 
@@ -786,7 +786,8 @@ echo response<span style="color:#f92672">.</span><span style="color:#a6e22e">dat
 
 
   
-    
+    <!-- raw HTML omitted -->
+
   
 
 

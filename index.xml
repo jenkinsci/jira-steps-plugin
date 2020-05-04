@@ -377,7 +377,7 @@ Input  id - Attachment Id. site - Optional, default: JIRA_SITE environment varia
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/steps/issue/jira_assign_issue/</guid>
       <description>jiraAssignIssue This step assigns a particular issue to a user.
-Input  idOrKey - Issue id or key. userName - username of the person who should be added as a watcher. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information. The api response of this jira_assign_issue step can be reused later in your script by doing response.</description>
+Input  idOrKey - Issue id or key. userName - username of the person who should be added as a watcher. accountId - accountId of the person who should be added as a watcher. Only applicable for GDPR instances. site - Optional, default: JIRA_SITE environment variable. failOnError - Optional. default: true.  Output  Each step generates generic output, please refer to this link for more information.</description>
     </item>
     
     <item>
@@ -534,10 +534,10 @@ Input  idOrKey - Issue id or key. input - comment, supports jira wiki formatting
     <item>
       <title>Change Log</title>
       <link>https://jenkinsci.github.io/jira-steps-plugin/changelog/</link>
-      <pubDate>Wed, 08 Jan 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 03 May 2020 00:00:00 +0000</pubDate>
       
       <guid>https://jenkinsci.github.io/jira-steps-plugin/changelog/</guid>
-      <description>1.5.4 (Unreleased)   1.5.3  JENKINS-59760 &amp;ldquo;Fields&amp;rdquo; parameter does not work with jiraJqlSearch.    1.5.2  JENKINS-59741 Add QueryMap to BasicJiraStep and usage to jiraEditIssue.    1.5.1  JENKINS-59280 jiraJqlSearch Error Message: null value after upgrade.    1.5.0  JENKINS-57182 When configuring a Jira steps site in casc yaml file. If the Jenkins service is restarted, the site is duplicated in Jenkins config.</description>
+      <description>1.5.5 (Unreleased)   1.5.4  JENKINS-59009 Proxy support. JENKINS-61132 Support accountID for AssignIssue step for GDPR. JENKINS-61388 jiraGetFields: &amp;ldquo;Illegal base64 character&amp;rdquo; since 1.5.2.    1.5.3  JENKINS-59760 &amp;ldquo;Fields&amp;rdquo; parameter does not work with jiraJqlSearch.    1.5.2  JENKINS-59741 Add QueryMap to BasicJiraStep and usage to jiraEditIssue.    1.5.1  JENKINS-59280 jiraJqlSearch Error Message: null value after upgrade.    1.5.0  JENKINS-57182 When configuring a Jira steps site in casc yaml file.</description>
     </item>
     
     <item>

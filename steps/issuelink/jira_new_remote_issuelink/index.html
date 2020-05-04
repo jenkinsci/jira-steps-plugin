@@ -5,7 +5,7 @@
     
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.63.2" />
+<meta name="generator" content="Hugo 0.69.2" />
 <title>NewRemoteIssueLink :: </title>
 <link rel="shortcut icon" href="/jira-steps-plugin/images/favicon.png" type="image/x-icon" />
 <link href="/jira-steps-plugin/css/font-awesome.min.css" rel="stylesheet">
@@ -686,18 +686,18 @@
 <h4 id="examples">Examples</h4>
 <ul>
 <li>
-<p>With default <a href="/jira-steps-plugin/getting-started/config/common/#global-environment-variables">site</a> from global variables.</p>
+<p>With default <a href="/jira-steps-plugin/getting-started/config/common/">site</a> from global variables.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">node <span style="color:#f92672">{</span>
   stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;JIRA&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">def</span> remoteLink <span style="color:#f92672">=</span>  <span style="color:#f92672">[</span>globalId: <span style="color:#e6db74">&#34;system=http://www.mycompany.com/support&amp;id=1&#34;</span><span style="color:#f92672">,</span>
                        application: <span style="color:#f92672">[</span>type: <span style="color:#e6db74">&#34;com.acme.tracker&#34;</span><span style="color:#f92672">,</span>
-                                     name: <span style="color:#e6db74">&#34;My Acme Tracker&#34;</span><span style="color:#f92672">]</span><span style="color:#f92672">,</span>
+                                     name: <span style="color:#e6db74">&#34;My Acme Tracker&#34;</span><span style="color:#f92672">],</span>
                        relationship: <span style="color:#e6db74">&#34;causes&#34;</span><span style="color:#f92672">,</span>
                        object: <span style="color:#f92672">[</span>url: <span style="color:#e6db74">&#34;http://www.mycompany.com/support?id=1&#34;</span><span style="color:#f92672">,</span>
-                                title: <span style="color:#e6db74">&#34;MYTEST-111&#34;</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>
+                                title: <span style="color:#e6db74">&#34;MYTEST-111&#34;</span><span style="color:#f92672">]]</span>
 
     <span style="color:#66d9ef">def</span> issueLink <span style="color:#f92672">=</span> jiraNewRemoteIssueLink idOrKey: <span style="color:#e6db74">&#39;TEST-27&#39;</span><span style="color:#f92672">,</span> remoteLink: remoteLink
-    echo issueLink<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+    echo issueLink<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span>
   <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div></li>
@@ -705,16 +705,16 @@
 <p><code>withEnv</code> to override the default site (or if there is not global site)</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">node <span style="color:#f92672">{</span>
   stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;JIRA&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-    withEnv<span style="color:#f92672">(</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#39;JIRA_SITE=LOCAL&#39;</span><span style="color:#f92672">]</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    withEnv<span style="color:#f92672">([</span><span style="color:#e6db74">&#39;JIRA_SITE=LOCAL&#39;</span><span style="color:#f92672">])</span> <span style="color:#f92672">{</span>
       <span style="color:#66d9ef">def</span> remoteLink <span style="color:#f92672">=</span>  <span style="color:#f92672">[</span>globalId: <span style="color:#e6db74">&#34;system=http://www.mycompany.com/support&amp;id=1&#34;</span><span style="color:#f92672">,</span>
                          application: <span style="color:#f92672">[</span>type: <span style="color:#e6db74">&#34;com.acme.tracker&#34;</span><span style="color:#f92672">,</span>
-                                       name: <span style="color:#e6db74">&#34;My Acme Tracker&#34;</span><span style="color:#f92672">]</span><span style="color:#f92672">,</span>
+                                       name: <span style="color:#e6db74">&#34;My Acme Tracker&#34;</span><span style="color:#f92672">],</span>
                          relationship: <span style="color:#e6db74">&#34;causes&#34;</span><span style="color:#f92672">,</span>
                          object: <span style="color:#f92672">[</span>url: <span style="color:#e6db74">&#34;http://www.mycompany.com/support?id=1&#34;</span><span style="color:#f92672">,</span>
-                                  title: <span style="color:#e6db74">&#34;MYTEST-111&#34;</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>
+                                  title: <span style="color:#e6db74">&#34;MYTEST-111&#34;</span><span style="color:#f92672">]]</span>
 
       <span style="color:#66d9ef">def</span> issueLink <span style="color:#f92672">=</span> jiraNewRemoteIssueLink idOrKey: <span style="color:#e6db74">&#39;TEST-27&#39;</span><span style="color:#f92672">,</span> remoteLink: remoteLink
-      echo issueLink<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+      echo issueLink<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span>
     <span style="color:#f92672">}</span>
   <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
@@ -723,13 +723,13 @@
 <p>Without environment variables.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy"><span style="color:#66d9ef">def</span> remoteLink <span style="color:#f92672">=</span>  <span style="color:#f92672">[</span>globalId: <span style="color:#e6db74">&#34;system=http://www.mycompany.com/support&amp;id=1&#34;</span><span style="color:#f92672">,</span>
                    application: <span style="color:#f92672">[</span>type: <span style="color:#e6db74">&#34;com.acme.tracker&#34;</span><span style="color:#f92672">,</span>
-                                 name: <span style="color:#e6db74">&#34;My Acme Tracker&#34;</span><span style="color:#f92672">]</span><span style="color:#f92672">,</span>
+                                 name: <span style="color:#e6db74">&#34;My Acme Tracker&#34;</span><span style="color:#f92672">],</span>
                    relationship: <span style="color:#e6db74">&#34;causes&#34;</span><span style="color:#f92672">,</span>
                    object: <span style="color:#f92672">[</span>url: <span style="color:#e6db74">&#34;http://www.mycompany.com/support?id=1&#34;</span><span style="color:#f92672">,</span>
-                            title: <span style="color:#e6db74">&#34;MYTEST-111&#34;</span><span style="color:#f92672">]</span><span style="color:#f92672">]</span>
+                            title: <span style="color:#e6db74">&#34;MYTEST-111&#34;</span><span style="color:#f92672">]]</span>
 
 <span style="color:#66d9ef">def</span> issueLink <span style="color:#f92672">=</span> jiraNewRemoteIssueLink idOrKey: <span style="color:#e6db74">&#39;TEST-27&#39;</span><span style="color:#f92672">,</span> remoteLink: remoteLink<span style="color:#f92672">,</span> site: <span style="color:#e6db74">&#39;LOCAL&#39;</span><span style="color:#f92672">,</span> failOnError: <span style="color:#66d9ef">false</span>
-echo issueLink<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+echo issueLink<span style="color:#f92672">.</span><span style="color:#a6e22e">data</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span>
 </code></pre></div></li>
 </ul>
 
@@ -783,7 +783,8 @@ echo issueLink<span style="color:#f92672">.</span><span style="color:#a6e22e">da
 
 
   
-    
+    <!-- raw HTML omitted -->
+
   
 
 
