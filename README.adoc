@@ -1,5 +1,7 @@
 = JIRA Pipeline Steps
 
+image:https://badges.gitter.im/jenkinsci/jira-steps-plugin.svg[link="https://gitter.im/jenkinsci/jira-steps-plugin?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
+
 image::hugo/static/images/jira_steps.png[JIRA Steps,300]
 
 link:https://ci.jenkins.io/job/Plugins/job/jira-steps-plugin/job/master/[image:https://ci.jenkins.io/job/Plugins/job/jira-steps-plugin/job/master/badge/icon[Build]] image:https://img.shields.io/badge/License-Apache%202.0-blue.svg[License] link:https://plugins.jenkins.io/jira-steps[image:https://img.shields.io/badge/JIRA%20Steps-WIKI-blue.svg[Wiki]]
