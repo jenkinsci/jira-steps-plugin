@@ -81,7 +81,7 @@ public class AssignIssueStepTest {
 
   @Test
   public void testWithEmptyIdOrKeyThrowsAbortException() throws Exception {
-    final AssignIssueStep step = new AssignIssueStep("", "testUser");
+    final AssignIssueStep step = new AssignIssueStep("", "testUser", "testUserId");
     stepExecution = new AssignIssueStep.Execution(step, contextMock);
 
     // Execute and assert Test.
@@ -92,20 +92,21 @@ public class AssignIssueStepTest {
   }
 
   @Test
-  public void testWithEmptyCommentThrowsAbortException() throws Exception {
-    final AssignIssueStep step = new AssignIssueStep("TEST-1", "");
+  public void testWithEmptyUserNameOrAccountIdThrowsAbortException() throws Exception {
+    final AssignIssueStep step = new AssignIssueStep("TEST-1", "", "");
     stepExecution = new AssignIssueStep.Execution(step, contextMock);
 
-    // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-      stepExecution.run();
-    }).withMessage("userName is empty.").withStackTraceContaining("AbortException")
-        .withNoCause();
+    // Execute Test.
+    stepExecution.run();
+
+    // Assert Test
+    verify(jiraServiceMock, times(1)).assignIssue("TEST-1", null);
+    assertThat(step.isFailOnError()).isEqualTo(true);
   }
 
   @Test
   public void testSuccessfulUnassignIssue() throws Exception {
-    final AssignIssueStep step = new AssignIssueStep("TEST-1", null);
+    final AssignIssueStep step = new AssignIssueStep("TEST-1", null, null);
     stepExecution = new AssignIssueStep.Execution(step, contextMock);
 
     // Execute Test.
@@ -118,7 +119,20 @@ public class AssignIssueStepTest {
 
   @Test
   public void testSuccessfulAssignIssue() throws Exception {
-    final AssignIssueStep step = new AssignIssueStep("TEST-1", "testUser");
+    final AssignIssueStep step = new AssignIssueStep("TEST-1", "testUser", null);
+    stepExecution = new AssignIssueStep.Execution(step, contextMock);
+
+    // Execute Test.
+    stepExecution.run();
+
+    // Assert Test
+    verify(jiraServiceMock, times(1)).assignIssue("TEST-1", "testUser");
+    assertThat(step.isFailOnError()).isEqualTo(true);
+  }
+
+  @Test
+  public void testSuccessfulAssignIssueByAccountId() throws Exception {
+    final AssignIssueStep step = new AssignIssueStep("TEST-1", null, "testUser");
     stepExecution = new AssignIssueStep.Execution(step, contextMock);
 
     // Execute Test.
