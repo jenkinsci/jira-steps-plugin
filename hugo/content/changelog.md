@@ -1,11 +1,16 @@
 +++
 title = "Change Log"
 description = "Change Log."
-date = "2020-01-08"
-lastmodifierdisplayname = "Arjun Gopisetty"
+date = "2020-05-03"
+lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
-* #### **1.5.4** (Unreleased)
+* #### **1.5.5** (Unreleased)
+
+* #### **1.5.4**
+  * [JENKINS-59009](https://issues.jenkins-ci.org/browse/JENKINS-59009) Proxy support.
+  * [JENKINS-61132](https://issues.jenkins-ci.org/browse/JENKINS-61132) Support accountID for AssignIssue step for GDPR.
+  * [JENKINS-61388](https://issues.jenkins-ci.org/browse/JENKINS-61388) jiraGetFields: "Illegal base64 character" since 1.5.2.
 
 * #### **1.5.3**
   * [JENKINS-59760](https://issues.jenkins-ci.org/browse/JENKINS-59760) "Fields" parameter does not work with jiraJqlSearch.
