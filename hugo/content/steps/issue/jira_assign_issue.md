@@ -61,7 +61,7 @@ It supports all the fields that any jira instance supports including custom fiel
     ```groovy
     jiraAssignIssue site: 'LOCAL', idOrKey: 'TEST-1', userName: 'Jenkins'
     ```
-* Aa empty userName/accountId will remove the assignee.
+* Aa empty userName and accountId will remove the assignee.
 
     ```groovy
     jiraAssignIssue site: 'LOCAL', idOrKey: 'TEST-1', userName: null
