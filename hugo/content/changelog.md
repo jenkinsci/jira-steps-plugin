@@ -1,11 +1,14 @@
 +++
 title = "Change Log"
 description = "Change Log."
-date = "2020-05-03"
+date = "2020-05-07"
 lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
-* #### **1.5.5** (Unreleased)
+* #### **1.5.6** (Unreleased)
+
+* #### **1.5.5**
+  * [JENKINS-62193](https://issues.jenkins-ci.org/browse/JENKINS-62193) Proxy Support : Missing no-proxy host management.
 
 * #### **1.5.4**
   * [JENKINS-59009](https://issues.jenkins-ci.org/browse/JENKINS-59009) Proxy support.
