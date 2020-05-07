@@ -12,6 +12,11 @@ import com.google.common.collect.Maps;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
+import java.net.ProxySelector;
+import java.net.URI;
+import java.net.SocketAddress;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -46,21 +51,34 @@ public class JiraService {
             .connectionPool(CONNECTION_POOL)
             .retryOnConnectionFailure(true).addInterceptor(new SigningInterceptor(jiraSite));
 
-    ProxyConfiguration proxyConfiguration = Jenkins.getInstance().proxy;
-    if (proxyConfiguration != null) {
-      InetSocketAddress proxyAddr = new InetSocketAddress(proxyConfiguration.name, proxyConfiguration.port);
-      Proxy proxy = new Proxy(Proxy.Type.HTTP, proxyAddr);
-      Authenticator proxyAuthenticator = new Authenticator() {
-        @Override public Request authenticate(Route route, Response response) throws IOException {
-          String credential = Credentials.basic(proxyConfiguration.getUserName(), proxyConfiguration.getPassword());
-          return response.request().newBuilder()
-                  .header("Proxy-Authorization", credential)
-                  .build();
-        }
-      };
-      okHttpClientBuilder.proxy(proxy)
-              .proxyAuthenticator(proxyAuthenticator);
-    }
+
+      ProxyConfiguration proxyConfiguration = Jenkins.getInstance().proxy;
+      if (proxyConfiguration != null) {
+          InetSocketAddress proxyAddr = new InetSocketAddress(proxyConfiguration.name, proxyConfiguration.port);
+          Authenticator proxyAuthenticator = (route, response) -> {
+              String credential = Credentials.basic(proxyConfiguration.getUserName(), proxyConfiguration.getPassword());
+              return response.request().newBuilder()
+                      .header("Proxy-Authorization", credential)
+                      .build();
+          };
+          ProxySelector proxySelector = new ProxySelector() {
+              @Override
+              public List<Proxy> select(final URI uri) {
+                  boolean isNoProxyHost = proxyConfiguration.getNoProxyHostPatterns().stream()
+                          .anyMatch(p -> p.matcher(uri.getHost()).matches());
+                  List<Proxy> proxyList = new ArrayList<>();
+                  proxyList.add( isNoProxyHost ? Proxy.NO_PROXY : new Proxy(Proxy.Type.HTTP, proxyAddr));
+                  return proxyList;
+              }
+
+              @Override
+              public void connectFailed(URI uri, SocketAddress arg, IOException ex) {
+                  throw new RuntimeException(ex);
+              }
+          };
+          okHttpClientBuilder.proxySelector(proxySelector)
+                  .proxyAuthenticator(proxyAuthenticator);
+      }
     OkHttpClient httpClient = okHttpClientBuilder.build();
 
     final ObjectMapper mapper = new ObjectMapper();
