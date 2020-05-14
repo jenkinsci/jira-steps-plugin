@@ -2,8 +2,7 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -19,6 +18,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import org.apache.commons.io.IOUtils;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -72,7 +72,7 @@ public class UploadAttachmentStepTest {
 
     final ResponseData.ResponseDataBuilder<Object> builder = ResponseData.builder();
     // By setting successful to false we are not really writing file to disk currently.
-    when(jiraServiceMock.uploadAttachment(anyString(), anyString(), any()))
+    when(jiraServiceMock.uploadAttachment(any(), any(), any()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);
@@ -112,7 +112,7 @@ public class UploadAttachmentStepTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).uploadAttachment("TEST-1", "src/test/resources/test.txt",
+    verify(jiraServiceMock, times(1)).uploadAttachment("TEST-1", "src/test/resources/test.txt".replace('/', File.separatorChar),
         IOUtils.toByteArray(new FilePath(new File("src/test/resources/test.txt")).read()));
     assertThat(step.isFailOnError()).isEqualTo(true);
   }

@@ -71,7 +71,7 @@ public class LinkIssuesStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Void> builder = ResponseData.builder();
-    when(jiraServiceMock.linkIssues(anyString(), anyString(), anyString(), anyString()))
+    when(jiraServiceMock.linkIssues(anyString(), anyString(), anyString(), any()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);
