@@ -7,7 +7,7 @@
     <version>4.1</version>
   </parent>
   <artifactId>jira-steps</artifactId>
-  <version>1.5.6-SNAPSHOT</version>
+  <version>1.6.1-SNAPSHOT</version>
   <packaging>hpi</packaging>
   <name>JIRA Pipeline Steps</name>
   <description>JIRA Pipeline Steps</description>
@@ -54,6 +54,17 @@
     <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
     <tag>HEAD</tag>
   </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>repo.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>maven.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <repositories>
     <repository>

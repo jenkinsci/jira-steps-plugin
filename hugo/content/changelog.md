@@ -1,11 +1,15 @@
 +++
 title = "Change Log"
 description = "Change Log."
-date = "2020-05-07"
+date = "2020-05-16"
 lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
-* #### **1.5.6** (Unreleased)
+* #### **1.6.1** (Unreleased)
+
+
+* #### **1.6.0**
+  * [JENKINS-47199](https://issues.jenkins-ci.org/browse/JENKINS-47199) Use Jenkins Credential storage for JIRA credentials.
 
 * #### **1.5.5**
   * [JENKINS-62193](https://issues.jenkins-ci.org/browse/JENKINS-62193) Proxy Support : Missing no-proxy host management.
