@@ -15,6 +15,7 @@ import hudson.model.Run;
 import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.URL;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +23,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtslive.jenkins.plugins.jira.Site;
@@ -36,6 +38,7 @@ import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({GetComponentStep.class, Site.class})
+@PowerMockIgnore("javax.net.ssl.*")
 public class GetComponentIssueCountStepTest {
 
   @Mock
@@ -65,6 +68,7 @@ public class GetComponentIssueCountStepTest {
     PowerMockito.mockStatic(Site.class);
     Mockito.when(Site.get(any())).thenReturn(siteMock);
     when(siteMock.getService()).thenReturn(jiraServiceMock);
+    when(siteMock.getUrl()).thenReturn(new URL("https://localhost:8080"));
 
     when(runMock.getCauses()).thenReturn(null);
     when(taskListenerMock.getLogger()).thenReturn(printStreamMock);

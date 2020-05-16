@@ -72,7 +72,7 @@ public class JqlSearchStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Object> builder = ResponseData.builder();
-    when(jiraServiceMock.searchIssues(anyString(), anyInt(), anyInt(), anyString()))
+    when(jiraServiceMock.searchIssues(anyString(), anyInt(), anyInt(), any()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);

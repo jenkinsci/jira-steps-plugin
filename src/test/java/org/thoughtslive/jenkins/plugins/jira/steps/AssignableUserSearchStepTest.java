@@ -73,7 +73,7 @@ public class AssignableUserSearchStepTest {
 
     final ResponseDataBuilder<Object> builder = ResponseData.builder();
     when(jiraServiceMock
-        .assignableUserSearch(anyString(), anyString(), anyString(), anyInt(), anyInt()))
+        .assignableUserSearch(any(), anyString(), anyString(), anyInt(), anyInt()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);

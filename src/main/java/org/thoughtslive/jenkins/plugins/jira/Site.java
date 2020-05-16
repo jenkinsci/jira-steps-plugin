@@ -1,19 +1,39 @@
 package org.thoughtslive.jenkins.plugins.jira;
 
+import com.cloudbees.plugins.credentials.CredentialsMatcher;
+import com.cloudbees.plugins.credentials.CredentialsMatchers;
+import com.cloudbees.plugins.credentials.CredentialsProvider;
+import com.cloudbees.plugins.credentials.common.StandardListBoxModel;
+import com.cloudbees.plugins.credentials.common.StandardUsernameCredentials;
+import com.cloudbees.plugins.credentials.domains.DomainRequirement;
+import com.cloudbees.plugins.credentials.domains.URIRequirementBuilder;
+import com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl;
 import hudson.Extension;
 import hudson.Util;
 import hudson.model.AbstractDescribableImpl;
 import hudson.model.Descriptor;
+import hudson.model.Item;
+import hudson.model.Queue;
+import hudson.model.queue.Tasks;
+import hudson.security.ACL;
 import hudson.util.FormValidation;
+import hudson.util.FormValidation.Kind;
+import hudson.util.ListBoxModel;
 import hudson.util.Secret;
+import jenkins.model.Jenkins;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.val;
 import lombok.extern.java.Log;
+import org.acegisecurity.Authentication;
+import org.apache.commons.lang.StringUtils;
+import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.QueryParameter;
@@ -55,6 +75,10 @@ public class Site extends AbstractDescribableImpl<Site> {
   private Secret secret;
   @Getter
   private Secret token;
+  // Credentials plugin
+  @Getter
+  @Setter(onMethod = @__({@DataBoundSetter}))
+  private String credentialsId;
   private transient JiraService jiraService = null;
 
   @DataBoundConstructor
@@ -107,7 +131,7 @@ public class Site extends AbstractDescribableImpl<Site> {
   }
 
   public enum LoginType {
-    BASIC, OAUTH
+    BASIC, OAUTH, CREDENTIAL
   }
 
   @Extension
@@ -116,6 +140,134 @@ public class Site extends AbstractDescribableImpl<Site> {
     @Override
     public String getDisplayName() {
       return "JIRA Steps: Site";
+    }
+
+    public FormValidation doCheckName(final @QueryParameter String name) {
+      if (StringUtils.isBlank(name)) {
+        return FormValidation.error(Messages.required());
+      }
+      return FormValidation.ok();
+    }
+
+    public FormValidation doCheckUrl(final @QueryParameter String url) {
+      if (StringUtils.isBlank(url)) {
+        return FormValidation.error(Messages.required());
+      }
+      try {
+        new URL(url);
+        return FormValidation.ok();
+      } catch (MalformedURLException e) {
+        return FormValidation.error(e.getMessage());
+      }
+    }
+
+    public FormValidation doCheckTimeout(final @QueryParameter Integer timeout) {
+      if (timeout == null || timeout <= 100) {
+        return FormValidation.error(Messages.Site_invalidTimeout());
+      }
+      return FormValidation.ok();
+    }
+
+    public FormValidation doCheckReadTimeout(final @QueryParameter Integer readTimeout) {
+      if (readTimeout == null || readTimeout <= 100) {
+        return FormValidation.error(Messages.Site_invalidReadTimeout());
+      }
+      return FormValidation.ok();
+    }
+
+    public FormValidation doCheckCredentialsId(@AncestorInPath Item item,
+        final @QueryParameter String credentialsId,
+        final @QueryParameter String url) {
+
+      if (item == null) {
+        if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
+          return FormValidation.ok();
+        }
+      } else if (!item.hasPermission(Item.EXTENDED_READ) && !item.hasPermission(CredentialsProvider.USE_ITEM)) {
+        return FormValidation.ok();
+      }
+      if (StringUtils.isBlank(credentialsId)) {
+        return FormValidation.warning(Messages.Site_emptyCredentialsId());
+      }
+
+      List<DomainRequirement> domainRequirements = URIRequirementBuilder.fromUri(url).build();
+      if (CredentialsProvider.listCredentials(StandardUsernameCredentials.class, item, getAuthentication(item), domainRequirements, CredentialsMatchers.withId(credentialsId)).isEmpty()) {
+        return FormValidation.error(Messages.Site_invalidCredentialsId());
+      }
+      return FormValidation.ok();
+    }
+
+    public ListBoxModel doFillCredentialsIdItems(final @AncestorInPath Item item,
+        @QueryParameter String credentialsId,
+        final @QueryParameter String url) {
+
+      StandardListBoxModel result = new StandardListBoxModel();
+
+      credentialsId = StringUtils.trimToEmpty(credentialsId);
+      if (item == null) {
+        if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
+          return result.includeCurrentValue(credentialsId);
+        }
+      } else {
+        if (!item.hasPermission(Item.EXTENDED_READ) && !item.hasPermission(CredentialsProvider.USE_ITEM)) {
+          return result.includeCurrentValue(credentialsId);
+        }
+      }
+
+      Authentication authentication = getAuthentication(item);
+      List<DomainRequirement> domainRequirements = URIRequirementBuilder.fromUri(url).build();
+      CredentialsMatcher always = CredentialsMatchers.always();
+      Class<? extends StandardUsernameCredentials> type = UsernamePasswordCredentialsImpl.class;
+
+      result.includeEmptyValue();
+      if (item != null) {
+        result.includeMatchingAs(authentication, item, type, domainRequirements, always);
+      } else {
+        result.includeMatchingAs(authentication, Jenkins.get(), type, domainRequirements, always);
+      }
+      return result;
+    }
+
+    protected Authentication getAuthentication(Item item) {
+      return item instanceof Queue.Task ? Tasks.getAuthenticationOf((Queue.Task) item) : ACL.SYSTEM;
+    }
+
+    public FormValidation doValidateCredentials(@QueryParameter String url,
+                                                @QueryParameter String credentialsId,
+                                                @QueryParameter Integer timeout,
+                                                @QueryParameter Integer readTimeout) throws IOException {
+      FormValidation validation = doCheckUrl(url);
+      if (validation.kind != Kind.OK) {
+        return FormValidation.error(Messages.Site_emptyURL());
+      }
+
+      validation = doCheckTimeout(timeout);
+      if (validation.kind != Kind.OK) {
+        return validation;
+      }
+
+      validation = doCheckReadTimeout(readTimeout);
+      if (validation.kind != Kind.OK) {
+        return validation;
+      }
+
+      Site site = new Site("test", new URL(url), LoginType.CREDENTIAL.name(), timeout);
+      site.setCredentialsId(credentialsId);
+      site.setReadTimeout(readTimeout);
+
+      try {
+        final JiraService service = new JiraService(site);
+        final ResponseData<Map<String, Object>> response = service.getServerInfo();
+        if (response.isSuccessful()) {
+          Map<String, Object> data = response.getData();
+          return FormValidation.ok(Messages.Site_testSuccess(data.get("serverTitle"), data.get("version")));
+        } else {
+          return FormValidation.error(response.getError());
+        }
+      } catch (Exception e) {
+        log.log(Level.WARNING, Messages.Site_testFail(url), e);
+      }
+      return FormValidation.error(Messages.Site_testFail(url));
     }
 
     /**
