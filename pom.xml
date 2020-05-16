@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>2.21</version>
+    <version>4.1</version>
   </parent>
   <artifactId>jira-steps</artifactId>
   <version>1.5.6-SNAPSHOT</version>
@@ -15,19 +15,15 @@
   <url>https://wiki.jenkins-ci.org/display/JENKINS/JIRA+Steps+Plugin</url>
   <properties>
     <java.level>8</java.level>
-    <jenkins.version>2.7.3</jenkins.version>
-    <jenkins-test-harness.version>2.15</jenkins-test-harness.version>
+    <jenkins.version>2.164.3</jenkins.version>
     <pipeline.version>2.5</pipeline.version>
-    <workflow.step.api.version>2.3</workflow.step.api.version>
     <!-- Be careful of upgrading this to later versions, cause pipeline plugins depend on this version. -->
-    <jackson2.version>2.4.0</jackson2.version>
-    <retrofit2.version>2.5.0</retrofit2.version>
-    <lombok.version>1.16.12</lombok.version>
+    <jackson2.version>2.10.3</jackson2.version>
+    <retrofit2.version>2.8.1</retrofit2.version>
+    <lombok.version>1.18.12</lombok.version>
     <signpost.oauth.version>1.2.1.2</signpost.oauth.version>
     <google.oauth.version>1.22.0</google.oauth.version>
-    <wiremock.version>2.3.1</wiremock.version>
-    <mockito.version>1.10.19</mockito.version>
-    <powermock.version>1.6.3</powermock.version>
+    <wiremock.version>2.26.3</wiremock.version>
     <assertj-core.version>3.6.1</assertj-core.version>
     <assertj-assertions-generator-maven-plugin.version>2.0.0</assertj-assertions-generator-maven-plugin.version>
   </properties>
@@ -59,17 +55,6 @@
     <tag>HEAD</tag>
   </scm>
 
-  <distributionManagement>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/releases</url>
-    </repository>
-    <snapshotRepository>
-      <id>maven.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
-
   <repositories>
     <repository>
       <id>repo.jenkins-ci.org</id>
@@ -84,16 +69,53 @@
     </pluginRepository>
   </pluginRepositories>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.jenkins.tools.bom</groupId>
+        <artifactId>bom-2.164.x</artifactId>
+        <version>9</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
+          <groupId>commons-codec</groupId>
+          <artifactId>commons-codec</artifactId>
+          <version>1.10</version>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-lang3</artifactId>
+          <version>3.9</version>
+      </dependency>
+      <dependency>
+          <groupId>org.hamcrest</groupId>
+          <artifactId>hamcrest-core</artifactId>
+          <version>2.2</version>
+      </dependency>
+      <!-- required by wiremock -->
+      <dependency>
+          <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
+          <version>20.0</version>
+      </dependency>
+      <dependency>
+          <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-servlets</artifactId>
+          <version>9.4.28.v20200408</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-aggregator</artifactId>
-      <version>${pipeline.version}</version>
+      <artifactId>workflow-step-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.squareup.retrofit2</groupId>
-      <artifactId>retrofit</artifactId>
-      <version>${retrofit2.version}</version>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-joda</artifactId>
+      <version>${jackson2.version}</version>
     </dependency>
     <dependency>
       <groupId>com.squareup.retrofit2</groupId>
@@ -104,12 +126,11 @@
       <groupId>com.squareup.retrofit2</groupId>
       <artifactId>converter-jackson</artifactId>
       <version>${retrofit2.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>com.fasterxml.jackson.core</groupId>
-          <artifactId>jackson-databind</artifactId>
-        </exclusion>
-      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>jackson2-api</artifactId>
+      <version>${jackson2.version}</version>
     </dependency>
     <dependency>
       <groupId>oauth.signpost</groupId>
@@ -134,34 +155,28 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>com.fasterxml.jackson.datatype</groupId>
-      <artifactId>jackson-datatype-joda</artifactId>
-      <version>${jackson2.version}</version>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>credentials</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.jenkins-ci.plugins</groupId>
+        <artifactId>script-security</artifactId>
     </dependency>
 
     <!-- Test Dependencies -->
     <dependency>
       <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <version>${mockito.version}</version>
+      <artifactId>mockito-core</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.powermock</groupId>
       <artifactId>powermock-module-junit4</artifactId>
-      <version>${powermock.version}</version>
       <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>junit</groupId>
-          <artifactId>junit</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.powermock</groupId>
-      <artifactId>powermock-api-mockito</artifactId>
-      <version>${powermock.version}</version>
+      <artifactId>powermock-api-mockito2</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -174,6 +189,29 @@
       <artifactId>wiremock</artifactId>
       <version>${wiremock.version}</version>
       <scope>test</scope>
+      <exclusions>
+        <!-- excluded because overrides managed dependencies in jenkins-core -->
+        <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-server</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-servlet</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-webapp</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.antlr</groupId>
+          <artifactId>antlr4-runtime</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.assertj</groupId>
@@ -181,18 +219,12 @@
       <version>${assertj-core.version}</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.codehaus.groovy</groupId>
-      <artifactId>groovy-all</artifactId>
-      <version>2.4.11</version>
-    </dependency>
   </dependencies>
   <build>
     <plugins>
       <plugin>
         <groupId>org.codehaus.gmavenplus</groupId>
         <artifactId>gmavenplus-plugin</artifactId>
-        <version>1.6</version>
         <executions>
           <execution>
             <goals>
@@ -207,10 +239,6 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
       </plugin>
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>

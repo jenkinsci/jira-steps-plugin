@@ -52,7 +52,8 @@ public class JiraService {
             .retryOnConnectionFailure(true).addInterceptor(new SigningInterceptor(jiraSite));
 
 
-      ProxyConfiguration proxyConfiguration = Jenkins.getInstance().proxy;
+    if (Jenkins.getInstanceOrNull() != null) {
+      ProxyConfiguration proxyConfiguration = Jenkins.get().proxy;
       if (proxyConfiguration != null) {
           InetSocketAddress proxyAddr = new InetSocketAddress(proxyConfiguration.name, proxyConfiguration.port);
           Authenticator proxyAuthenticator = (route, response) -> {
@@ -79,6 +80,8 @@ public class JiraService {
           okHttpClientBuilder.proxySelector(proxySelector)
                   .proxyAuthenticator(proxyAuthenticator);
       }
+    }
+
     OkHttpClient httpClient = okHttpClientBuilder.build();
 
     final ObjectMapper mapper = new ObjectMapper();

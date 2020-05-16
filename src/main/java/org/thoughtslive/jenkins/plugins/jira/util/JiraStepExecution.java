@@ -4,6 +4,8 @@ import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorRespon
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.empty;
 import static org.thoughtslive.jenkins.plugins.jira.util.Common.log;
 
+import com.cloudbees.plugins.credentials.CredentialsProvider;
+import com.cloudbees.plugins.credentials.common.StandardUsernameCredentials;
 import hudson.AbortException;
 import hudson.EnvVars;
 import hudson.Util;
@@ -14,10 +16,13 @@ import hudson.model.Run;
 import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Collections;
 import java.util.List;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.SynchronousNonBlockingStepExecution;
+import org.thoughtslive.jenkins.plugins.jira.Messages;
 import org.thoughtslive.jenkins.plugins.jira.Site;
+import org.thoughtslive.jenkins.plugins.jira.Site.LoginType;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 import org.thoughtslive.jenkins.plugins.jira.steps.BasicJiraStep;
@@ -99,6 +104,13 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
       errorMessage = "No JIRA site configured with " + siteName + " name.";
     } else {
       if (jiraService == null) {
+        if (LoginType.CREDENTIAL.name().equals(site.getLoginType())) {
+          // at build time use of credentials must be checked against the user who run the build, see https://plugins.jenkins.io/authorize-project
+          StandardUsernameCredentials credentialsId = CredentialsProvider.findCredentialById(site.getCredentialsId(), StandardUsernameCredentials.class, run, Collections.emptyList());
+          if (credentialsId == null) {
+            throw new AbortException(Messages.Site_invalidCredentialsId());
+          }
+        }
         jiraService = site.getService();
       }
     }
