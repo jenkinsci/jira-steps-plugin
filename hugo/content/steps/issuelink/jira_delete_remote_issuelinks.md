@@ -1,13 +1,13 @@
 +++
-title = "DeleteRemoteIssueLinks"
-description = "More about jiraDeleteRemoteIssueLinks step."
+title = "DeleteIssueRemoteLinks"
+description = "More about jiraDeleteIssueRemoteLinks step."
 tags = ["steps", "issue", "issuelink"]
 weight = 9
 date = "2017-11-12"
 lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
-### jiraDeleteRemoteIssueLinks
+### jiraDeleteIssueRemoteLinks
 
 This step deletes all remote links of an issue.
 
@@ -40,7 +40,7 @@ It supports all the fields that any jira instance supports including custom fiel
     ```groovy
     node {
       stage('JIRA') {
-        def issueLink = jiraDeleteRemoteIssueLinks idOrKey: 'TEST-27', globalId: '10000'
+        def issueLink = jiraDeleteIssueRemoteLinks idOrKey: 'TEST-27', globalId: '10000'
         echo issueLink.data.toString()
       }
     }
@@ -51,7 +51,7 @@ It supports all the fields that any jira instance supports including custom fiel
     node {
       stage('JIRA') {
         withEnv(['JIRA_SITE=LOCAL']) {
-          def issueLink = jiraDeleteRemoteIssueLinks idOrKey: 'TEST-27', globalId: '10000'
+          def issueLink = jiraDeleteIssueRemoteLinks idOrKey: 'TEST-27', globalId: '10000'
           echo issueLink.data.toString()
         }
       }
@@ -60,6 +60,6 @@ It supports all the fields that any jira instance supports including custom fiel
 * Without environment variables.
 
     ```groovy
-    def issueLink = jiraDeleteRemoteIssueLinks idOrKey: 'TEST-27', globalId: '10000', site: 'LOCAL', failOnError: false
+    def issueLink = jiraDeleteIssueRemoteLinks idOrKey: 'TEST-27', globalId: '10000', site: 'LOCAL', failOnError: false
     echo issueLink.data.toString()
     ```

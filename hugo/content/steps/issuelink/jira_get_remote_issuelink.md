@@ -1,13 +1,13 @@
 +++
-title = "GetRemoteIssueLink"
-description = "More about jiraGetRemoteIssueLink step."
+title = "GetIssueRemoteLink"
+description = "More about jiraGetIssueRemoteLink step."
 tags = ["steps", "issue", "issuelink"]
 weight = 3
 date = "2017-11-12"
 lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
-### jiraGetRemoteIssueLink
+### jiraGetIssueRemoteLink
 
 This step queries a particular remote link of an issue.
 
@@ -36,7 +36,7 @@ This step queries a particular remote link of an issue.
     ```groovy
     node {
       stage('JIRA') {
-        def issueLink = jiraGetRemoteIssueLink idOrKey: 'TEST-27', linkId: '10000'
+        def issueLink = jiraGetIssueRemoteLink idOrKey: 'TEST-27', linkId: '10000'
         echo issueLink.data.toString()
       }
     }
@@ -47,7 +47,7 @@ This step queries a particular remote link of an issue.
     node {
       stage('JIRA') {
         withEnv(['JIRA_SITE=LOCAL']) {
-          def issueLink = jiraGetRemoteIssueLink idOrKey: 'TEST-27', linkId: '10000'
+          def issueLink = jiraGetIssueRemoteLink idOrKey: 'TEST-27', linkId: '10000'
           echo issueLink.data.toString()
         }
       }
@@ -56,6 +56,6 @@ This step queries a particular remote link of an issue.
 * Without environment variables.
 
     ```groovy
-    def issueLink = jiraGetRemoteIssueLink idOrKey: 'TEST-27', linkId: '10000', site: 'LOCAL', failOnError: false
+    def issueLink = jiraGetIssueRemoteLink idOrKey: 'TEST-27', linkId: '10000', site: 'LOCAL', failOnError: false
     echo issueLink.data.toString()
     ```
