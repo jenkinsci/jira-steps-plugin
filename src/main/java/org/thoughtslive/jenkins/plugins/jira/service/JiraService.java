@@ -8,21 +8,26 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-
+import hudson.ProxyConfiguration;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.ProxySelector;
-import java.net.URI;
 import java.net.SocketAddress;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import hudson.ProxyConfiguration;
 import jenkins.model.Jenkins;
-import okhttp3.*;
+import okhttp3.Authenticator;
+import okhttp3.ConnectionPool;
+import okhttp3.Credentials;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
@@ -45,40 +50,20 @@ public class JiraService {
 
     final ConnectionPool CONNECTION_POOL = new ConnectionPool(5, 60, TimeUnit.SECONDS);
 
-    OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder()
+    OkHttpClient.Builder okHttpClientBuilder =
+        new OkHttpClient.Builder()
             .connectTimeout(jiraSite.getTimeout(), TimeUnit.MILLISECONDS)
             .readTimeout(jiraSite.getReadTimeout(), TimeUnit.MILLISECONDS)
             .connectionPool(CONNECTION_POOL)
-            .retryOnConnectionFailure(true).addInterceptor(new SigningInterceptor(jiraSite));
-
+            .retryOnConnectionFailure(true)
+            .addInterceptor(new SigningInterceptor(jiraSite));
 
     if (Jenkins.getInstanceOrNull() != null) {
       ProxyConfiguration proxyConfiguration = Jenkins.get().proxy;
       if (proxyConfiguration != null) {
-          InetSocketAddress proxyAddr = new InetSocketAddress(proxyConfiguration.name, proxyConfiguration.port);
-          Authenticator proxyAuthenticator = (route, response) -> {
-              String credential = Credentials.basic(proxyConfiguration.getUserName(), proxyConfiguration.getPassword());
-              return response.request().newBuilder()
-                      .header("Proxy-Authorization", credential)
-                      .build();
-          };
-          ProxySelector proxySelector = new ProxySelector() {
-              @Override
-              public List<Proxy> select(final URI uri) {
-                  boolean isNoProxyHost = proxyConfiguration.getNoProxyHostPatterns().stream()
-                          .anyMatch(p -> p.matcher(uri.getHost()).matches());
-                  List<Proxy> proxyList = new ArrayList<>();
-                  proxyList.add( isNoProxyHost ? Proxy.NO_PROXY : new Proxy(Proxy.Type.HTTP, proxyAddr));
-                  return proxyList;
-              }
 
-              @Override
-              public void connectFailed(URI uri, SocketAddress arg, IOException ex) {
-                  throw new RuntimeException(ex);
-              }
-          };
-          okHttpClientBuilder.proxySelector(proxySelector)
-                  .proxyAuthenticator(proxyAuthenticator);
+        addProxyAuthentication(okHttpClientBuilder, proxyConfiguration);
+        addProxySelector(okHttpClientBuilder, proxyConfiguration);
       }
     }
 
@@ -86,10 +71,57 @@ public class JiraService {
 
     final ObjectMapper mapper = new ObjectMapper();
     mapper.registerModule(new JodaModule());
-    this.jiraEndPoints = new Retrofit.Builder().baseUrl(this.jiraSite.getUrl().toString())
-        .addConverterFactory(JacksonConverterFactory.create(mapper))
-        .addCallAdapterFactory(RxJavaCallAdapterFactory.create()).client(httpClient).build()
-        .create(JiraEndPoints.class);
+    this.jiraEndPoints =
+        new Retrofit.Builder()
+            .baseUrl(this.jiraSite.getUrl().toString())
+            .addConverterFactory(JacksonConverterFactory.create(mapper))
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .client(httpClient)
+            .build()
+            .create(JiraEndPoints.class);
+  }
+
+  private void addProxySelector(OkHttpClient.Builder okHttpClientBuilder,
+      ProxyConfiguration proxyConfiguration) {
+    InetSocketAddress proxyAddr =
+        new InetSocketAddress(proxyConfiguration.name, proxyConfiguration.port);
+    ProxySelector proxySelector =
+        new ProxySelector() {
+          @Override
+          public List<Proxy> select(final URI uri) {
+            boolean isNoProxyHost =
+                proxyConfiguration.getNoProxyHostPatterns().stream()
+                    .anyMatch(p -> p.matcher(uri.getHost()).matches());
+            List<Proxy> proxyList = new ArrayList<>();
+            proxyList.add(
+                isNoProxyHost ? Proxy.NO_PROXY : new Proxy(Proxy.Type.HTTP, proxyAddr));
+            return proxyList;
+          }
+
+          @Override
+          public void connectFailed(URI uri, SocketAddress arg, IOException ex) {
+            throw new RuntimeException(ex);
+          }
+        };
+    okHttpClientBuilder.proxySelector(proxySelector);
+  }
+
+  private void addProxyAuthentication(OkHttpClient.Builder okHttpClientBuilder,
+      ProxyConfiguration proxyConfiguration) {
+    if (proxyConfiguration.getUserName() != null) {
+      Authenticator proxyAuthenticator =
+          (route, response) -> {
+            String credential =
+                Credentials.basic(
+                    proxyConfiguration.getUserName(), proxyConfiguration.getPassword());
+            return response
+                .request()
+                .newBuilder()
+                .header("Proxy-Authorization", credential)
+                .build();
+          };
+      okHttpClientBuilder.proxyAuthenticator(proxyAuthenticator);
+    }
   }
 
   /**
@@ -184,8 +216,8 @@ public class JiraService {
     }
   }
 
-  public ResponseData<Object> updateIssue(final String issueIdOrKey, final Object issue,
-      final Map<String, String> queryParams) {
+  public ResponseData<Object> updateIssue(
+      final String issueIdOrKey, final Object issue, final Map<String, String> queryParams) {
     try {
       return parseResponse(jiraEndPoints.updateIssue(issueIdOrKey, issue, queryParams).execute());
     } catch (Exception e) {
@@ -195,12 +227,9 @@ public class JiraService {
 
   public ResponseData<Void> assignIssue(final String issueIdorKey, final String userName) {
     try {
-      Map input = Maps.newHashMap();
+      Map<String,String> input = Maps.newHashMap();
       input.put("name", userName);
-      return parseResponse(
-          jiraEndPoints
-              .assignIssue(issueIdorKey, input)
-              .execute());
+      return parseResponse(jiraEndPoints.assignIssue(issueIdorKey, input).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
@@ -224,18 +253,16 @@ public class JiraService {
 
   public ResponseData<Object> addComment(final String issueIdorKey, final Object input) {
     try {
-      return parseResponse(jiraEndPoints
-          .addComment(issueIdorKey, input).execute());
+      return parseResponse(jiraEndPoints.addComment(issueIdorKey, input).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
   }
 
-  public ResponseData<Object> updateComment(final String issueIdorKey, final String commentId,
-      final Object input) {
+  public ResponseData<Object> updateComment(
+      final String issueIdorKey, final String commentId, final Object input) {
     try {
-      return parseResponse(
-          jiraEndPoints.updateComment(issueIdorKey, commentId, input).execute());
+      return parseResponse(jiraEndPoints.updateComment(issueIdorKey, commentId, input).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
@@ -283,20 +310,20 @@ public class JiraService {
 
   public ResponseData<Void> addIssueWatcher(final String issueIdorKey, final String userName) {
     try {
-      return parseResponse(jiraEndPoints
-          .addIssueWatcher(issueIdorKey, userName).execute());
+      return parseResponse(jiraEndPoints.addIssueWatcher(issueIdorKey, userName).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
   }
 
-  public ResponseData<Object> searchIssues(final String jql, final int startAt,
-      final int maxResults, final Object fields) {
+  public ResponseData<Object> searchIssues(
+      final String jql, final int startAt, final int maxResults, final Object fields) {
     try {
-      ImmutableMap.Builder<Object, Object> paramsMap = ImmutableMap.builder()
-          .put("jql", jql)
-          .put("startAt", startAt)
-          .put("maxResults", maxResults);
+      ImmutableMap.Builder<Object, Object> paramsMap =
+          ImmutableMap.builder()
+              .put("jql", jql)
+              .put("startAt", startAt)
+              .put("maxResults", maxResults);
 
       if (fields != null) {
         paramsMap.put("fields", fields);
@@ -397,22 +424,29 @@ public class JiraService {
     }
   }
 
-  public ResponseData<Void> linkIssues(final String name, final String inwardIssueKey,
-      final String outwardIssueKey, final String comment) {
+  public ResponseData<Void> linkIssues(
+      final String name,
+      final String inwardIssueKey,
+      final String outwardIssueKey,
+      final String comment) {
     Object linkComment = null;
     Object issueLink = null;
     if (!empty(comment)) {
       linkComment = ImmutableMap.builder().put("body", comment).build();
-      issueLink = ImmutableMap.builder()
-          .put("type", ImmutableMap.builder().put("name", name).build())
-          .put("comment", linkComment)
-          .put("inwardIssue", ImmutableMap.builder().put("key", inwardIssueKey).build())
-          .put("outwardIssue", ImmutableMap.builder().put("key", outwardIssueKey).build()).build();
+      issueLink =
+          ImmutableMap.builder()
+              .put("type", ImmutableMap.builder().put("name", name).build())
+              .put("comment", linkComment)
+              .put("inwardIssue", ImmutableMap.builder().put("key", inwardIssueKey).build())
+              .put("outwardIssue", ImmutableMap.builder().put("key", outwardIssueKey).build())
+              .build();
     } else {
-      issueLink = ImmutableMap.builder()
-          .put("type", ImmutableMap.builder().put("name", name).build())
-          .put("inwardIssue", ImmutableMap.builder().put("key", inwardIssueKey).build())
-          .put("outwardIssue", ImmutableMap.builder().put("key", outwardIssueKey).build()).build();
+      issueLink =
+          ImmutableMap.builder()
+              .put("type", ImmutableMap.builder().put("name", name).build())
+              .put("inwardIssue", ImmutableMap.builder().put("key", inwardIssueKey).build())
+              .put("outwardIssue", ImmutableMap.builder().put("key", outwardIssueKey).build())
+              .build();
     }
 
     try {
@@ -471,8 +505,8 @@ public class JiraService {
     }
   }
 
-  public ResponseData<Object> userSearch(final String userName, final int startAt,
-      final int maxResults) {
+  public ResponseData<Object> userSearch(
+      final String userName, final int startAt, final int maxResults) {
     try {
       return parseResponse(jiraEndPoints.userSearch(userName, startAt, maxResults).execute());
     } catch (Exception e) {
@@ -480,25 +514,29 @@ public class JiraService {
     }
   }
 
-  public ResponseData<Object> assignableUserSearch(final String userName, final String project,
-      final String issueKey, final int startAt,
+  public ResponseData<Object> assignableUserSearch(
+      final String userName,
+      final String project,
+      final String issueKey,
+      final int startAt,
       final int maxResults) {
     try {
       return parseResponse(
-          jiraEndPoints.assignableUserSearch(userName, project, issueKey, startAt, maxResults)
+          jiraEndPoints
+              .assignableUserSearch(userName, project, issueKey, startAt, maxResults)
               .execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
   }
 
-  public ResponseData<Object> uploadAttachment(final String issueIdOrKey, final String fileName,
-      final byte[] bytes) {
+  public ResponseData<Object> uploadAttachment(
+      final String issueIdOrKey, final String fileName, final byte[] bytes) {
     try {
       RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), bytes);
 
-      MultipartBody.Part multipartBody = MultipartBody.Part
-          .createFormData("file", fileName, requestFile);
+      MultipartBody.Part multipartBody =
+          MultipartBody.Part.createFormData("file", fileName, requestFile);
       return parseResponse(jiraEndPoints.uploadAttachment(issueIdOrKey, multipartBody).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
