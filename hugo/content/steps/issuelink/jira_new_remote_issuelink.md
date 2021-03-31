@@ -1,13 +1,13 @@
 +++
-title = "NewRemoteIssueLink"
-description = "More about jiraNewRemoteIssueLink step."
+title = "NewIssueRemoteLink"
+description = "More about jiraNewIssueRemoteLink step."
 tags = ["steps", "issue", "issuelink"]
 weight = 5
 date = "2017-11-12"
 lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
-### jiraNewRemoteIssueLink
+### jiraNewIssueRemoteLink
 
 This step creates a new remote link to a particular issue.
 
@@ -47,7 +47,7 @@ It supports all the fields that any jira instance supports including custom fiel
                            object: [url: "http://www.mycompany.com/support?id=1",
                                     title: "MYTEST-111"]]
 
-        def issueLink = jiraNewRemoteIssueLink idOrKey: 'TEST-27', remoteLink: remoteLink
+        def issueLink = jiraNewIssueRemoteLink idOrKey: 'TEST-27', remoteLink: remoteLink
         echo issueLink.data.toString()
       }
     }
@@ -65,7 +65,7 @@ It supports all the fields that any jira instance supports including custom fiel
                              object: [url: "http://www.mycompany.com/support?id=1",
                                       title: "MYTEST-111"]]
 
-          def issueLink = jiraNewRemoteIssueLink idOrKey: 'TEST-27', remoteLink: remoteLink
+          def issueLink = jiraNewIssueRemoteLink idOrKey: 'TEST-27', remoteLink: remoteLink
           echo issueLink.data.toString()
         }
       }
@@ -81,6 +81,6 @@ It supports all the fields that any jira instance supports including custom fiel
                        object: [url: "http://www.mycompany.com/support?id=1",
                                 title: "MYTEST-111"]]
 
-    def issueLink = jiraNewRemoteIssueLink idOrKey: 'TEST-27', remoteLink: remoteLink, site: 'LOCAL', failOnError: false
+    def issueLink = jiraNewIssueRemoteLink idOrKey: 'TEST-27', remoteLink: remoteLink, site: 'LOCAL', failOnError: false
     echo issueLink.data.toString()
     ```

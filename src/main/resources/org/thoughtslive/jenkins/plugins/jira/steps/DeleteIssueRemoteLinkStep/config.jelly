@@ -21,7 +21,7 @@
   <f:block>
     <p>See <a
       href="https://jenkinsci.github.io/jira-steps-plugin/steps/issuelink/jira_delete_remote_issuelink/"
-      target="_blank">jiraDeleteRemoteIssueLink
+      target="_blank">jiraDeleteIssueRemoteLink
     </a> for more information.
     </p>
   </f:block>
