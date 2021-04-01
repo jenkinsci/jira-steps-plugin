@@ -70,7 +70,7 @@ public class AssignIssueStepTest {
     doNothing().when(printStreamMock).println();
 
     final ResponseDataBuilder<Void> builder = ResponseData.builder();
-    when(jiraServiceMock.assignIssue(any(), any()))
+    when(jiraServiceMock.assignIssue(any(), any(), any()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
 
     when(contextMock.get(Run.class)).thenReturn(runMock);
@@ -99,7 +99,7 @@ public class AssignIssueStepTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).assignIssue("TEST-1", null);
+    verify(jiraServiceMock, times(1)).assignIssue("TEST-1", null, null);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 
@@ -112,7 +112,7 @@ public class AssignIssueStepTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).assignIssue("TEST-1", null);
+    verify(jiraServiceMock, times(1)).assignIssue("TEST-1", null, null);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 
@@ -125,7 +125,7 @@ public class AssignIssueStepTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).assignIssue("TEST-1", "testUser");
+    verify(jiraServiceMock, times(1)).assignIssue("TEST-1", "testUser", null);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 
@@ -138,7 +138,7 @@ public class AssignIssueStepTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).assignIssue("TEST-1", "testUser");
+    verify(jiraServiceMock, times(1)).assignIssue("TEST-1", null, "testUser");
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

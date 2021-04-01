@@ -193,10 +193,15 @@ public class JiraService {
     }
   }
 
-  public ResponseData<Void> assignIssue(final String issueIdorKey, final String userName) {
+  public ResponseData<Void> assignIssue(final String issueIdorKey, final String userName,
+      final String accountId) {
     try {
       Map input = Maps.newHashMap();
-      input.put("name", userName);
+      if (userName != null) {
+          input.put("name", userName);
+      } else {
+          input.put("accountId", accountId);
+      }
       return parseResponse(
           jiraEndPoints
               .assignIssue(issueIdorKey, input)
