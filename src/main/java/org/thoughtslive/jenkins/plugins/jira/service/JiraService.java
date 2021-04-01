@@ -471,10 +471,10 @@ public class JiraService {
     }
   }
 
-  public ResponseData<Object> userSearch(final String userName, final int startAt,
+  public ResponseData<Object> userSearch(final String queryStr, final int startAt,
       final int maxResults) {
     try {
-      return parseResponse(jiraEndPoints.userSearch(userName, startAt, maxResults).execute());
+      return parseResponse(jiraEndPoints.userSearch(queryStr, startAt, maxResults).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
