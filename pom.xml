@@ -20,6 +20,8 @@
     <!-- Be careful of upgrading this to later versions, cause pipeline plugins depend on this version. -->
     <jackson2.version>2.10.3</jackson2.version>
     <retrofit2.version>2.8.1</retrofit2.version>
+    <okhttp.version>4.6.0</okhttp.version>
+    <kotlinstdlib.version>1.3.72</kotlinstdlib.version>
     <lombok.version>1.18.12</lombok.version>
     <signpost.oauth.version>1.2.1.2</signpost.oauth.version>
     <google.oauth.version>1.22.0</google.oauth.version>
@@ -132,6 +134,37 @@
       <groupId>com.squareup.retrofit2</groupId>
       <artifactId>adapter-rxjava</artifactId>
       <version>${retrofit2.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>${okhttp.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib-common</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <version>${kotlinstdlib.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib-common</artifactId>
+      <version>${kotlinstdlib.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>findbugs-annotations</artifactId>
+      <version>3.0.1</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.squareup.retrofit2</groupId>
