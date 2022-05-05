@@ -76,7 +76,9 @@ public class AssignIssueStep extends BasicJiraStep {
       ResponseData<Void> response = verifyInput();
 
       if (response == null) {
-        final String userName = Util.fixEmpty(step.getUserName()) == null ? Util.fixEmpty(step.getAccountId()) : Util.fixEmpty(step.getUserName());
+        final String userName =
+            Util.fixEmpty(step.getUserName()) == null ? Util.fixEmpty(step.getAccountId())
+                : Util.fixEmpty(step.getUserName());
         logger.println("JIRA: Site - " + siteName + " - Assigning issue: " + step.getIdOrKey()
             + " to: " + userName);
         response = jiraService.assignIssue(step.getIdOrKey(), userName);

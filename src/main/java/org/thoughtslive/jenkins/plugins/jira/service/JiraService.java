@@ -8,21 +8,26 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-
+import hudson.ProxyConfiguration;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.ProxySelector;
-import java.net.URI;
 import java.net.SocketAddress;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import hudson.ProxyConfiguration;
 import jenkins.model.Jenkins;
-import okhttp3.*;
+import okhttp3.Authenticator;
+import okhttp3.ConnectionPool;
+import okhttp3.Credentials;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.login.SigningInterceptor;
@@ -46,39 +51,40 @@ public class JiraService {
     final ConnectionPool CONNECTION_POOL = new ConnectionPool(5, 60, TimeUnit.SECONDS);
 
     OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder()
-            .connectTimeout(jiraSite.getTimeout(), TimeUnit.MILLISECONDS)
-            .readTimeout(jiraSite.getReadTimeout(), TimeUnit.MILLISECONDS)
-            .connectionPool(CONNECTION_POOL)
-            .retryOnConnectionFailure(true).addInterceptor(new SigningInterceptor(jiraSite));
-
+        .connectTimeout(jiraSite.getTimeout(), TimeUnit.MILLISECONDS)
+        .readTimeout(jiraSite.getReadTimeout(), TimeUnit.MILLISECONDS)
+        .connectionPool(CONNECTION_POOL)
+        .retryOnConnectionFailure(true).addInterceptor(new SigningInterceptor(jiraSite));
 
     if (Jenkins.getInstanceOrNull() != null) {
       ProxyConfiguration proxyConfiguration = Jenkins.get().proxy;
       if (proxyConfiguration != null) {
-          InetSocketAddress proxyAddr = new InetSocketAddress(proxyConfiguration.name, proxyConfiguration.port);
-          Authenticator proxyAuthenticator = (route, response) -> {
-              String credential = Credentials.basic(proxyConfiguration.getUserName(), proxyConfiguration.getPassword());
-              return response.request().newBuilder()
-                      .header("Proxy-Authorization", credential)
-                      .build();
-          };
-          ProxySelector proxySelector = new ProxySelector() {
-              @Override
-              public List<Proxy> select(final URI uri) {
-                  boolean isNoProxyHost = proxyConfiguration.getNoProxyHostPatterns().stream()
-                          .anyMatch(p -> p.matcher(uri.getHost()).matches());
-                  List<Proxy> proxyList = new ArrayList<>();
-                  proxyList.add( isNoProxyHost ? Proxy.NO_PROXY : new Proxy(Proxy.Type.HTTP, proxyAddr));
-                  return proxyList;
-              }
+        InetSocketAddress proxyAddr = new InetSocketAddress(proxyConfiguration.name,
+            proxyConfiguration.port);
+        Authenticator proxyAuthenticator = (route, response) -> {
+          String credential = Credentials.basic(proxyConfiguration.getUserName(),
+              proxyConfiguration.getPassword());
+          return response.request().newBuilder()
+              .header("Proxy-Authorization", credential)
+              .build();
+        };
+        ProxySelector proxySelector = new ProxySelector() {
+          @Override
+          public List<Proxy> select(final URI uri) {
+            boolean isNoProxyHost = proxyConfiguration.getNoProxyHostPatterns().stream()
+                .anyMatch(p -> p.matcher(uri.getHost()).matches());
+            List<Proxy> proxyList = new ArrayList<>();
+            proxyList.add(isNoProxyHost ? Proxy.NO_PROXY : new Proxy(Proxy.Type.HTTP, proxyAddr));
+            return proxyList;
+          }
 
-              @Override
-              public void connectFailed(URI uri, SocketAddress arg, IOException ex) {
-                  throw new RuntimeException(ex);
-              }
-          };
-          okHttpClientBuilder.proxySelector(proxySelector)
-                  .proxyAuthenticator(proxyAuthenticator);
+          @Override
+          public void connectFailed(URI uri, SocketAddress arg, IOException ex) {
+            throw new RuntimeException(ex);
+          }
+        };
+        okHttpClientBuilder.proxySelector(proxySelector)
+            .proxyAuthenticator(proxyAuthenticator);
       }
     }
 

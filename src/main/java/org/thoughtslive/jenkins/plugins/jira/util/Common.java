@@ -39,7 +39,7 @@ public class Common {
   /**
    * Write a message to the given print stream.
    *
-   * @param logger {@link PrintStream}
+   * @param logger  {@link PrintStream}
    * @param message to log.
    */
   public static void log(final PrintStream logger, final Object message) {
@@ -55,7 +55,7 @@ public class Common {
   /**
    * Returns build number from the given Environemnt Vars.
    *
-   * @param logger {@link PrintStream}
+   * @param logger  {@link PrintStream}
    * @param envVars {@link EnvVars}
    * @return build number of current job.
    */
