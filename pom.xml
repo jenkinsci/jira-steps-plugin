@@ -1,43 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>4.1</version>
+    <groupId>org.jenkins-ci.plugins</groupId>
+    <version>4.40</version>
   </parent>
   <artifactId>jira-steps</artifactId>
-  <version>1.6.1-SNAPSHOT</version>
+  <version>${revision}.${changelist}</version>
   <packaging>hpi</packaging>
   <name>JIRA Pipeline Steps</name>
-  <description>JIRA Pipeline Steps</description>
   <inceptionYear>2016</inceptionYear>
-  <url>https://wiki.jenkins-ci.org/display/JENKINS/JIRA+Steps+Plugin</url>
+  <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
   <properties>
+    <revision>2.0</revision>
+    <changelist>999999-SNAPSHOT</changelist>
     <java.level>8</java.level>
-    <jenkins.version>2.164.3</jenkins.version>
-    <pipeline.version>2.5</pipeline.version>
-    <!-- Be careful of upgrading this to later versions, cause pipeline plugins depend on this version. -->
-    <jackson2.version>2.10.3</jackson2.version>
-    <retrofit2.version>2.8.1</retrofit2.version>
-    <lombok.version>1.18.12</lombok.version>
-    <signpost.oauth.version>1.2.1.2</signpost.oauth.version>
+    <jenkins.version>2.332.2</jenkins.version>
+    <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
+    <assertj-core.version>3.22.0</assertj-core.version>
     <google.oauth.version>1.22.0</google.oauth.version>
-    <wiremock.version>2.26.3</wiremock.version>
-    <assertj-core.version>3.6.1</assertj-core.version>
-    <assertj-assertions-generator-maven-plugin.version>2.0.0</assertj-assertions-generator-maven-plugin.version>
+    <lombok.version>1.18.24</lombok.version>
+    <retrofit2.version>2.9.0</retrofit2.version>
+    <signpost.oauth.version>2.1.1</signpost.oauth.version>
   </properties>
+  <licenses>
+    <license>
+      <distribution>repo</distribution>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
   <organization>
     <name>ThoughtsLive</name>
     <url>https://nrayapati.github.io/</url>
   </organization>
-  <licenses>
-    <license>
-      <name>Apache License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
 
   <developers>
     <developer>
@@ -48,23 +46,12 @@
     </developer>
   </developers>
 
-  <scm>
-    <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
-    <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
-    <tag>HEAD</tag>
+  <scm child.scm.connection.inherit.append.path="false" child.scm.developerConnection.inherit.append.path="false" child.scm.url.inherit.append.path="false">
+    <connection>scm:git:https://github.com/${gitHubRepo}</connection>
+    <developerConnection>scm:git:https://github.com/${gitHubRepo}</developerConnection>
+    <tag>${scmTag}</tag>
+    <url>https://github.com/${gitHubRepo}</url>
   </scm>
-
-  <distributionManagement>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/releases</url>
-    </repository>
-    <snapshotRepository>
-      <id>maven.jenkins-ci.org</id>
-      <url>https://repo.jenkins-ci.org/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
 
   <repositories>
     <repository>
@@ -72,7 +59,6 @@
       <url>https://repo.jenkins-ci.org/public/</url>
     </repository>
   </repositories>
-
   <pluginRepositories>
     <pluginRepository>
       <id>repo.jenkins-ci.org</id>
@@ -83,158 +69,93 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <artifactId>bom-2.332.x</artifactId>
         <groupId>io.jenkins.tools.bom</groupId>
-        <artifactId>bom-2.164.x</artifactId>
-        <version>9</version>
         <scope>import</scope>
         <type>pom</type>
-      </dependency>
-      <dependency>
-          <groupId>commons-codec</groupId>
-          <artifactId>commons-codec</artifactId>
-          <version>1.10</version>
-      </dependency>
-      <dependency>
-          <groupId>org.apache.commons</groupId>
-          <artifactId>commons-lang3</artifactId>
-          <version>3.9</version>
-      </dependency>
-      <dependency>
-          <groupId>org.hamcrest</groupId>
-          <artifactId>hamcrest-core</artifactId>
-          <version>2.2</version>
-      </dependency>
-      <!-- required by wiremock -->
-      <dependency>
-          <groupId>com.google.guava</groupId>
-          <artifactId>guava</artifactId>
-          <version>20.0</version>
-      </dependency>
-      <dependency>
-          <groupId>org.eclipse.jetty</groupId>
-          <artifactId>jetty-servlets</artifactId>
-          <version>9.4.28.v20200408</version>
+        <version>1342.v729ca_3818e88</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
 
   <dependencies>
     <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
       <artifactId>workflow-step-api</artifactId>
+      <groupId>org.jenkins-ci.plugins.workflow</groupId>
     </dependency>
     <dependency>
-      <groupId>com.fasterxml.jackson.datatype</groupId>
-      <artifactId>jackson-datatype-joda</artifactId>
-      <version>${jackson2.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.squareup.retrofit2</groupId>
-      <artifactId>adapter-rxjava</artifactId>
-      <version>${retrofit2.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.squareup.retrofit2</groupId>
-      <artifactId>converter-jackson</artifactId>
-      <version>${retrofit2.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>jackson2-api</artifactId>
-      <version>${jackson2.version}</version>
+      <groupId>org.jenkins-ci.plugins</groupId>
     </dependency>
     <dependency>
-      <groupId>oauth.signpost</groupId>
+      <artifactId>credentials</artifactId>
+      <groupId>org.jenkins-ci.plugins</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>script-security</artifactId>
+      <groupId>org.jenkins-ci.plugins</groupId>
+    </dependency>
+
+    <dependency>
+      <artifactId>jackson-datatype-joda</artifactId>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <version>2.13.2</version>
+    </dependency>
+    <dependency>
+      <artifactId>adapter-rxjava</artifactId>
+      <groupId>com.squareup.retrofit2</groupId>
+      <version>${retrofit2.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>converter-jackson</artifactId>
+      <groupId>com.squareup.retrofit2</groupId>
+      <version>${retrofit2.version}</version>
+    </dependency>
+    <dependency>
       <artifactId>signpost-core</artifactId>
+      <groupId>oauth.signpost</groupId>
       <version>${signpost.oauth.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.google.oauth-client</groupId>
       <artifactId>google-oauth-client</artifactId>
-      <version>${google.oauth.version}</version>
       <exclusions>
         <exclusion>
-          <groupId>org.apache.httpcomponents</groupId>
           <artifactId>httpclient</artifactId>
+          <groupId>org.apache.httpcomponents</groupId>
         </exclusion>
       </exclusions>
+      <groupId>com.google.oauth-client</groupId>
+      <version>${google.oauth.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>${lombok.version}</version>
+      <groupId>org.projectlombok</groupId>
       <scope>provided</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.jenkins-ci.plugins</groupId>
-        <artifactId>credentials</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.jenkins-ci.plugins</groupId>
-        <artifactId>script-security</artifactId>
+      <version>${lombok.version}</version>
     </dependency>
 
     <!-- Test Dependencies -->
     <dependency>
+      <artifactId>mockito-inline</artifactId>
       <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.powermock</groupId>
-      <artifactId>powermock-module-junit4</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.powermock</groupId>
-      <artifactId>powermock-api-mockito2</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
       <artifactId>junit</artifactId>
+      <groupId>junit</groupId>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.github.tomakehurst</groupId>
-      <artifactId>wiremock</artifactId>
-      <version>${wiremock.version}</version>
-      <scope>test</scope>
-      <exclusions>
-        <!-- excluded because overrides managed dependencies in jenkins-core -->
-        <exclusion>
-          <groupId>org.eclipse.jetty</groupId>
-          <artifactId>jetty-server</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.eclipse.jetty</groupId>
-          <artifactId>jetty-servlet</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.eclipse.jetty</groupId>
-          <artifactId>jetty-webapp</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.fasterxml.jackson.core</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.antlr</groupId>
-          <artifactId>antlr4-runtime</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
+      <groupId>org.assertj</groupId>
       <version>${assertj-core.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <build>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.gmavenplus</groupId>
         <artifactId>gmavenplus-plugin</artifactId>
         <executions>
           <execution>
@@ -250,33 +171,15 @@
             </goals>
           </execution>
         </executions>
+        <groupId>org.codehaus.gmavenplus</groupId>
       </plugin>
       <plugin>
-        <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
         <configuration>
           <compatibleSinceVersion>1.5.0</compatibleSinceVersion>
         </configuration>
+        <groupId>org.jenkins-ci.tools</groupId>
       </plugin>
     </plugins>
   </build>
-  <profiles>
-    <profile>
-      <id>doclint-java8-disable</id>
-      <activation>
-        <jdk>[1.8,)</jdk>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <configuration>
-              <additionalparam>-Xdoclint:none</additionalparam>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 </project>

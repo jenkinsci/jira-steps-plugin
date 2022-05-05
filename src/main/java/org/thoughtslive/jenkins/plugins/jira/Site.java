@@ -20,16 +20,15 @@ import hudson.util.FormValidation;
 import hudson.util.FormValidation.Kind;
 import hudson.util.ListBoxModel;
 import hudson.util.Secret;
-import jenkins.model.Jenkins;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
+import jenkins.model.Jenkins;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.val;
 import lombok.extern.java.Log;
 import org.acegisecurity.Authentication;
 import org.apache.commons.lang.StringUtils;
@@ -183,7 +182,8 @@ public class Site extends AbstractDescribableImpl<Site> {
         if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
           return FormValidation.ok();
         }
-      } else if (!item.hasPermission(Item.EXTENDED_READ) && !item.hasPermission(CredentialsProvider.USE_ITEM)) {
+      } else if (!item.hasPermission(Item.EXTENDED_READ) && !item.hasPermission(
+          CredentialsProvider.USE_ITEM)) {
         return FormValidation.ok();
       }
       if (StringUtils.isBlank(credentialsId)) {
@@ -191,7 +191,9 @@ public class Site extends AbstractDescribableImpl<Site> {
       }
 
       List<DomainRequirement> domainRequirements = URIRequirementBuilder.fromUri(url).build();
-      if (CredentialsProvider.listCredentials(StandardUsernameCredentials.class, item, getAuthentication(item), domainRequirements, CredentialsMatchers.withId(credentialsId)).isEmpty()) {
+      if (CredentialsProvider.listCredentials(StandardUsernameCredentials.class, item,
+              getAuthentication(item), domainRequirements, CredentialsMatchers.withId(credentialsId))
+          .isEmpty()) {
         return FormValidation.error(Messages.Site_invalidCredentialsId());
       }
       return FormValidation.ok();
@@ -209,7 +211,8 @@ public class Site extends AbstractDescribableImpl<Site> {
           return result.includeCurrentValue(credentialsId);
         }
       } else {
-        if (!item.hasPermission(Item.EXTENDED_READ) && !item.hasPermission(CredentialsProvider.USE_ITEM)) {
+        if (!item.hasPermission(Item.EXTENDED_READ) && !item.hasPermission(
+            CredentialsProvider.USE_ITEM)) {
           return result.includeCurrentValue(credentialsId);
         }
       }
@@ -233,9 +236,9 @@ public class Site extends AbstractDescribableImpl<Site> {
     }
 
     public FormValidation doValidateCredentials(@QueryParameter String url,
-                                                @QueryParameter String credentialsId,
-                                                @QueryParameter Integer timeout,
-                                                @QueryParameter Integer readTimeout) throws IOException {
+        @QueryParameter String credentialsId,
+        @QueryParameter Integer timeout,
+        @QueryParameter Integer readTimeout) throws IOException {
       FormValidation validation = doCheckUrl(url);
       if (validation.kind != Kind.OK) {
         return FormValidation.error(Messages.Site_emptyURL());
@@ -260,7 +263,8 @@ public class Site extends AbstractDescribableImpl<Site> {
         final ResponseData<Map<String, Object>> response = service.getServerInfo();
         if (response.isSuccessful()) {
           Map<String, Object> data = response.getData();
-          return FormValidation.ok(Messages.Site_testSuccess(data.get("serverTitle"), data.get("version")));
+          return FormValidation.ok(
+              Messages.Site_testSuccess(data.get("serverTitle"), data.get("version")));
         } else {
           return FormValidation.error(response.getError());
         }

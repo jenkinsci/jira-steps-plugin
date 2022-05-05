@@ -55,17 +55,21 @@ public class SigningInterceptor implements Interceptor {
     } else if (Site.LoginType.CREDENTIAL.name().equalsIgnoreCase(jiraSite.getLoginType())) {
       StandardUsernameCredentials credentialsId = null;
       // credentials is saved in global configuration, there is no context there during test connection so SYSTEM access is used
-      credentialsId = CredentialsProvider.lookupCredentials(StandardUsernameCredentials.class, Jenkins.get(), ACL.SYSTEM, Collections.emptyList()) //
+      credentialsId = CredentialsProvider.lookupCredentials(StandardUsernameCredentials.class,
+              Jenkins.get(), ACL.SYSTEM, Collections.emptyList()) //
           .stream() //
           .filter(c -> c.getId().equals(jiraSite.getCredentialsId())) //
           .findFirst() //
           .orElseThrow(() -> new IllegalStateException(Messages.Site_invalidCredentialsId()));
       String credentials = credentialsId.getUsername();
       if (credentialsId instanceof UsernamePasswordCredentialsImpl) {
-        credentials +=  ":" + ((UsernamePasswordCredentialsImpl) credentialsId).getPassword().getPlainText();
+        credentials +=
+            ":" + ((UsernamePasswordCredentialsImpl) credentialsId).getPassword().getPlainText();
       }
-      String encodedHeader = "Basic " + new String(Base64.getEncoder().encode(credentials.getBytes()));
-      Request requestWithAuthorization = chain.request().newBuilder().addHeader("Authorization", encodedHeader).build();
+      String encodedHeader =
+          "Basic " + new String(Base64.getEncoder().encode(credentials.getBytes()));
+      Request requestWithAuthorization = chain.request().newBuilder()
+          .addHeader("Authorization", encodedHeader).build();
       return chain.proceed(requestWithAuthorization);
     } else {
       throw new IOException("Invalid Login Type, this isn't expected.");

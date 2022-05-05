@@ -106,7 +106,9 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
       if (jiraService == null) {
         if (LoginType.CREDENTIAL.name().equals(site.getLoginType())) {
           // at build time use of credentials must be checked against the user who run the build, see https://plugins.jenkins.io/authorize-project
-          StandardUsernameCredentials credentialsId = CredentialsProvider.findCredentialById(site.getCredentialsId(), StandardUsernameCredentials.class, run, Collections.emptyList());
+          StandardUsernameCredentials credentialsId = CredentialsProvider.findCredentialById(
+              site.getCredentialsId(), StandardUsernameCredentials.class, run,
+              Collections.emptyList());
           if (credentialsId == null) {
             throw new AbortException(Messages.Site_invalidCredentialsId());
           }
