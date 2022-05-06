@@ -1,7 +1,7 @@
 package org.thoughtslive.jenkins.plugins.jira.login;
 
 import com.google.api.client.auth.oauth.OAuthRsaSigner;
-import com.google.api.client.repackaged.org.apache.commons.codec.binary.Base64;
+import com.google.api.client.util.Base64;
 import java.security.GeneralSecurityException;
 import java.security.KeyFactory;
 import java.security.spec.PKCS8EncodedKeySpec;
