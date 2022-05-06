@@ -7,7 +7,7 @@
     <groupId>org.jenkins-ci.plugins</groupId>
     <version>4.40</version>
   </parent>
-  <artifactId>jira-steps</artifactId>
+  <artifactId>jira-steps</artifactId> 
   <version>${revision}.${changelist}</version>
   <packaging>hpi</packaging>
   <name>JIRA Pipeline Steps</name>
@@ -117,6 +117,7 @@
       <version>${signpost.oauth.version}</version>
     </dependency>
     <dependency>
+      <groupId>com.google.oauth-client</groupId>
       <artifactId>google-oauth-client</artifactId>
       <exclusions>
         <exclusion>
@@ -124,7 +125,6 @@
           <groupId>org.apache.httpcomponents</groupId>
         </exclusion>
       </exclusions>
-      <groupId>com.google.oauth-client</groupId>
       <version>${google.oauth.version}</version>
     </dependency>
     <dependency>
