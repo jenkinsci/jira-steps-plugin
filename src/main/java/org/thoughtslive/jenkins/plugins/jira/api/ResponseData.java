@@ -31,4 +31,7 @@ public class ResponseData<T> implements Serializable {
 
   @Whitelisted
   private T data;
+
+  @Whitelisted
+  private String stacktrace;
 }
