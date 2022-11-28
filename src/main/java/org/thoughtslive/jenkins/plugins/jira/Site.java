@@ -5,9 +5,9 @@ import com.cloudbees.plugins.credentials.CredentialsMatchers;
 import com.cloudbees.plugins.credentials.CredentialsProvider;
 import com.cloudbees.plugins.credentials.common.StandardListBoxModel;
 import com.cloudbees.plugins.credentials.common.StandardUsernameCredentials;
+import com.cloudbees.plugins.credentials.common.UsernamePasswordCredentials;
 import com.cloudbees.plugins.credentials.domains.DomainRequirement;
 import com.cloudbees.plugins.credentials.domains.URIRequirementBuilder;
-import com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl;
 import hudson.Extension;
 import hudson.Util;
 import hudson.model.AbstractDescribableImpl;
@@ -220,7 +220,7 @@ public class Site extends AbstractDescribableImpl<Site> {
       Authentication authentication = getAuthentication(item);
       List<DomainRequirement> domainRequirements = URIRequirementBuilder.fromUri(url).build();
       CredentialsMatcher always = CredentialsMatchers.always();
-      Class<? extends StandardUsernameCredentials> type = UsernamePasswordCredentialsImpl.class;
+      Class type = UsernamePasswordCredentials.class;
 
       result.includeEmptyValue();
       if (item != null) {

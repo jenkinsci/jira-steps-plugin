@@ -2,7 +2,7 @@ package org.thoughtslive.jenkins.plugins.jira.login;
 
 import com.cloudbees.plugins.credentials.CredentialsProvider;
 import com.cloudbees.plugins.credentials.common.StandardUsernameCredentials;
-import com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl;
+import com.cloudbees.plugins.credentials.common.UsernamePasswordCredentials;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import hudson.security.ACL;
 import java.io.IOException;
@@ -62,9 +62,9 @@ public class SigningInterceptor implements Interceptor {
           .findFirst() //
           .orElseThrow(() -> new IllegalStateException(Messages.Site_invalidCredentialsId()));
       String credentials = credentialsId.getUsername();
-      if (credentialsId instanceof UsernamePasswordCredentialsImpl) {
+      if (credentialsId instanceof UsernamePasswordCredentials) {
         credentials +=
-            ":" + ((UsernamePasswordCredentialsImpl) credentialsId).getPassword().getPlainText();
+            ":" + ((UsernamePasswordCredentials) credentialsId).getPassword().getPlainText();
       }
       String encodedHeader =
           "Basic " + new String(Base64.getEncoder().encode(credentials.getBytes()));
