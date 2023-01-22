@@ -5,9 +5,9 @@
   <parent>
     <artifactId>plugin</artifactId>
     <groupId>org.jenkins-ci.plugins</groupId>
-    <version>4.50</version>
+    <version>4.53</version>
   </parent>
-  <artifactId>jira-steps</artifactId> 
+  <artifactId>jira-steps</artifactId>
   <version>${revision}.${changelist}</version>
   <packaging>hpi</packaging>
   <name>JIRA Pipeline Steps</name>
@@ -17,13 +17,14 @@
     <revision>2.0</revision>
     <changelist>999999-SNAPSHOT</changelist>
     <java.level>8</java.level>
-    <jenkins.version>2.332.2</jenkins.version>
+    <jenkins.version>2.361.1</jenkins.version>
     <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
     <assertj-core.version>3.23.1</assertj-core.version>
     <google.oauth.version>1.34.1</google.oauth.version>
     <lombok.version>1.18.24</lombok.version>
     <retrofit2.version>2.9.0</retrofit2.version>
     <signpost.oauth.version>2.1.1</signpost.oauth.version>
+    <maven.javadoc.skip>true</maven.javadoc.skip>
   </properties>
   <licenses>
     <license>
@@ -156,6 +157,7 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.codehaus.gmavenplus</groupId>
         <artifactId>gmavenplus-plugin</artifactId>
         <executions>
           <execution>
@@ -171,14 +173,13 @@
             </goals>
           </execution>
         </executions>
-        <groupId>org.codehaus.gmavenplus</groupId>
       </plugin>
       <plugin>
+        <groupId>org.jenkins-ci.tools</groupId>
         <artifactId>maven-hpi-plugin</artifactId>
         <configuration>
           <compatibleSinceVersion>1.5.0</compatibleSinceVersion>
         </configuration>
-        <groupId>org.jenkins-ci.tools</groupId>
       </plugin>
     </plugins>
   </build>
