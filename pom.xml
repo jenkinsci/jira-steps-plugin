@@ -156,6 +156,24 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok-maven-plugin</artifactId>
+        <version>${lombok.version}</version>
+        <configuration>
+          <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+          <outputDirectory>${delombok.output}</outputDirectory>
+          <addOutputDirectory>false</addOutputDirectory>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>delombok</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.codehaus.gmavenplus</groupId>
         <artifactId>gmavenplus-plugin</artifactId>
         <executions>
@@ -177,8 +195,8 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <configuration>
-          <sourcepath>${project.basedir}/src/main/java;${project.basedir}/target/generated-sources/annotations;${project.basedir}/target/generated-sources/groovy-stubs;${project.basedir}/target/generated-sources/localizer</sourcepath>
-          <additionalparam>-Xdoclint:none</additionalparam>
+          <sourcepath>${project.basedir}/src/main/java;${project.basedir}/target/generated-sources/annotations;${project.basedir}/target/generated-sources/groovy-stubs;${project.basedir}/target/generated-sources/localizer;${delombok.output}</sourcepath>
+          <doclint>none</doclint>
         </configuration>
       </plugin>
       <plugin>
