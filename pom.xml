@@ -24,6 +24,7 @@
     <lombok.version>1.18.24</lombok.version>
     <retrofit2.version>2.9.0</retrofit2.version>
     <signpost.oauth.version>2.1.1</signpost.oauth.version>
+    <maven.javadoc.skip>true</maven.javadoc.skip>
   </properties>
   <licenses>
     <license>
@@ -156,24 +157,6 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok-maven-plugin</artifactId>
-        <version>1.18.20.0</version>
-        <configuration>
-          <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
-          <outputDirectory>${delombok.output}</outputDirectory>
-          <addOutputDirectory>false</addOutputDirectory>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>delombok</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>org.codehaus.gmavenplus</groupId>
         <artifactId>gmavenplus-plugin</artifactId>
         <executions>
@@ -190,14 +173,6 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-          <sourcepath>${project.basedir}/src/main/java;${project.basedir}/target/generated-sources/annotations;${project.basedir}/target/generated-sources/groovy-stubs;${project.basedir}/target/generated-sources/localizer;${delombok.output}</sourcepath>
-          <doclint>none</doclint>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.jenkins-ci.tools</groupId>
