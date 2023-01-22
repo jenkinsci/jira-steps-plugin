@@ -7,7 +7,7 @@
     <groupId>org.jenkins-ci.plugins</groupId>
     <version>4.53</version>
   </parent>
-  <artifactId>jira-steps</artifactId> 
+  <artifactId>jira-steps</artifactId>
   <version>${revision}.${changelist}</version>
   <packaging>hpi</packaging>
   <name>JIRA Pipeline Steps</name>
@@ -172,6 +172,14 @@
           </execution>
         </executions>
         <groupId>org.codehaus.gmavenplus</groupId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <sourcepath>${project.basedir}/src/main/java;${project.basedir}/target/generated-sources/annotations;${project.basedir}/target/generated-sources/groovy-stubs</sourcepath>
+          <additionalparam>-Xdoclint:none</additionalparam>
+        </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-hpi-plugin</artifactId>
