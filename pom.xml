@@ -24,6 +24,7 @@
     <lombok.version>1.18.24</lombok.version>
     <retrofit2.version>2.9.0</retrofit2.version>
     <signpost.oauth.version>2.1.1</signpost.oauth.version>
+    <maven.javadoc.skip>true</maven.javadoc.skip>
   </properties>
   <licenses>
     <license>
