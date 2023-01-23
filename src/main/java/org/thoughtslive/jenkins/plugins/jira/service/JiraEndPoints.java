@@ -165,7 +165,7 @@ public interface JiraEndPoints {
 
   // Users
   @GET("rest/api/2/user/search")
-  Call<Object> userSearch(@Query("username") String userName, @Query("startAt") int startAt,
+  Call<Object> userSearch(@Query("query") String queryStr, @Query("startAt") int startAt,
       @Query("maxResults") int maxResults);
 
   @GET("rest/api/2/user/assignable/search")
