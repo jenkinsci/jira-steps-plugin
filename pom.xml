@@ -19,7 +19,7 @@
     <java.level>8</java.level>
     <jenkins.version>2.361.1</jenkins.version>
     <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
-    <assertj-core.version>3.23.1</assertj-core.version>
+    <assertj-core.version>3.24.1</assertj-core.version>
     <google.oauth.version>1.34.1</google.oauth.version>
     <lombok.version>1.18.24</lombok.version>
     <retrofit2.version>2.9.0</retrofit2.version>
