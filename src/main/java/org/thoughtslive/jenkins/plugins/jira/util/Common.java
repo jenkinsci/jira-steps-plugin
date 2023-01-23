@@ -3,6 +3,9 @@ package org.thoughtslive.jenkins.plugins.jira.util;
 import hudson.EnvVars;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
 import retrofit2.Response;
@@ -95,7 +98,8 @@ public class Common {
   public static <T> ResponseData<T> buildErrorResponse(final Exception e) {
     final ResponseDataBuilder<T> builder = ResponseData.builder();
     final String errorMessage = getRootCause(e).getMessage();
-    return builder.successful(false).code(-1).error(errorMessage).build();
+    final String stacktrace = getStackTrace(e);
+    return builder.successful(false).code(-1).error(errorMessage).stacktrace(stacktrace).build();
   }
 
   /**
@@ -108,5 +112,13 @@ public class Common {
       return getRootCause(throwable.getCause());
     }
     return throwable;
+  }
+
+  public static String getStackTrace(Throwable throwable) {
+    StringWriter buffer = new StringWriter();
+    PrintWriter writer = new PrintWriter(buffer);
+    throwable.printStackTrace(writer);
+    writer.flush();
+    return buffer.toString();
   }
 }
