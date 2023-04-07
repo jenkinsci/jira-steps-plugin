@@ -25,6 +25,8 @@
     <retrofit2.version>2.9.0</retrofit2.version>
     <signpost.oauth.version>2.1.1</signpost.oauth.version>
     <maven.javadoc.skip>true</maven.javadoc.skip>
+    <okhttp.version>4.9.3</okhttp.version>
+    <kotlinstdlib.version>1.3.72</kotlinstdlib.version>
   </properties>
   <licenses>
     <license>
@@ -106,6 +108,37 @@
       <artifactId>adapter-rxjava</artifactId>
       <groupId>com.squareup.retrofit2</groupId>
       <version>${retrofit2.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>${okhttp.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib-common</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <version>${kotlinstdlib.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib-common</artifactId>
+      <version>${kotlinstdlib.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>findbugs-annotations</artifactId>
+      <version>3.0.1</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <artifactId>converter-jackson</artifactId>

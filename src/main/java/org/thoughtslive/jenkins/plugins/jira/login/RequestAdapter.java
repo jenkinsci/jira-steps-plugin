@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import oauth.signpost.http.HttpRequest;
 import okhttp3.Request;
 import okio.Buffer;
@@ -26,6 +28,7 @@ public class RequestAdapter implements HttpRequest {
   }
 
   @Override
+  @SuppressFBWarnings(value = "NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
   public String getContentType() {
     if (request.body() != null) {
       return (request.body().contentType() != null) ? request.body().contentType().toString()
@@ -40,6 +43,7 @@ public class RequestAdapter implements HttpRequest {
   }
 
   @Override
+  @SuppressFBWarnings(value = "NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE")
   public InputStream getMessagePayload() throws IOException {
     if (request.body() == null) {
       return null;
