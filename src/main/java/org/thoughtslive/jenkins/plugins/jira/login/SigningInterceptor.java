@@ -1,6 +1,7 @@
 package org.thoughtslive.jenkins.plugins.jira.login;
 
 import com.cloudbees.plugins.credentials.CredentialsProvider;
+import com.cloudbees.plugins.credentials.common.StandardCredentials;
 import com.cloudbees.plugins.credentials.common.StandardUsernameCredentials;
 import com.cloudbees.plugins.credentials.common.UsernamePasswordCredentials;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -53,21 +54,27 @@ public class SigningInterceptor implements Interceptor {
         throw new IOException("Error signing request with OAuth.", e);
       }
     } else if (Site.LoginType.CREDENTIAL.name().equalsIgnoreCase(jiraSite.getLoginType())) {
-      StandardUsernameCredentials credentialsId = null;
+      StandardCredentials credentials = null;
       // credentials is saved in global configuration, there is no context there during test connection so SYSTEM access is used
-      credentialsId = CredentialsProvider.lookupCredentials(StandardUsernameCredentials.class,
+      credentials = CredentialsProvider.lookupCredentials(StandardCredentials.class,
               Jenkins.get(), ACL.SYSTEM, Collections.emptyList()) //
           .stream() //
           .filter(c -> c.getId().equals(jiraSite.getCredentialsId())) //
           .findFirst() //
           .orElseThrow(() -> new IllegalStateException(Messages.Site_invalidCredentialsId()));
-      String credentials = credentialsId.getUsername();
-      if (credentialsId instanceof UsernamePasswordCredentials) {
-        credentials +=
-            ":" + ((UsernamePasswordCredentials) credentialsId).getPassword().getPlainText();
+      final String encodedHeader;
+      if (credentials instanceof UsernamePasswordCredentials) {
+        UsernamePasswordCredentials usernamePasswordCredentials = (UsernamePasswordCredentials) credentials;
+        String username = usernamePasswordCredentials.getUsername();
+        String password = usernamePasswordCredentials.getPassword().getPlainText();
+        String userPass = username + ":" + password;
+        encodedHeader = "Basic " + new String(Base64.getEncoder().encode(userPass.getBytes()));
+      } else {
+        throw new IllegalArgumentException(String.format(
+            "Credentials %s has unsupported type %s. Only UsernamePasswordCredentials is supported.",
+            jiraSite.getCredentialsId(), credentials.getClass().getCanonicalName()
+        ));
       }
-      String encodedHeader =
-          "Basic " + new String(Base64.getEncoder().encode(credentials.getBytes()));
       Request requestWithAuthorization = chain.request().newBuilder()
           .addHeader("Authorization", encodedHeader).build();
       return chain.proceed(requestWithAuthorization);
