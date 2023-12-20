@@ -23,10 +23,10 @@ public class AddWatcherStep extends BasicJiraStep {
   private static final long serialVersionUID = 6417829072320454268L;
 
   @Getter
-  private final String idOrKey;
+  public final String idOrKey;
 
   @Getter
-  private final String userName;
+  public final String userName;
 
   @DataBoundConstructor
   public AddWatcherStep(final String idOrKey, final String userName) {

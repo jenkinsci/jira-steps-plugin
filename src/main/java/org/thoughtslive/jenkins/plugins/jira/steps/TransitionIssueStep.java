@@ -23,10 +23,10 @@ public class TransitionIssueStep extends BasicJiraStep {
   private static final long serialVersionUID = 5648167982018270684L;
 
   @Getter
-  private final String idOrKey;
+  public final String idOrKey;
 
   @Getter
-  private final Object input;
+  public final Object input;
 
   @DataBoundConstructor
   public TransitionIssueStep(final String idOrKey, final Object input) {

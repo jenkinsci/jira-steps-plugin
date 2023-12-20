@@ -23,7 +23,7 @@ public class GetProjectVersionsStep extends BasicJiraStep {
   private static final long serialVersionUID = 3692152135588867038L;
 
   @Getter
-  private final String idOrKey;
+  public final String idOrKey;
 
   @DataBoundConstructor
   public GetProjectVersionsStep(final String idOrKey) {

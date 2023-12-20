@@ -21,7 +21,7 @@ public class NewComponentStep extends BasicJiraStep {
   private static final long serialVersionUID = 4939494003115851145L;
 
   @Getter
-  private final Object component;
+  public final Object component;
 
   @DataBoundConstructor
   public NewComponentStep(final Object component) {

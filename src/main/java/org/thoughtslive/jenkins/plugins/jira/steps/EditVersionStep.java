@@ -22,10 +22,10 @@ public class EditVersionStep extends BasicJiraStep {
   private static final long serialVersionUID = -2029161404995143511L;
 
   @Getter
-  private final String id;
+  public final String id;
 
   @Getter
-  private final Object version;
+  public final Object version;
 
   @DataBoundConstructor
   public EditVersionStep(final String id, final Object version) {

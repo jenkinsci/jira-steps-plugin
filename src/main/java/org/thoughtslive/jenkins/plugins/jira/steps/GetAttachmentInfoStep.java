@@ -23,7 +23,7 @@ public class GetAttachmentInfoStep extends BasicJiraStep {
   private static final long serialVersionUID = -5058732591554743625L;
 
   @Getter
-  private final String id;
+  public final String id;
 
   @DataBoundConstructor
   public GetAttachmentInfoStep(final String id) {

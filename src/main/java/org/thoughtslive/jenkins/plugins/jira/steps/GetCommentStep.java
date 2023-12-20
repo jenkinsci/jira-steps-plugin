@@ -23,10 +23,10 @@ public class GetCommentStep extends BasicJiraStep {
   private static final long serialVersionUID = -3225315653270733874L;
 
   @Getter
-  private final String idOrKey;
+  public final String idOrKey;
 
   @Getter
-  private final String commentId;
+  public final String commentId;
 
   @DataBoundConstructor
   public GetCommentStep(final String idOrKey, final String commentId) {

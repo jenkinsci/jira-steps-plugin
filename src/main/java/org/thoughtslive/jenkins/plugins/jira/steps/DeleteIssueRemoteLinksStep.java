@@ -23,10 +23,10 @@ public class DeleteIssueRemoteLinksStep extends BasicJiraStep {
   private static final long serialVersionUID = 3529709240318435576L;
 
   @Getter
-  private final String idOrKey;
+  public final String idOrKey;
 
   @Getter
-  private final String globalId;
+  public final String globalId;
 
   @DataBoundConstructor
   public DeleteIssueRemoteLinksStep(final String idOrKey, final String globalId) {

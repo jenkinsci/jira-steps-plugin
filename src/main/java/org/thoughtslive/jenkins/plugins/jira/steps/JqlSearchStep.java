@@ -24,19 +24,19 @@ public class JqlSearchStep extends BasicJiraStep {
   private static final long serialVersionUID = -7754102811625753132L;
 
   @Getter
-  private final String jql;
+  public final String jql;
 
   @Getter
   @DataBoundSetter
-  private int startAt = 0;
+  public int startAt = 0;
 
   @Getter
   @DataBoundSetter
-  private int maxResults = 1000;
+  public int maxResults = 1000;
 
   @Getter
   @DataBoundSetter
-  private Object fields;
+  public Object fields;
 
   @DataBoundConstructor
   public JqlSearchStep(final String jql) {
