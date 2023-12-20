@@ -24,6 +24,7 @@
     <assertj-core.version>3.27.3</assertj-core.version>
     <google.oauth.version>1.38.0</google.oauth.version>
     <lombok.version>1.18.36</lombok.version>
+    <okhttp3.version>4.12.0</okhttp3.version>
     <retrofit2.version>2.9.0</retrofit2.version>
     <signpost.oauth.version>2.1.1</signpost.oauth.version>
     <maven.javadoc.skip>true</maven.javadoc.skip>
@@ -78,6 +79,11 @@
         <type>pom</type>
         <version>1763.v092b_8980a_f5e</version>
       </dependency>
+      <dependency>
+        <artifactId>kotlin-stdlib-jdk8</artifactId>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <version>1.9.25</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -113,6 +119,11 @@
       <artifactId>converter-jackson</artifactId>
       <groupId>com.squareup.retrofit2</groupId>
       <version>${retrofit2.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>${okhttp3.version}</version>
     </dependency>
     <dependency>
       <artifactId>signpost-core</artifactId>
