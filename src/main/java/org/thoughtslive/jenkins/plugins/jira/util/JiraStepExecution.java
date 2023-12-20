@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Collections;
 import java.util.List;
+
+import org.jenkinsci.plugins.plaincredentials.StringCredentials;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.SynchronousNonBlockingStepExecution;
 import org.thoughtslive.jenkins.plugins.jira.Messages;
@@ -106,10 +108,13 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
       if (jiraService == null) {
         if (LoginType.CREDENTIAL.name().equals(site.getLoginType())) {
           // at build time use of credentials must be checked against the user who run the build, see https://plugins.jenkins.io/authorize-project
-          StandardUsernameCredentials credentialsId = CredentialsProvider.findCredentialById(
+          StandardUsernameCredentials usernameCredentials = CredentialsProvider.findCredentialById(
               site.getCredentialsId(), StandardUsernameCredentials.class, run,
               Collections.emptyList());
-          if (credentialsId == null) {
+          StringCredentials tokenCredentials = CredentialsProvider.findCredentialById(
+              site.getCredentialsId(), StringCredentials.class, run,
+              Collections.emptyList());
+          if (usernameCredentials == null && tokenCredentials == null) {
             throw new AbortException(Messages.Site_invalidCredentialsId());
           }
         }

@@ -9,7 +9,8 @@ lastmodifierdisplayname = "Naresh Rayapati"
 
 ## Authentication
 
-This plugin supports both Basic and OAuth, OAuth is preferred over the Basic authentication.
+This plugin supports Basic Authentication, OAuth, and Personal Access Tokens.
+OAuth is preferred over the Basic authentication.
 
 ### Basic Authentication
 
@@ -39,11 +40,11 @@ This plugin supports both Basic and OAuth, OAuth is preferred over the Basic aut
 
 {{% alert theme="info" %}} Please take note that above screenshot missing **ReadTimeout(ms)** {{% /alert %}}
 
-### Use Credential Plugin for basic authentication
+### Use Credential Plugin for Password or Personal Access Token Authentication
 
 * Goto **Manage Jenkins > Configure System > JIRA Steps > Add Site > Choose Credential**.
   * Name = Jira Site Name
   * URL = Jira Site URL
-  * Credentials = Choose a stored credential
+  * Credentials = Choose a stored credential (Username with password for password-based authentication, or Secret text for Personal Access Token)
 
 ![Credential](https://raw.githubusercontent.com/jenkinsci/jira-steps-plugin/master/hugo/static/images/jira_site_credential.png)
