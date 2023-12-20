@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
 
+import org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl;
 import org.jetbrains.annotations.NotNull;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -101,5 +102,28 @@ public class SingningInterceptorTest {
         }
         assertThat(request.getHeader("authorization"))
             .isEqualTo("Basic " + Base64.getEncoder().encodeToString("scott:tiger".getBytes()));
+    }
+
+    @Test
+    public void shouldUseBearerAuthWithTokenFromCredentialsWhenConfiguredTo() throws IOException, InterruptedException {
+        String credentialsId = testName.getMethodName();
+        Site jiraSite = mock(Site.class);
+        when(jiraSite.getLoginType()).thenReturn(Site.LoginType.CREDENTIAL.name());
+        when(jiraSite.getCredentialsId()).thenReturn(credentialsId);
+
+        addCredentials(new StringCredentialsImpl(
+            CredentialsScope.GLOBAL, credentialsId, "Test credentials", Secret.fromString("token123")
+        ));
+
+        OkHttpClient client = buildClient(jiraSite);
+
+        final RecordedRequest request;
+        try (MockWebServer server = mockWebServer()) {
+            client.newCall(new Request.Builder().url(server.url("/")).build()).execute().close();
+            request = server.takeRequest();
+        }
+
+        assertThat(request.getHeader("authorization"))
+            .isEqualTo("Bearer token123");
     }
 }

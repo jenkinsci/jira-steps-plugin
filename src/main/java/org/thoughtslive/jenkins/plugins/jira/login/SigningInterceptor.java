@@ -9,11 +9,16 @@ import hudson.security.ACL;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.Collections;
+import java.util.stream.Stream;
+
 import jenkins.model.Jenkins;
 import oauth.signpost.exception.OAuthException;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
+
+import org.jenkinsci.plugins.plaincredentials.StringCredentials;
+import org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl;
 import org.thoughtslive.jenkins.plugins.jira.Messages;
 import org.thoughtslive.jenkins.plugins.jira.Site;
 
@@ -56,9 +61,12 @@ public class SigningInterceptor implements Interceptor {
     } else if (Site.LoginType.CREDENTIAL.name().equalsIgnoreCase(jiraSite.getLoginType())) {
       StandardCredentials credentials = null;
       // credentials is saved in global configuration, there is no context there during test connection so SYSTEM access is used
-      credentials = CredentialsProvider.lookupCredentials(StandardCredentials.class,
-              Jenkins.get(), ACL.SYSTEM, Collections.emptyList()) //
-          .stream() //
+      credentials = Stream.concat(
+          CredentialsProvider.lookupCredentials(StandardCredentials.class, Jenkins.get(), ACL.SYSTEM, Collections.emptyList()) //
+              .stream(),
+          CredentialsProvider.lookupCredentials(StringCredentials.class, Jenkins.get(), ACL.SYSTEM, Collections.emptyList()) //
+              .stream()
+          )
           .filter(c -> c.getId().equals(jiraSite.getCredentialsId())) //
           .findFirst() //
           .orElseThrow(() -> new IllegalStateException(Messages.Site_invalidCredentialsId()));
@@ -69,9 +77,12 @@ public class SigningInterceptor implements Interceptor {
         String password = usernamePasswordCredentials.getPassword().getPlainText();
         String userPass = username + ":" + password;
         encodedHeader = "Basic " + new String(Base64.getEncoder().encode(userPass.getBytes()));
+      } else if (credentials instanceof StringCredentialsImpl) {
+        StringCredentialsImpl stringCredentials = (StringCredentialsImpl) credentials;
+        encodedHeader = "Bearer " + stringCredentials.getSecret().getPlainText();
       } else {
         throw new IllegalArgumentException(String.format(
-            "Credentials %s has unsupported type %s. Only UsernamePasswordCredentials is supported.",
+            "Credentials %s has unsupported type %s. Only UsernamePasswordCredentials and StringCredentials are supported.",
             jiraSite.getCredentialsId(), credentials.getClass().getCanonicalName()
         ));
       }
