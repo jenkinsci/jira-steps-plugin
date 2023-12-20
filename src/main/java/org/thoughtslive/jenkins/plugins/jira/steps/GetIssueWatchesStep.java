@@ -23,7 +23,7 @@ public class GetIssueWatchesStep extends BasicJiraStep {
   private static final long serialVersionUID = -4095433082021536972L;
 
   @Getter
-  private final String idOrKey;
+  public final String idOrKey;
 
   @DataBoundConstructor
   public GetIssueWatchesStep(final String idOrKey) {

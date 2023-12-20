@@ -22,19 +22,19 @@ public abstract class BasicJiraStep extends Step implements Serializable {
 
   @Getter
   @DataBoundSetter
-  private String site;
+  public String site;
 
   @Getter
   @DataBoundSetter
-  private boolean failOnError = true;
+  public boolean failOnError = true;
 
   @Getter
   @DataBoundSetter
-  private boolean auditLog = true;
+  public boolean auditLog = true;
 
   @Getter
   @DataBoundSetter
-  private Map<String, String> queryParams = new HashMap<>();
+  public Map<String, String> queryParams = new HashMap<>();
 
   @Extension
   public static class JiraWhitelist extends ProxyWhitelist {

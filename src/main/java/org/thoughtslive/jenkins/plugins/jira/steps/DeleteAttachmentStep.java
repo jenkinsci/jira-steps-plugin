@@ -23,7 +23,7 @@ public class DeleteAttachmentStep extends BasicJiraStep {
   private static final long serialVersionUID = -4661648934764886451L;
 
   @Getter
-  private final String id;
+  public final String id;
 
   @DataBoundConstructor
   public DeleteAttachmentStep(final String id) {

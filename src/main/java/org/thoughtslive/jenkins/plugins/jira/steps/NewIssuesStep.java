@@ -25,7 +25,7 @@ public class NewIssuesStep extends BasicJiraStep {
   private static final long serialVersionUID = -1390437007976428509L;
 
   @Getter
-  private final IssuesInput issues;
+  public final IssuesInput issues;
 
   @DataBoundConstructor
   public NewIssuesStep(final IssuesInput issues) {

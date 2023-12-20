@@ -22,7 +22,7 @@ public class DeleteIssueLinkStep extends BasicJiraStep {
 
   private static final long serialVersionUID = -4252560961571411897L;
   @Getter
-  private final String id;
+  public final String id;
 
   @DataBoundConstructor
   public DeleteIssueLinkStep(final String id) {
