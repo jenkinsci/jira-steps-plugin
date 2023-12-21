@@ -23,7 +23,7 @@ public class GetComponentStep extends BasicJiraStep {
   private static final long serialVersionUID = 387862257528432812L;
 
   @Getter
-  private final String id;
+  public final String id;
 
   @DataBoundConstructor
   public GetComponentStep(final String id) {

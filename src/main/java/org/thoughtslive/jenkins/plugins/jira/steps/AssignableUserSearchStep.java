@@ -24,19 +24,19 @@ public class AssignableUserSearchStep extends BasicJiraStep {
   private static final long serialVersionUID = -7754102811625753132L;
 
   @Getter
-  private String project;
+  public String project;
 
   @Getter
-  private String issueKey;
+  public String issueKey;
   @Getter
   @DataBoundSetter
-  private String queryStr;
+  public String queryStr;
   @Getter
   @DataBoundSetter
-  private int startAt = 0;
+  public int startAt = 0;
   @Getter
   @DataBoundSetter
-  private int maxResults = 1000;
+  public int maxResults = 1000;
 
   @DataBoundConstructor
   public AssignableUserSearchStep(final String project, final String issueKey) {

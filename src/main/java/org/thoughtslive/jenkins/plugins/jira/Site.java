@@ -3,9 +3,10 @@ package org.thoughtslive.jenkins.plugins.jira;
 import com.cloudbees.plugins.credentials.CredentialsMatcher;
 import com.cloudbees.plugins.credentials.CredentialsMatchers;
 import com.cloudbees.plugins.credentials.CredentialsProvider;
+import com.cloudbees.plugins.credentials.common.StandardCredentials;
 import com.cloudbees.plugins.credentials.common.StandardListBoxModel;
 import com.cloudbees.plugins.credentials.common.StandardUsernameCredentials;
-import com.cloudbees.plugins.credentials.common.UsernamePasswordCredentials;
+import com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredentials;
 import com.cloudbees.plugins.credentials.domains.DomainRequirement;
 import com.cloudbees.plugins.credentials.domains.URIRequirementBuilder;
 import hudson.Extension;
@@ -32,6 +33,7 @@ import lombok.Setter;
 import lombok.extern.java.Log;
 import org.acegisecurity.Authentication;
 import org.apache.commons.lang.StringUtils;
+import org.jenkinsci.plugins.plaincredentials.StringCredentials;
 import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
@@ -191,9 +193,15 @@ public class Site extends AbstractDescribableImpl<Site> {
       }
 
       List<DomainRequirement> domainRequirements = URIRequirementBuilder.fromUri(url).build();
-      if (CredentialsProvider.listCredentials(StandardUsernameCredentials.class, item,
-              getAuthentication(item), domainRequirements, CredentialsMatchers.withId(credentialsId))
-          .isEmpty()) {
+      boolean credentialsIsUsernameCredentials = !CredentialsProvider.listCredentials(
+          StandardUsernameCredentials.class, item, getAuthentication(item), domainRequirements,
+          CredentialsMatchers.withId(credentialsId)
+      ).isEmpty();
+      boolean credentialsIsTokenCredentials = !CredentialsProvider.listCredentials(
+          StringCredentials.class, item, getAuthentication(item), domainRequirements,
+          CredentialsMatchers.withId(credentialsId)
+      ).isEmpty();
+      if (!credentialsIsUsernameCredentials && !credentialsIsTokenCredentials) {
         return FormValidation.error(Messages.Site_invalidCredentialsId());
       }
       return FormValidation.ok();
@@ -220,13 +228,16 @@ public class Site extends AbstractDescribableImpl<Site> {
       Authentication authentication = getAuthentication(item);
       List<DomainRequirement> domainRequirements = URIRequirementBuilder.fromUri(url).build();
       CredentialsMatcher always = CredentialsMatchers.always();
-      Class type = UsernamePasswordCredentials.class;
+      Class<? extends StandardCredentials> usernamePasswordType = StandardUsernamePasswordCredentials.class;
+      Class<? extends StandardCredentials> tokenType = StringCredentials.class;
 
       result.includeEmptyValue();
       if (item != null) {
-        result.includeMatchingAs(authentication, item, type, domainRequirements, always);
+        result.includeMatchingAs(authentication, item, usernamePasswordType, domainRequirements, always);
+        result.includeMatchingAs(authentication, item, tokenType, domainRequirements, always);
       } else {
-        result.includeMatchingAs(authentication, Jenkins.get(), type, domainRequirements, always);
+        result.includeMatchingAs(authentication, Jenkins.get(), usernamePasswordType, domainRequirements, always);
+        result.includeMatchingAs(authentication, Jenkins.get(), tokenType, domainRequirements, always);
       }
       return result;
     }

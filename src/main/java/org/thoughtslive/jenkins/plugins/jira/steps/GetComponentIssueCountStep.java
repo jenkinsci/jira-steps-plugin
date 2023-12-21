@@ -23,7 +23,7 @@ public class GetComponentIssueCountStep extends BasicJiraStep {
   private static final long serialVersionUID = -4668092703770930031L;
 
   @Getter
-  private final String id;
+  public final String id;
 
   @DataBoundConstructor
   public GetComponentIssueCountStep(final String id) {

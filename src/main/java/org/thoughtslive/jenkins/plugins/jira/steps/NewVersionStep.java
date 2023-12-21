@@ -21,7 +21,7 @@ public class NewVersionStep extends BasicJiraStep {
   private static final long serialVersionUID = -528328534268615694L;
 
   @Getter
-  private final Object version;
+  public final Object version;
 
   @DataBoundConstructor
   public NewVersionStep(final Object version) {
