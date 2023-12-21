@@ -9,7 +9,8 @@ lastmodifierdisplayname = "Naresh Rayapati"
 
 ## Authentication
 
-This plugin supports both Basic and OAuth, OAuth is preferred over the Basic authentication.
+This plugin supports Basic Authentication OAuth, and Personal Access Tokens.
+OAuth is preferred over the Basic authentication.
 
 ### Basic Authentication
 
