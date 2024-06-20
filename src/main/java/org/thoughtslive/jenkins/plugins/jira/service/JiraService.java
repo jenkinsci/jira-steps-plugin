@@ -62,8 +62,8 @@ public class JiraService {
         InetSocketAddress proxyAddr = new InetSocketAddress(proxyConfiguration.name,
             proxyConfiguration.port);
         Authenticator proxyAuthenticator = (route, response) -> {
-          String credential = Credentials.basic(proxyConfiguration.getUserName(),
-              proxyConfiguration.getPassword());
+          String proxyUserName = (proxyConfiguration.getUserName() != null ? proxyConfiguration.getUserName() : "");
+          String credential = Credentials.basic(proxyUserName, proxyConfiguration.getPassword());
           return response.request().newBuilder()
               .header("Proxy-Authorization", credential)
               .build();
