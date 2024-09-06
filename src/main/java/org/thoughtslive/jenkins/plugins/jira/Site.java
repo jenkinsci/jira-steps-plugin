@@ -36,6 +36,7 @@ import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.QueryParameter;
+import org.kohsuke.stapler.verb.POST;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
@@ -235,10 +236,15 @@ public class Site extends AbstractDescribableImpl<Site> {
       return item instanceof Queue.Task ? Tasks.getAuthenticationOf((Queue.Task) item) : ACL.SYSTEM;
     }
 
+    @POST
     public FormValidation doValidateCredentials(@QueryParameter String url,
         @QueryParameter String credentialsId,
         @QueryParameter Integer timeout,
         @QueryParameter Integer readTimeout) throws IOException {
+      if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
+        return FormValidation.warning("Insufficient permissions");
+      }
+
       FormValidation validation = doCheckUrl(url);
       if (validation.kind != Kind.OK) {
         return FormValidation.error(Messages.Site_emptyURL());
@@ -278,12 +284,17 @@ public class Site extends AbstractDescribableImpl<Site> {
      * Checks if the details required for the basic login is valid. TODO: This validation can be
      * moved to JiraStepsConfig so that we can also verify the name is valid.
      */
+    @POST
     public FormValidation doValidateBasic(@QueryParameter String name, @QueryParameter String url,
         @QueryParameter String loginType, @QueryParameter String timeout,
         @QueryParameter String readTimeout,
         @QueryParameter String userName, @QueryParameter String password,
         @QueryParameter String consumerKey, @QueryParameter String privateKey,
         @QueryParameter String secret, @QueryParameter String token) throws IOException {
+      if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
+        return FormValidation.warning("Insufficient permissions");
+      }
+
       url = Util.fixEmpty(url);
       name = Util.fixEmpty(name);
       userName = Util.fixEmpty(userName);
@@ -352,12 +363,17 @@ public class Site extends AbstractDescribableImpl<Site> {
 
     // This is stupid but no choice as I couldn't find the way to get the
     // value loginType (radioBlock as a @QueryParameter)
+    @POST
     public FormValidation doValidateOAuth(@QueryParameter String name, @QueryParameter String url,
         @QueryParameter String loginType, @QueryParameter String timeout,
         @QueryParameter String readTimeout,
         @QueryParameter String userName, @QueryParameter String password,
         @QueryParameter String consumerKey, @QueryParameter String privateKey,
         @QueryParameter String secret, @QueryParameter String token) throws IOException {
+      if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
+        return FormValidation.warning("Insufficient permissions");
+      }
+
       url = Util.fixEmpty(url);
       name = Util.fixEmpty(name);
       consumerKey = Util.fixEmpty(consumerKey);
