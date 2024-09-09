@@ -8,8 +8,11 @@ import com.cloudbees.plugins.credentials.common.StandardUsernameCredentials;
 import com.cloudbees.plugins.credentials.common.UsernamePasswordCredentials;
 import com.cloudbees.plugins.credentials.domains.DomainRequirement;
 import com.cloudbees.plugins.credentials.domains.URIRequirementBuilder;
+import com.thoughtworks.xstream.converters.UnmarshallingContext;
+
 import hudson.Extension;
 import hudson.Util;
+import hudson.diagnosis.OldDataMonitor;
 import hudson.model.AbstractDescribableImpl;
 import hudson.model.Descriptor;
 import hudson.model.Item;
@@ -20,6 +23,8 @@ import hudson.util.FormValidation;
 import hudson.util.FormValidation.Kind;
 import hudson.util.ListBoxModel;
 import hudson.util.Secret;
+import hudson.util.XStream2;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -32,6 +37,8 @@ import lombok.Setter;
 import lombok.extern.java.Log;
 import org.acegisecurity.Authentication;
 import org.apache.commons.lang.StringUtils;
+import org.kohsuke.accmod.Restricted;
+import org.kohsuke.accmod.restrictions.DoNotUse;
 import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
@@ -68,8 +75,9 @@ public class Site extends AbstractDescribableImpl<Site> {
   @Setter(onMethod = @__({@DataBoundSetter}))
   private String consumerKey;
   @Getter
-  @Setter(onMethod = @__({@DataBoundSetter}))
-  private String privateKey;
+  private transient String privateKey;
+  @Getter
+  private Secret privateKeySecret;
   @Getter
   private Secret secret;
   @Getter
@@ -122,6 +130,12 @@ public class Site extends AbstractDescribableImpl<Site> {
     this.token = Secret.fromString(Util.fixEmpty(token));
   }
 
+  @DataBoundSetter
+  public void setPrivateKeySecret(final String privateKey) {
+    this.privateKeySecret = Secret.fromString(Util.fixEmpty(privateKey));
+  }
+
+
   public JiraService getService() {
     if (jiraService == null) {
       this.jiraService = new JiraService(this);
@@ -131,6 +145,22 @@ public class Site extends AbstractDescribableImpl<Site> {
 
   public enum LoginType {
     BASIC, OAUTH, CREDENTIAL
+  }
+
+  @Restricted(DoNotUse.class)
+  public static class ConverterImpl extends XStream2.PassthruConverter<Site> {
+    public ConverterImpl(XStream2 xstream) {
+      super(xstream);
+    }
+
+    @Override
+    protected void callback(Site site, UnmarshallingContext context) {
+      String privateKey = site.getPrivateKey();
+      if (privateKey != null && !privateKey.isEmpty()) {
+        site.setPrivateKeySecret(privateKey);
+        OldDataMonitor.report(context, "2.361.1");
+      }
+    }
   }
 
   @Extension
@@ -414,7 +444,7 @@ public class Site extends AbstractDescribableImpl<Site> {
         return FormValidation.error("Token is empty or null.");
       }
       site.setConsumerKey(consumerKey);
-      site.setPrivateKey(privateKey);
+      site.setPrivateKeySecret(privateKey);
       site.setSecret(secret);
       site.setToken(token);
       site.setReadTimeout(rt);

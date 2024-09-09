@@ -43,7 +43,7 @@ public class SigningInterceptor implements Interceptor {
     } else if (Site.LoginType.OAUTH.name().equalsIgnoreCase(jiraSite.getLoginType())) {
       Request request = chain.request();
       OAuthConsumer consumer =
-          new OAuthConsumer(jiraSite.getConsumerKey(), jiraSite.getPrivateKey());
+          new OAuthConsumer(jiraSite.getConsumerKey(), jiraSite.getPrivateKeySecret().getPlainText());
       consumer.setTokenWithSecret(jiraSite.getToken().getPlainText(),
           jiraSite.getSecret().getPlainText());
       consumer.setMessageSigner(new RsaSha1MessageSigner());

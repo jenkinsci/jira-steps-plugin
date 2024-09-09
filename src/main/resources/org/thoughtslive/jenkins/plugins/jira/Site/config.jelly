@@ -42,8 +42,8 @@
         <f:entry field="consumerKey" title="Consumer Key">
           <f:textbox/>
         </f:entry>
-        <f:entry field="privateKey" title="Private Key">
-          <f:expandableTextbox/>
+        <f:entry field="privateKeySecret" title="Private Key">
+          <f:secretTextarea/>
         </f:entry>
         <f:entry field="secret" title="Secret">
           <f:password/>
