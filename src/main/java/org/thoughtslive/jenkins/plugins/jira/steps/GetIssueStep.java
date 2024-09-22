@@ -70,7 +70,7 @@ public class GetIssueStep extends BasicJiraStep {
       if (response == null) {
         logger.println(
             "JIRA: Site - " + siteName + " - Querying issue with idOrKey: " + step.getIdOrKey());
-        response = jiraService.getIssue(step.getIdOrKey());
+        response = jiraService.getIssue(step.getIdOrKey(), step.getQueryParams());
       }
 
       return logResponse(response);

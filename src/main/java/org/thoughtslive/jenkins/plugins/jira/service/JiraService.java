@@ -171,9 +171,10 @@ public class JiraService {
    * @param issueIdOrKey issue id or key.
    * @return issue.
    */
-  public ResponseData<Object> getIssue(final String issueIdOrKey) {
+  public ResponseData<Object> getIssue(final String issueIdOrKey,
+      final Map<String, String> queryParams) {
     try {
-      return parseResponse(jiraEndPoints.getIssue(issueIdOrKey).execute());
+      return parseResponse(jiraEndPoints.getIssue(issueIdOrKey, queryParams).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }

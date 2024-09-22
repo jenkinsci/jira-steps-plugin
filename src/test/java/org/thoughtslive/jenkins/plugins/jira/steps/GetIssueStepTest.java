@@ -2,6 +2,7 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -9,6 +10,8 @@ import static org.mockito.Mockito.when;
 
 import hudson.AbortException;
 import java.io.IOException;
+import java.util.HashMap;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.thoughtslive.jenkins.plugins.jira.BaseTest;
@@ -28,7 +31,7 @@ public class GetIssueStepTest extends BaseTest {
   public void setup() throws IOException, InterruptedException {
 
     final ResponseDataBuilder<Object> builder = ResponseData.builder();
-    when(jiraServiceMock.getIssue(anyString()))
+    when(jiraServiceMock.getIssue(anyString(), any()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
   }
 
@@ -53,7 +56,7 @@ public class GetIssueStepTest extends BaseTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).getIssue("TEST-1");
+    verify(jiraServiceMock, times(1)).getIssue("TEST-1", new HashMap<>());
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }
