@@ -4,6 +4,7 @@
   xmlns:f="/lib/form"
   xmlns:j="jelly:core"
   xmlns:c="/lib/credentials"
+  xmlns:l="/lib/layout"
 >
   <f:entry field="name" title="Name">
     <f:textbox/>
@@ -27,13 +28,15 @@
         <f:entry field="password" title="Password">
           <f:password/>
         </f:entry>
-        <f:entry>
-          <f:validateButton inline="true"
-            method="validateBasic"
-            progress="Checking..."
-            title="${%Test Connection}"
-            with="name,url,loginType,timeout,readTimeout,userName,password,consumerKey,privateKey,secret,token"/>
-        </f:entry>
+        <l:isAdmin>
+          <f:entry>
+            <f:validateButton inline="true"
+              method="validateBasic"
+              progress="Checking..."
+              title="${%Test Connection}"
+              with="name,url,loginType,timeout,readTimeout,userName,password,consumerKey,privateKey,secret,token"/>
+          </f:entry>
+        </l:isAdmin>
       </f:nested>
     </f:radioBlock>
     <f:radioBlock checked="${instance.isLoginType('OAUTH')}" field="loginType" inline="true"
@@ -51,13 +54,15 @@
         <f:entry field="token" title="Token">
           <f:password/>
         </f:entry>
-        <f:entry>
-          <f:validateButton inline="true"
-            method="validateOAuth"
-            progress="Checking..."
-            title="${%Test Connection}"
-            with="name,url,loginType,timeout,readTimeout,userName,password,consumerKey,privateKey,secret,token"/>
-        </f:entry>
+        <l:isAdmin>
+          <f:entry>
+            <f:validateButton inline="true"
+              method="validateOAuth"
+              progress="Checking..."
+              title="${%Test Connection}"
+              with="name,url,loginType,timeout,readTimeout,userName,password,consumerKey,privateKey,secret,token"/>
+          </f:entry>
+        </l:isAdmin>
       </f:nested>
     </f:radioBlock>
     <f:radioBlock checked="${instance.isLoginType('CREDENTIAL')}" field="loginType" inline="true" name="loginType" title="${%Credentials}" value="CREDENTIAL">
@@ -65,13 +70,15 @@
         <f:entry field="credentialsId" title="${%Credentials}">
           <c:select />
         </f:entry>
-        <f:entry>
-          <f:validateButton inline="true"
-            method="validateCredentials"
-            progress="Checking..."
-            title="${%Test Connection}"
-            with="url,credentialsId,timeout,readTimeout"/>
-        </f:entry>
+        <l:isAdmin>
+          <f:entry>
+            <f:validateButton inline="true"
+              method="validateCredentials"
+              progress="Checking..."
+              title="${%Test Connection}"
+              with="url,credentialsId,timeout,readTimeout"/>
+          </f:entry>
+        </l:isAdmin>
       </f:nested>
     </f:radioBlock>
   </f:section>
