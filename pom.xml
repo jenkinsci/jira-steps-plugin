@@ -74,6 +74,16 @@
         <type>pom</type>
         <version>4136.vca_c3202a_7fd1</version>
       </dependency>
+      <dependency>
+        <groupId>com.google.errorprone</groupId>
+        <artifactId>error_prone_annotations</artifactId>
+        <version>2.26.1</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.j2objc</groupId>
+        <artifactId>j2objc-annotations</artifactId>
+        <version>3.0.0</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
