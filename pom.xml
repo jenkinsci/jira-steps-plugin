@@ -17,7 +17,9 @@
     <revision>2.0</revision>
     <changelist>999999-SNAPSHOT</changelist>
     <java.level>8</java.level>
-    <jenkins.version>2.361.1</jenkins.version>
+    <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
+    <jenkins.baseline>2.361</jenkins.baseline>
+    <jenkins.version>${jenkins.baseline}.1</jenkins.version>
     <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
     <assertj-core.version>3.24.2</assertj-core.version>
     <google.oauth.version>1.34.1</google.oauth.version>
@@ -70,7 +72,7 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <artifactId>bom-2.332.x</artifactId>
+        <artifactId>bom-${jenkins.baseline}.x</artifactId>
         <groupId>io.jenkins.tools.bom</groupId>
         <scope>import</scope>
         <type>pom</type>
