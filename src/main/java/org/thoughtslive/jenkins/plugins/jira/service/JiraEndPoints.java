@@ -44,7 +44,8 @@ public interface JiraEndPoints {
 
   // Issue
   @GET("rest/api/2/issue/{issueIdOrKey}")
-  Call<Object> getIssue(@Path("issueIdOrKey") String issueIdOrKey);
+  Call<Object> getIssue(@Path("issueIdOrKey") String issueIdOrKey,
+      @QueryMap Map<String, String> queryMap);
 
   @POST("rest/api/2/issue")
   Call<Object> createIssue(@Body Object issue);

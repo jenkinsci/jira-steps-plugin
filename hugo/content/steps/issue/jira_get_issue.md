@@ -14,6 +14,7 @@ This step queries a particular issue from the provided JIRA site.
 #### Input
 
 * **idOrKey** - Issue id or key.
+* **queryParams** - Optional. Map of query parameters.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
 
@@ -39,7 +40,8 @@ For more information about input, please refer to the model objects in the [API]
     ```groovy
     node {
       stage('JIRA') {
-        def issue = jiraGetIssue idOrKey: 'TEST-1'
+        def queryParams = [expand: 'changelog']
+        def issue = jiraGetIssue idOrKey: 'TEST-1', queryParams: queryParams
         echo issue.data.toString()
       }
     }

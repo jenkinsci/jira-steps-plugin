@@ -6,7 +6,7 @@ lastmodifierdisplayname = "Naresh Rayapati"
 +++
 
 * #### **1.6.1** (Unreleased)
-
+  * [JENKINS-44398](https://issues.jenkins.io/browse/JENKINS-44398) Enable queryParams for jiraGetIssue.
 
 * #### **1.6.0**
   * [JENKINS-47199](https://issues.jenkins-ci.org/browse/JENKINS-47199) Use Jenkins Credential storage for JIRA credentials.
