@@ -35,8 +35,8 @@ public class NewIssuesStepTest extends BaseTest {
   public void setup() throws IOException, InterruptedException {
 
     // Prepare site.
-    final List<IssueInput> issues = new ArrayList<IssueInput>();
-    final Map<String, Object> fields = new HashMap<String, Object>();
+    final List<IssueInput> issues = new ArrayList<>();
+    final Map<String, Object> fields = new HashMap<>();
     fields.put("summary", "Summary");
     fields.put("description", null);
     fields.put("duedate", DateTime.now().toString());

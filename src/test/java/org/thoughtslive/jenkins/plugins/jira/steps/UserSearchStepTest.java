@@ -39,9 +39,10 @@ public class UserSearchStepTest extends BaseTest {
     stepExecution = new UserSearchStep.Execution(step, contextMock);
 
     // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-          stepExecution.run();
-        }).withMessage("queryStr is empty or null.").withStackTraceContaining("AbortException")
+    assertThatExceptionOfType(AbortException.class)
+        .isThrownBy(() -> stepExecution.run())
+        .withMessage("queryStr is empty or null.")
+        .withStackTraceContaining("AbortException")
         .withNoCause();
   }
 

@@ -38,9 +38,10 @@ public class GetAttachmentInfoStepTest extends BaseTest {
     stepExecution = new GetAttachmentInfoStep.Execution(step, contextMock);
 
     // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-          stepExecution.run();
-        }).withMessage("id is empty or null.").withStackTraceContaining("AbortException")
+    assertThatExceptionOfType(AbortException.class)
+        .isThrownBy(() -> stepExecution.run())
+        .withMessage("id is empty or null.")
+        .withStackTraceContaining("AbortException")
         .withNoCause();
   }
 

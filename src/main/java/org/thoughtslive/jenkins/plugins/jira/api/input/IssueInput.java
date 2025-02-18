@@ -3,6 +3,8 @@ package org.thoughtslive.jenkins.plugins.jira.api.input;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Map;
 import lombok.AllArgsConstructor;
@@ -19,6 +21,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
 @Builder
 public class IssueInput implements Serializable {
 
+  @Serial
   private static final long serialVersionUID = 536532573196612271L;
 
   @JsonProperty("update")

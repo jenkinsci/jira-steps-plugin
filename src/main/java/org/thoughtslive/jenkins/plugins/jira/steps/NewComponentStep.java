@@ -2,6 +2,8 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import hudson.Extension;
 import java.io.IOException;
+import java.io.Serial;
+
 import lombok.Getter;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
@@ -16,11 +18,12 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
  *
  * @author Naresh Rayapati
  */
+@Getter
 public class NewComponentStep extends BasicJiraStep {
 
+  @Serial
   private static final long serialVersionUID = 4939494003115851145L;
 
-  @Getter
   private final Object component;
 
   @DataBoundConstructor
@@ -49,6 +52,7 @@ public class NewComponentStep extends BasicJiraStep {
 
   public static class Execution extends JiraStepExecution<ResponseData<Object>> {
 
+    @Serial
     private static final long serialVersionUID = -6324419009842564119L;
 
     private final NewComponentStep step;

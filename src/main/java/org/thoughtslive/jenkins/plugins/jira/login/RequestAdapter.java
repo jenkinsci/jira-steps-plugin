@@ -18,7 +18,7 @@ public class RequestAdapter implements HttpRequest {
 
   @Override
   public Map<String, String> getAllHeaders() {
-    HashMap<String, String> headers = new HashMap<String, String>();
+    HashMap<String, String> headers = new HashMap<>();
     for (String key : request.headers().names()) {
       headers.put(key, request.header(key));
     }

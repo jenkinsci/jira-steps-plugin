@@ -63,7 +63,7 @@ public class JiraService {
             proxyConfiguration.port);
         Authenticator proxyAuthenticator = (route, response) -> {
           String credential = Credentials.basic(proxyConfiguration.getUserName(),
-              proxyConfiguration.getPassword());
+              proxyConfiguration.getSecretPassword().getPlainText());
           return response.request().newBuilder()
               .header("Proxy-Authorization", credential)
               .build();
@@ -202,7 +202,7 @@ public class JiraService {
 
   public ResponseData<Void> assignIssue(final String issueIdorKey, final String userName) {
     try {
-      Map input = Maps.newHashMap();
+      Map<Object, Object> input = Maps.newHashMap();
       input.put("name", userName);
       return parseResponse(
           jiraEndPoints

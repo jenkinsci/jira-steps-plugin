@@ -5,6 +5,8 @@ import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorRespon
 import hudson.Extension;
 import hudson.Util;
 import java.io.IOException;
+import java.io.Serial;
+
 import lombok.Getter;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
@@ -19,20 +21,18 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
  *
  * @author Naresh Rayapati
  */
+@Getter
 public class LinkIssuesStep extends BasicJiraStep {
 
+  @Serial
   private static final long serialVersionUID = -1881920733234295481L;
 
-  @Getter
   private final String type;
 
-  @Getter
   private final String inwardKey;
 
-  @Getter
   private final String outwardKey;
   // Comment is optional.
-  @Getter
   @DataBoundSetter
   private String comment;
 
@@ -64,6 +64,7 @@ public class LinkIssuesStep extends BasicJiraStep {
 
   public static class Execution extends JiraStepExecution<ResponseData<Void>> {
 
+    @Serial
     private static final long serialVersionUID = -1666683149182699538L;
 
     private final LinkIssuesStep step;

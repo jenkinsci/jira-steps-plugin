@@ -2,6 +2,7 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import hudson.Extension;
 import java.io.IOException;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,23 +17,21 @@ import org.kohsuke.stapler.DataBoundSetter;
  *
  * @author Naresh Rayapati
  */
+@Getter
 public abstract class BasicJiraStep extends Step implements Serializable {
 
+  @Serial
   private static final long serialVersionUID = 7268920801605705697L;
 
-  @Getter
   @DataBoundSetter
   private String site;
 
-  @Getter
   @DataBoundSetter
   private boolean failOnError = true;
 
-  @Getter
   @DataBoundSetter
   private boolean auditLog = true;
 
-  @Getter
   @DataBoundSetter
   private Map<String, String> queryParams = new HashMap<>();
 

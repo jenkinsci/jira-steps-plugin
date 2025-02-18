@@ -41,9 +41,10 @@ public class UploadAttachmentStepTest extends BaseTest {
     final UploadAttachmentStep step = new UploadAttachmentStep("", "test.txt");
     stepExecution = new UploadAttachmentStep.Execution(step, contextMock);
 
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-          stepExecution.run();
-        }).withMessage("ID or key is null or empty").withStackTraceContaining("AbortException")
+    assertThatExceptionOfType(AbortException.class)
+        .isThrownBy(() -> stepExecution.run())
+        .withMessage("ID or key is null or empty")
+        .withStackTraceContaining("AbortException")
         .withNoCause();
   }
 
@@ -52,9 +53,10 @@ public class UploadAttachmentStepTest extends BaseTest {
     final UploadAttachmentStep step = new UploadAttachmentStep("TEST-1", "");
     stepExecution = new UploadAttachmentStep.Execution(step, contextMock);
 
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-          stepExecution.run();
-        }).withMessage("file is null or empty").withStackTraceContaining("AbortException")
+    assertThatExceptionOfType(AbortException.class)
+        .isThrownBy(() -> stepExecution.run())
+        .withMessage("file is null or empty")
+        .withStackTraceContaining("AbortException")
         .withNoCause();
   }
 

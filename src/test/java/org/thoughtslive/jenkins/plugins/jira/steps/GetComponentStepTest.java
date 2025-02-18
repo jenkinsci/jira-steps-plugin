@@ -38,9 +38,11 @@ public class GetComponentStepTest extends BaseTest {
     stepExecution = new GetComponentStep.Execution(step, contextMock);
 
     // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-      stepExecution.run();
-    }).withMessage("id is empty or null.").withStackTraceContaining("AbortException").withNoCause();
+    assertThatExceptionOfType(AbortException.class)
+        .isThrownBy(() -> stepExecution.run())
+        .withMessage("id is empty or null.")
+        .withStackTraceContaining("AbortException")
+        .withNoCause();
   }
 
   @Test
@@ -49,9 +51,11 @@ public class GetComponentStepTest extends BaseTest {
     stepExecution = new GetComponentStep.Execution(step, contextMock);
 
     // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-      stepExecution.run();
-    }).withMessage("id is empty or null.").withStackTraceContaining("AbortException").withNoCause();
+    assertThatExceptionOfType(AbortException.class)
+        .isThrownBy(() -> stepExecution.run())
+        .withMessage("id is empty or null.")
+        .withStackTraceContaining("AbortException")
+        .withNoCause();
   }
 
   @Test

@@ -49,9 +49,10 @@ public class EditIssueStepTest extends BaseTest {
     stepExecution = new EditIssueStep.Execution(step, contextMock);
 
     // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-          stepExecution.run();
-        }).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException")
+    assertThatExceptionOfType(AbortException.class)
+        .isThrownBy(() -> stepExecution.run())
+        .withMessage("idOrKey is empty or null.")
+        .withStackTraceContaining("AbortException")
         .withNoCause();
   }
 

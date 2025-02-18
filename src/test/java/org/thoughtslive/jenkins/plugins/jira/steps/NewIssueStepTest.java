@@ -31,7 +31,7 @@ public class NewIssueStepTest extends BaseTest {
   @Before
   public void setup() throws IOException, InterruptedException {
 
-    final Map<String, Object> fields = new HashMap<String, Object>();
+    final Map<String, Object> fields = new HashMap<>();
     fields.put("summary", "Summary");
     fields.put("description", null);
     fields.put("duedate", DateTime.now().toString());

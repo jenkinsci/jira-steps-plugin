@@ -5,7 +5,6 @@ import com.cloudbees.plugins.credentials.CredentialsMatchers;
 import com.cloudbees.plugins.credentials.CredentialsProvider;
 import com.cloudbees.plugins.credentials.common.StandardListBoxModel;
 import com.cloudbees.plugins.credentials.common.StandardUsernameCredentials;
-import com.cloudbees.plugins.credentials.common.UsernamePasswordCredentials;
 import com.cloudbees.plugins.credentials.domains.DomainRequirement;
 import com.cloudbees.plugins.credentials.domains.URIRequirementBuilder;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;
@@ -35,7 +34,6 @@ import jenkins.model.Jenkins;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.java.Log;
-import org.acegisecurity.Authentication;
 import org.apache.commons.lang.StringUtils;
 import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.DoNotUse;
@@ -44,6 +42,7 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.verb.POST;
+import org.springframework.security.core.Authentication;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
@@ -222,7 +221,7 @@ public class Site extends AbstractDescribableImpl<Site> {
       }
 
       List<DomainRequirement> domainRequirements = URIRequirementBuilder.fromUri(url).build();
-      if (CredentialsProvider.listCredentials(StandardUsernameCredentials.class, item,
+      if (CredentialsProvider.listCredentialsInItem(StandardUsernameCredentials.class, item,
               getAuthentication(item), domainRequirements, CredentialsMatchers.withId(credentialsId))
           .isEmpty()) {
         return FormValidation.error(Messages.Site_invalidCredentialsId());
@@ -251,7 +250,7 @@ public class Site extends AbstractDescribableImpl<Site> {
       Authentication authentication = getAuthentication(item);
       List<DomainRequirement> domainRequirements = URIRequirementBuilder.fromUri(url).build();
       CredentialsMatcher always = CredentialsMatchers.always();
-      Class type = UsernamePasswordCredentials.class;
+      Class<StandardUsernameCredentials> type = StandardUsernameCredentials.class;
 
       result.includeEmptyValue();
       if (item != null) {
@@ -263,7 +262,7 @@ public class Site extends AbstractDescribableImpl<Site> {
     }
 
     protected Authentication getAuthentication(Item item) {
-      return item instanceof Queue.Task ? Tasks.getAuthenticationOf((Queue.Task) item) : ACL.SYSTEM;
+      return item instanceof Queue.Task task ? Tasks.getAuthenticationOf2(task) : ACL.SYSTEM2;
     }
 
     @POST
