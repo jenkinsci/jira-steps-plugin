@@ -5,6 +5,8 @@ import static org.thoughtslive.jenkins.plugins.jira.util.Common.buildErrorRespon
 import hudson.Extension;
 import hudson.Util;
 import java.io.IOException;
+import java.io.Serial;
+
 import lombok.Getter;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
@@ -19,22 +21,19 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
  *
  * @author Naresh Rayapati
  */
+@Getter
 public class AssignableUserSearchStep extends BasicJiraStep {
 
+  @Serial
   private static final long serialVersionUID = -7754102811625753132L;
 
-  @Getter
   private String project;
 
-  @Getter
   private String issueKey;
-  @Getter
   @DataBoundSetter
   private String queryStr;
-  @Getter
   @DataBoundSetter
   private int startAt = 0;
-  @Getter
   @DataBoundSetter
   private int maxResults = 1000;
 
@@ -66,6 +65,7 @@ public class AssignableUserSearchStep extends BasicJiraStep {
 
   public static class Execution extends JiraStepExecution<ResponseData<Object>> {
 
+    @Serial
     private static final long serialVersionUID = 3640953129479843111L;
 
     private final AssignableUserSearchStep step;

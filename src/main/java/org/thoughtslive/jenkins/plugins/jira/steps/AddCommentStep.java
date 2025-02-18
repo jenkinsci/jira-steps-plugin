@@ -6,6 +6,8 @@ import com.google.common.collect.ImmutableMap;
 import hudson.Extension;
 import hudson.Util;
 import java.io.IOException;
+import java.io.Serial;
+
 import lombok.Getter;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.StepExecution;
@@ -21,18 +23,17 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
  *
  * @author Naresh Rayapati
  */
+@Getter
 public class AddCommentStep extends BasicJiraStep {
 
+  @Serial
   private static final long serialVersionUID = 8523118063993121080L;
 
-  @Getter
   private final String idOrKey;
 
   @Deprecated
-  @Getter
   private final String comment;
 
-  @Getter
   @DataBoundSetter
   private Object input;
 
@@ -64,6 +65,7 @@ public class AddCommentStep extends BasicJiraStep {
 
   public static class Execution extends JiraStepExecution<ResponseData<Object>> {
 
+    @Serial
     private static final long serialVersionUID = 462945562138805176L;
 
     private final AddCommentStep step;

@@ -45,9 +45,11 @@ public class DownloadAttachmentStepTest extends BaseTest {
     final DownloadAttachmentStep step = new DownloadAttachmentStep("", "test.txt", true);
     stepExecution = new DownloadAttachmentStep.Execution(step, contextMock);
 
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-      stepExecution.run();
-    }).withMessage("id is null or empty").withStackTraceContaining("AbortException").withNoCause();
+    assertThatExceptionOfType(AbortException.class)
+        .isThrownBy(() -> stepExecution.run())
+        .withMessage("id is null or empty")
+        .withStackTraceContaining("AbortException")
+        .withNoCause();
   }
 
   @Test
@@ -55,9 +57,10 @@ public class DownloadAttachmentStepTest extends BaseTest {
     final DownloadAttachmentStep step = new DownloadAttachmentStep("100000", "", false);
     stepExecution = new DownloadAttachmentStep.Execution(step, contextMock);
 
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-          stepExecution.run();
-        }).withMessage("file is null or empty").withStackTraceContaining("AbortException")
+    assertThatExceptionOfType(AbortException.class)
+        .isThrownBy(() -> stepExecution.run())
+        .withMessage("file is null or empty")
+        .withStackTraceContaining("AbortException")
         .withNoCause();
   }
 

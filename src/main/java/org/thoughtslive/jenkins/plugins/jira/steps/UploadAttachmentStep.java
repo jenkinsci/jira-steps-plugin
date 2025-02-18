@@ -6,6 +6,8 @@ import hudson.Extension;
 import hudson.FilePath;
 import hudson.Util;
 import java.io.IOException;
+import java.io.Serial;
+
 import lombok.Getter;
 import org.apache.commons.io.IOUtils;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
@@ -20,14 +22,14 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
  *
  * @author Naresh Rayapati
  */
+@Getter
 public class UploadAttachmentStep extends BasicJiraStep {
 
+  @Serial
   private static final long serialVersionUID = 2996407840986266627L;
 
-  @Getter
   private final String idOrKey;
 
-  @Getter
   private final String file;
 
   @DataBoundConstructor
@@ -57,6 +59,7 @@ public class UploadAttachmentStep extends BasicJiraStep {
 
   public static class Execution extends JiraStepExecution<ResponseData<Object>> {
 
+    @Serial
     private static final long serialVersionUID = 7064983919695548462L;
 
     private final UploadAttachmentStep step;

@@ -39,9 +39,10 @@ public class LinkIssuesStepTest extends BaseTest {
     stepExecution = new LinkIssuesStep.Execution(step, contextMock);
 
     // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-          stepExecution.run();
-        }).withMessage("type is empty or null.").withStackTraceContaining("AbortException")
+    assertThatExceptionOfType(AbortException.class)
+        .isThrownBy(() -> stepExecution.run())
+        .withMessage("type is empty or null.")
+        .withStackTraceContaining("AbortException")
         .withNoCause();
   }
 
@@ -51,9 +52,10 @@ public class LinkIssuesStepTest extends BaseTest {
     stepExecution = new LinkIssuesStep.Execution(step, contextMock);
 
     // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-          stepExecution.run();
-        }).withMessage("inwardKey is empty or null.").withStackTraceContaining("AbortException")
+    assertThatExceptionOfType(AbortException.class)
+        .isThrownBy(() -> stepExecution.run())
+        .withMessage("inwardKey is empty or null.")
+        .withStackTraceContaining("AbortException")
         .withNoCause();
   }
 
@@ -63,9 +65,10 @@ public class LinkIssuesStepTest extends BaseTest {
     stepExecution = new LinkIssuesStep.Execution(step, contextMock);
 
     // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-          stepExecution.run();
-        }).withMessage("outwardKey is empty or null.").withStackTraceContaining("AbortException")
+    assertThatExceptionOfType(AbortException.class)
+        .isThrownBy(() -> stepExecution.run())
+        .withMessage("outwardKey is empty or null.")
+        .withStackTraceContaining("AbortException")
         .withNoCause();
   }
 

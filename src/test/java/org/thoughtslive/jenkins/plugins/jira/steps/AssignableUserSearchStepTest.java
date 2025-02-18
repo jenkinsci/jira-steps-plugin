@@ -41,9 +41,9 @@ public class AssignableUserSearchStepTest extends BaseTest {
     stepExecution = new AssignableUserSearchStep.Execution(step, contextMock);
 
     // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-          stepExecution.run();
-        }).withMessage("either project or issueKey is required.")
+    assertThatExceptionOfType(AbortException.class)
+        .isThrownBy(() -> stepExecution.run())
+        .withMessage("either project or issueKey is required.")
         .withStackTraceContaining("AbortException")
         .withNoCause();
   }

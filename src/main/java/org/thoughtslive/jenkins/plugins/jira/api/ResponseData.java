@@ -1,5 +1,6 @@
 package org.thoughtslive.jenkins.plugins.jira.api;
 
+import java.io.Serial;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,6 +16,7 @@ import org.jenkinsci.plugins.scriptsecurity.sandbox.whitelists.Whitelisted;
 @Builder
 public class ResponseData<T> implements Serializable {
 
+  @Serial
   private static final long serialVersionUID = 7846727738826103343L;
 
   @Whitelisted

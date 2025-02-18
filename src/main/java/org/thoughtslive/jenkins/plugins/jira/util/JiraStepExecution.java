@@ -16,6 +16,7 @@ import hudson.model.Run;
 import hudson.model.TaskListener;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.Serial;
 import java.util.Collections;
 import java.util.List;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
@@ -36,9 +37,10 @@ import org.thoughtslive.jenkins.plugins.jira.steps.BasicJiraStep;
  */
 public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExecution<T> {
 
+  @Serial
   private static final long serialVersionUID = 3856797875872780808L;
 
-  public transient JiraService jiraService = null;
+  protected transient JiraService jiraService = null;
   protected transient PrintStream logger = null;
   protected transient String siteName = null;
   protected transient boolean failOnError = true;
@@ -63,11 +65,11 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
    */
   protected static String prepareBuildUserId(List<Cause> causes) {
     String buildUser = "anonymous";
-    if (causes != null && causes.size() > 0) {
-      if (causes.get(0) instanceof UserIdCause) {
-        buildUser = ((UserIdCause) causes.get(0)).getUserId();
-      } else if (causes.get(0) instanceof UpstreamCause) {
-        List<Cause> upstreamCauses = ((UpstreamCause) causes.get(0)).getUpstreamCauses();
+    if (causes != null && !causes.isEmpty()) {
+      if (causes.get(0) instanceof UserIdCause userIdCause) {
+        buildUser = userIdCause.getUserId();
+      } else if (causes.get(0) instanceof UpstreamCause upstreamCause) {
+        List<Cause> upstreamCauses = upstreamCause.getUpstreamCauses();
         buildUser = prepareBuildUserId(upstreamCauses);
       }
     }
@@ -80,7 +82,6 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
    * @return response if JIRA_SITE is empty or if there is no site configured with JIRA_SITE.
    * @throws AbortException when failOnError is true and JIRA_SITE is missing.
    */
-  @SuppressWarnings("hiding")
   protected <T> ResponseData<T> verifyCommon(final BasicJiraStep step) throws AbortException {
 
     logger = listener.getLogger();
@@ -133,7 +134,6 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
    * @return same response back.
    * @throws AbortException if failOnError is true and response is not successful.
    */
-  @SuppressWarnings("hiding")
   protected <T> ResponseData<T> logResponse(ResponseData<T> response) throws AbortException {
 
     if (response.isSuccessful()) {
@@ -169,6 +169,5 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
     return message + "\nAutomatically created by: " + buildUserId + " from " + buildUrl;
   }
 
-  @SuppressWarnings("hiding")
   protected abstract <T> ResponseData<T> verifyInput() throws Exception;
 }

@@ -38,9 +38,10 @@ public class GetProjectStatusesStepTest extends BaseTest {
     stepExecution = new GetProjectStatusesStep.Execution(step, contextMock);
 
     // Execute and assert Test.
-    assertThatExceptionOfType(AbortException.class).isThrownBy(() -> {
-          stepExecution.run();
-        }).withMessage("idOrKey is empty or null.").withStackTraceContaining("AbortException")
+    assertThatExceptionOfType(AbortException.class)
+        .isThrownBy(() -> stepExecution.run())
+        .withMessage("idOrKey is empty or null.")
+        .withStackTraceContaining("AbortException")
         .withNoCause();
   }
 
