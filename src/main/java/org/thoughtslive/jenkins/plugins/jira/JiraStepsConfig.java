@@ -16,6 +16,9 @@ import org.kohsuke.accmod.restrictions.NoExternalUse;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.Stapler;
 import org.kohsuke.stapler.StaplerRequest;
+import com.cloudbees.plugins.credentials.CredentialsProvider;
+import com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredentials;
+import jenkins.model.Jenkins;
 
 /**
  * Represents JIRA Global Configuration.
@@ -58,6 +61,15 @@ public class JiraStepsConfig extends AbstractDescribableImpl<JiraStepsConfig> {
   @Override
   public ConfigDescriptorImpl getDescriptor() {
     return DESCRIPTOR;
+  }
+
+  private String getPrivateKeyFromCredentials(String credentialsId) {
+    StandardUsernamePasswordCredentials credentials = CredentialsProvider.findCredentialById(
+      credentialsId,
+      StandardUsernamePasswordCredentials.class,
+      Jenkins.getAuthentication()
+    );
+    return credentials != null ? credentials.getPassword().getPlainText() : null;
   }
 
   public static final class ConfigDescriptorImpl extends Descriptor<JiraStepsConfig>
