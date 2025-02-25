@@ -1,10 +1,13 @@
 package org.thoughtslive.jenkins.plugins.jira.login;
 
 import com.google.api.client.auth.oauth.OAuthRsaSigner;
-import com.google.api.client.util.Base64;
+
+import java.io.Serial;
 import java.security.GeneralSecurityException;
 import java.security.KeyFactory;
 import java.security.spec.PKCS8EncodedKeySpec;
+import java.util.Base64;
+
 import oauth.signpost.exception.OAuthMessageSignerException;
 import oauth.signpost.http.HttpParameters;
 import oauth.signpost.http.HttpRequest;
@@ -13,6 +16,7 @@ import oauth.signpost.signature.SignatureBaseString;
 
 public class RsaSha1MessageSigner extends OAuthMessageSigner {
 
+  @Serial
   private static final long serialVersionUID = -1777278892400172839L;
 
   @Override
@@ -25,7 +29,7 @@ public class RsaSha1MessageSigner extends OAuthMessageSigner {
       throws OAuthMessageSignerException {
 
     final OAuthRsaSigner signer = new OAuthRsaSigner();
-    final byte[] privateBytes = Base64.decodeBase64(getConsumerSecret());
+    final byte[] privateBytes = Base64.getDecoder().decode(getConsumerSecret());
     final PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(privateBytes);
 
     try {

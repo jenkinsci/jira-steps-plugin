@@ -7,6 +7,8 @@ import hudson.FilePath;
 import hudson.Util;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.Serial;
+
 import lombok.Getter;
 import okhttp3.ResponseBody;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
@@ -22,17 +24,16 @@ import org.thoughtslive.jenkins.plugins.jira.util.JiraStepExecution;
  *
  * @author Naresh Rayapati
  */
+@Getter
 public class DownloadAttachmentStep extends BasicJiraStep {
 
+  @Serial
   private static final long serialVersionUID = 6317067114642701582L;
 
-  @Getter
   private final String id;
 
-  @Getter
   private final String file;
 
-  @Getter
   private boolean override;
 
   @DataBoundConstructor
@@ -64,6 +65,7 @@ public class DownloadAttachmentStep extends BasicJiraStep {
 
   public static class Execution extends JiraStepExecution<ResponseData<Object>> {
 
+    @Serial
     private static final long serialVersionUID = -1459989930759928081L;
 
     private final DownloadAttachmentStep step;
@@ -138,7 +140,7 @@ public class DownloadAttachmentStep extends BasicJiraStep {
             }
             responseData.setData(null);
           } else {
-            final ResponseData.ResponseDataBuilder builder = ResponseData.builder();
+            final ResponseData.ResponseDataBuilder<Object> builder = ResponseData.builder();
             builder.successful(response.isSuccessful()).code(response.getCode())
                 .message(response.getMessage()).error(response.getError());
             return builder.build();
