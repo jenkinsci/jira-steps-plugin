@@ -5,7 +5,9 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import oauth.signpost.http.HttpRequest;
+import okhttp3.MediaType;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okio.Buffer;
 
 public class RequestAdapter implements HttpRequest {
@@ -27,9 +29,10 @@ public class RequestAdapter implements HttpRequest {
 
   @Override
   public String getContentType() {
-    if (request.body() != null) {
-      return (request.body().contentType() != null) ? request.body().contentType().toString()
-          : null;
+      RequestBody body = request.body();
+      if (body != null) {
+        MediaType contentType = body.contentType();
+        return (contentType != null) ? contentType.toString() : null;
     }
     return null;
   }
@@ -41,11 +44,12 @@ public class RequestAdapter implements HttpRequest {
 
   @Override
   public InputStream getMessagePayload() throws IOException {
-    if (request.body() == null) {
+      RequestBody body = request.body();
+      if (body == null) {
       return null;
     }
     Buffer buf = new Buffer();
-    request.body().writeTo(buf);
+    body.writeTo(buf);
     return buf.inputStream();
   }
 

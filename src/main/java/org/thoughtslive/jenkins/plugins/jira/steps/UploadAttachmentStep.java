@@ -25,10 +25,10 @@ public class UploadAttachmentStep extends BasicJiraStep {
   private static final long serialVersionUID = 2996407840986266627L;
 
   @Getter
-  private final String idOrKey;
+  public final String idOrKey;
 
   @Getter
-  private final String file;
+  public final String file;
 
   @DataBoundConstructor
   public UploadAttachmentStep(final String idOrKey, final String file) {

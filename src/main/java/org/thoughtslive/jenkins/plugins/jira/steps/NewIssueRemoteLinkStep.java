@@ -23,10 +23,10 @@ public class NewIssueRemoteLinkStep extends BasicJiraStep {
   private static final long serialVersionUID = 3529709240318435576L;
 
   @Getter
-  private final String idOrKey;
+  public final String idOrKey;
 
   @Getter
-  private final Object remoteLink;
+  public final Object remoteLink;
 
   @DataBoundConstructor
   public NewIssueRemoteLinkStep(final String idOrKey, final Object remoteLink) {

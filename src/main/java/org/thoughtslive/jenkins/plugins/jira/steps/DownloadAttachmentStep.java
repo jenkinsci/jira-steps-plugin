@@ -27,13 +27,13 @@ public class DownloadAttachmentStep extends BasicJiraStep {
   private static final long serialVersionUID = 6317067114642701582L;
 
   @Getter
-  private final String id;
+  public final String id;
 
   @Getter
-  private final String file;
+  public final String file;
 
   @Getter
-  private boolean override;
+  public boolean override;
 
   @DataBoundConstructor
   public DownloadAttachmentStep(final String id, final String file,

@@ -23,10 +23,10 @@ public class NotifyIssueStep extends BasicJiraStep {
   private static final long serialVersionUID = -5286750553487650184L;
 
   @Getter
-  private final String idOrKey;
+  public final String idOrKey;
 
   @Getter
-  private final Object notify;
+  public final Object notify;
 
   @DataBoundConstructor
   public NotifyIssueStep(final String idOrKey, final Object notify) {

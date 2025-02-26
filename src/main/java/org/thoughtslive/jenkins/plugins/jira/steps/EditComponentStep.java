@@ -23,10 +23,10 @@ public class EditComponentStep extends BasicJiraStep {
   private static final long serialVersionUID = 6528605492208170984L;
 
   @Getter
-  private final String id;
+  public final String id;
 
   @Getter
-  private final Object component;
+  public final Object component;
 
   @DataBoundConstructor
   public EditComponentStep(final String id, final Object component) {

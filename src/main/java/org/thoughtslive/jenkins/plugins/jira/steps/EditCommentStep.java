@@ -26,18 +26,18 @@ public class EditCommentStep extends BasicJiraStep {
   private static final long serialVersionUID = -6330276534463853856L;
 
   @Getter
-  private final String idOrKey;
+  public final String idOrKey;
 
   @Getter
-  private final String commentId;
+  public final String commentId;
 
   @Deprecated
   @Getter
-  private final String comment;
+  public final String comment;
 
   @Getter
   @DataBoundSetter
-  private Object input;
+  public Object input;
 
   @Deprecated
   @DataBoundConstructor

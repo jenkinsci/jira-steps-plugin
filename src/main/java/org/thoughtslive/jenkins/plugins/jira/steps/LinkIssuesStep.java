@@ -24,17 +24,17 @@ public class LinkIssuesStep extends BasicJiraStep {
   private static final long serialVersionUID = -1881920733234295481L;
 
   @Getter
-  private final String type;
+  public final String type;
 
   @Getter
-  private final String inwardKey;
+  public final String inwardKey;
 
   @Getter
-  private final String outwardKey;
+  public final String outwardKey;
   // Comment is optional.
   @Getter
   @DataBoundSetter
-  private String comment;
+  public String comment;
 
   @DataBoundConstructor
   public LinkIssuesStep(final String type, final String inwardKey, final String outwardKey) {

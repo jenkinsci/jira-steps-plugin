@@ -23,13 +23,13 @@ public class AssignIssueStep extends BasicJiraStep {
   private static final long serialVersionUID = -7552691123209663987L;
 
   @Getter
-  private final String idOrKey;
+  public final String idOrKey;
 
   @Getter
-  private final String userName;
+  public final String userName;
 
   @Getter
-  private final String accountId;
+  public final String accountId;
 
   @DataBoundConstructor
   public AssignIssueStep(final String idOrKey, final String userName, final String accountId) {
