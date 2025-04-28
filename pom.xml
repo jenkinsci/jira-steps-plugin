@@ -5,7 +5,8 @@
   <parent>
     <artifactId>plugin</artifactId>
     <groupId>org.jenkins-ci.plugins</groupId>
-    <version>4.54</version>
+    <version>5.12</version>
+    <relativePath/>
   </parent>
   <artifactId>jira-steps</artifactId>
   <version>${revision}.${changelist}</version>
@@ -16,10 +17,9 @@
   <properties>
     <revision>2.0</revision>
     <changelist>999999-SNAPSHOT</changelist>
-    <java.level>8</java.level>
     <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
-    <jenkins.baseline>2.361</jenkins.baseline>
-    <jenkins.version>${jenkins.baseline}.1</jenkins.version>
+    <jenkins.baseline>2.479</jenkins.baseline>
+    <jenkins.version>${jenkins.baseline}.3</jenkins.version>
     <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
     <assertj-core.version>3.27.3</assertj-core.version>
     <google.oauth.version>1.38.0</google.oauth.version>
@@ -39,15 +39,6 @@
     <name>ThoughtsLive</name>
     <url>https://nrayapati.github.io/</url>
   </organization>
-
-  <developers>
-    <developer>
-      <id>nrayapati</id>
-      <name>Naresh Rayapati</name>
-      <organization>ThoughtsLive</organization>
-      <organizationUrl>https://nrayapati.github.io/</organizationUrl>
-    </developer>
-  </developers>
 
   <scm child.scm.connection.inherit.append.path="false" child.scm.developerConnection.inherit.append.path="false" child.scm.url.inherit.append.path="false">
     <connection>scm:git:https://github.com/${gitHubRepo}</connection>
@@ -76,7 +67,7 @@
         <groupId>io.jenkins.tools.bom</groupId>
         <scope>import</scope>
         <type>pom</type>
-        <version>1763.v092b_8980a_f5e</version>
+        <version>4669.v0e99c712a_30e</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

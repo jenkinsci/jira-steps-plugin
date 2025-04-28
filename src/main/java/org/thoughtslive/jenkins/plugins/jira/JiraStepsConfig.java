@@ -15,7 +15,7 @@ import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.NoExternalUse;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.Stapler;
-import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.StaplerRequest2;
 
 /**
  * Represents JIRA Global Configuration.
@@ -85,7 +85,7 @@ public class JiraStepsConfig extends AbstractDescribableImpl<JiraStepsConfig> {
     }
 
     @Override
-    public JiraStepsConfig newInstance(@Nonnull final StaplerRequest req, final JSONObject formData)
+    public JiraStepsConfig newInstance(@Nonnull final StaplerRequest2 req, final JSONObject formData)
         throws FormException {
       JiraStepsConfig jiraConfig = req.bindJSON(JiraStepsConfig.class, formData);
       if (jiraConfig.siteName == null) {
@@ -95,7 +95,7 @@ public class JiraStepsConfig extends AbstractDescribableImpl<JiraStepsConfig> {
     }
 
     @Override
-    public boolean configure(StaplerRequest req, JSONObject formData) {
+    public boolean configure(StaplerRequest2 req, JSONObject formData) {
       Stapler.CONVERT_UTILS.deregister(java.net.URL.class);
       Stapler.CONVERT_UTILS.register(new EmptyFriendlyURLConverter(), java.net.URL.class);
       sites.replaceBy(req.bindJSONToList(Site.class, formData.get("sites")));
