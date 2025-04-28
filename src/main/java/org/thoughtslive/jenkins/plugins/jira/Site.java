@@ -33,7 +33,7 @@ import jenkins.model.Jenkins;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.java.Log;
-import org.acegisecurity.Authentication;
+import org.springframework.security.core.Authentication;
 import org.apache.commons.lang.StringUtils;
 import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.DoNotUse;
