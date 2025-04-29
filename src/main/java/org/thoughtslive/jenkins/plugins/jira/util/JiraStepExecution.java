@@ -43,7 +43,7 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
 
     @Setter
     @Getter
-    private transient JiraService jiraService = null;
+    protected transient JiraService jiraService = null;
     protected transient PrintStream logger = null;
     protected transient String siteName = null;
     protected transient boolean failOnError = true;
