@@ -18,6 +18,9 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Collections;
 import java.util.List;
+
+import lombok.Getter;
+import lombok.Setter;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.SynchronousNonBlockingStepExecution;
 import org.thoughtslive.jenkins.plugins.jira.Messages;
@@ -36,139 +39,141 @@ import org.thoughtslive.jenkins.plugins.jira.steps.BasicJiraStep;
  */
 public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExecution<T> {
 
-  private static final long serialVersionUID = 3856797875872780808L;
+    private static final long serialVersionUID = 3856797875872780808L;
 
-  public transient JiraService jiraService = null;
-  protected transient PrintStream logger = null;
-  protected transient String siteName = null;
-  protected transient boolean failOnError = true;
-  protected transient String buildUserId = null;
-  protected transient String buildUrl = null;
-  private transient Run<?, ?> run;
-  private transient TaskListener listener;
-  private transient EnvVars envVars;
+    @Setter
+    @Getter
+    private transient JiraService jiraService = null;
+    protected transient PrintStream logger = null;
+    protected transient String siteName = null;
+    protected transient boolean failOnError = true;
+    protected transient String buildUserId = null;
+    protected transient String buildUrl = null;
+    private transient Run<?, ?> run;
+    private transient TaskListener listener;
+    private transient EnvVars envVars;
 
-  protected JiraStepExecution(final StepContext context) throws IOException, InterruptedException {
-    super(context);
-    run = context.get(Run.class);
-    listener = context.get(TaskListener.class);
-    envVars = context.get(EnvVars.class);
-  }
-
-  /**
-   * Return the current build user.
-   *
-   * @param causes build causes.
-   * @return user name.
-   */
-  protected static String prepareBuildUserId(List<Cause> causes) {
-    String buildUser = "anonymous";
-    if (causes != null && causes.size() > 0) {
-      if (causes.get(0) instanceof UserIdCause) {
-        buildUser = ((UserIdCause) causes.get(0)).getUserId();
-      } else if (causes.get(0) instanceof UpstreamCause) {
-        List<Cause> upstreamCauses = ((UpstreamCause) causes.get(0)).getUpstreamCauses();
-        buildUser = prepareBuildUserId(upstreamCauses);
-      }
-    }
-    return Util.fixEmpty(buildUser) == null ? "anonymous" : buildUser;
-  }
-
-  /**
-   * Verifies the common input for all the stesp.
-   *
-   * @return response if JIRA_SITE is empty or if there is no site configured with JIRA_SITE.
-   * @throws AbortException when failOnError is true and JIRA_SITE is missing.
-   */
-  @SuppressWarnings("hiding")
-  protected <T> ResponseData<T> verifyCommon(final BasicJiraStep step) throws AbortException {
-
-    logger = listener.getLogger();
-
-    String errorMessage = null;
-    siteName = empty(step.getSite()) ? envVars.get("JIRA_SITE") : step.getSite();
-    final Site site = Site.get(siteName);
-    final String failOnErrorStr = Util.fixEmpty(envVars.get("JIRA_FAIL_ON_ERROR"));
-
-    if (failOnErrorStr == null) {
-      failOnError = step.isFailOnError();
-    } else {
-      failOnError = Boolean.parseBoolean(failOnErrorStr);
+    protected JiraStepExecution(final StepContext context) throws IOException, InterruptedException {
+        super(context);
+        run = context.get(Run.class);
+        listener = context.get(TaskListener.class);
+        envVars = context.get(EnvVars.class);
     }
 
-    if (empty(siteName)) {
-      errorMessage = "JIRA_SITE is empty or null.";
-    }
-
-    if (site == null) {
-      errorMessage = "No JIRA site configured with " + siteName + " name.";
-    } else {
-      if (jiraService == null) {
-        if (LoginType.CREDENTIAL.name().equals(site.getLoginType())) {
-          // at build time use of credentials must be checked against the user who run the build, see https://plugins.jenkins.io/authorize-project
-          StandardUsernameCredentials credentialsId = CredentialsProvider.findCredentialById(
-              site.getCredentialsId(), StandardUsernameCredentials.class, run,
-              Collections.emptyList());
-          if (credentialsId == null) {
-            throw new AbortException(Messages.Site_invalidCredentialsId());
-          }
+    /**
+     * Return the current build user.
+     *
+     * @param causes build causes.
+     * @return user name.
+     */
+    protected static String prepareBuildUserId(List<Cause> causes) {
+        String buildUser = "anonymous";
+        if (causes != null && causes.size() > 0) {
+            if (causes.get(0) instanceof UserIdCause) {
+                buildUser = ((UserIdCause) causes.get(0)).getUserId();
+            } else if (causes.get(0) instanceof UpstreamCause) {
+                List<Cause> upstreamCauses = ((UpstreamCause) causes.get(0)).getUpstreamCauses();
+                buildUser = prepareBuildUserId(upstreamCauses);
+            }
         }
-        jiraService = site.getService();
-      }
+        return Util.fixEmpty(buildUser) == null ? "anonymous" : buildUser;
     }
 
-    if (errorMessage != null) {
-      return buildErrorResponse(new RuntimeException(errorMessage));
+    /**
+     * Verifies the common input for all the stesp.
+     *
+     * @return response if JIRA_SITE is empty or if there is no site configured with JIRA_SITE.
+     * @throws AbortException when failOnError is true and JIRA_SITE is missing.
+     */
+    @SuppressWarnings("hiding")
+    protected <T> ResponseData<T> verifyCommon(final BasicJiraStep step) throws AbortException {
+
+        logger = listener.getLogger();
+
+        String errorMessage = null;
+        siteName = empty(step.getSite()) ? envVars.get("JIRA_SITE") : step.getSite();
+        final Site site = Site.get(siteName);
+        final String failOnErrorStr = Util.fixEmpty(envVars.get("JIRA_FAIL_ON_ERROR"));
+
+        if (failOnErrorStr == null) {
+            failOnError = step.isFailOnError();
+        } else {
+            failOnError = Boolean.parseBoolean(failOnErrorStr);
+        }
+
+        if (empty(siteName)) {
+            errorMessage = "JIRA_SITE is empty or null.";
+        }
+
+        if (site == null) {
+            errorMessage = "No JIRA site configured with " + siteName + " name.";
+        } else {
+            if (jiraService == null) {
+                if (LoginType.CREDENTIAL.name().equals(site.getLoginType())) {
+                    // at build time use of credentials must be checked against the user who run the build, see
+                    // https://plugins.jenkins.io/authorize-project
+                    StandardUsernameCredentials credentialsId = CredentialsProvider.findCredentialById(
+                            site.getCredentialsId(), StandardUsernameCredentials.class, run, Collections.emptyList());
+                    if (credentialsId == null) {
+                        throw new AbortException(Messages.Site_invalidCredentialsId());
+                    }
+                }
+                jiraService = site.getService();
+            }
+        }
+
+        if (errorMessage != null) {
+            return buildErrorResponse(new RuntimeException(errorMessage));
+        }
+
+        buildUserId = prepareBuildUserId(run.getCauses());
+        buildUrl = envVars.get("BUILD_URL");
+
+        return null;
     }
 
-    buildUserId = prepareBuildUserId(run.getCauses());
-    buildUrl = envVars.get("BUILD_URL");
+    /**
+     * Log code and error message if any.
+     *
+     * @return same response back.
+     * @throws AbortException if failOnError is true and response is not successful.
+     */
+    @SuppressWarnings("hiding")
+    protected <T> ResponseData<T> logResponse(ResponseData<T> response) throws AbortException {
 
-    return null;
-  }
+        if (response.isSuccessful()) {
+            log(logger, "Successful. Code: " + response.getCode());
+        } else {
+            log(logger, "Error Code: " + response.getCode());
+            log(logger, "Error Message: " + response.getError());
 
-  /**
-   * Log code and error message if any.
-   *
-   * @return same response back.
-   * @throws AbortException if failOnError is true and response is not successful.
-   */
-  @SuppressWarnings("hiding")
-  protected <T> ResponseData<T> logResponse(ResponseData<T> response) throws AbortException {
+            if (failOnError) {
+                throw new AbortException(response.getError());
+            }
+        }
 
-    if (response.isSuccessful()) {
-      log(logger, "Successful. Code: " + response.getCode());
-    } else {
-      log(logger, "Error Code: " + response.getCode());
-      log(logger, "Error Message: " + response.getError());
-
-      if (failOnError) {
-        throw new AbortException(response.getError());
-      }
+        return response;
     }
 
-    return response;
-  }
+    /**
+     * Adds Job info to the given message.
+     *
+     * @return message added with metadata.
+     */
+    protected String addPanelMeta(final String message) {
+        return message + "\n{panel}Automatically created by: [~" + buildUserId + "] from [Build URL|" + buildUrl
+                + "]{panel}";
+    }
 
-  /**
-   * Adds Job info to the given message.
-   *
-   * @return message added with metadata.
-   */
-  protected String addPanelMeta(final String message) {
-    return message + "\n{panel}Automatically created by: [~" + buildUserId + "] from [Build URL|"
-        + buildUrl + "]{panel}";
-  }
+    /**
+     * Adds Job info to the given message.
+     *
+     * @return message added with metadata.
+     */
+    protected String addMeta(final String message) {
+        return message + "\nAutomatically created by: " + buildUserId + " from " + buildUrl;
+    }
 
-  /**
-   * Adds Job info to the given message.
-   *
-   * @return message added with metadata.
-   */
-  protected String addMeta(final String message) {
-    return message + "\nAutomatically created by: " + buildUserId + " from " + buildUrl;
-  }
-
-  @SuppressWarnings("hiding")
-  protected abstract <T> ResponseData<T> verifyInput() throws Exception;
+    @SuppressWarnings("hiding")
+    protected abstract <T> ResponseData<T> verifyInput() throws Exception;
 }
