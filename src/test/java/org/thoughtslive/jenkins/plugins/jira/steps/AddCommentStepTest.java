@@ -35,7 +35,7 @@ public class AddCommentStepTest extends BaseTest {
 
   @Test
   public void testDeprecatedWithEmptyIdOrKeyThrowsAbortException() throws Exception {
-
+    when(getEnvVars().get("JIRA_FAIL_ON_ERROR")).thenReturn(null);
     final AddCommentStep step = new AddCommentStep("", "test comment");
     stepExecution = new AddCommentStep.Execution(step, contextMock);
 
@@ -48,6 +48,7 @@ public class AddCommentStepTest extends BaseTest {
 
   @Test
   public void testDeprecatedWithEmptyCommentThrowsAbortException() throws Exception {
+    when(getEnvVars().get("JIRA_FAIL_ON_ERROR")).thenReturn(null);
     final AddCommentStep step = new AddCommentStep("TEST-1", "");
     stepExecution = new AddCommentStep.Execution(step, contextMock);
 
@@ -60,6 +61,7 @@ public class AddCommentStepTest extends BaseTest {
 
   @Test
   public void testDeprecatedSuccessfulAddComment() throws Exception {
+    when(getEnvVars().get("JIRA_FAIL_ON_ERROR")).thenReturn(null);
     final AddCommentStep step = new AddCommentStep("TEST-1", "test comment");
     stepExecution = new AddCommentStep.Execution(step, contextMock);
 

@@ -64,4 +64,8 @@ public class BaseTest {
     site.close();
     closeable.close();
   }
+
+  public EnvVars getEnvVars() {
+    return envVarsMock;
+  }
 }
