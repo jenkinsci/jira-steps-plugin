@@ -18,6 +18,9 @@
   <f:entry field="readTimeout" title="Read Timeout(ms) ">
     <f:number default="10000"/>
   </f:entry>
+  <f:entry field="useV3Search" title="Use JIRA V3 Search API ">
+    <f:checkbox/>
+  </f:entry>
   <f:section title="Choose Login Type:">
     <f:radioBlock checked="${instance.isLoginType('BASIC')}" field="loginType" inline="true"
       name="loginType" title="Basic" value="BASIC">

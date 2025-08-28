@@ -38,6 +38,10 @@ public class JqlSearchStep extends BasicJiraStep {
   @DataBoundSetter
   private Object fields;
 
+  @Getter
+  @DataBoundSetter
+  private String nextPageToken;
+
   @DataBoundConstructor
   public JqlSearchStep(final String jql) {
     this.jql = jql;
@@ -83,7 +87,7 @@ public class JqlSearchStep extends BasicJiraStep {
         logger.println("JIRA: Site - " + siteName + " - Search JQL: " + step.getJql() + " startAt: "
             + step.getStartAt() + " maxResults: " + step.getMaxResults());
         response = jiraService
-            .searchIssues(step.getJql(), step.getStartAt(), step.getMaxResults(), step.getFields());
+            .searchIssues(step.getJql(), step.getStartAt(), step.getMaxResults(), step.getFields(), step.getNextPageToken());
       }
 
       return logResponse(response);
