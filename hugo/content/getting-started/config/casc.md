@@ -22,6 +22,7 @@ unclassified:
       loginType: 'BASIC'
       userName: 'foo'
       password: 'some pass'
+      useV3Search: true
     - name: 'moar jira'
       url: 'http://example.com'
       timeout: 10000
@@ -31,4 +32,5 @@ unclassified:
       privateKey: 'my private key'
       secret: 'super secret'
       token: 'my token'
+      useV3Search: false
 ```
