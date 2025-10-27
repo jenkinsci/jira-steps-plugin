@@ -34,12 +34,22 @@ public class SigningInterceptor implements Interceptor {
   public Response intercept(Interceptor.Chain chain) throws IOException {
 
     if (Site.LoginType.BASIC.name().equalsIgnoreCase(jiraSite.getLoginType())) {
-      String credentials = jiraSite.getUserName() + ":" + jiraSite.getPassword().getPlainText();
-      String encodedHeader =
-          "Basic " + new String(Base64.getEncoder().encode(credentials.getBytes()));
-      Request requestWithAuthorization =
-          chain.request().newBuilder().addHeader("Authorization", encodedHeader).build();
-      return chain.proceed(requestWithAuthorization);
+      if(jiraSite.isUseBearer()) {
+        String token = jiraSite.getPassword().getPlainText();
+        String encodedHeader =
+                "Bearer " + token;
+        Request requestWithAuthorization =
+                chain.request().newBuilder().addHeader("Authorization", encodedHeader).build();
+        return chain.proceed(requestWithAuthorization);
+      }
+      else {
+        String credentials = jiraSite.getUserName() + ":" + jiraSite.getPassword().getPlainText();
+        String encodedHeader =
+                "Basic " + new String(Base64.getEncoder().encode(credentials.getBytes()));
+        Request requestWithAuthorization =
+                chain.request().newBuilder().addHeader("Authorization", encodedHeader).build();
+        return chain.proceed(requestWithAuthorization);
+      }
     } else if (Site.LoginType.OAUTH.name().equalsIgnoreCase(jiraSite.getLoginType())) {
       Request request = chain.request();
       OAuthConsumer consumer =
@@ -61,16 +71,26 @@ public class SigningInterceptor implements Interceptor {
           .filter(c -> c.getId().equals(jiraSite.getCredentialsId())) //
           .findFirst() //
           .orElseThrow(() -> new IllegalStateException(Messages.Site_invalidCredentialsId()));
-      String credentials = credentialsId.getUsername();
-      if (credentialsId instanceof UsernamePasswordCredentials) {
-        credentials +=
-            ":" + ((UsernamePasswordCredentials) credentialsId).getPassword().getPlainText();
+      if(jiraSite.isUseBearer() && credentialsId instanceof UsernamePasswordCredentials) {
+        String token = ((UsernamePasswordCredentials)credentialsId).getPassword().getPlainText();
+        String encodedHeader =
+                "Bearer " + token;
+        Request requestWithAuthorization =
+                chain.request().newBuilder().addHeader("Authorization", encodedHeader).build();
+        return chain.proceed(requestWithAuthorization);
       }
-      String encodedHeader =
-          "Basic " + new String(Base64.getEncoder().encode(credentials.getBytes()));
-      Request requestWithAuthorization = chain.request().newBuilder()
-          .addHeader("Authorization", encodedHeader).build();
-      return chain.proceed(requestWithAuthorization);
+      else {
+        String credentials = credentialsId.getUsername();
+        if (credentialsId instanceof UsernamePasswordCredentials) {
+          credentials +=
+                  ":" + ((UsernamePasswordCredentials) credentialsId).getPassword().getPlainText();
+        }
+        String encodedHeader =
+                "Basic " + new String(Base64.getEncoder().encode(credentials.getBytes()));
+        Request requestWithAuthorization = chain.request().newBuilder()
+                .addHeader("Authorization", encodedHeader).build();
+        return chain.proceed(requestWithAuthorization);
+      }
     } else {
       throw new IOException("Invalid Login Type, this isn't expected.");
     }

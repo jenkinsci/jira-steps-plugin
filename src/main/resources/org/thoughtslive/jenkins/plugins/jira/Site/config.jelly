@@ -18,6 +18,9 @@
   <f:entry field="readTimeout" title="Read Timeout(ms) ">
     <f:number default="10000"/>
   </f:entry>
+  <f:entry field="useBearer" title="${%Use Bearer Header}">
+    <f:checkbox default="true" />
+  </f:entry>
   <f:section title="Choose Login Type:">
     <f:radioBlock checked="${instance.isLoginType('BASIC')}" field="loginType" inline="true"
       name="loginType" title="Basic" value="BASIC">
@@ -34,7 +37,7 @@
               method="validateBasic"
               progress="Checking..."
               title="${%Test Connection}"
-              with="name,url,loginType,timeout,readTimeout,userName,password,consumerKey,privateKey,secret,token"/>
+              with="name,url,loginType,timeout,readTimeout,userName,password,consumerKey,privateKey,secret,token,useBearer"/>
           </f:entry>
         </l:isAdmin>
       </f:nested>
@@ -76,7 +79,7 @@
               method="validateCredentials"
               progress="Checking..."
               title="${%Test Connection}"
-              with="url,credentialsId,timeout,readTimeout"/>
+              with="url,credentialsId,timeout,readTimeout,useBearer"/>
           </f:entry>
         </l:isAdmin>
       </f:nested>
