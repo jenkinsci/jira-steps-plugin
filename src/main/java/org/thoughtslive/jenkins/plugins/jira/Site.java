@@ -65,6 +65,9 @@ public class Site extends AbstractDescribableImpl<Site> {
   private int timeout;
   @Getter
   private int readTimeout;
+  @Getter
+  @Setter(onMethod = @__({@DataBoundSetter}))
+  private boolean useBearer;
   // Basic
   @Getter
   @Setter(onMethod = @__({@DataBoundSetter}))
@@ -135,7 +138,6 @@ public class Site extends AbstractDescribableImpl<Site> {
   public void setPrivateKeySecret(final String privateKey) {
     this.privateKeySecret = Secret.fromString(Util.fixEmpty(privateKey));
   }
-
 
   public JiraService getService() {
     if (jiraService == null) {
@@ -270,7 +272,8 @@ public class Site extends AbstractDescribableImpl<Site> {
     public FormValidation doValidateCredentials(@QueryParameter String url,
         @QueryParameter String credentialsId,
         @QueryParameter Integer timeout,
-        @QueryParameter Integer readTimeout) throws IOException {
+        @QueryParameter Integer readTimeout,
+        @QueryParameter Boolean useBearer) throws IOException {
       if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
         return FormValidation.warning("Insufficient permissions");
       }
@@ -293,6 +296,7 @@ public class Site extends AbstractDescribableImpl<Site> {
       Site site = new Site("test", new URL(url), LoginType.CREDENTIAL.name(), timeout);
       site.setCredentialsId(credentialsId);
       site.setReadTimeout(readTimeout);
+      site.setUseBearer(useBearer);
 
       try {
         final JiraService service = new JiraService(site);
@@ -320,7 +324,8 @@ public class Site extends AbstractDescribableImpl<Site> {
         @QueryParameter String readTimeout,
         @QueryParameter String userName, @QueryParameter String password,
         @QueryParameter String consumerKey, @QueryParameter String privateKey,
-        @QueryParameter String secret, @QueryParameter String token) throws IOException {
+        @QueryParameter String secret, @QueryParameter String token,
+        @QueryParameter Boolean useBearer) throws IOException {
       if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
         return FormValidation.warning("Insufficient permissions");
       }
@@ -372,6 +377,7 @@ public class Site extends AbstractDescribableImpl<Site> {
       if (password == null) {
         return FormValidation.error("Password is empty or null.");
       }
+      site.setUseBearer(useBearer);
       site.setUserName(userName);
       site.setPassword(password);
       site.setReadTimeout(rt);
