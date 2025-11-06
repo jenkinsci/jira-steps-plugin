@@ -61,7 +61,7 @@ public interface JiraEndPoints {
   Call<Void> assignIssue(@Path("issueIdOrKey") String issueIdOrKey, @Body Object user);
 
   @GET("rest/api/2/issue/{issueIdOrKey}/comment")
-  Call<Object> getComments(@Path("issueIdOrKey") String issueIdOrKey);
+  Call<Object> getComments(@Path("issueIdOrKey") String issueIdOrKey, @QueryMap Map<String, String> queryMap);
 
   @POST("rest/api/2/issue/{issueIdOrKey}/comment")
   Call<Object> addComment(@Path("issueIdOrKey") String issueIdOrKey, @Body Object comment);

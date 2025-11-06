@@ -70,7 +70,7 @@ public class GetCommentsStep extends BasicJiraStep {
       if (response == null) {
         logger.println(
             "JIRA: Site - " + siteName + " - Querying issue: " + step.getIdOrKey() + " comments");
-        response = jiraService.getComments(step.getIdOrKey());
+        response = jiraService.getComments(step.getIdOrKey(), step.getQueryParams());
       }
 
       return logResponse(response);
