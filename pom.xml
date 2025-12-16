@@ -5,7 +5,7 @@
   <parent>
     <artifactId>plugin</artifactId>
     <groupId>org.jenkins-ci.plugins</groupId>
-    <version>4.54</version>
+    <version>5.28</version>
   </parent>
   <artifactId>jira-steps</artifactId>
   <version>${revision}.${changelist}</version>
@@ -16,10 +16,10 @@
   <properties>
     <revision>2.1</revision>
     <changelist>999999-SNAPSHOT</changelist>
-    <java.level>8</java.level>
+    <java.level>21</java.level>
     <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
-    <jenkins.baseline>2.361</jenkins.baseline>
-    <jenkins.version>${jenkins.baseline}.1</jenkins.version>
+    <jenkins.baseline>2.479</jenkins.baseline>
+    <jenkins.version>2.479.3</jenkins.version>
     <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
     <assertj-core.version>3.27.3</assertj-core.version>
     <google.oauth.version>1.38.0</google.oauth.version>
@@ -76,7 +76,17 @@
         <groupId>io.jenkins.tools.bom</groupId>
         <scope>import</scope>
         <type>pom</type>
-        <version>1763.v092b_8980a_f5e</version>
+        <version>5054.v620b_5d2b_d5e6</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.errorprone</groupId>
+        <artifactId>error_prone_annotations</artifactId>
+        <version>2.28.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.j2objc</groupId>
+        <artifactId>j2objc-annotations</artifactId>
+        <version>3.0.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -139,7 +149,7 @@
 
     <!-- Test Dependencies -->
     <dependency>
-      <artifactId>mockito-inline</artifactId>
+      <artifactId>mockito-core</artifactId>
       <groupId>org.mockito</groupId>
       <scope>test</scope>
     </dependency>
@@ -158,6 +168,19 @@
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.codehaus.gmavenplus</groupId>
         <artifactId>gmavenplus-plugin</artifactId>

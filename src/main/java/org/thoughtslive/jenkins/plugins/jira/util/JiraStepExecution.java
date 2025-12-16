@@ -38,7 +38,7 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
 
   private static final long serialVersionUID = 3856797875872780808L;
 
-  public transient JiraService jiraService = null;
+  protected transient JiraService jiraService = null;
   protected transient PrintStream logger = null;
   protected transient String siteName = null;
   protected transient boolean failOnError = true;
