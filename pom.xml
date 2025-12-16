@@ -14,7 +14,7 @@
   <inceptionYear>2016</inceptionYear>
   <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
   <properties>
-    <revision>2.0</revision>
+    <revision>2.1</revision>
     <changelist>999999-SNAPSHOT</changelist>
     <java.level>8</java.level>
     <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->

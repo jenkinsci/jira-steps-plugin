@@ -65,6 +65,8 @@ public class Site extends AbstractDescribableImpl<Site> {
   private int timeout;
   @Getter
   private int readTimeout;
+  @Getter
+  private boolean useV3Search;
   // Basic
   @Getter
   @Setter(onMethod = @__({@DataBoundSetter}))
@@ -90,11 +92,12 @@ public class Site extends AbstractDescribableImpl<Site> {
   private transient JiraService jiraService = null;
 
   @DataBoundConstructor
-  public Site(final String name, final URL url, final String loginType, final int timeout) {
+  public Site(final String name, final URL url, final String loginType, final int timeout, final boolean useV3Search) {
     this.name = Util.fixEmpty(name);
     this.url = url;
     this.loginType = Util.fixEmpty(loginType);
     this.timeout = timeout;
+    this.useV3Search = useV3Search;
   }
 
   public static Site get(final String siteName) {
@@ -125,6 +128,9 @@ public class Site extends AbstractDescribableImpl<Site> {
   public void setReadTimeout(final int readTimeout) {
     this.readTimeout = readTimeout;
   }
+
+  @DataBoundSetter
+  public void setUseV3Search(final boolean useV3Search) { this.useV3Search = useV3Search; }
 
   @DataBoundSetter
   public void setToken(final String token) {
@@ -270,7 +276,8 @@ public class Site extends AbstractDescribableImpl<Site> {
     public FormValidation doValidateCredentials(@QueryParameter String url,
         @QueryParameter String credentialsId,
         @QueryParameter Integer timeout,
-        @QueryParameter Integer readTimeout) throws IOException {
+        @QueryParameter Integer readTimeout,
+        @QueryParameter Boolean useV3Search) throws IOException {
       if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
         return FormValidation.warning("Insufficient permissions");
       }
@@ -290,7 +297,7 @@ public class Site extends AbstractDescribableImpl<Site> {
         return validation;
       }
 
-      Site site = new Site("test", new URL(url), LoginType.CREDENTIAL.name(), timeout);
+      Site site = new Site("test", new URL(url), LoginType.CREDENTIAL.name(), timeout, useV3Search);
       site.setCredentialsId(credentialsId);
       site.setReadTimeout(readTimeout);
 
@@ -318,6 +325,7 @@ public class Site extends AbstractDescribableImpl<Site> {
     public FormValidation doValidateBasic(@QueryParameter String name, @QueryParameter String url,
         @QueryParameter String loginType, @QueryParameter String timeout,
         @QueryParameter String readTimeout,
+        @QueryParameter Boolean useV3Search,
         @QueryParameter String userName, @QueryParameter String password,
         @QueryParameter String consumerKey, @QueryParameter String privateKey,
         @QueryParameter String secret, @QueryParameter String token) throws IOException {
@@ -364,7 +372,7 @@ public class Site extends AbstractDescribableImpl<Site> {
         return FormValidation.error("Read Timeout is not a number");
       }
 
-      Site site = new Site(name, mainURL, "BASIC", t);
+      Site site = new Site(name, mainURL, "BASIC", t, useV3Search);
 
       if (userName == null) {
         return FormValidation.error("UserName is empty or null.");
@@ -397,6 +405,7 @@ public class Site extends AbstractDescribableImpl<Site> {
     public FormValidation doValidateOAuth(@QueryParameter String name, @QueryParameter String url,
         @QueryParameter String loginType, @QueryParameter String timeout,
         @QueryParameter String readTimeout,
+        @QueryParameter Boolean useV3Search,
         @QueryParameter String userName, @QueryParameter String password,
         @QueryParameter String consumerKey, @QueryParameter String privateKey,
         @QueryParameter String secret, @QueryParameter String token) throws IOException {
@@ -445,7 +454,7 @@ public class Site extends AbstractDescribableImpl<Site> {
         return FormValidation.error("Read Timeout is not a number");
       }
 
-      Site site = new Site(name, mainURL, "OAUTH", t);
+      Site site = new Site(name, mainURL, "OAUTH", t, useV3Search);
 
       if (consumerKey == null) {
         return FormValidation.error("Consumer Key is empty or null.");

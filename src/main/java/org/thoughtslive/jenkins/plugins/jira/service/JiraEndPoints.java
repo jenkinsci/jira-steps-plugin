@@ -147,6 +147,10 @@ public interface JiraEndPoints {
   @POST("rest/api/2/search")
   Call<Object> searchIssues(@Body Object search);
 
+  // Search
+  @POST("rest/api/3/search/jql")
+  Call<Object> searchIssuesV3(@Body Object search);
+
   // Version
   @POST("rest/api/2/version")
   Call<Object> createVersion(@Body Object version);

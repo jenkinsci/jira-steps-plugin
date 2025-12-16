@@ -30,7 +30,7 @@ public class JqlSearchStepTest extends BaseTest {
   public void setup() throws IOException, InterruptedException {
 
     final ResponseDataBuilder<Object> builder = ResponseData.builder();
-    when(jiraServiceMock.searchIssues(anyString(), anyInt(), anyInt(), any()))
+    when(jiraServiceMock.searchIssues(anyString(), anyInt(), anyInt(), any(), any()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
   }
 
@@ -55,7 +55,7 @@ public class JqlSearchStepTest extends BaseTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).searchIssues("TEST-1", 0, 1000, null);
+    verify(jiraServiceMock, times(1)).searchIssues("TEST-1", 0, 1000, null, null);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

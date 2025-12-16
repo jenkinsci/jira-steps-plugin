@@ -16,6 +16,7 @@ import java.net.ProxySelector;
 import java.net.SocketAddress;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -298,18 +299,32 @@ public class JiraService {
   }
 
   public ResponseData<Object> searchIssues(final String jql, final int startAt,
-      final int maxResults, final Object fields) {
+      final int maxResults, final Object fields, final String nextPageToken) {
     try {
       ImmutableMap.Builder<Object, Object> paramsMap = ImmutableMap.builder()
           .put("jql", jql)
-          .put("startAt", startAt)
           .put("maxResults", maxResults);
 
-      if (fields != null) {
-        paramsMap.put("fields", fields);
+      if (jiraSite.isUseV3Search()){
+        if (fields != null) {
+          if (fields instanceof String) {
+            paramsMap.put("fields", Arrays.asList(((String) fields).split(",")));
+          } else {
+            paramsMap.put("fields", fields);
+          }
+        }
+        if (nextPageToken != null) {
+          paramsMap.put("nextPageToken", nextPageToken);
+        }
+        return parseResponse(jiraEndPoints.searchIssuesV3(paramsMap.build()).execute());
       }
-
-      return parseResponse(jiraEndPoints.searchIssues(paramsMap.build()).execute());
+      else {
+        if (fields != null) {
+          paramsMap.put("fields", fields);
+        }
+        paramsMap.put("startAt", startAt);
+        return parseResponse(jiraEndPoints.searchIssues(paramsMap.build()).execute());
+      }
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
