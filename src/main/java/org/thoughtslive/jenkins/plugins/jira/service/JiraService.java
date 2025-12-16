@@ -222,9 +222,9 @@ public class JiraService {
     }
   }
 
-  public ResponseData<Object> getComments(final String issueIdorKey) {
+  public ResponseData<Object> getComments(final String issueIdorKey, final Map<String, String> queryParams) {
     try {
-      return parseResponse(jiraEndPoints.getComments(issueIdorKey).execute());
+      return parseResponse(jiraEndPoints.getComments(issueIdorKey, queryParams).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
