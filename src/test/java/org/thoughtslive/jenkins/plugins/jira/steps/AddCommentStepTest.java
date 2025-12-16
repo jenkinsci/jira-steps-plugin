@@ -10,8 +10,8 @@ import static org.mockito.Mockito.when;
 
 import com.google.common.collect.ImmutableMap;
 import hudson.AbortException;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.thoughtslive.jenkins.plugins.jira.BaseTest;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 
@@ -24,7 +24,7 @@ public class AddCommentStepTest extends BaseTest {
 
   private AddCommentStep.Execution stepExecution;
 
-  @Before
+  @BeforeEach
   public void setup() {
     final ResponseData.ResponseDataBuilder<Object> builder = ResponseData.builder();
     when(jiraServiceMock.addComment(anyString(), any()))

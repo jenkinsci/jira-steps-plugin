@@ -12,8 +12,8 @@ import hudson.FilePath;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.IOUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.thoughtslive.jenkins.plugins.jira.BaseTest;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 
@@ -26,7 +26,7 @@ public class UploadAttachmentStepTest extends BaseTest {
 
   UploadAttachmentStep.Execution stepExecution;
 
-  @Before
+  @BeforeEach
   public void setup() throws IOException, InterruptedException {
 
     final ResponseData.ResponseDataBuilder<Object> builder = ResponseData.builder();

@@ -12,8 +12,8 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import hudson.AbortException;
 import java.io.IOException;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.thoughtslive.jenkins.plugins.jira.BaseTest;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
@@ -29,7 +29,7 @@ public class NotifyIssueStepTest extends BaseTest {
       ImmutableMap.builder().put("subject", "TEST SUBJECT").put("textBody", "TEST BODY").build());
   NotifyIssueStep.Execution stepExecution;
 
-  @Before
+  @BeforeEach
   public void setup() throws IOException, InterruptedException {
 
     final ResponseDataBuilder<Void> builder = ResponseData.builder();

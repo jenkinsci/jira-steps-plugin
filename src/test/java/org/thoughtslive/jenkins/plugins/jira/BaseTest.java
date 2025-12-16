@@ -12,8 +12,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
@@ -39,7 +39,7 @@ public class BaseTest {
   private AutoCloseable closeable;
   private MockedStatic<Site> site;
 
-  @Before
+  @BeforeEach
   public void setUpBase() throws IOException, InterruptedException {
     closeable = MockitoAnnotations.openMocks(this);
     when(envVarsMock.get("JIRA_SITE")).thenReturn("LOCAL");
@@ -59,7 +59,7 @@ public class BaseTest {
     when(contextMock.get(FilePath.class)).thenReturn(new FilePath(new File("test.txt")));
   }
 
-  @After
+  @AfterEach
   public void tearUpBase() throws Exception {
     site.close();
     closeable.close();
