@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import org.joda.time.DateTime;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.thoughtslive.jenkins.plugins.jira.BaseTest;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
@@ -28,7 +28,7 @@ public class NewIssueStepTest extends BaseTest {
   NewIssueStep.Execution stepExecution;
   IssueInput issue = null;
 
-  @Before
+  @BeforeEach
   public void setup() throws IOException, InterruptedException {
 
     final Map<String, Object> fields = new HashMap<String, Object>();

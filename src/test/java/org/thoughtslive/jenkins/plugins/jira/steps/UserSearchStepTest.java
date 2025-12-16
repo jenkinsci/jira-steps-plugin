@@ -10,8 +10,8 @@ import static org.mockito.Mockito.when;
 
 import hudson.AbortException;
 import java.io.IOException;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.thoughtslive.jenkins.plugins.jira.BaseTest;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
@@ -25,7 +25,7 @@ public class UserSearchStepTest extends BaseTest {
 
   private UserSearchStep.Execution stepExecution;
 
-  @Before
+  @BeforeEach
   public void setup() throws IOException, InterruptedException {
 
     final ResponseDataBuilder<Object> builder = ResponseData.builder();

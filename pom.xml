@@ -27,6 +27,7 @@
     <retrofit2.version>2.9.0</retrofit2.version>
     <signpost.oauth.version>2.1.1</signpost.oauth.version>
     <maven.javadoc.skip>true</maven.javadoc.skip>
+    <ban-junit4-imports.skip>false</ban-junit4-imports.skip>
   </properties>
   <licenses>
     <license>
@@ -154,8 +155,8 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <artifactId>junit</artifactId>
-      <groupId>junit</groupId>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>

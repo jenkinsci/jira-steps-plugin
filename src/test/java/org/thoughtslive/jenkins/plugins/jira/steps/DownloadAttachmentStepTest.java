@@ -12,8 +12,8 @@ import com.google.common.collect.ImmutableMap;
 import hudson.AbortException;
 import java.io.IOException;
 import okhttp3.ResponseBody;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.thoughtslive.jenkins.plugins.jira.BaseTest;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 
@@ -26,7 +26,7 @@ public class DownloadAttachmentStepTest extends BaseTest {
 
   DownloadAttachmentStep.Execution stepExecution;
 
-  @Before
+  @BeforeEach
   public void setup() throws IOException, InterruptedException {
 
     final ResponseData.ResponseDataBuilder<Object> builder1 = ResponseData.builder();

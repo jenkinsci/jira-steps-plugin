@@ -7,8 +7,8 @@ import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.util.Map;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.thoughtslive.jenkins.plugins.jira.BaseTest;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.api.ResponseData.ResponseDataBuilder;
@@ -22,7 +22,7 @@ public class GetServerInfoStepTest extends BaseTest {
 
   private GetServerInfoStep.Execution stepExecution;
 
-  @Before
+  @BeforeEach
   public void setup() throws IOException, InterruptedException {
     final ResponseDataBuilder<Map<String, Object>> builder = ResponseData.builder();
     when(jiraServiceMock.getServerInfo())
