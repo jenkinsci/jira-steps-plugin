@@ -2,6 +2,7 @@ package org.thoughtslive.jenkins.plugins.jira.steps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.times;
@@ -29,7 +30,7 @@ public class UserSearchStepTest extends BaseTest {
   public void setup() throws IOException, InterruptedException {
 
     final ResponseDataBuilder<Object> builder = ResponseData.builder();
-    when(jiraServiceMock.userSearch(anyString(), anyInt(), anyInt()))
+    when(jiraServiceMock.userSearch(anyString(), anyInt(), anyInt(), anyBoolean()))
         .thenReturn(builder.successful(true).code(200).message("Success").build());
   }
 
@@ -54,7 +55,21 @@ public class UserSearchStepTest extends BaseTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).userSearch("jenkins", 0, 1000);
+    verify(jiraServiceMock, times(1)).userSearch("jenkins", 0, 1000, false);
+    assertThat(step.isFailOnError()).isEqualTo(true);
+  }
+
+  @Test
+  public void testSuccessfulUserSearchWithGDPRMode() throws Exception {
+    final UserSearchStep step = new UserSearchStep("jenkins");
+    step.gdprMode = true;
+    stepExecution = new UserSearchStep.Execution(step, contextMock);
+
+    // Execute Test.
+    stepExecution.run();
+
+    // Assert Test
+    verify(jiraServiceMock, times(1)).userSearch("jenkins", 0, 1000, true);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }

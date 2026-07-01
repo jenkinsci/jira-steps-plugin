@@ -18,7 +18,7 @@ class JiraServiceIT {
 
         println service.getIssue("TEST-27").code
 
-        println service.assignIssue('TEST-27', 'jenkins').code
+        println service.assignIssueByUsername('TEST-27', 'jenkins').code
 
         println service.updateComment('TEST-27', '10604', 'changing it to something else again').code
 

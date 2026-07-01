@@ -28,8 +28,10 @@ public class AssignIssueStepTest extends BaseTest {
   public void setup() throws IOException, InterruptedException {
 
     final ResponseDataBuilder<Void> builder = ResponseData.builder();
-    when(jiraServiceMock.assignIssue(any(), any()))
-        .thenReturn(builder.successful(true).code(200).message("Success").build());
+    when(jiraServiceMock.assignIssueByUsername(any(), any()))
+            .thenReturn(builder.successful(true).code(200).message("Success").build());
+    when(jiraServiceMock.assignIssueByAccountId(any(), any()))
+            .thenReturn(builder.successful(true).code(200).message("Success").build());
   }
 
   @Test
@@ -53,7 +55,7 @@ public class AssignIssueStepTest extends BaseTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).assignIssue("TEST-1", null);
+    verify(jiraServiceMock, times(1)).assignIssueByAccountId("TEST-1", null);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 
@@ -66,7 +68,7 @@ public class AssignIssueStepTest extends BaseTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).assignIssue("TEST-1", null);
+    verify(jiraServiceMock, times(1)).assignIssueByAccountId("TEST-1", null);
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 
@@ -79,7 +81,7 @@ public class AssignIssueStepTest extends BaseTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).assignIssue("TEST-1", "testUser");
+    verify(jiraServiceMock, times(1)).assignIssueByUsername("TEST-1", "testUser");
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 
@@ -92,7 +94,7 @@ public class AssignIssueStepTest extends BaseTest {
     stepExecution.run();
 
     // Assert Test
-    verify(jiraServiceMock, times(1)).assignIssue("TEST-1", "testUser");
+    verify(jiraServiceMock, times(1)).assignIssueByAccountId("TEST-1", "testUser");
     assertThat(step.isFailOnError()).isEqualTo(true);
   }
 }
