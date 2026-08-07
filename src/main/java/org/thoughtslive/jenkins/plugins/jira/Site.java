@@ -36,7 +36,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.java.Log;
 import org.acegisecurity.Authentication;
-import org.apache.commons.lang.StringUtils;
 import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.DoNotUse;
 import org.kohsuke.stapler.AncestorInPath;
@@ -179,14 +178,14 @@ public class Site extends AbstractDescribableImpl<Site> {
     }
 
     public FormValidation doCheckName(final @QueryParameter String name) {
-      if (StringUtils.isBlank(name)) {
+      if (Util.fixEmptyAndTrim(name) == null) {
         return FormValidation.error(Messages.required());
       }
       return FormValidation.ok();
     }
 
     public FormValidation doCheckUrl(final @QueryParameter String url) {
-      if (StringUtils.isBlank(url)) {
+      if (Util.fixEmptyAndTrim(url) == null) {
         return FormValidation.error(Messages.required());
       }
       try {
@@ -223,7 +222,7 @@ public class Site extends AbstractDescribableImpl<Site> {
           CredentialsProvider.USE_ITEM)) {
         return FormValidation.ok();
       }
-      if (StringUtils.isBlank(credentialsId)) {
+      if (Util.fixEmptyAndTrim(credentialsId) == null) {
         return FormValidation.warning(Messages.Site_emptyCredentialsId());
       }
 
@@ -242,7 +241,7 @@ public class Site extends AbstractDescribableImpl<Site> {
 
       StandardListBoxModel result = new StandardListBoxModel();
 
-      credentialsId = StringUtils.trimToEmpty(credentialsId);
+      credentialsId = Util.fixNull(credentialsId).trim();
       if (item == null) {
         if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
           return result.includeCurrentValue(credentialsId);
