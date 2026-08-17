@@ -5,7 +5,7 @@
   <parent>
     <artifactId>plugin</artifactId>
     <groupId>org.jenkins-ci.plugins</groupId>
-    <version>6.2152.ve00a_731c3ce9</version>
+    <version>6.2221.va_045130417c9</version>
   </parent>
   <artifactId>jira-steps</artifactId>
   <version>${revision}.${changelist}</version>
