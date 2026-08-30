@@ -5,7 +5,7 @@
   <parent>
     <artifactId>plugin</artifactId>
     <groupId>org.jenkins-ci.plugins</groupId>
-    <version>6.2152.ve00a_731c3ce9</version>
+    <version>6.2211.v27f680c93c53</version>
   </parent>
   <artifactId>jira-steps</artifactId>
   <version>${revision}.${changelist}</version>
@@ -18,8 +18,8 @@
     <changelist>999999-SNAPSHOT</changelist>
     <java.level>21</java.level>
     <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
-    <jenkins.baseline>2.479</jenkins.baseline>
-    <jenkins.version>2.479.3</jenkins.version>
+    <jenkins.baseline>2.528</jenkins.baseline>
+    <jenkins.version>2.528.3</jenkins.version>
     <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
     <assertj-core.version>3.27.7</assertj-core.version>
     <google.oauth.version>1.38.0</google.oauth.version>
@@ -77,7 +77,7 @@
         <groupId>io.jenkins.tools.bom</groupId>
         <scope>import</scope>
         <type>pom</type>
-        <version>5054.v620b_5d2b_d5e6</version>
+        <version>6607.v3ed3d8ddfed8</version>
       </dependency>
       <dependency>
         <groupId>com.google.errorprone</groupId>
@@ -100,6 +100,7 @@
     <dependency>
       <artifactId>jackson2-api</artifactId>
       <groupId>org.jenkins-ci.plugins</groupId>
+      <version>2.22.2-445.vdc613f1d8012</version>
     </dependency>
     <dependency>
       <artifactId>credentials</artifactId>
@@ -190,6 +191,9 @@
       <plugin>
         <groupId>org.codehaus.gmavenplus</groupId>
         <artifactId>gmavenplus-plugin</artifactId>
+        <configuration>
+          <targetBytecode>8</targetBytecode>
+        </configuration>
         <executions>
           <execution>
             <goals>
