@@ -201,14 +201,27 @@ public class JiraService {
     }
   }
 
-  public ResponseData<Void> assignIssue(final String issueIdorKey, final String userName) {
+  public ResponseData<Void> assignIssueByUsername(final String issueIdorKey, final String userName) {
     try {
       Map input = Maps.newHashMap();
       input.put("name", userName);
       return parseResponse(
-          jiraEndPoints
-              .assignIssue(issueIdorKey, input)
-              .execute());
+              jiraEndPoints
+                      .assignIssue(issueIdorKey, input)
+                      .execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
+  public ResponseData<Void> assignIssueByAccountId(final String issueIdorKey, final String accountId) {
+    try {
+      Map input = Maps.newHashMap();
+      input.put("accountId", accountId);
+      return parseResponse(
+              jiraEndPoints
+                      .assignIssue(issueIdorKey, input)
+                      .execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
@@ -292,7 +305,7 @@ public class JiraService {
   public ResponseData<Void> addIssueWatcher(final String issueIdorKey, final String userName) {
     try {
       return parseResponse(jiraEndPoints
-          .addIssueWatcher(issueIdorKey, userName).execute());
+              .addIssueWatcher(issueIdorKey, userName).execute());
     } catch (Exception e) {
       return buildErrorResponse(e);
     }
@@ -494,9 +507,19 @@ public class JiraService {
   }
 
   public ResponseData<Object> userSearch(final String userName, final int startAt,
-      final int maxResults) {
+                                         final int maxResults) {
+    return userSearch(userName, startAt, maxResults, false);
+  }
+
+  public ResponseData<Object> userSearch(final String userName, final int startAt,
+      final int maxResults, final boolean gdprMode) {
     try {
-      return parseResponse(jiraEndPoints.userSearch(userName, startAt, maxResults).execute());
+      if (gdprMode) {
+        return parseResponse(jiraEndPoints.userSearchGDPR(userName, startAt, maxResults).execute());
+      }
+      else {
+        return parseResponse(jiraEndPoints.userSearch(userName, startAt, maxResults).execute());
+      }
     } catch (Exception e) {
       return buildErrorResponse(e);
     }

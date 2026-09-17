@@ -31,6 +31,9 @@ public class UserSearchStep extends BasicJiraStep {
   @Getter
   @DataBoundSetter
   private int maxResults = 1000;
+  @Getter
+  @DataBoundSetter
+  boolean gdprMode = false;
 
   @DataBoundConstructor
   public UserSearchStep(final String queryStr) {
@@ -77,9 +80,9 @@ public class UserSearchStep extends BasicJiraStep {
         logger.println(
             "JIRA: Site - " + siteName + " - Searching JIRA Active Users: " + step.getQueryStr()
                 + " startAt: "
-                + step.getStartAt() + " maxResults: " + step.getMaxResults());
+                + step.getStartAt() + " maxResults: " + step.getMaxResults() + " gdprMode: " + step.isGdprMode());
         response = jiraService
-            .userSearch(step.getQueryStr(), step.getStartAt(), step.getMaxResults());
+            .userSearch(step.getQueryStr(), step.getStartAt(), step.getMaxResults(), step.isGdprMode());
       }
 
       return logResponse(response);
