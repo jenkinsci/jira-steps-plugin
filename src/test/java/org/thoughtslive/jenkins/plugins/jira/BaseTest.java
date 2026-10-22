@@ -1,6 +1,7 @@
 package org.thoughtslive.jenkins.plugins.jira;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
@@ -18,6 +19,7 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.thoughtslive.jenkins.plugins.jira.api.ResponseData;
 import org.thoughtslive.jenkins.plugins.jira.service.JiraService;
 
 public class BaseTest {
@@ -29,7 +31,7 @@ public class BaseTest {
   @Mock
   TaskListener taskListenerMock;
   @Mock
-  Run<?, ?> runMock;
+  protected Run<?, ?> runMock;
   @Mock
   EnvVars envVarsMock;
   @Mock
@@ -46,6 +48,10 @@ public class BaseTest {
     when(envVarsMock.get("BUILD_URL")).thenReturn("http://localhost:8080/jira-testing/job/01");
 
     when(mockSite.getService()).thenReturn(jiraServiceMock);
+    // As on Jira Server / Data Center without query support: the audit log keeps [~buildUserId].
+    final ResponseData.ResponseDataBuilder<Object> userSearch = ResponseData.builder();
+    when(jiraServiceMock.userSearchByQuery(any(), anyInt()))
+        .thenReturn(userSearch.successful(false).code(400).build());
     site = Mockito.mockStatic(Site.class);
     site.when(() -> Site.get(any())).thenReturn(mockSite);
 

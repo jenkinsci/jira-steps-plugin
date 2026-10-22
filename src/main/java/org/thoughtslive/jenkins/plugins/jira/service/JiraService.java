@@ -502,6 +502,14 @@ public class JiraService {
     }
   }
 
+  public ResponseData<Object> userSearchByQuery(final String query, final int maxResults) {
+    try {
+      return parseResponse(jiraEndPoints.userSearchByQuery(query, maxResults).execute());
+    } catch (Exception e) {
+      return buildErrorResponse(e);
+    }
+  }
+
   public ResponseData<Object> assignableUserSearch(final String userName, final String project,
       final String issueKey, final int startAt,
       final int maxResults) {

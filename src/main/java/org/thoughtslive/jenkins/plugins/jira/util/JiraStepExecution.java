@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import org.jenkinsci.plugins.workflow.steps.StepContext;
 import org.jenkinsci.plugins.workflow.steps.SynchronousNonBlockingStepExecution;
 import org.thoughtslive.jenkins.plugins.jira.Messages;
@@ -44,6 +45,7 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
   protected transient boolean failOnError = true;
   protected transient String buildUserId = null;
   protected transient String buildUrl = null;
+  private transient String buildUserMention = null;
   private transient Run<?, ?> run;
   private transient TaskListener listener;
   private transient EnvVars envVars;
@@ -156,8 +158,53 @@ public abstract class JiraStepExecution<T> extends SynchronousNonBlockingStepExe
    * @return message added with metadata.
    */
   protected String addPanelMeta(final String message) {
-    return message + "\n{panel}Automatically created by: [~" + buildUserId + "] from [Build URL|"
-        + buildUrl + "]{panel}";
+    return message + "\n{panel}Automatically created by: " + buildUserMention()
+        + " from [Build URL|" + buildUrl + "]{panel}";
+  }
+
+  /**
+   * Mention of the build user, looked up once per execution.
+   *
+   * @return mention or plain build user id.
+   */
+  protected String buildUserMention() {
+    if (buildUserMention == null) {
+      buildUserMention = resolveBuildUserMention();
+    }
+    return buildUserMention;
+  }
+
+  /**
+   * Jira Cloud resolves [~...] mentions by accountId only, so [~jenkinsUserId] renders as
+   * &#64;unknown there. Looks up the build user by query and mentions the single match:
+   * <ul>
+   * <li>by accountId on Jira Cloud,</li>
+   * <li>by username on Jira Server / Data Center versions that support query,</li>
+   * <li>as plain text when there is no or more than one match,</li>
+   * <li>by build user id, as before, when the search fails, e.g. Jira Server / Data Center
+   * without query support.</li>
+   * </ul>
+   *
+   * @return mention or plain build user id.
+   */
+  private String resolveBuildUserMention() {
+    final ResponseData<Object> response = jiraService.userSearchByQuery(buildUserId, 2);
+    if (!response.isSuccessful()) {
+      return "[~" + buildUserId + "]";
+    }
+    if (response.getData() instanceof List && ((List<?>) response.getData()).size() == 1
+        && ((List<?>) response.getData()).get(0) instanceof Map) {
+      final Map<?, ?> user = (Map<?, ?>) ((List<?>) response.getData()).get(0);
+      if (user.get("accountId") != null) {
+        return "[~accountid:" + user.get("accountId") + "]";
+      }
+      if (user.get("name") != null) {
+        return "[~" + user.get("name") + "]";
+      }
+    }
+    log(logger, "JIRA: Cannot match build user " + buildUserId
+        + " to a single Jira user, attributing in plain text.");
+    return buildUserId;
   }
 
   /**

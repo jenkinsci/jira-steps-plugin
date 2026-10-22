@@ -173,6 +173,11 @@ public interface JiraEndPoints {
   Call<Object> userSearch(@Query("username") String userName, @Query("startAt") int startAt,
       @Query("maxResults") int maxResults);
 
+  // Jira Cloud only accepts query (matches email address and display name), not username.
+  @GET("rest/api/2/user/search")
+  Call<Object> userSearchByQuery(@Query("query") String query,
+      @Query("maxResults") int maxResults);
+
   @GET("rest/api/2/user/assignable/search")
   Call<Object> assignableUserSearch(@Query("username") String userName,
       @Query("project") String project, @Query("issueKey") String issueKey,

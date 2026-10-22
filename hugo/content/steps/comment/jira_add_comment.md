@@ -17,7 +17,7 @@ This step adds a comment on a particular issue.
 * **input** - comment, supports jira wiki formatting.
 * **site** - Optional, default: `JIRA_SITE` environment variable.
 * **failOnError** - Optional. default: `true`.
-* **auditLog** - Optional. default: `true`. Append a panel to the comment with the build url and build user name.
+* **auditLog** - Optional. default: `true`. Append a panel to the comment with the build url and build user name. The build user is mentioned by the Jira user found searching for its Jenkins user id (by accountId on Jira Cloud), or named in plain text when no single Jira user matches.
 * _Deprecated:_ **comment** - comment, supports jira wiki formatting.
 
 {{% notice note %}}
